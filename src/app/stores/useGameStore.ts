@@ -1,6 +1,7 @@
 // src/stores/useGameStore.ts
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { useStatsStore } from './useStatsStore';
 
 type Character = {
   nome: string;
@@ -35,18 +36,22 @@ type Attempt = {
 };
 
 interface GameState {
-  // Estado
+  // Estado do jogo diário
   selectedCharacter: Character | null;
   attempts: Attempt[];
   won: boolean;
-  usedCharacters: string[];
+  gaveUp: boolean; // Novo: para diferenciar vitória de desistência
+  currentGameDate: string | null;
+  usedCharacterIndices: number[];
   
   // Ações
   setSelectedCharacter: (character: Character) => void;
   addAttempt: (attempt: Attempt) => void;
   setWon: (won: boolean) => void;
-  addUsedCharacter: (characterName: string) => void;
-  resetGame: (newCharacter: Character) => void;
+  setGaveUp: (gaveUp: boolean) => void;
+  setCurrentGameDate: (date: string) => void;
+  addUsedCharacterIndex: (index: number) => void;
+  resetDailyGame: (character: Character, date: string) => void;
   clearState: () => void;
 }
 
@@ -57,7 +62,9 @@ export const useGameStore = create<GameState>()(
       selectedCharacter: null,
       attempts: [],
       won: false,
-      usedCharacters: [],
+      gaveUp: false,
+      currentGameDate: null,
+      usedCharacterIndices: [],
 
       // Ações
       setSelectedCharacter: (character) => 
@@ -69,33 +76,53 @@ export const useGameStore = create<GameState>()(
       setWon: (won) => 
         set({ won }),
 
-      addUsedCharacter: (characterName) =>
+      setGaveUp: (gaveUp) =>
+        set({ gaveUp }),
+
+      setCurrentGameDate: (date) =>
+        set({ currentGameDate: date }),
+
+      addUsedCharacterIndex: (index) =>
         set((state) => ({ 
-          usedCharacters: [...state.usedCharacters, characterName] 
+          usedCharacterIndices: [...state.usedCharacterIndices, index] 
         })),
 
-      resetGame: (newCharacter) =>
-        set((state) => ({
-          selectedCharacter: newCharacter,
-          attempts: [],
-          won: false,
-          usedCharacters: [...state.usedCharacters, newCharacter.nome],
-        })),
+      resetDailyGame: (character, date) =>
+        set((state) => {
+          const isSameDay = state.currentGameDate === date;
+          const keepWonState = isSameDay && state.won;
+          const keepGaveUpState = isSameDay && state.gaveUp;
+          
+          const totalCharacters = 100;
+          const shouldResetCycle = state.usedCharacterIndices.length >= totalCharacters;
+          
+          return {
+            selectedCharacter: character,
+            attempts: isSameDay ? state.attempts : [],
+            won: keepWonState,
+            gaveUp: keepGaveUpState,
+            currentGameDate: date,
+            usedCharacterIndices: shouldResetCycle ? [] : state.usedCharacterIndices,
+          };
+        }),
 
       clearState: () =>
         set({
           selectedCharacter: null,
           attempts: [],
           won: false,
+          gaveUp: false,
         }),
     }),
     {
-      name: 'classic-game-storage',
+      name: 'classic-game-daily-storage',
       partialize: (state) => ({
         selectedCharacter: state.selectedCharacter,
         attempts: state.attempts,
         won: state.won,
-        usedCharacters: state.usedCharacters,
+        gaveUp: state.gaveUp,
+        currentGameDate: state.currentGameDate,
+        usedCharacterIndices: state.usedCharacterIndices,
       }),
     }
   )

@@ -5,7 +5,15 @@ import { useState, useEffect, useRef } from "react";
 import characters from "../data/charactersDLE";
 import React from "react";
 import { useGameStore } from "../stores/useGameStore";
+import { useStatsStore } from "../stores/useStatsStore";
+import StatsModal from "../components/StatsModal";
 import Link from "next/link";
+import { 
+  getCurrentDateInBrazil, 
+  getNextMidnightInBrazil, 
+  getDailyCharacter,
+  formatTimeRemaining 
+} from "../utils/dailyGame";
 
 type Character = {
   nome: string;
@@ -25,20 +33,25 @@ type Character = {
 };
 
 export default function GamePage() {
-  // Zustand Store
   const {
     selectedCharacter,
     attempts,
     won,
-    usedCharacters,
+    gaveUp,
+    currentGameDate,
+    usedCharacterIndices,
     setSelectedCharacter,
     addAttempt,
     setWon,
-    resetGame,
+    setGaveUp,
+    setCurrentGameDate,
+    addUsedCharacterIndex,
+    resetDailyGame,
     clearState,
   } = useGameStore();
 
-  // Estado local (não persistido)
+  const { addGameResult, getGameByDate } = useStatsStore();
+
   const characteristicsRef = useRef<HTMLDivElement | null>(null);
   const [selectedSuggestion, setSelectedSuggestion] = useState<Character | null>(null);
   const [showHint1, setShowHint1] = useState<boolean>(false);
@@ -49,16 +62,54 @@ export default function GamePage() {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [dica1, setDica1] = useState<string | null>(null);
   const [dica2, setDica2] = useState<string | null>(null);
+  const [timeRemaining, setTimeRemaining] = useState<string>("00:00:00");
+  const [showStatsModal, setShowStatsModal] = useState<boolean>(false);
 
-  // Inicializar personagem
   useEffect(() => {
-    if (!selectedCharacter && characters.length > 0) {
-      const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
-      setSelectedCharacter(randomCharacter);
+    const todayDate = getCurrentDateInBrazil();
+    
+    if (currentGameDate !== todayDate || !selectedCharacter) {
+      const { character, index } = getDailyCharacter(
+        todayDate,
+        characters,
+        usedCharacterIndices
+      );
+      
+      resetDailyGame(character, todayDate);
+      addUsedCharacterIndex(index);
+      
+      setShowHint1(false);
+      setShowHint2(false);
+      setDica1(null);
+      setDica2(null);
+      setShowAnswer(false);
     }
-  }, [selectedCharacter, setSelectedCharacter]);
+  }, [currentGameDate, selectedCharacter, usedCharacterIndices, resetDailyGame, addUsedCharacterIndex]);
 
-  // Atualizar dicas baseado nas tentativas
+  useEffect(() => {
+    const updateCountdown = () => {
+      const nextMidnight = getNextMidnightInBrazil();
+      setTimeRemaining(formatTimeRemaining(nextMidnight));
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const checkDayChange = () => {
+      const todayDate = getCurrentDateInBrazil();
+      if (currentGameDate && currentGameDate !== todayDate) {
+        window.location.reload();
+      }
+    };
+
+    const interval = setInterval(checkDayChange, 60000);
+    return () => clearInterval(interval);
+  }, [currentGameDate]);
+
   useEffect(() => {
     if (attempts.length >= 5 && !dica1 && selectedCharacter?.dica1) {
       setDica1(selectedCharacter.dica1);
@@ -68,7 +119,18 @@ export default function GamePage() {
     }
   }, [attempts, selectedCharacter, dica1, dica2]);
 
-  // Funções de comparação
+  // Salva resultado no histórico quando o jogo termina
+  useEffect(() => {
+    if ((won || gaveUp) && currentGameDate && attempts.length > 0) {
+      const existingGame = getGameByDate(currentGameDate);
+      
+      // Só registra se ainda não foi registrado
+      if (!existingGame) {
+        addGameResult(currentGameDate, attempts.length, won && !gaveUp);
+      }
+    }
+  }, [won, gaveUp, currentGameDate, attempts.length, addGameResult, getGameByDate]);
+
   const parseHeight = (height: string): number => {
     if (height.toLowerCase() === "desconhecido") return NaN;
     return parseFloat(height.replace(",", ".").replace(" m", "").trim());
@@ -220,7 +282,7 @@ export default function GamePage() {
   const handleGiveUp = () => {
     setShowAnswer(true);
     setWon(true);
-    clearState();
+    setGaveUp(true);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -259,35 +321,10 @@ export default function GamePage() {
     }
   };
 
-  const handleRestart = () => {
-    const remainingCharacters = characters.filter(
-      (char) => !usedCharacters.includes(char.nome)
-    );
-
-    let randomCharacter;
-
-    if (remainingCharacters.length > 0) {
-      randomCharacter = remainingCharacters[Math.floor(Math.random() * remainingCharacters.length)];
-    } else {
-      randomCharacter = characters[Math.floor(Math.random() * characters.length)];
-    }
-
-    if (!randomCharacter) {
-      alert("Nenhum personagem disponível para reiniciar o jogo.");
-      return;
-    }
-
-    resetGame(randomCharacter);
-    setInput("");
-    setShowAnswer(false);
-    setShowHint1(false);
-    setShowHint2(false);
-    setDica1(null);
-    setDica2(null);
-  };
-
   return (
     <div className="min-h-screen text-white flex flex-col items-center justify-center p-6">
+      <StatsModal isOpen={showStatsModal} onClose={() => setShowStatsModal(false)} />
+      
       <div className="flex justify-center items-center mb-2">
         <Link href="/" passHref>
         <img
@@ -296,8 +333,8 @@ export default function GamePage() {
             className="w-auto h-52 hover:scale-105 transition-transform duration-500 ease-in-out cursor-pointer"
         />
         </Link>
-
       </div>
+
       <div className="mb-4">
         <div className="gap-4 flex items-center justify-center ">
           <div className="relative group ">
@@ -329,38 +366,6 @@ export default function GamePage() {
             </button>
             <div className="absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               Silhuetas
-            </div>
-          </div>
-        
-          <div className="relative group">
-            <button
-              className="w-16 h-16 bg-transparent focus:outline-none"
-              onClick={() => window.location.href = "/SaintSeiyaDLE/quiz"}
-            >
-              <img
-                src="/dle_feed/quiz_icon.png"
-                alt="Modo Quiz"
-                className="w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover:scale-110"
-              />
-            </button>
-            <div className="absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              Quiz
-            </div>
-          </div>
-
-          <div className="relative group">
-            <button
-              className="w-16 h-16 bg-transparent focus:outline-none"
-              onClick={() => window.location.href = "/SaintSeiyaDLE/affinity"}
-            >
-              <img
-                src="/dle_feed/affinity_icon.png"
-                alt="Modo Affinity"
-                className="w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover:scale-110"
-              />
-            </button>
-            <div className="absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              Teste de Afinidade
             </div>
           </div>
         </div>
@@ -635,36 +640,52 @@ export default function GamePage() {
           <div ref={characteristicsRef} className="mt-8 bg-gray-800 text-gray-100 p-6 rounded-lg shadow-lg text-center max-w-md mx-auto">
             <div className="flex flex-col items-center space-y-4">
               <h3 className="text-xl font-bold mb-4 text-center text-yellow-400">Indicadores</h3>
-              <div className="flex items-center justify-around space-x-4">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 flex items-center justify-center rounded-lg">
-                    <img src="/dle_feed/certo.png" alt="Correto" className="w-full h-full object-contain" />
+                <div className="flex items-center justify-around space-x-4">
+                  
+                  <div className="flex flex-col items-center">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-lg">
+                      <img
+                        src="/dle_feed/certo.png"
+                        alt="Correto"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="text-sm text-white mt-2">Correto</span>
                   </div>
-                  <span className="text-sm text-white mt-2">Correto</span>
-                </div>
 
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 flex items-center justify-center rounded-lg">
-                    <img src="/dle_feed/errado.png" alt="Incorreto" className="w-full h-full object-contain" />
+                  <div className="flex flex-col items-center">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-lg">
+                      <img
+                        src="/dle_feed/errado.png"
+                        alt="Incorreto"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="text-sm text-white mt-2">Incorreto</span>
                   </div>
-                  <span className="text-sm text-white mt-2">Incorreto</span>
-                </div>
 
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 flex items-center justify-center rounded-lg">
-                    <img src="/dle_feed/mais.png" alt="Mais Alto" className="w-full h-full object-contain" />
+                  <div className="flex flex-col items-center">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-lg">
+                      <img
+                        src="/dle_feed/mais.png"
+                        alt="Mais Alto"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="text-sm text-white mt-2">Mais alto</span>
                   </div>
-                  <span className="text-sm text-white mt-2">Mais alto</span>
-                </div>
 
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 flex items-center justify-center rounded-lg">
-                    <img src="/dle_feed/menos.png" alt="Mais Baixo" className="w-full h-full object-contain" />
+                  <div className="flex flex-col items-center">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-lg">
+                      <img
+                        src="/dle_feed/menos.png"
+                        alt="Mais Baixo"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="text-sm text-white mt-2">Mais baixo</span>
                   </div>
-                  <span className="text-sm text-white mt-2">Mais baixo</span>
                 </div>
-              </div>
-
               <h3 className="text-lg font-bold mb-2 text-gray-100">Próximo modo:</h3>
 
               <div
@@ -928,7 +949,7 @@ export default function GamePage() {
             <h2 className="text-4xl text-green-400 mb-4">
               {showAnswer ? "Você desistiu!" : "Parabéns! Você acertou!"}
             </h2>
-            <p className="text-2xl mb-4">O personagem era:</p>
+            <p className="text-2xl mb-4">O personagem do dia era:</p>
 
             <div className="flex flex-col items-center">
               <img
@@ -942,11 +963,17 @@ export default function GamePage() {
               <p className="text-md font-semibold mb-4">
                 Número de tentativas: <span className="font-bold text-yellow-400">{attempts.length}</span>
               </p>
+              
+              <div className="bg-gray-700 p-4 rounded-lg mb-4">
+                <p className="text-sm text-gray-300 mb-2">Próximo personagem em:</p>
+                <p className="text-xl font-bold text-yellow-400">{timeRemaining}</p>
+              </div>
+
               <button
-                className="bg-red-600 text-white px-4 py-2 rounded-md font-bold text-sm hover:bg-red-700 transition duration-300 mb-4"
-                onClick={() => alert('Estatísticas ainda não implementadas.')}
+                className="bg-yellow-600 text-white px-6 py-3 rounded-md font-bold text-lg hover:bg-yellow-700 transition duration-300 mb-4"
+                onClick={() => setShowStatsModal(true)}
               >
-                📊 Estatísticas
+                📊 Ver Estatísticas
               </button>
               <div className="mt-6">
                 <h3 className="text-lg font-bold mb-2 text-gray-100">Próximo modo:</h3>
@@ -974,7 +1001,7 @@ export default function GamePage() {
                     <div className="relative group ">
                       <button
                         className="w-16 h-16 bg-transparent focus:outline-none "
-                        onClick={handleRestart}
+                        onClick={() => window.location.href = "/SaintSeiyaDLE/classico"}
                       >
                         <img
                           src="/dle_feed/classic_icon.png"
@@ -1002,68 +1029,12 @@ export default function GamePage() {
                         Silhuetas
                       </div>
                     </div>
-                  
-                    <div className="relative group">
-                      <button
-                        className="w-16 h-16 bg-transparent focus:outline-none"
-                        onClick={() => window.location.href = "/SaintSeiyaDLE/quiz"}
-                      >
-                        <img
-                          src="/dle_feed/quiz_icon.png"
-                          alt="Modo Quiz"
-                          className="w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover:scale-110"
-                        />
-                      </button>
-                      <div className="absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Quiz
-                      </div>
-                    </div>
-
-                    <div className="relative group">
-                      <button
-                        className="w-16 h-16 bg-transparent focus:outline-none"
-                        onClick={() => window.location.href = "/SaintSeiyaDLE/affinity"}
-                      >
-                        <img
-                          src="/dle_feed/affinity_icon.png"
-                          alt="Modo Affinity"
-                          className="w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover:scale-110"
-                        />
-                      </button>
-                      <div className="absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Teste de Afinidade
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <div className="col-span-10 text-center">
-            <button
-              onClick={handleRestart}
-              className="bg-yellow-500 text-gray-900 px-6 py-2 mt-6 rounded-lg font-bold text-xl hover:bg-yellow-600 transition-all duration-300"
-            >
-              Jogar de Novo
-            </button>
-          </div>
         </div>
-      )}
-      {!won && selectedCharacter && (
-        <button
-          onClick={() => alert(`Personagem atual: ${selectedCharacter.nome}`)}
-          style={{
-            position: "fixed",
-            bottom: "10px",
-            right: "10px",
-            width: "20px",
-            height: "20px",
-            opacity: 0,
-            cursor: "pointer",
-          }}
-          aria-label="Mostrar Personagem Atual"
-        />
       )}
     </div>
   );
