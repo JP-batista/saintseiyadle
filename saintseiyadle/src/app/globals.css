@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* 🎨 Variáveis de tema */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* 🌙 Tema escuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* 🪐 Fundo fixo global */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+
+  /* 🔥 Fundo fixo com imagem */
+  background-image: url("https://i.pinimg.com/originals/84/1b/c0/841bc0ef61518645f58293d7b2167f57.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* Cores e contraste */
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* (Opcional) overlay sutil para contraste melhor */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0); /* Escurece levemente o fundo */
+  z-index: -1; /* Fica atrás de todo o conteúdo */
+}
