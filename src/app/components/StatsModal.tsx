@@ -2,6 +2,8 @@
 "use client";
 import { useStatsStore } from "../stores/useStatsStore";
 import { X } from "lucide-react";
+import { useState } from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 type StatsModalProps = {
   isOpen: boolean;
@@ -18,22 +20,27 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
     gamesHistory 
   } = useStatsStore();
 
+  const [showAllHistory, setShowAllHistory] = useState(false);
+
   if (!isOpen) return null;
 
-  // Prepara dados para o gráfico (últimos 10 jogos)
-  const recentGames = [...gamesHistory]
+  // Prepara dados para o gráfico de linha (últimos 30 jogos vencidos, ordem cronológica)
+  const chartData = [...gamesHistory]
     .filter(g => g.won)
-    .slice(0, 10)
-    .reverse();
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(-30)
+    .map(game => ({
+      date: new Date(game.date + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }),
+      tentativas: game.attempts,
+      fullDate: game.date,
+    }));
 
-  // Calcula a distribuição de tentativas (1-15+)
-  const attemptsDistribution = Array(15).fill(0);
-  gamesHistory.filter(g => g.won).forEach(game => {
-    const index = Math.min(game.attempts - 1, 14);
-    attemptsDistribution[index]++;
-  });
-
-  const maxCount = Math.max(...attemptsDistribution, 1);
+  // Histórico de jogos (primeiros 5 ou todos)
+  const displayedHistory = showAllHistory 
+    ? gamesHistory.filter(g => g.won)
+    : gamesHistory.filter(g => g.won).slice(0, 5);
+  
+  const hasMoreGames = gamesHistory.filter(g => g.won).length > 5;
 
   return (
     <div 
@@ -41,11 +48,11 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
       onClick={onClose}
     >
       <div 
-        className="bg-gray-800 rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        className="bg-gray-800 rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="sticky top-0 bg-gray-800 border-b-2 border-yellow-500 p-6 flex justify-between items-center">
+        <div className="sticky top-0 bg-gray-800 border-b-2 border-yellow-500 p-6 flex justify-between items-center z-10">
           <h2 className="text-3xl font-bold text-yellow-400">📊 Estatísticas</h2>
           <button
             onClick={onClose}
@@ -58,7 +65,7 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
         {/* Content */}
         <div className="p-6 space-y-6">
           {/* Estatísticas principais */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             <div className="bg-gray-700 rounded-lg p-4 text-center">
               <div className="text-3xl font-bold text-green-400">{totalWins}</div>
               <div className="text-sm text-gray-300 mt-1">Total de Vitórias</div>
@@ -83,76 +90,116 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
               <div className="text-3xl font-bold text-yellow-400">{maxStreak}</div>
               <div className="text-sm text-gray-300 mt-1">Melhor Sequência</div>
             </div>
-
-            <div className="bg-gray-700 rounded-lg p-4 text-center">
-              <div className="text-3xl font-bold text-pink-400">{gamesHistory.length}</div>
-              <div className="text-sm text-gray-300 mt-1">Jogos Totais</div>
-            </div>
           </div>
 
-          {/* Gráfico de distribuição de tentativas */}
-          <div className="bg-gray-700 rounded-lg p-4">
-            <h3 className="text-xl font-bold text-yellow-400 mb-4 text-center">
-              Distribuição de Tentativas
-            </h3>
-            <div className="space-y-2">
-              {attemptsDistribution.map((count, index) => {
-                const attempts = index + 1;
-                const label = attempts === 15 ? "15+" : attempts.toString();
-                const percentage = maxCount > 0 ? (count / maxCount) * 100 : 0;
-                
-                return count > 0 ? (
-                  <div key={index} className="flex items-center gap-2">
-                    <div className="w-8 text-right text-sm text-gray-300">{label}</div>
-                    <div className="flex-1 bg-gray-600 rounded-full h-6 relative overflow-hidden">
-                      <div
-                        className="bg-gradient-to-r from-yellow-500 to-yellow-400 h-full rounded-full transition-all duration-500 flex items-center justify-end pr-2"
-                        style={{ width: `${percentage}%` }}
-                      >
-                        {count > 0 && (
-                          <span className="text-xs font-bold text-gray-900">{count}</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ) : null;
-              })}
-            </div>
-          </div>
-
-          {/* Histórico recente */}
-          {recentGames.length > 0 && (
+          {/* Gráfico de linha */}
+          {chartData.length > 0 && (
             <div className="bg-gray-700 rounded-lg p-4">
               <h3 className="text-xl font-bold text-yellow-400 mb-4 text-center">
-                Últimos Jogos
+                Evolução de Tentativas
               </h3>
-              <div className="space-y-2">
-                {recentGames.map((game, index) => (
+              <ResponsiveContainer width="100%" height={250}>
+                <LineChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                  <XAxis 
+                    dataKey="date" 
+                    stroke="#9CA3AF"
+                    style={{ fontSize: '12px' }}
+                  />
+                  <YAxis 
+                    stroke="#9CA3AF"
+                    style={{ fontSize: '12px' }}
+                    allowDecimals={false}
+                  />
+                  <Tooltip 
+                    contentStyle={{ 
+                      backgroundColor: '#1F2937', 
+                      border: '1px solid #374151',
+                      borderRadius: '8px',
+                      color: '#F3F4F6'
+                    }}
+                    labelStyle={{ color: '#FCD34D' }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="tentativas" 
+                    stroke="#FCD34D" 
+                    strokeWidth={3}
+                    dot={{ fill: '#FCD34D', r: 5 }}
+                    activeDot={{ r: 7 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+
+          {/* Histórico de jogos */}
+          {displayedHistory.length > 0 && (
+            <div className="bg-gray-700 rounded-lg p-4">
+              <h3 className="text-xl font-bold text-yellow-400 mb-4 text-center">
+                Histórico de Jogos
+              </h3>
+              <div className="space-y-3">
+                {displayedHistory.map((game) => (
                   <div
                     key={game.date}
-                    className="flex items-center justify-between bg-gray-600 rounded-lg p-3"
+                    className="flex items-center justify-between bg-gray-600 rounded-lg p-3 hover:bg-gray-550 transition-colors"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="text-lg font-bold text-gray-300">
-                        #{recentGames.length - index}
-                      </div>
-                      <div className="text-sm text-gray-400">
-                        {new Date(game.date + 'T00:00:00').toLocaleDateString('pt-BR')}
+                      <img
+                        src={game.characterImage}
+                        alt={game.characterName}
+                        className="w-14 h-14 rounded-lg object-cover border-2 border-gray-500"
+                      />
+                      <div className="flex flex-col">
+                        <span className="font-bold text-yellow-400 text-sm">
+                          {game.characterName}
+                        </span>
+                        <span className="text-xs text-gray-400">
+                          {new Date(game.date + 'T00:00:00').toLocaleDateString('pt-BR', {
+                            day: '2-digit',
+                            month: 'long',
+                            year: 'numeric'
+                          })}
+                        </span>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       {game.firstTry && (
                         <span className="text-xs bg-purple-500 text-white px-2 py-1 rounded-full font-semibold">
-                          1ª Tentativa!
+                          🏆 1ª Tentativa!
                         </span>
                       )}
-                      <div className="text-lg font-bold text-yellow-400">
-                        {game.attempts} {game.attempts === 1 ? 'tentativa' : 'tentativas'}
+                      <div className="text-right">
+                        <div className="text-2xl font-bold text-yellow-400">
+                          {game.attempts}
+                        </div>
+                        <div className="text-xs text-gray-400">
+                          {game.attempts === 1 ? 'tentativa' : 'tentativas'}
+                        </div>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
+
+              {hasMoreGames && !showAllHistory && (
+                <button
+                  onClick={() => setShowAllHistory(true)}
+                  className="w-full mt-4 bg-gray-600 hover:bg-gray-500 text-white py-2 rounded-lg font-semibold transition-colors"
+                >
+                  Ver Mais ({gamesHistory.filter(g => g.won).length - 5} jogos)
+                </button>
+              )}
+
+              {showAllHistory && (
+                <button
+                  onClick={() => setShowAllHistory(false)}
+                  className="w-full mt-4 bg-gray-600 hover:bg-gray-500 text-white py-2 rounded-lg font-semibold transition-colors"
+                >
+                  Ver Menos
+                </button>
+              )}
             </div>
           )}
 

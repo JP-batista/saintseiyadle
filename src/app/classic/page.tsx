@@ -121,15 +121,20 @@ export default function GamePage() {
 
   // Salva resultado no histórico quando o jogo termina
   useEffect(() => {
-    if ((won || gaveUp) && currentGameDate && attempts.length > 0) {
+    if ((won || gaveUp) && currentGameDate && attempts.length > 0 && selectedCharacter) {
       const existingGame = getGameByDate(currentGameDate);
-      
-      // Só registra se ainda não foi registrado
+
       if (!existingGame) {
-        addGameResult(currentGameDate, attempts.length, won && !gaveUp);
+        addGameResult(
+          currentGameDate,
+          attempts.length,
+          won && !gaveUp,
+          selectedCharacter.nome,
+          selectedCharacter.imgSrc
+        );
       }
     }
-  }, [won, gaveUp, currentGameDate, attempts.length, addGameResult, getGameByDate]);
+  }, [won, gaveUp, currentGameDate, attempts.length, addGameResult, getGameByDate, selectedCharacter]);
 
   const parseHeight = (height: string): number => {
     if (height.toLowerCase() === "desconhecido") return NaN;

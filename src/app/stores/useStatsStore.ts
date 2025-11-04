@@ -7,6 +7,8 @@ type GameHistory = {
   attempts: number;
   won: boolean;
   firstTry: boolean;
+  characterName: string;   // Nome do personagem jogado
+  characterImage: string;  // URL da imagem do personagem
 };
 
 interface StatsState {
@@ -20,7 +22,13 @@ interface StatsState {
   maxStreak: number;
   
   // Ações
-  addGameResult: (date: string, attempts: number, won: boolean) => void;
+  addGameResult: (
+    date: string, 
+    attempts: number, 
+    won: boolean,
+    characterName: string,
+    characterImage: string
+  ) => void;
   calculateStats: () => void;
   getGameByDate: (date: string) => GameHistory | undefined;
 }
@@ -35,7 +43,7 @@ export const useStatsStore = create<StatsState>()(
       currentStreak: 0,
       maxStreak: 0,
 
-      addGameResult: (date: string, attempts: number, won: boolean) => {
+      addGameResult: (date, attempts, won, characterName, characterImage) => {
         set((state) => {
           // Verifica se já existe registro para esta data
           const existingIndex = state.gamesHistory.findIndex(g => g.date === date);
@@ -49,6 +57,8 @@ export const useStatsStore = create<StatsState>()(
               attempts,
               won,
               firstTry: attempts === 1 && won,
+              characterName,
+              characterImage,
             };
           } else {
             // Adiciona novo registro
@@ -59,6 +69,8 @@ export const useStatsStore = create<StatsState>()(
                 attempts,
                 won,
                 firstTry: attempts === 1 && won,
+                characterName,
+                characterImage,
               }
             ];
           }
@@ -155,7 +167,7 @@ export const useStatsStore = create<StatsState>()(
         });
       },
 
-      getGameByDate: (date: string) => {
+      getGameByDate: (date) => {
         return get().gamesHistory.find(g => g.date === date);
       },
     }),

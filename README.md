@@ -1,214 +1,156 @@
-# 🎮 Saint Seiya DLE - Modo Diário
+# Guia de Implementação - Sistema de Estatísticas
 
-Sistema de jogo diário implementado para o Saint Seiya DLE (Daily Lore Edition).
+## Estrutura de Arquivos
 
-## 📋 Arquivos Criados/Modificados
+```
+src/
+├── stores/
+│   ├── useGameStore.ts (atualizado)
+│   └── useStatsStore.ts (novo)
+├── components/
+│   └── StatsModal.tsx (novo)
+└── app/
+    └── classico/
+        └── page.tsx (atualizado)
+```
 
-### Novos Arquivos
+## Dependências Necessárias
 
-1. **`src/utils/dailyGame.ts`** - Utilitários do modo diário
-2. **`src/hooks/useDailyGame.ts`** - Hook personalizado para gerenciar o estado
-3. **`src/app/layout.tsx`** - Layout com correções de hidratação
+Certifique-se de instalar a biblioteca de gráficos:
 
-### Arquivos Modificados
+```bash
+npm install recharts
+# ou
+yarn add recharts
+```
 
-1. **`src/stores/useGameStore.ts`** - Store Zustand atualizada
-2. **`src/app/classico/page.tsx`** - Página principal com modo diário
+## Passos de Implementação
 
-## ✨ Funcionalidades Implementadas
+### 1. Criar o Store de Estatísticas
 
-### ✅ Personagem Determinístico
-- Todos os usuários veem o mesmo personagem no mesmo dia
-- Usa hash da data para seleção determinística
-- Não requer backend ou sincronização
+Crie o arquivo `src/stores/useStatsStore.ts` com o conteúdo fornecido no artifact `stats_store`.
 
-### ✅ Persistência de Estado
-- Estado de vitória mantido ao atualizar a página (F5)
-- Tentativas salvas localmente
-- Data do jogo atual rastreada
+**Funcionalidades:**
+- Armazena histórico completo de jogos (data, tentativas, vitória, primeira tentativa, nome e imagem do personagem)
+- Calcula automaticamente todas as estatísticas
+- Persiste dados no localStorage
+- Recalcula estatísticas ao carregar da storage
 
-### ✅ Rotação Completa
-- Personagens não se repetem até todos aparecerem
-- Ciclo reinicia automaticamente após usar todos
-- Histórico de índices usados
+### 2. Atualizar o Store do Jogo
 
-### ✅ Contador Regressivo
-- Mostra tempo até o próximo personagem
-- Atualização em tempo real (1 segundo)
-- Baseado em fuso horário de São Paulo
+Substitua o conteúdo de `src/stores/useGameStore.ts` pelo artifact `updated_game_store`.
 
-### ✅ Reset Automático
-- Verifica mudança de dia a cada minuto
-- Reinicia jogo automaticamente à meia-noite
-- Limpa tentativas e seleciona novo personagem
+**Mudanças:**
+- Adicionado campo `gaveUp` para diferenciar desistência de vitória
+- Import do `useStatsStore` preparado para integração
 
-### ✅ Correção de Hidratação SSR
-- Evita erros de hidratação do Next.js
-- Loading state durante inicialização
-- suppressHydrationWarning no layout
+### 3. Criar o Modal de Estatísticas
 
-## 🔧 Configuração
+Crie o arquivo `src/components/StatsModal.tsx` com o conteúdo do artifact `stats_modal`.
 
-### 1. Ajustar Número de Personagens
+**Características:**
+- Modal responsivo com overlay
+- Exibe 5 estatísticas principais em cards (removido "Jogos Totais")
+- **Gráfico de linha** com evolução de tentativas ao longo do tempo
+  - Eixo X: Datas dos jogos
+  - Eixo Y: Quantidade de tentativas
+  - Mostra últimos 30 jogos
+- **Histórico detalhado dos últimos jogos** com:
+  - Imagem do personagem
+  - Nome do personagem
+  - Data completa formatada
+  - Quantidade de tentativas
+  - Badge especial para primeira tentativa
+- Botão "Ver Mais" quando houver mais de 5 jogos
+- Destaque para acertos na primeira tentativa
 
-No arquivo `src/stores/useGameStore.ts`, linha 52:
+### 4. Atualizar a Página do Jogo
 
+Substitua `src/app/classico/page.tsx` pelo artifact `updated_game_page`.
+
+**Integrações:**
+- Import do `useStatsStore` e `StatsModal`
+- Import do `recharts` para gráficos
+- Botão "Ver Estatísticas" no estado de vitória
+- Registro automático do resultado ao terminar o jogo (inclui nome e imagem do personagem)
+- Verificação para não duplicar registros do mesmo dia
+
+## Como Funciona
+
+### Fluxo de Dados
+
+1. **Início do Jogo:** Sistema carrega estado do localStorage
+2. **Durante o Jogo:** Tentativas são armazenadas no `useGameStore`
+3. **Fim do Jogo:** 
+   - `won` é setado como `true`
+   - Se desistiu, `gaveUp` também é `true`
+   - `useEffect` detecta mudança e chama `addGameResult()` com dados do personagem
+4. **Registro:** 
+   - Verifica se já existe registro para o dia
+   - Adiciona/atualiza no histórico com nome e imagem do personagem
+   - Recalcula todas as estatísticas
+5. **Visualização:** Modal exibe estatísticas calculadas e gráfico de linha
+
+### Cálculo de Estatísticas
+
+**Total de Vitórias:** Conta jogos onde `won === true` e `gaveUp === false`
+
+**Média de Tentativas:** 
 ```typescript
-const totalCharacters = 100; // Ajuste para o tamanho da sua lista
+soma_tentativas_vitoriosas / total_vitorias
+// Arredondado para 1 casa decimal
 ```
 
-Altere `100` para o número real de personagens em `characters.ts`.
+**Primeira Tentativa:** Conta jogos onde `attempts === 1` e `won === true`
 
-### 2. Fuso Horário
+**Current Streak:**
+- Conta vitórias consecutivas
+- Considera dias consecutivos
+- Reseta se faltar um dia ou perder
 
-Atualmente configurado para `America/Sao_Paulo`. Para alterar, edite em `src/utils/dailyGame.ts`:
+**Max Streak:** Maior sequência de vitórias já registrada
 
-```typescript
-const brazilTime = new Date(now.toLocaleString('en-US', { 
-  timeZone: 'America/Sao_Paulo'  // Altere aqui
-}));
-```
+### Persistência
 
-### 3. Adicionar Hook de Dicas
+Dois itens no localStorage:
+- `classic-game-daily-storage`: Estado do jogo (personagem, tentativas, vitória)
+- `classic-game-stats-storage`: Histórico completo e estatísticas
 
-As dicas são mostradas após 5 e 10 tentativas. Para ajustar:
+## Validações Implementadas
 
-```typescript
-if (attempts.length >= 5 && !dica1 && selectedCharacter?.dica1) {
-  setDica1(selectedCharacter.dica1);
-}
-if (attempts.length >= 10 && !dica2 && selectedCharacter?.dica2) {
-  setDica2(selectedCharacter.dica2);
-}
-```
+✅ Não registra o mesmo jogo duas vezes  
+✅ Diferencia vitória de desistência  
+✅ Mantém estado após F5  
+✅ Respeita virada diária  
+✅ Recalcula estatísticas ao carregar  
+✅ Trata jogos incompletos corretamente  
 
-## 🚀 Como Funciona
+## Testando o Sistema
 
-### Fluxo de Inicialização
+1. **Primeiro Jogo:** Complete um jogo e clique em "Ver Estatísticas"
+2. **Desistência:** Clique em "Desistir" e veja que não conta como vitória
+3. **Atualizar Página:** Pressione F5 e veja que estatísticas persistem
+4. **Múltiplos Dias:** Use DevTools para alterar a data e simular dias diferentes
+5. **Streaks:** Faça jogos consecutivos para ver o streak aumentar
 
-1. **Primeira Visita do Dia**
-   ```
-   getCurrentDateInBrazil() → "2025-11-04"
-   getDailyCharacter("2025-11-04", characters, []) → Personagem #42
-   Salva no localStorage via Zustand
-   ```
+## Customizações Futuras
 
-2. **Recarregar Página (F5)**
-   ```
-   Lê localStorage
-   Mesma data? → Mantém personagem e estado de vitória
-   Data diferente? → Novo personagem
-   ```
+- Adicionar gráfico de linha com evolução temporal
+- Implementar compartilhamento de resultados
+- Adicionar conquistas/badges
+- Exportar estatísticas como imagem
+- Comparação com média global (requer backend)
 
-3. **Mudança de Dia**
-   ```
-   setInterval verifica a cada minuto
-   Data mudou? → window.location.reload()
-   Novo ciclo começa automaticamente
-   ```
+## Troubleshooting
 
-### Algoritmo de Seleção
+**Estatísticas não aparecem:**
+- Verifique console do navegador
+- Confirme que `useStatsStore` foi importado corretamente
+- Limpe localStorage e teste novamente
 
-```typescript
-function getDailyCharacter(date, characters, usedIndices) {
-  // 1. Filtra personagens disponíveis
-  const available = characters.filter((_, i) => !usedIndices.includes(i));
-  
-  // 2. Gera hash da data
-  const seed = simpleHash(date); // "2025-11-04" → 1234567
-  
-  // 3. Seleciona deterministicamente
-  const index = available[seed % available.length];
-  
-  return { character: characters[index], index };
-}
-```
+**Jogos duplicados:**
+- Certifique-se que `getGameByDate()` está sendo chamado antes de `addGameResult()`
 
-## 📊 Estrutura de Dados
-
-### LocalStorage (via Zustand)
-
-```json
-{
-  "selectedCharacter": {
-    "nome": "Seiya de Pégaso",
-    "idade": "13",
-    // ... outros campos
-  },
-  "attempts": [
-    {
-      "nome": "Shiryu de Dragão",
-      "idade": "green",
-      // ... comparações
-    }
-  ],
-  "won": true,
-  "currentGameDate": "2025-11-04",
-  "usedCharacterIndices": [0, 5, 12, 42]
-}
-```
-
-## 🐛 Solução de Problemas
-
-### Erro: "Hydration mismatch"
-**Causa:** Diferenças entre SSR e cliente
-**Solução:** Já implementado com `suppressHydrationWarning` e `isInitialized`
-
-### Estado de vitória não persiste
-**Causa:** Store resetando no mesmo dia
-**Solução:** Verificar `resetDailyGame` na store - já corrigido
-
-### Personagem muda ao recarregar
-**Causa:** Data não sendo verificada corretamente
-**Solução:** Hook `useDailyGame` garante consistência
-
-### Contador não atualiza
-**Causa:** `useEffect` não executando
-**Solução:** Verificar `isInitialized` e dependências
-
-## 🎯 Próximos Passos
-
-### Funcionalidades Futuras
-
-1. **Estatísticas**
-   - Histórico de vitórias
-   - Média de tentativas
-   - Streak de dias consecutivos
-
-2. **Compartilhamento**
-   - Botão "Compartilhar resultado"
-   - Formato tipo Wordle (🟩🟥⬆️⬇️)
-
-3. **Modo Arquivo**
-   - Jogar dias anteriores
-   - Passar data como parâmetro
-   - `?date=2025-11-03`
-
-4. **Dicas Progressivas**
-   - Revelar características gradualmente
-   - Silhueta desfocada
-   - Áudio da técnica
-
-## 📝 Notas Técnicas
-
-- **Zustand Persist:** Usa `localStorage` automaticamente
-- **Next.js SSR:** Loading state previne hidratação prematura
-- **Timezone:** Conversão bidirecional para São Paulo
-- **Hash Function:** Simples mas eficaz para distribuição uniforme
-- **React 18:** Compatível com concurrent features
-
-## 🔐 Segurança
-
-- Dados apenas no cliente (localStorage)
-- Sem chamadas de API
-- Sem informações sensíveis
-- Estado pode ser limpo manualmente pelo usuário
-
-## 📄 Licença
-
-Parte do projeto Saint Seiya DLE.
-
----
-
-**Última atualização:** 04/11/2025
-**Versão:** 1.0.0
+**Streaks incorretos:**
+- Verifique timezone no `getCurrentDateInBrazil()`
+- Confirme formato de data (YYYY-MM-DD)
