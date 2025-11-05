@@ -310,12 +310,6 @@ export default function GamePage() {
     return titleMatches.slice(0, 5);
   }, [attempts, normalizeText]);
 
-  const handleGiveUp = useCallback(() => {
-    setShowAnswer(true);
-    setWon(true);
-    setGaveUp(true);
-  }, [setWon, setGaveUp]);
-
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInput(value);
@@ -1245,15 +1239,6 @@ export default function GamePage() {
               </div>
             </div>
           </div>
-
-          {/* BOTÃO DESISTIR: Estilo atualizado para brilho vermelho no hover */}
-          <button
-            type="button"
-            onClick={handleGiveUp}
-            className="bg-red-600/90 border border-red-400 text-white shadow-lg px-6 py-2 mt-8 rounded-lg font-bold text-lg sm:text-xl hover:bg-red-500 transition-all duration-300 w-full max-w-xs button-press hover-lift hover:shadow-glow-red"
-          >
-            Desistir
-          </button>
         </>
 
 
