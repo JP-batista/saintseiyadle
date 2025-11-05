@@ -8,18 +8,39 @@ type FeedbackCellProps = {
   animationDelay: number;
 };
 
-const FeedbackCell: React.FC<FeedbackCellProps> = ({ status, value, isLatest, animationDelay }) => {
-  // O seu código original trata 'up' e 'down' como "errado"
+const FeedbackCell: React.FC<FeedbackCellProps> = ({
+  status,
+  value,
+  isLatest,
+  animationDelay,
+}) => {
   const isCorrect = status === "green";
-  const iconSrc = isCorrect ? "/dle_feed/certo.png" : "/dle_feed/errado.png";
-  
-  // Você poderia adicionar lógica aqui para ícones "up" e "down" se quisesse
-  // Ex: if (status === 'up') iconSrc = '/dle_feed/up.png';
-  // Ex: if (status === 'down') iconSrc = '/dle_feed/down.png';
+
+  // Lógica de ícones atualizada
+  const getIconSrc = () => {
+    switch (status) {
+      case "green":
+        return "/dle_feed/certo.png";
+      case "up":
+        return "/dle_feed/mais.png";
+      case "down":
+        return "/dle_feed/menos.png";
+      case "red":
+      case "ignore":
+      default:
+        return "/dle_feed/errado.png";
+    }
+  };
+
+  const iconSrc = getIconSrc();
 
   return (
     <div
-      className={`flex flex-col items-center gap-2 attempt-row-enhanced ${isLatest ? 'latest-attempt' : ''}`}
+      className={`
+        flex flex-col items-center gap-2 attempt-row-enhanced 
+        ${isLatest ? "latest-attempt" : ""}
+        transform-gpu
+      `} // <-- Adicionada a classe 'transform-gpu' para performance
       style={{ animationDelay: `${animationDelay}s` }}
     >
       <div className="relative group">
@@ -32,7 +53,10 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({ status, value, isLatest, an
           className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl object-cover shadow-lg transition-all duration-300 ${
             isCorrect
               ? "border-2 border-green-500 correct-indicator-enhanced hover:scale-110 hover:shadow-green-500/50"
-              : "border-2 border-gray-600/50 hover:scale-105"
+              // Adiciona um leve hover para 'up' e 'down', mas mantém 'errado' estático
+              : status === "up" || status === "down"
+              ? "border-2 border-gray-600/50 hover:scale-105"
+              : "border-2 border-gray-600/50"
           }`}
         />
       </div>

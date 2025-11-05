@@ -8,10 +8,19 @@ type CharacterCellProps = {
   animationDelay: number;
 };
 
-const CharacterCell: React.FC<CharacterCellProps> = ({ imgSrc, nome, isLatest, animationDelay }) => {
+const CharacterCell: React.FC<CharacterCellProps> = ({
+  imgSrc,
+  nome,
+  isLatest,
+  animationDelay,
+}) => {
   return (
     <div
-      className={`flex flex-col items-center gap-2 attempt-row-enhanced ${isLatest ? 'latest-attempt' : ''}`}
+      className={`
+        flex flex-col items-center gap-2 attempt-row-enhanced 
+        ${isLatest ? "latest-attempt" : ""}
+        transform-gpu
+      `} // <-- Adicionada a classe 'transform-gpu' para performance
       style={{ animationDelay: `${animationDelay}s` }}
     >
       <div className="relative group">
