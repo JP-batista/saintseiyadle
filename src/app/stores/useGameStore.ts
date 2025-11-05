@@ -1,7 +1,6 @@
 // src/stores/useGameStore.ts
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { useStatsStore } from './useStatsStore';
 
 type Character = {
   nome: string;
@@ -40,7 +39,7 @@ interface GameState {
   selectedCharacter: Character | null;
   attempts: Attempt[];
   won: boolean;
-  gaveUp: boolean; // Novo: para diferenciar vitória de desistência
+  gaveUp: boolean;
   currentGameDate: string | null;
   usedCharacterIndices: number[];
   
@@ -83,9 +82,15 @@ export const useGameStore = create<GameState>()(
         set({ currentGameDate: date }),
 
       addUsedCharacterIndex: (index) =>
-        set((state) => ({ 
-          usedCharacterIndices: [...state.usedCharacterIndices, index] 
-        })),
+        set((state) => {
+          // Evita adicionar índices duplicados
+          if (state.usedCharacterIndices.includes(index)) {
+            return state;
+          }
+          return { 
+            usedCharacterIndices: [...state.usedCharacterIndices, index] 
+          };
+        }),
 
       resetDailyGame: (character, date) =>
         set((state) => {
@@ -93,22 +98,18 @@ export const useGameStore = create<GameState>()(
           const keepWonState = isSameDay && state.won;
           const keepGaveUpState = isSameDay && state.gaveUp;
           
-          const totalCharacters = 100;
-          const shouldResetCycle = state.usedCharacterIndices.length >= totalCharacters;
-          
+          // Se mudou o dia, reseta tentativas e estados
           return {
             selectedCharacter: character,
             attempts: isSameDay ? state.attempts : [],
             won: keepWonState,
             gaveUp: keepGaveUpState,
             currentGameDate: date,
-            usedCharacterIndices: shouldResetCycle ? [] : state.usedCharacterIndices,
           };
         }),
 
       clearState: () =>
         set({
-          selectedCharacter: null,
           attempts: [],
           won: false,
           gaveUp: false,

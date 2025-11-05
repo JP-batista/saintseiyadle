@@ -61,19 +61,22 @@ export default function GameSelectionPage() {
         ))}
       </div>
 
-      {/* Logo com animação de entrada */}
-      <div className="flex justify-center items-center mb-8 relative z-10">
-        <img
-          src="/dle_feed/logo_dle.png"
-          alt="Logo Os Cavaleiros do Zodíaco"
-          className={`w-auto h-44 sm:h-52 md:h-60 transition-all duration-1000 ${
-            isLoaded
-              ? "opacity-100 scale-100 rotate-0"
-              : "opacity-0 scale-75 -rotate-12"
-          } hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(251,191,36,0.6)] cursor-pointer`}
-          style={{ transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
-        />
-      </div>
+       {/* Logo com animação de entrada */}
+        <div className="flex justify-center items-center mb-8 relative z-10">
+          <Link href="/" passHref>
+            <img
+              src="/dle_feed/logo_dle.png"
+              alt="Logo Os Cavaleiros do Zodíaco"
+              className={`w-auto h-32 sm:h-40 md:h-32 transition-all duration-1000 ${
+                isLoaded
+                  ? "opacity-100 scale-100 rotate-0"
+                  : "opacity-0 scale-75 -rotate-12"
+              } hover:scale-105 hover:drop-shadow-[0_0_15px_rgba(251,191,36,0.6)] cursor-pointer`} // Reduzi o hover:scale-110 para 105
+              style={{ transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
+            />
+          </Link>
+        </div>
+
 
       {/* Card de título com animação */}
       <div

@@ -62,7 +62,7 @@ export function getNextMidnightInBrazil(): Date {
 }
 
 /**
- * Gera um hash simples a partir de uma string
+ * Gera um hash simples a partir de uma string (compatível com seeded random)
  */
 function simpleHash(str: string): number {
   let hash = 0;
@@ -75,7 +75,35 @@ function simpleHash(str: string): number {
 }
 
 /**
- * Seleciona o personagem do dia de forma determinística
+ * Implementação de gerador pseudo-aleatório com seed (Mulberry32)
+ * Garante que a mesma data sempre gere o mesmo resultado
+ */
+function seededRandom(seed: number): () => number {
+  return function() {
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+/**
+ * Embaralha um array usando algoritmo Fisher-Yates com seed
+ */
+function shuffleWithSeed<T>(array: T[], seed: number): T[] {
+  const shuffled = [...array];
+  const random = seededRandom(seed);
+  
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  
+  return shuffled;
+}
+
+/**
+ * Seleciona o personagem do dia de forma determinística mas verdadeiramente aleatória
  * @param date Data no formato YYYY-MM-DD
  * @param characters Lista completa de personagens
  * @param usedIndices Índices já usados no ciclo atual
@@ -92,11 +120,14 @@ export function getDailyCharacter<T>(
     : Array.from({ length: characters.length }, (_, i) => i)
         .filter(i => !usedIndices.includes(i));
   
-  // Gera um hash determinístico baseado na data
+  // Gera um seed único baseado na data
   const seed = simpleHash(date);
   
-  // Seleciona um índice disponível usando o hash
-  const selectedIndex = availableIndices[seed % availableIndices.length];
+  // Embaralha os índices disponíveis de forma determinística
+  const shuffledIndices = shuffleWithSeed(availableIndices, seed);
+  
+  // Pega o primeiro índice embaralhado
+  const selectedIndex = shuffledIndices[0];
   
   return {
     character: characters[selectedIndex],

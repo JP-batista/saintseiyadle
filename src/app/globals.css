@@ -713,3 +713,487 @@ body::before {
     animation: text-glow 3s ease-in-out infinite;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Adicione este CSS ao seu globals.css */
+
+/* ===================================
+   GRID DE TENTATIVAS MELHORADO
+   =================================== */
+
+/* Scrollbar customizada */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(31, 41, 55, 0.5);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+/* Animação de entrada dos cabeçalhos */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+/* Animação melhorada para linhas de tentativas */
+@keyframes slideInTopEnhanced {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.attempt-row-enhanced {
+  animation: slideInTopEnhanced 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+/* Animação especial para a tentativa mais recente */
+@keyframes latestAttemptEntry {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.8) rotate(-5deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(10px) scale(1.08) rotate(2deg);
+  }
+  75% {
+    transform: translateY(-5px) scale(0.98) rotate(-1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+.latest-attempt {
+  animation: latestAttemptEntry 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Pulse de brilho para nova tentativa */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Pulse verde para acertos */
+@keyframes pulse-success {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-success {
+  animation: pulse-success 1.5s ease-in-out infinite;
+}
+
+/* Indicador correto melhorado */
+@keyframes correct-indicator-enhanced {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 20px rgba(34, 197, 94, 0);
+    filter: brightness(1.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    filter: brightness(1);
+  }
+}
+
+.correct-indicator-enhanced {
+  animation: correct-indicator-enhanced 1s ease-out 1;
+}
+
+/* Badge "NOVO" com bounce sutil */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+/* Efeito de brilho ao passar o mouse */
+@keyframes shimmer-hover {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.hover\:shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(251, 191, 36, 0.3),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer-hover 2s infinite;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Explosão de partículas ao acertar */
+@keyframes particle-explode {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    opacity: 0;
+  }
+}
+
+.particle-explode {
+  animation: particle-explode 0.8s ease-out forwards;
+}
+
+/* Ripple effect ao clicar */
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(251, 191, 36, 0.5);
+  width: 20px;
+  height: 20px;
+  animation: ripple-effect 0.6s ease-out;
+  pointer-events: none;
+}
+
+/* Shake para feedback de erro */
+@keyframes shake-error {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.animate-shake-error {
+  animation: shake-error 0.5s ease-in-out;
+}
+
+/* Glow pulsante contínuo */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(251, 191, 36, 0.3),
+                0 0 10px rgba(251, 191, 36, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.6),
+                0 0 30px rgba(251, 191, 36, 0.4),
+                0 0 40px rgba(251, 191, 36, 0.2);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Rotação suave para loading */
+@keyframes rotate-smooth {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate-smooth {
+  animation: rotate-smooth 2s linear infinite;
+}
+
+/* Float suave para elementos flutuantes */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+/* Backdrop blur personalizado */
+.backdrop-blur-custom {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Gradiente animado de borda */
+@keyframes border-gradient {
+  0%, 100% {
+    border-image-source: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
+  }
+  50% {
+    border-image-source: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
+  }
+}
+
+.animate-border-gradient {
+  border-width: 2px;
+  border-style: solid;
+  border-image-slice: 1;
+  animation: border-gradient 3s ease-in-out infinite;
+}
+
+/* ===================================
+   RESPONSIVIDADE
+   =================================== */
+
+/* Mobile: Imagens menores mas ainda visíveis */
+@media (max-width: 640px) {
+  /* Reduz intensidade de algumas animações em mobile */
+  .attempt-row-enhanced {
+    animation-duration: 0.4s;
+  }
+  
+  .latest-attempt {
+    animation-duration: 0.6s;
+  }
+  
+  /* Desabilita algumas animações pesadas em mobile */
+  .animate-pulse-glow,
+  .animate-pulse-success {
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
+/* Tablet: Tamanhos intermediários */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .attempt-row-enhanced {
+    animation-duration: 0.5s;
+  }
+}
+
+/* Desktop: Todas as animações com qualidade máxima */
+@media (min-width: 1024px) {
+  /* Adiciona efeito de hover mais elaborado */
+  .attempt-row-enhanced:hover {
+    z-index: 10;
+  }
+  
+  .attempt-row-enhanced img:hover {
+    filter: brightness(1.2) saturate(1.2);
+  }
+}
+
+/* ===================================
+   ACESSIBILIDADE
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .attempt-row-enhanced,
+  .latest-attempt,
+  .animate-fadeInDown,
+  .correct-indicator-enhanced,
+  .animate-bounce-subtle,
+  .animate-bounce-up,
+  .animate-bounce-down,
+  .animate-pulse-glow,
+  .animate-pulse-success,
+  .animate-shake-error,
+  .animate-glow-pulse,
+  .animate-float-gentle {
+    animation: none !important;
+    transition: opacity 0.2s ease;
+  }
+  
+  /* Mantém apenas fade simples */
+  .attempt-row-enhanced,
+  .latest-attempt {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Dark mode (caso implemente) */
+@media (prefers-color-scheme: dark) {
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(17, 24, 39, 0.8);
+  }
+}
+
+/* Print (remove animações) */
+@media print {
+  .attempt-row-enhanced,
+  .latest-attempt,
+  .animate-fadeInDown,
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===================================
+   CLASSES UTILITÁRIAS EXTRAS
+   =================================== */
+
+/* Transição ultra suave */
+.transition-ultra-smooth {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Sombra colorida animada */
+.shadow-glow-green {
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.5),
+              0 0 40px rgba(34, 197, 94, 0.3);
+}
+
+.shadow-glow-yellow {
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.5),
+              0 0 40px rgba(251, 191, 36, 0.3);
+}
+
+.shadow-glow-red {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5),
+              0 0 40px rgba(239, 68, 68, 0.3);
+}
+
+/* Backdrop com gradiente */
+.backdrop-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(17, 24, 39, 0.9) 0%,
+    rgba(31, 41, 55, 0.8) 50%,
+    rgba(17, 24, 39, 0.9) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+
+
+
+
+
+
+/* ===================================
+   TOOLTIP ESTILO "GLASS"
+   =================================== */
+
+.glass-tooltip {
+  position: absolute;
+  bottom: -3rem; /* Aumenta o espaço do ícone */
+  left: 50%;
+  transform: translateX(-50%) translateY(10px); /* Posição inicial (para baixo) */
+  
+  /* Efeito de vidro */
+  background: rgba(17, 24, 39, 0.85); /* bg-gray-900/85 */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(107, 114, 128, 0.5); /* border-gray-500/50 */
+  
+  color: white;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 600; /* semibold */
+  padding: 0.35rem 0.75rem; /* px-3 py-1.5 */
+  border-radius: 0.5rem; /* rounded-lg */
+  
+  white-space: nowrap;
+  z-index: 50;
+  pointer-events: none; /* Importante para não bloquear o hover */
+  
+  /* Animação de entrada */
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .glass-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); /* Posição final */
+}
