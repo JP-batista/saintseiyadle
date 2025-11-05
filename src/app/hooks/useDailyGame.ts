@@ -40,8 +40,7 @@ export function useDailyGame(characters: Character[]) {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // Aguarda estar no cliente antes de inicializar
-    if (typeof window === 'undefined') return;
+    // OTIMIZAÇÃO 1: Removida a verificação 'typeof window' (desnecessária)
 
     const todayDate = getCurrentDateInBrazil();
 
@@ -83,16 +82,14 @@ export function useDailyGame(characters: Character[]) {
       
       setIsInitialized(true);
     }
+  // OTIMIZAÇÃO 2: Array de dependências limpo
+  // Removidos 'won' (não usado) e os setters do Zustand (são estáveis)
   }, [
     characters,
     currentGameDate,
     selectedCharacter,
     usedCharacterIndices,
-    won,
-    setSelectedCharacter,
-    setCurrentGameDate,
-    addUsedCharacterIndex,
-    resetDailyGame,
+    // As funções setter foram removidas daqui
   ]);
 
   return {

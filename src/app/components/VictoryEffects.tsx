@@ -1,13 +1,15 @@
 // src/components/VictoryEffects.tsx
 "use client";
-import { useEffect, useState } from 'react';
+// OTIMIZAÇÃO 2: Importado 'memo'
+import { useEffect, useState, memo } from 'react';
 
 interface VictoryEffectsProps {
   isActive: boolean;
   onComplete?: () => void;
 }
 
-export default function VictoryEffects({ isActive, onComplete }: VictoryEffectsProps) {
+// Renomeado para usar com 'memo'
+const VictoryEffectsComponent = ({ isActive, onComplete }: VictoryEffectsProps) => {
   const [confettiPieces, setConfettiPieces] = useState<Array<{
     id: number;
     left: number;
@@ -36,7 +38,8 @@ export default function VictoryEffects({ isActive, onComplete }: VictoryEffectsP
       '#8b5cf6', // roxo
     ];
 
-    const newConfetti = Array.from({ length: 50 }, (_, i) => ({
+    // OTIMIZAÇÃO 1: Contagem reduzida de 50 para 30
+    const newConfetti = Array.from({ length: 30 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
       color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
@@ -47,7 +50,8 @@ export default function VictoryEffects({ isActive, onComplete }: VictoryEffectsP
     setConfettiPieces(newConfetti);
 
     // Gera brilhos
-    const newSparkles = Array.from({ length: 30 }, (_, i) => ({
+    // OTIMIZAÇÃO 1: Contagem reduzida de 30 para 20
+    const newSparkles = Array.from({ length: 20 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
       top: Math.random() * 100,
@@ -102,4 +106,7 @@ export default function VictoryEffects({ isActive, onComplete }: VictoryEffectsP
       </div>
     </>
   );
-}
+};
+
+// OTIMIZAÇÃO 2: Envolvido com 'memo'
+export default memo(VictoryEffectsComponent);

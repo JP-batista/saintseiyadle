@@ -21,7 +21,7 @@ const GameLegendComponent = () => {
         <div className="flex items-center justify-around space-x-4 w-full">
           {/* ÍCONES */}
           <div className="flex flex-col items-center hover-lift transition-transform duration-300">
-            <div className="w-15 h-15 flex items-center justify-center rounded-lg">
+            <div className="w-12 h-12 flex items-center justify-center rounded-lg">
               <img
                 src="/dle_feed/certo.png"
                 alt="Correto"
@@ -32,7 +32,7 @@ const GameLegendComponent = () => {
           </div>
           {/* ... (outros ícones) ... */}
           <div className="flex flex-col items-center hover-lift transition-transform duration-300">
-            <div className="w-15 h-15 flex items-center justify-center rounded-lg">
+            <div className="w-12 h-12 flex items-center justify-center rounded-lg">
               <img
                 src="/dle_feed/errado.png"
                 alt="Incorreto"
@@ -43,7 +43,7 @@ const GameLegendComponent = () => {
           </div>
 
           <div className="flex flex-col items-center hover-lift transition-transform duration-300">
-            <div className="w-15 h-15 flex items-center justify-center rounded-lg">
+            <div className="w-12 h-12 flex items-center justify-center rounded-lg">
               <img
                 src="/dle_feed/mais.png"
                 alt="Mais Alto"
@@ -54,7 +54,7 @@ const GameLegendComponent = () => {
           </div>
 
           <div className="flex flex-col items-center hover-lift transition-transform duration-300">
-            <div className="w-15 h-15 flex items-center justify-center rounded-lg">
+            <div className="w-12 h-12 flex items-center justify-center rounded-lg">
               <img
                 src="/dle_feed/menos.png"
                 alt="Mais Baixo"

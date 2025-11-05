@@ -3,11 +3,6 @@
 /**
  * CONFIGURAÇÃO: Defina aqui o horário de reset do jogo
  * Formato: { hour: 0-23, minute: 0-59 }
- * Exemplos:
- * - Meia-noite: { hour: 0, minute: 0 }
- * - 6 da manhã: { hour: 6, minute: 0 }
- * - Meio-dia: { hour: 12, minute: 0 }
- * - 18h: { hour: 18, minute: 0 }
  */
 const RESET_TIME = {
   hour: 0,    // Hora do reset (0-23)
@@ -68,8 +63,9 @@ function simpleHash(str: string): number {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Converte para inteiro de 32 bits
+    // OTIMIZAÇÃO DE PERFORMANCE: O bitwise OR (| 0) é uma forma mais curta
+    // e comum em JS para garantir que a operação retorna um inteiro de 32 bits.
+    hash = ((hash << 5) - hash) + char | 0; 
   }
   return Math.abs(hash);
 }
