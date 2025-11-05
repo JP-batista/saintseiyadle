@@ -1,5 +1,5 @@
 // src/app/classico/components/CharacterCell.tsx
-import React from "react";
+import React, { memo } from "react";
 
 type CharacterCellProps = {
   imgSrc: string;
@@ -16,12 +16,11 @@ const CharacterCell: React.FC<CharacterCellProps> = ({
 }) => {
   return (
     <div
-      className={`
-        flex flex-col items-center gap-2 attempt-row-enhanced 
-        ${isLatest ? "latest-attempt" : ""}
-        transform-gpu
-      `} // <-- Adicionada a classe 'transform-gpu' para performance
-      style={{ animationDelay: `${animationDelay}s` }}
+      className="flex flex-col items-center gap-2 attempt-row-enhanced transform-gpu will-change-transform"
+      style={{ 
+        animationDelay: `${animationDelay}s`,
+        contain: 'layout style paint'
+      }}
     >
       <div className="relative group">
         {isLatest && (
@@ -30,6 +29,8 @@ const CharacterCell: React.FC<CharacterCellProps> = ({
         <img
           src={imgSrc}
           alt={nome}
+          loading="eager"
+          decoding="async"
           className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl object-cover border-2 border-gray-600/50 shadow-lg hover:scale-110 hover:border-yellow-500/70 transition-all duration-300 hover:shadow-yellow-500/30 hover:shadow-2xl"
         />
       </div>
@@ -40,4 +41,11 @@ const CharacterCell: React.FC<CharacterCellProps> = ({
   );
 };
 
-export default CharacterCell;
+export default memo(CharacterCell, (prevProps, nextProps) => {
+  return (
+    prevProps.imgSrc === nextProps.imgSrc &&
+    prevProps.nome === nextProps.nome &&
+    prevProps.isLatest === nextProps.isLatest &&
+    prevProps.animationDelay === nextProps.animationDelay
+  );
+});

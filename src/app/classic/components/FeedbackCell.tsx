@@ -1,8 +1,8 @@
 // src/app/classico/components/FeedbackCell.tsx
-import React from "react";
+import React, { memo, useCallback } from "react";
 
 type FeedbackCellProps = {
-  status: string; // "green", "red", "up", "down", "ignore"
+  status: string;
   value: string;
   isLatest: boolean;
   animationDelay: number;
@@ -16,8 +16,7 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
 }) => {
   const isCorrect = status === "green";
 
-  // Lógica de ícones atualizada
-  const getIconSrc = () => {
+  const getIconSrc = useCallback(() => {
     switch (status) {
       case "green":
         return "/dle_feed/certo.png";
@@ -30,18 +29,17 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
       default:
         return "/dle_feed/errado.png";
     }
-  };
+  }, [status]);
 
   const iconSrc = getIconSrc();
 
   return (
     <div
-      className={`
-        flex flex-col items-center gap-2 attempt-row-enhanced 
-        ${isLatest ? "latest-attempt" : ""}
-        transform-gpu
-      `} // <-- Adicionada a classe 'transform-gpu' para performance
-      style={{ animationDelay: `${animationDelay}s` }}
+      className="flex flex-col items-center gap-2 attempt-row-enhanced transform-gpu will-change-transform"
+      style={{ 
+        animationDelay: `${animationDelay}s`,
+        contain: 'layout style paint'
+      }}
     >
       <div className="relative group">
         {isCorrect && (
@@ -50,10 +48,11 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
         <img
           src={iconSrc}
           alt="Feedback"
+          loading="eager"
+          decoding="async"
           className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl object-cover shadow-lg transition-all duration-300 ${
             isCorrect
               ? "border-2 border-green-500 correct-indicator-enhanced hover:scale-110 hover:shadow-green-500/50"
-              // Adiciona um leve hover para 'up' e 'down', mas mantém 'errado' estático
               : status === "up" || status === "down"
               ? "border-2 border-gray-600/50 hover:scale-105"
               : "border-2 border-gray-600/50"
@@ -67,4 +66,11 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
   );
 };
 
-export default FeedbackCell;
+export default memo(FeedbackCell, (prevProps, nextProps) => {
+  return (
+    prevProps.status === nextProps.status &&
+    prevProps.value === nextProps.value &&
+    prevProps.isLatest === nextProps.isLatest &&
+    prevProps.animationDelay === nextProps.animationDelay
+  );
+});
