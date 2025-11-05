@@ -2,7 +2,6 @@
 "use client";
 import { useStatsStore } from "../stores/useStatsStore";
 import { X } from "lucide-react";
-// Importa useMemo e memo
 import { useState, useMemo, memo } from "react";
 import {
   LineChart,
@@ -10,21 +9,48 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
   ResponsiveContainer,
 } from "recharts";
 
+// ... (Tipos e o componente CustomActiveDot permanecem os mesmos) ...
 type StatsModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
+const CustomActiveDot = (props: any) => {
+  const { cx, cy, payload } = props;
+  if (!payload) return null;
+  return (
+    <g>
+      <circle
+        cx={cx}
+        cy={cy}
+        r={6}
+        fill="#FCD34D"
+        stroke="rgba(252, 211, 77, 0.5)"
+        strokeWidth={4}
+      />
+      <text
+        x={cx}
+        y={cy - 15} // Posição 15px acima
+        textAnchor="middle"
+        fill="#FCD34D"
+        fontSize="14"
+        fontWeight="bold"
+        style={{ filter: "drop-shadow(0px 1px 2px rgba(0,0,0,0.8))" }}
+      >
+        {payload.tentativas}
+      </text>
+    </g>
+  );
+};
+
 // ====================================================================
-// OTIMIZAÇÃO 2: Componente do Gráfico Memoizado
+// Componente do Gráfico Memoizado (COM A CORREÇÃO)
 // ====================================================================
 const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
   return (
-    // CONTAINER GRÁFICO: Estilo de vidro
     <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4">
       <h3 className="text-base sm:text-lg md:text-xl font-bold text-yellow-400 mb-3 sm:mb-4 text-center animate-text-glow">
         Evolução de Tentativas
@@ -33,9 +59,12 @@ const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={chartData}
-            margin={{ top: 5, right: 10, left: -20, bottom: 5 }}
+            // ==================
+            //   A CORREÇÃO É AQUI
+            // ==================
+            // Aumentei o 'top' de 5 para 25 para dar espaço ao texto
+            margin={{ top: 25, right: 10, left: -20, bottom: 5 }}
           >
-            {/* GRADES: Cor sutil com transparência */}
             <CartesianGrid
               strokeDasharray="3 3"
               stroke="rgba(107, 114, 128, 0.3)"
@@ -53,31 +82,13 @@ const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
               allowDecimals={false}
               tick={{ fontSize: 10, fill: "#9CA3AF" }}
             />
-            <Tooltip
-              // TOOLTIP: Estilo de vidro
-              contentStyle={{
-                backgroundColor: "rgba(17, 24, 39, 0.85)", /* bg-gray-900/85 */
-                backdropFilter: "blur(4px)",
-                border: "1px solid rgba(107, 114, 128, 0.5)", /* border-gray-500/50 */
-                borderRadius: "8px",
-                color: "#F3F4F6",
-                fontSize: "12px",
-              }}
-              labelStyle={{ color: "#FCD34D", fontSize: "12px" }}
-              itemStyle={{ color: "#F3F4F6" }}
-            />
             <Line
               type="monotone"
               dataKey="tentativas"
               stroke="#FCD34D"
               strokeWidth={2}
               dot={{ fill: "#FCD34D", r: 3 }}
-              activeDot={{
-                r: 5,
-                fill: "#FCD34D",
-                stroke: "rgba(252, 211, 77, 0.5)",
-                strokeWidth: 4,
-              }}
+              activeDot={<CustomActiveDot />}
             />
           </LineChart>
         </ResponsiveContainer>
@@ -85,15 +96,11 @@ const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
     </div>
   );
 };
-// Envolve o componente com memo()
 const MemoizedStatsChart = memo(StatsChartComponent);
 
-// ====================================================================
-// OTIMIZAÇÃO 3: Componente da Linha do Histórico Memoizado
-// ====================================================================
+// ... (O resto do arquivo - GameHistoryRow, StatsModal, etc. - permanece o mesmo) ...
 const GameHistoryRowComponent = ({ game }: { game: any }) => {
   return (
-    // ITEM HISTÓRICO: Estilo de vidro
     <div
       key={game.date}
       className="
@@ -107,7 +114,6 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
         <img
           src={game.characterImage}
           alt={game.characterName}
-          // IMAGEM: Borda sutil
           className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg object-cover border-2 border-gray-600/50 flex-shrink-0 shadow-lg"
         />
         <div className="flex flex-col min-w-0 flex-1">
@@ -125,7 +131,6 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
       </div>
       <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
         {game.firstTry && (
-          // BADGE: Adicionado brilho (shadow)
           <span className="hidden sm:inline text-xs bg-purple-500 text-white px-2 py-1 rounded-full font-semibold whitespace-nowrap shadow-lg shadow-purple-500/30">
             🏆 1ª Tentativa!
           </span>
@@ -147,12 +152,8 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
     </div>
   );
 };
-// Envolve o componente com memo()
 const GameHistoryRow = memo(GameHistoryRowComponent);
 
-// ====================================================================
-// Componente Principal do Modal (Agora otimizado)
-// ====================================================================
 export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
   const {
     totalWins,
@@ -165,18 +166,12 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
 
   const [showAllHistory, setShowAllHistory] = useState(false);
 
-  // ====================================================================
-  // OTIMIZAÇÃO 1: useMemo para dados derivados
-  // ====================================================================
-
-  // Memoiza a lista de jogos vencidos
   const wonGames = useMemo(() => {
     return gamesHistory.filter((g) => g.won);
   }, [gamesHistory]);
 
-  // Memoiza os dados do gráfico
   const chartData = useMemo(() => {
-    return [...wonGames] // Usa a lista já memoizada
+    return [...wonGames]
       .sort((a, b) => a.date.localeCompare(b.date))
       .slice(-30)
       .map((game) => ({
@@ -187,28 +182,24 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
         tentativas: game.attempts,
         fullDate: game.date,
       }));
-  }, [wonGames]); // Só recalcula se 'wonGames' mudar
+  }, [wonGames]);
 
-  // Memoiza a lista que será exibida (curta ou completa)
   const displayedHistory = useMemo(() => {
     return showAllHistory ? wonGames : wonGames.slice(0, 5);
-  }, [wonGames, showAllHistory]); // Recalcula se 'wonGames' ou 'showAllHistory' mudar
+  }, [wonGames, showAllHistory]);
 
   const hasMoreGames = useMemo(() => {
     return wonGames.length > 5;
   }, [wonGames]);
-  // ====================================================================
 
   if (!isOpen) return null;
 
   return (
     <div
-      // FUNDO DO MODAL
       className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4"
       onClick={onClose}
     >
       <div
-        // CONTAINER PRINCIPAL
         className="
           backdrop-gradient backdrop-blur-custom border border-gray-700/50 
           rounded-2xl shadow-2xl w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] 
@@ -216,7 +207,7 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
         "
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header - Sticky */}
+        {/* Header */}
         <div
           className="
           sticky top-0 
@@ -236,9 +227,9 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
           </button>
         </div>
 
-        {/* Content - flex-grow */}
+        {/* Content */}
         <div className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6 flex-grow">
-          {/* Estatísticas principais */}
+          {/* Stats Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-green-400">
@@ -248,7 +239,6 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
                 Vitórias
               </div>
             </div>
-
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-blue-400">
                 {averageAttempts}
@@ -257,7 +247,6 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
                 Média
               </div>
             </div>
-
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-purple-400">
                 {firstTryWins}
@@ -266,7 +255,6 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
                 1ª Tentativa
               </div>
             </div>
-
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-orange-400">
                 {currentStreak}
@@ -275,8 +263,7 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
                 Sequência
               </div>
             </div>
-
-            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105 col-span-2 sm:col-span-1">
+            <div className="bg-gray-900/5D backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105 col-span-2 sm:col-span-1">
               <div className="text-3xl sm:text-4xl font-bold text-yellow-400">
                 {maxStreak}
               </div>
@@ -286,12 +273,12 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
             </div>
           </div>
 
-          {/* Gráfico de linha (Agora usa o componente memoizado) */}
+          {/* Chart */}
           {chartData.length > 0 && <MemoizedStatsChart chartData={chartData} />}
 
-          {/* Histórico de jogos (Agora usa o componente memoizado) */}
+          {/* History */}
           {displayedHistory.length > 0 && (
-            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4">
+            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/5IT rounded-xl p-3 sm:p-4">
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-yellow-400 mb-3 sm:mb-4 text-center animate-text-glow">
                 Histórico de Vitórias
               </h3>
@@ -301,7 +288,7 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
                 ))}
               </div>
 
-              {/* BOTÃO VER MAIS */}
+              {/* "Ver Mais" / "Ver Menos" Buttons */}
               {hasMoreGames && !showAllHistory && (
                 <button
                   onClick={() => setShowAllHistory(true)}
@@ -310,7 +297,6 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
                   Ver Mais ({wonGames.length - 5} jogos)
                 </button>
               )}
-
               {showAllHistory && (
                 <button
                   onClick={() => setShowAllHistory(false)}
@@ -322,7 +308,7 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
             </div>
           )}
 
-          {/* ESTADO VAZIO */}
+          {/* Empty State */}
           {gamesHistory.length === 0 && (
             <div className="text-center py-6 sm:py-8 text-gray-400 bg-gray-900/50 backdrop-blur-sm border-2 border-gray-700/50 border-dashed rounded-xl">
               <p className="text-base sm:text-lg">
@@ -335,7 +321,7 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
           )}
         </div>
 
-        {/* Footer - Sticky */}
+        {/* Footer */}
         <div
           className="
           sticky bottom-0 
