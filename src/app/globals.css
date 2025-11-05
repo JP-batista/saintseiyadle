@@ -51,3 +51,317 @@ body::before {
   background: rgba(0, 0, 0, 0); /* Escurece levemente o fundo */
   z-index: -1; /* Fica atrás de todo o conteúdo */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Adicione estas animações ao seu arquivo globals.css ou crie um arquivo animations.css */
+
+/* ===================================
+   ANIMAÇÕES DE VITÓRIA
+   =================================== */
+
+/* Animação de confetes caindo */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Partículas de brilho */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+/* Pulso de vitória */
+@keyframes victory-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 15px rgba(251, 191, 36, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
+  }
+}
+
+/* Brilho de destaque */
+@keyframes shine {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Shake suave para atenção */
+@keyframes gentle-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* ===================================
+   ANIMAÇÕES DE ENTRADA
+   =================================== */
+
+/* Slide from top */
+@keyframes slideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide from bottom */
+@keyframes slideInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in scale */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Bounce in */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ===================================
+   CLASSES DE ANIMAÇÃO
+   =================================== */
+
+/* Container de confetes */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  animation: confetti-fall 3s linear forwards;
+}
+
+/* Partículas de brilho */
+.sparkle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #fbbf24 0%, transparent 70%);
+  border-radius: 50%;
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+/* Overlay de vitória */
+.victory-overlay {
+  animation: fadeInScale 0.5s ease-out;
+}
+
+/* Card de personagem vencedor */
+.victory-card {
+  animation: victory-pulse 2s ease-in-out infinite;
+}
+
+/* Brilho no card */
+.victory-card-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.victory-card-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shine 2s infinite;
+}
+
+/* Tentativas com entrada animada */
+.attempt-row {
+  animation: slideInTop 0.4s ease-out;
+}
+
+/* Dicas animadas */
+.hint-appear {
+  animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Dropdown de sugestões */
+.suggestion-item {
+  animation: slideInBottom 0.2s ease-out;
+  animation-fill-mode: both;
+}
+
+/* Atraso progressivo para itens do dropdown */
+.suggestion-item:nth-child(1) { animation-delay: 0s; }
+.suggestion-item:nth-child(2) { animation-delay: 0.05s; }
+.suggestion-item:nth-child(3) { animation-delay: 0.1s; }
+.suggestion-item:nth-child(4) { animation-delay: 0.15s; }
+.suggestion-item:nth-child(5) { animation-delay: 0.2s; }
+
+/* Contador pulsante */
+.countdown-pulse {
+  animation: gentle-shake 0.5s ease-in-out;
+}
+
+/* Indicadores corretos com destaque */
+.correct-indicator {
+  animation: victory-pulse 1s ease-in-out 1;
+}
+
+/* Hover effects melhorados */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Button press effect */
+.button-press {
+  transition: transform 0.1s ease;
+}
+
+.button-press:active {
+  transform: scale(0.95);
+}
+
+/* Loading skeleton */
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+/* Transições suaves globais */
+.smooth-transition {
+  transition: all 0.3s ease;
+}
+
+/* ===================================
+   RESPONSIVIDADE
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Ajustes para mobile */
+@media (max-width: 640px) {
+  .confetti {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .sparkle {
+    width: 3px;
+    height: 3px;
+  }
+}

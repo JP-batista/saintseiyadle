@@ -10,8 +10,8 @@
  * - 18h: { hour: 18, minute: 0 }
  */
 const RESET_TIME = {
-  hour: 17,    // Hora do reset (0-23)
-  minute: 18   // Minuto do reset (0-59)
+  hour: 0,    // Hora do reset (0-23)
+  minute: 0   // Minuto do reset (0-59)
 };
 
 /**
