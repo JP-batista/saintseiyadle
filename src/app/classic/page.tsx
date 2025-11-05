@@ -1,7 +1,6 @@
 // src/app/classico/page.tsx
-
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import characters from "../data/charactersDLE";
 import React from "react";
 import { useGameStore } from "../stores/useGameStore";
@@ -48,12 +47,14 @@ export default function GamePage() {
     setCurrentGameDate,
     addUsedCharacterIndex,
     resetDailyGame,
-    clearState,
   } = useGameStore();
 
-  const { addGameResult, getGameByDate } = useStatsStore();
+  const { addGameResult, getGameByDate, currentStreak } = useStatsStore();
 
+  // Refs
   const characteristicsRef = useRef<HTMLDivElement | null>(null);
+  
+  // Estado local
   const [selectedSuggestion, setSelectedSuggestion] = useState<Character | null>(null);
   const [showHint1, setShowHint1] = useState<boolean>(false);
   const [showHint2, setShowHint2] = useState<boolean>(false);
@@ -61,21 +62,31 @@ export default function GamePage() {
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
   const [suggestions, setSuggestions] = useState<Character[]>([]);
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
-  const [dica1, setDica1] = useState<string | null>(null);
-  const [dica2, setDica2] = useState<string | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<string>("00:00:00");
   const [showStatsModal, setShowStatsModal] = useState<boolean>(false);
   const [showVictoryEffects, setShowVictoryEffects] = useState<boolean>(false);
-  const [attemptAnimation, setAttemptAnimation] = useState<number>(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const { currentStreak } = useStatsStore();
-  
+  const [isClient, setIsClient] = useState(false);
+
+  // Dicas calculadas dinamicamente
+  const dica1 = useMemo(() => {
+    return attempts.length >= 5 ? selectedCharacter?.dica1 : null;
+  }, [attempts.length, selectedCharacter]);
+
+  const dica2 = useMemo(() => {
+    return attempts.length >= 10 ? selectedCharacter?.dica2 : null;
+  }, [attempts.length, selectedCharacter]);
+
+  // Marca como cliente após hidratação
   useEffect(() => {
-    // Trigger das animações de entrada após montagem
+    setIsClient(true);
     setIsLoaded(true);
   }, []);
 
+  // Inicializa jogo diário
   useEffect(() => {
+    if (!isClient) return;
+
     const todayDate = getCurrentDateInBrazil();
     
     if (currentGameDate !== todayDate || !selectedCharacter) {
@@ -90,13 +101,14 @@ export default function GamePage() {
       
       setShowHint1(false);
       setShowHint2(false);
-      setDica1(null);
-      setDica2(null);
       setShowAnswer(false);
     }
-  }, [currentGameDate, selectedCharacter, usedCharacterIndices, resetDailyGame, addUsedCharacterIndex]);
+  }, [isClient, currentGameDate, selectedCharacter, usedCharacterIndices, resetDailyGame, addUsedCharacterIndex]);
 
+  // Countdown timer
   useEffect(() => {
+    if (!isClient) return;
+
     const updateCountdown = () => {
       const nextMidnight = getNextMidnightInBrazil();
       setTimeRemaining(formatTimeRemaining(nextMidnight));
@@ -106,9 +118,12 @@ export default function GamePage() {
     const interval = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isClient]);
 
+  // Verifica mudança de dia
   useEffect(() => {
+    if (!isClient) return;
+
     const checkDayChange = () => {
       const todayDate = getCurrentDateInBrazil();
       if (currentGameDate && currentGameDate !== todayDate) {
@@ -118,22 +133,13 @@ export default function GamePage() {
 
     const interval = setInterval(checkDayChange, 60000);
     return () => clearInterval(interval);
-  }, [currentGameDate]);
+  }, [isClient, currentGameDate]);
 
+  // Efeito de vitória
   useEffect(() => {
-    if (attempts.length >= 5 && !dica1 && selectedCharacter?.dica1) {
-      setDica1(selectedCharacter.dica1);
-    }
-    if (attempts.length >= 10 && !dica2 && selectedCharacter?.dica2) {
-      setDica2(selectedCharacter.dica2);
-    }
-  }, [attempts, selectedCharacter, dica1, dica2]);
-
-  useEffect(() => {
-    if (won && !gaveUp && attempts.length > 0) {
+    if (won && !gaveUp && attempts.length > 0 && isClient) {
       setShowVictoryEffects(true);
       
-      // Rola suavemente para o resultado após 0.5s
       const scrollTimer = setTimeout(() => {
         characteristicsRef.current?.scrollIntoView({ 
           behavior: "smooth",
@@ -143,10 +149,12 @@ export default function GamePage() {
       
       return () => clearTimeout(scrollTimer);
     }
-  }, [won, gaveUp, attempts.length]);
+  }, [won, gaveUp, attempts.length, isClient]);
 
-  // Salva resultado no histórico quando o jogo termina
+  // Salva resultado no histórico
   useEffect(() => {
+    if (!isClient) return;
+    
     if ((won || gaveUp) && currentGameDate && attempts.length > 0 && selectedCharacter) {
       const existingGame = getGameByDate(currentGameDate);
 
@@ -160,14 +168,15 @@ export default function GamePage() {
         );
       }
     }
-  }, [won, gaveUp, currentGameDate, attempts.length, addGameResult, getGameByDate, selectedCharacter]);
+  }, [isClient, won, gaveUp, currentGameDate, attempts.length, addGameResult, getGameByDate, selectedCharacter]);
 
-  const parseHeight = (height: string): number => {
+  // Funções de comparação (memoizadas)
+  const parseHeight = useCallback((height: string): number => {
     if (height.toLowerCase() === "desconhecido") return NaN;
     return parseFloat(height.replace(",", ".").replace(" m", "").trim());
-  };
+  }, []);
 
-  const compareAge = (value: string, target: string): string => {
+  const compareAge = useCallback((value: string, target: string): string => {
     const valueLower = value.toLowerCase();
     const targetLower = target.toLowerCase();
 
@@ -183,9 +192,9 @@ export default function GamePage() {
     if (isNaN(numericValue) || isNaN(numericTarget)) return "red";
     if (numericValue === numericTarget) return "green";
     return numericValue < numericTarget ? "up" : "down";
-  };
+  }, []);
 
-  const compareWeight = (value: string, target: string): string => {
+  const compareWeight = useCallback((value: string, target: string): string => {
     const valueLower = value.toLowerCase();
     const targetLower = target.toLowerCase();
 
@@ -198,9 +207,9 @@ export default function GamePage() {
     if (isNaN(numericValue) || isNaN(numericTarget)) return "ignore";
     if (numericValue === numericTarget) return "green";
     return numericValue < numericTarget ? "up" : "down";
-  };
+  }, []);
 
-  const compareHeight = (value: string, target: string): string => {
+  const compareHeight = useCallback((value: string, target: string): string => {
     const valueLower = value.toLowerCase();
     const targetLower = target.toLowerCase();
 
@@ -213,12 +222,12 @@ export default function GamePage() {
     if (isNaN(numericValue) || isNaN(numericTarget)) return "red";
     if (numericValue === numericTarget) return "green";
     return numericValue < numericTarget ? "up" : "down";
-  };
+  }, [parseHeight]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!input.trim() || !selectedSuggestion) return;
+    if (!input.trim() || !selectedSuggestion || !selectedCharacter) return;
 
     const guess = characters.find(
       (char: Character) => char.nome.toLowerCase() === selectedSuggestion.nome.toLowerCase()
@@ -229,12 +238,7 @@ export default function GamePage() {
       return;
     }
 
-    if (!selectedCharacter) {
-      alert("Erro interno: Personagem selecionado inválido.");
-      return;
-    }
-
-    if (isAlreadyTried(selectedSuggestion.nome)) {
+    if (attempts.some((attempt) => attempt.nome.toLowerCase() === guess.nome.toLowerCase())) {
       alert("Você já tentou esse personagem!");
       return;
     }
@@ -259,99 +263,107 @@ export default function GamePage() {
 
     if (correct) {
       setWon(true);
-      setTimeout(() => {
-        characteristicsRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 300);
     }
 
-    setAttemptAnimation(prev => prev + 1);
     addAttempt(comparison);
     setInput("");
     setSuggestions([]);
     setShowDropdown(false);
     setSelectedSuggestion(null);
-  };
+  }, [input, selectedSuggestion, selectedCharacter, attempts, compareAge, compareHeight, compareWeight, addAttempt, setWon]);
 
-  const isAlreadyTried = (nome: string) => {
-    return attempts.some((attempt) => attempt.nome.toLowerCase() === nome.toLowerCase());
-  };
-
-  const normalizeText = (text: string) => {
+  const normalizeText = useCallback((text: string) => {
     return text
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .replace(/[^\w\s]/gi, "")
       .toLowerCase();
-  };
+  }, []);
 
-  const getFilteredSuggestions = (value: string) => {
+  const getFilteredSuggestions = useCallback((value: string) => {
     const normalizedValue = normalizeText(value);
+    const alreadyTried = new Set(attempts.map(a => a.nome.toLowerCase()));
 
     const nameMatches = characters.filter(
       (char: Character) =>
-        normalizeText(char.nome).startsWith(normalizedValue) && !isAlreadyTried(char.nome)
+        normalizeText(char.nome).startsWith(normalizedValue) && 
+        !alreadyTried.has(char.nome.toLowerCase())
     );
 
-    if (nameMatches.length > 0) return nameMatches;
+    if (nameMatches.length > 0) return nameMatches.slice(0, 5);
 
     const patenteMatches = characters.filter(
       (char: Character) =>
-        normalizeText(char.patente).includes(normalizedValue) && !isAlreadyTried(char.nome)
+        normalizeText(char.patente).includes(normalizedValue) && 
+        !alreadyTried.has(char.nome.toLowerCase())
     );
 
-    if (patenteMatches.length > 0) return patenteMatches;
+    if (patenteMatches.length > 0) return patenteMatches.slice(0, 5);
 
     const titleMatches = characters.filter(
       (char: Character) =>
         char.titulo &&
         normalizeText(char.titulo).includes(normalizedValue) &&
-        !isAlreadyTried(char.nome)
+        !alreadyTried.has(char.nome.toLowerCase())
     );
 
-    return titleMatches;
-  };
+    return titleMatches.slice(0, 5);
+  }, [attempts, normalizeText]);
 
-  const handleGiveUp = () => {
+  const handleGiveUp = useCallback(() => {
     setShowAnswer(true);
     setWon(true);
     setGaveUp(true);
-  };
+  }, [setWon, setGaveUp]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInput(value);
 
-    if (value) {
+    if (value.length >= 2) {
       const filteredSuggestions = getFilteredSuggestions(value);
       setSuggestions(filteredSuggestions);
-      setShowDropdown(true);
+      setShowDropdown(filteredSuggestions.length > 0);
       setSelectedSuggestion(filteredSuggestions[0] || null);
     } else {
       setSuggestions([]);
       setShowDropdown(false);
       setSelectedSuggestion(null);
     }
-  };
+  }, [getFilteredSuggestions]);
 
-  const handleSuggestionClick = (suggestion: Character) => {
+  const handleSuggestionClick = useCallback((suggestion: Character) => {
     setInput(suggestion.nome);
     setSelectedSuggestion(suggestion);
     setShowDropdown(false);
-  };
+  }, []);
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "ArrowDown" && suggestions.length > 0) {
+  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!suggestions.length) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
       const currentIndex = suggestions.findIndex((s) => s === selectedSuggestion);
       const nextIndex = (currentIndex + 1) % suggestions.length;
       setSelectedSuggestion(suggestions[nextIndex]);
       setInput(suggestions[nextIndex].nome);
-    } else if (e.key === "ArrowUp" && suggestions.length > 0) {
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
       const currentIndex = suggestions.findIndex((s) => s === selectedSuggestion);
       const prevIndex = (currentIndex - 1 + suggestions.length) % suggestions.length;
       setSelectedSuggestion(suggestions[prevIndex]);
       setInput(suggestions[prevIndex].nome);
     }
-  };
+  }, [suggestions, selectedSuggestion]);
+
+  // Não renderiza até estar no cliente
+  if (!isClient) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-pulse text-yellow-400 text-2xl">Carregando...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen text-white flex flex-col items-center justify-center p-6">
