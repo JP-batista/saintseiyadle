@@ -855,38 +855,6 @@ export default function GamePage() {
                     Silhuetas
                   </div>
                 </div>
-
-                <div className="relative group">
-                  <button
-                    className="w-14 h-14 sm:w-16 sm:h-16 bg-transparent focus:outline-none"
-                    onClick={() => window.location.href = "/SaintSeiyaDLE/quiz"}
-                  >
-                    <img
-                      src="/dle_feed/quiz_icon.png"
-                      alt="Modo Quiz"
-                      className="w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </button>
-                  <div className="absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-xs sm:text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                    Quiz
-                  </div>
-                </div>
-
-                <div className="relative group">
-                  <button
-                    className="w-14 h-14 sm:w-16 sm:h-16 bg-transparent focus:outline-none"
-                    onClick={() => window.location.href = "/SaintSeiyaDLE/affinity"}
-                  >
-                    <img
-                      src="/dle_feed/affinity_icon.png"
-                      alt="Modo Affinity"
-                      className="w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </button>
-                  <div className="absolute bottom-[-2rem] left-1/2 transform -translate-x-1/2 bg-gray-700 text-white text-xs sm:text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                    Teste de Afinidade
-                  </div>
-                </div>
               </div>
             </div>
           </div>

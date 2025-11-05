@@ -28,6 +28,11 @@ export default function RootLayout({
     <html lang="pt-BR" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-fixed bg-center bg-cover text-zinc-100`}
+        style={{
+          backgroundImage: "url('https://i.pinimg.com/originals/84/1b/c0/841bc0ef61518645f58293d7b2167f57.png')",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
         suppressHydrationWarning
       >
         {children}
