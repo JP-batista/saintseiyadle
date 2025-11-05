@@ -1,8 +1,7 @@
-// src/app/layout.tsx
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Footer from "./components/Footer"; // Importando o Footer
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,15 +26,14 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-fixed bg-center bg-cover text-zinc-100`}
-        style={{
-          backgroundImage: "url('https://i.pinimg.com/originals/84/1b/c0/841bc0ef61518645f58293d7b2167f57.png')",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-fixed bg-center bg-cover text-zinc-100 flex flex-col`}
         suppressHydrationWarning
       >
-        {children}
+        <main className="flex-grow">
+          {children}
+        </main>
+        
+        <Footer />
       </body>
     </html>
   );
