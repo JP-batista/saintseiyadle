@@ -6,11 +6,11 @@ import React from "react";
 import { useGameStore } from "../stores/useGameStore";
 import { useStatsStore } from "../stores/useStatsStore";
 import StatsModal from "../components/StatsModal";
-import { 
-  getCurrentDateInBrazil, 
-  getNextMidnightInBrazil, 
+import {
+  getCurrentDateInBrazil,
+  getNextMidnightInBrazil,
   getDailyCharacter,
-  formatTimeRemaining 
+  formatTimeRemaining,
 } from "../utils/dailyGame";
 import VictoryEffects from "../components/VictoryEffects";
 
@@ -23,13 +23,12 @@ import StatsBar from "./components/StatsBar";
 import HintBlock from "./components/HintBlock";
 import GuessForm from "./components/GuessForm";
 import AttemptsGrid from "./components/AttemptsGrid";
-import ResultCard from "./components/ResultCard"; 
-import GameLegend from "./components/GameLegend"; // <-- Importe o novo componente
+import ResultCard from "./components/ResultCard";
+import GameLegend from "./components/GameLegend";
+import { useRouter } from "next/navigation"; // OTIMIZAÇÃO 3: Importar useRouter
 
 export default function GamePage() {
-  // ... (Estados, Refs, Stores, e Hooks permanecem os mesmos) ...
-  // [SEU CÓDIGO DE ESTADOS, STORES, REFS, HOOKS, ETC.]
-  
+  // ... (Stores, Refs) ...
   // State (Zustand)
   const {
     selectedCharacter,
@@ -48,9 +47,11 @@ export default function GamePage() {
 
   // Refs
   const characteristicsRef = useRef<HTMLDivElement | null>(null);
-  
+  const router = useRouter(); // OTIMIZAÇÃO 3: Instanciar useRouter
+
   // Estado local
-  const [selectedSuggestion, setSelectedSuggestion] = useState<Character | null>(null);
+  const [selectedSuggestion, setSelectedSuggestion] =
+    useState<Character | null>(null);
   const [input, setInput] = useState<string>("");
   const [suggestions, setSuggestions] = useState<Character[]>([]);
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
@@ -58,8 +59,10 @@ export default function GamePage() {
   const [showStatsModal, setShowStatsModal] = useState<boolean>(false);
   const [showVictoryEffects, setShowVictoryEffects] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false);
+  // OTIMIZAÇÃO 1: Estado para mensagens de erro
+  const [error, setError] = useState<string | null>(null);
 
-  // Dicas calculadas dinamicamente
+  // ... (useMemo para dicas permanecem os mesmos) ...
   const dica1 = useMemo(() => {
     return attempts.length >= 5 ? selectedCharacter?.dica1 : null;
   }, [attempts.length, selectedCharacter]);
@@ -68,8 +71,10 @@ export default function GamePage() {
     return attempts.length >= 10 ? selectedCharacter?.dica2 : null;
   }, [attempts.length, selectedCharacter]);
 
-  // useEffects (permanecem os mesmos)
-  useEffect(() => { setIsClient(true); }, []);
+  // ... (useEffect de inicialização permanece o mesmo) ...
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     if (!isClient) return;
@@ -83,8 +88,16 @@ export default function GamePage() {
       resetDailyGame(character, todayDate);
       addUsedCharacterIndex(index);
     }
-  }, [isClient, currentGameDate, selectedCharacter, usedCharacterIndices, resetDailyGame, addUsedCharacterIndex]);
+  }, [
+    isClient,
+    currentGameDate,
+    selectedCharacter,
+    usedCharacterIndices,
+    resetDailyGame,
+    addUsedCharacterIndex,
+  ]);
 
+  // ... (useEffect do contador permanece o mesmo) ...
   useEffect(() => {
     if (!isClient) return;
     const updateCountdown = () => {
@@ -96,34 +109,42 @@ export default function GamePage() {
     return () => clearInterval(interval);
   }, [isClient]);
 
+  // OTIMIZAÇÃO 3: useEffect da mudança de dia
   useEffect(() => {
     if (!isClient) return;
     const checkDayChange = () => {
       const todayDate = getCurrentDateInBrazil();
       if (currentGameDate && currentGameDate !== todayDate) {
-        window.location.reload();
+        // Substituído 'window.location.reload()' por 'router.refresh()'
+        router.refresh();
       }
     };
     const interval = setInterval(checkDayChange, 60000);
     return () => clearInterval(interval);
-  }, [isClient, currentGameDate]);
+  }, [isClient, currentGameDate, router]); // Adicionado router às dependências
 
+  // ... (useEffect de vitória e scroll permanecem os mesmos) ...
   useEffect(() => {
     if (won && !gaveUp && attempts.length > 0 && isClient) {
       setShowVictoryEffects(true);
       const scrollTimer = setTimeout(() => {
-        characteristicsRef.current?.scrollIntoView({ 
+        characteristicsRef.current?.scrollIntoView({
           behavior: "smooth",
-          block: "center"
+          block: "center",
         });
       }, 500);
       return () => clearTimeout(scrollTimer);
     }
   }, [won, gaveUp, attempts.length, isClient]);
 
+  // ... (useEffect de salvar estatísticas permanece o mesmo) ...
   useEffect(() => {
-    if (!isClient) return;
-    if ((won || gaveUp) && currentGameDate && attempts.length > 0 && selectedCharacter) {
+    if (
+      (won || gaveUp) &&
+      currentGameDate &&
+      attempts.length > 0 &&
+      selectedCharacter
+    ) {
       const existingGame = getGameByDate(currentGameDate);
       if (!existingGame) {
         addGameResult(
@@ -135,10 +156,17 @@ export default function GamePage() {
         );
       }
     }
-  }, [isClient, won, gaveUp, currentGameDate, attempts.length, addGameResult, getGameByDate, selectedCharacter]);
-  
-  // Funções de Comparação e Handlers (permanecem as mesmas)
-  // [SEU CÓDIGO DE FUNÇÕES DE COMPARAÇÃO E HANDLERS]
+  }, [
+    won, // Otimizado: Removido isClient, pois os outros estados garantem isso
+    gaveUp,
+    currentGameDate,
+    attempts.length,
+    addGameResult,
+    getGameByDate,
+    selectedCharacter,
+  ]);
+
+  // ... (Funções de Comparação permanecem as mesmas) ...
   const parseHeight = useCallback((height: string): number => {
     if (height.toLowerCase() === "desconhecido") return NaN;
     return parseFloat(height.replace(",", ".").replace(" m", "").trim());
@@ -147,8 +175,10 @@ export default function GamePage() {
   const compareAge = useCallback((value: string, target: string): string => {
     const valueLower = value.toLowerCase();
     const targetLower = target.toLowerCase();
-    if (valueLower === "desconhecida" && targetLower === "desconhecida") return "green";
-    if (valueLower === "desconhecida" || targetLower === "desconhecida") return "red";
+    if (valueLower === "desconhecida" && targetLower === "desconhecida")
+      return "green";
+    if (valueLower === "desconhecida" || targetLower === "desconhecida")
+      return "red";
     if (valueLower === "imortal" && targetLower === "imortal") return "green";
     if (valueLower === "imortal") return "down";
     if (targetLower === "imortal") return "up";
@@ -162,8 +192,10 @@ export default function GamePage() {
   const compareWeight = useCallback((value: string, target: string): string => {
     const valueLower = value.toLowerCase();
     const targetLower = target.toLowerCase();
-    if (valueLower === "desconhecido" && targetLower === "desconhecido") return "green";
-    if (valueLower === "desconhecido" || targetLower === "desconhecido") return "ignore";
+    if (valueLower === "desconhecido" && targetLower === "desconhecido")
+      return "green";
+    if (valueLower === "desconhecido" || targetLower === "desconhecido")
+      return "ignore";
     const numericValue = parseFloat(value);
     const numericTarget = parseFloat(target);
     if (isNaN(numericValue) || isNaN(numericTarget)) return "ignore";
@@ -171,62 +203,95 @@ export default function GamePage() {
     return numericValue < numericTarget ? "up" : "down";
   }, []);
 
-  const compareHeight = useCallback((value: string, target: string): string => {
-    const valueLower = value.toLowerCase();
-    const targetLower = target.toLowerCase();
-    if (valueLower === "desconhecida" && targetLower === "desconhecida") return "green";
-    if (valueLower === "desconhecida" || targetLower === "desconhecida") return "red";
-    const numericValue = parseHeight(value);
-    const numericTarget = parseHeight(target);
-    if (isNaN(numericValue) || isNaN(numericTarget)) return "red";
-    if (numericValue === numericTarget) return "green";
-    return numericValue < numericTarget ? "up" : "down";
-  }, [parseHeight]);
+  const compareHeight = useCallback(
+    (value: string, target: string): string => {
+      const valueLower = value.toLowerCase();
+      const targetLower = target.toLowerCase();
+      if (valueLower === "desconhecida" && targetLower === "desconhecida")
+        return "green";
+      if (valueLower === "desconhecida" || targetLower === "desconhecida")
+        return "red";
+      const numericValue = parseHeight(value);
+      const numericTarget = parseHeight(target);
+      if (isNaN(numericValue) || isNaN(numericTarget)) return "red";
+      if (numericValue === numericTarget) return "green";
+      return numericValue < numericTarget ? "up" : "down";
+    },
+    [parseHeight]
+  );
 
-  const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!input.trim() || !selectedSuggestion || !selectedCharacter) return;
-    const guess = characters.find(
-      (char: Character) => char.nome.toLowerCase() === selectedSuggestion.nome.toLowerCase()
-    );
-    if (!guess) {
-      alert("Personagem não encontrado!");
-      return;
-    }
-    if (attempts.some((attempt) => attempt.nome.toLowerCase() === guess.nome.toLowerCase())) {
-      alert("Você já tentou esse personagem!");
-      return;
-    }
+  // OTIMIZAÇÃO 1: handleSubmit modificado
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (!input.trim() || !selectedSuggestion || !selectedCharacter) return;
+      const guess = characters.find(
+        (char: Character) =>
+          char.nome.toLowerCase() === selectedSuggestion.nome.toLowerCase()
+      );
+      if (!guess) {
+        // Substituído alert() por setError()
+        setError("Personagem não encontrado!");
+        return;
+      }
+      if (
+        attempts.some(
+          (attempt) => attempt.nome.toLowerCase() === guess.nome.toLowerCase()
+        )
+      ) {
+        // Substituído alert() por setError()
+        setError("Você já tentou esse personagem!");
+        setInput(""); // Limpa o input para o usuário ver o erro
+        setShowDropdown(false);
+        return;
+      }
 
-    const correct = guess.nome === selectedCharacter.nome;
+      const correct = guess.nome === selectedCharacter.nome;
 
-    const comparison: AttemptComparison = {
-      nome: guess.nome,
-      idade: compareAge(guess.idade, selectedCharacter.idade),
-      altura: compareHeight(guess.altura, selectedCharacter.altura),
-      peso: compareWeight(guess.peso, selectedCharacter.peso),
-      genero: guess.genero === selectedCharacter.genero ? "green" : "red",
-      signo: guess.signo === selectedCharacter.signo ? "green" : "red",
-      localDeTreinamento:
-        guess.localDeTreinamento === selectedCharacter.localDeTreinamento ? "green" : "red",
-      patente: guess.patente === selectedCharacter.patente ? "green" : "red",
-      exercito: guess.exercito === selectedCharacter.exercito ? "green" : "red",
-      saga: guess.saga === selectedCharacter.saga ? "green" : "red",
-      imgSrc: guess.imgSrc,
-      guessCharacter: guess,
-    };
+      const comparison: AttemptComparison = {
+        nome: guess.nome,
+        idade: compareAge(guess.idade, selectedCharacter.idade),
+        altura: compareHeight(guess.altura, selectedCharacter.altura),
+        peso: compareWeight(guess.peso, selectedCharacter.peso),
+        genero: guess.genero === selectedCharacter.genero ? "green" : "red",
+        signo: guess.signo === selectedCharacter.signo ? "green" : "red",
+        localDeTreinamento:
+          guess.localDeTreinamento === selectedCharacter.localDeTreinamento
+            ? "green"
+            : "red",
+        patente: guess.patente === selectedCharacter.patente ? "green" : "red",
+        exercito:
+          guess.exercito === selectedCharacter.exercito ? "green" : "red",
+        saga: guess.saga === selectedCharacter.saga ? "green" : "red",
+        imgSrc: guess.imgSrc,
+        guessCharacter: guess,
+      };
 
-    if (correct) {
-      setWon(true);
-    }
+      if (correct) {
+        setWon(true);
+      }
 
-    addAttempt(comparison);
-    setInput("");
-    setSuggestions([]);
-    setShowDropdown(false);
-    setSelectedSuggestion(null);
-  }, [input, selectedSuggestion, selectedCharacter, attempts, compareAge, compareHeight, compareWeight, addAttempt, setWon]);
+      addAttempt(comparison);
+      setInput("");
+      setSuggestions([]);
+      setShowDropdown(false);
+      setSelectedSuggestion(null);
+      setError(null); // Limpa qualquer erro anterior
+    },
+    [
+      input,
+      selectedSuggestion,
+      selectedCharacter,
+      attempts,
+      compareAge,
+      compareHeight,
+      compareWeight,
+      addAttempt,
+      setWon,
+    ]
+  );
 
+  // ... (normalizeText e getFilteredSuggestions permanecem os mesmos) ...
   const normalizeText = useCallback((text: string) => {
     return text
       .normalize("NFD")
@@ -235,67 +300,92 @@ export default function GamePage() {
       .toLowerCase();
   }, []);
 
-  const getFilteredSuggestions = useCallback((value: string) => {
-    const normalizedValue = normalizeText(value);
-    const alreadyTried = new Set(attempts.map(a => a.nome.toLowerCase()));
+  const getFilteredSuggestions = useCallback(
+    (value: string) => {
+      const normalizedValue = normalizeText(value);
+      const alreadyTried = new Set(attempts.map((a) => a.nome.toLowerCase()));
 
-    const filterAndSlice = (filterFn: (char: Character) => boolean) => {
-      return characters
-        .filter(char => !alreadyTried.has(char.nome.toLowerCase()) && filterFn(char))
-        .slice(0, 5);
-    };
+      const filterAndSlice = (filterFn: (char: Character) => boolean) => {
+        return characters
+          .filter(
+            (char) =>
+              !alreadyTried.has(char.nome.toLowerCase()) && filterFn(char)
+          )
+          .slice(0, 5);
+      };
 
-    let matches = filterAndSlice(char => normalizeText(char.nome).startsWith(normalizedValue));
-    if (matches.length > 0) return matches;
+      let matches = filterAndSlice((char) =>
+        normalizeText(char.nome).startsWith(normalizedValue)
+      );
+      if (matches.length > 0) return matches;
 
-    matches = filterAndSlice(char => normalizeText(char.patente).includes(normalizedValue));
-    if (matches.length > 0) return matches;
+      matches = filterAndSlice((char) =>
+        normalizeText(char.patente).includes(normalizedValue)
+      );
+      if (matches.length > 0) return matches;
 
-    matches = filterAndSlice(char => typeof char.titulo === "string" && normalizeText(char.titulo).includes(normalizedValue));
-    return matches;
-    
-  }, [attempts, normalizeText]);
+      matches = filterAndSlice(
+        (char) =>
+          typeof char.titulo === "string" &&
+          normalizeText(char.titulo).includes(normalizedValue)
+      );
+      return matches;
+    },
+    [attempts, normalizeText]
+  );
 
-  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setInput(value);
+  // OTIMIZAÇÃO 1: handleInputChange modificado
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setInput(value);
+      setError(null); // Limpa o erro assim que o usuário digita
 
-    if (value.length >= 1) {
-      const filteredSuggestions = getFilteredSuggestions(value);
-      setSuggestions(filteredSuggestions);
-      setShowDropdown(filteredSuggestions.length > 0);
-      setSelectedSuggestion(filteredSuggestions[0] || null);
-    } else {
-      setSuggestions([]);
-      setShowDropdown(false);
-      setSelectedSuggestion(null);
-    }
-  }, [getFilteredSuggestions]);
+      if (value.length >= 1) {
+        const filteredSuggestions = getFilteredSuggestions(value);
+        setSuggestions(filteredSuggestions);
+        setShowDropdown(filteredSuggestions.length > 0);
+        setSelectedSuggestion(filteredSuggestions[0] || null);
+      } else {
+        setSuggestions([]);
+        setShowDropdown(false);
+        setSelectedSuggestion(null);
+      }
+    },
+    [getFilteredSuggestions]
+  );
 
+  // ... (handleSuggestionClick permanece o mesmo) ...
   const handleSuggestionClick = useCallback((suggestion: Character) => {
     setInput(suggestion.nome);
     setSelectedSuggestion(suggestion);
     setShowDropdown(false);
+    setError(null); // Limpa o erro ao clicar
   }, []);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!suggestions.length) return;
-    let newIndex: number;
-    const currentIndex = suggestions.findIndex((s) => s === selectedSuggestion);
+  // OTIMIZAÇÃO 2: handleKeyDown modificado
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (!suggestions.length) return;
+      let newIndex: number;
+      const currentIndex = suggestions.findIndex((s) => s === selectedSuggestion);
 
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      newIndex = (currentIndex + 1) % suggestions.length;
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      newIndex = (currentIndex - 1 + suggestions.length) % suggestions.length;
-    } else {
-      return;
-    }
-    
-    setSelectedSuggestion(suggestions[newIndex]);
-    setInput(suggestions[newIndex].nome);
-  }, [suggestions, selectedSuggestion]);
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        newIndex = (currentIndex + 1) % suggestions.length;
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        newIndex = (currentIndex - 1 + suggestions.length) % suggestions.length;
+      } else {
+        return;
+      }
+
+      setSelectedSuggestion(suggestions[newIndex]);
+      // REMOVIDA: setInput(suggestions[newIndex].nome);
+      // Esta linha mudava o input do usuário, o que era uma UX ruim.
+    },
+    [suggestions, selectedSuggestion]
+  );
 
   // Renderização
   if (!isClient || !selectedCharacter) {
@@ -305,23 +395,31 @@ export default function GamePage() {
   return (
     <div className="min-h-screen text-white flex flex-col items-center p-6">
       {showVictoryEffects && (
-        <VictoryEffects 
-          isActive={true} // Podemos deixar 'true' ou remover, já que o componente só existe se for pra estar ativo
+        <VictoryEffects
+          isActive={true}
           onComplete={() => setShowVictoryEffects(false)}
         />
       )}
 
-      <StatsModal isOpen={showStatsModal} onClose={() => setShowStatsModal(false)} />
-      
+      <StatsModal
+        isOpen={showStatsModal}
+        onClose={() => setShowStatsModal(false)}
+      />
+
       <Logo />
-      
+
       <GameModeButtons />
 
       <StatsBar
         currentStreak={currentStreak}
         onShowStats={() => setShowStatsModal(true)}
-        onShowNews={() => alert("Modal de novidades em breve!")}
-        onShowHelp={() => alert("Modal de 'Como Jogar' em breve!")}
+        // OTIMIZAÇÃO 1: Removido alert()
+        onShowNews={() => {
+          /* Modal de novidades em breve! */
+        }}
+        onShowHelp={() => {
+          /* Modal de 'Como Jogar' em breve! */
+        }}
       />
 
       <HintBlock
@@ -329,7 +427,7 @@ export default function GamePage() {
         dica1={dica1}
         dica2={dica2}
       />
-      
+
       {!won && !gaveUp ? (
         <>
           {/* Jogo em andamento */}
@@ -339,25 +437,27 @@ export default function GamePage() {
             onInputChange={handleInputChange}
             onKeyDown={handleKeyDown}
             suggestions={suggestions}
-            showDropdown={showDropdown}
+            // Passa o *erro* para o GuessForm
+            showDropdown={showDropdown && !error}
             onSuggestionClick={handleSuggestionClick}
           />
-          <AttemptsGrid
-            attempts={attempts}
-            gridRef={null}
-          />
-          {/* Card de Legenda e Navegação aparece abaixo do resultado */}
+          {/* OTIMIZAÇÃO 1: Renderiza o erro no lugar do dropdown */}
+          {error && !showDropdown && (
+            <div className="relative w-full max-w-md -mt-4 mb-8">
+              <div className="absolute left-0 right-0 p-3 bg-red-800/90 backdrop-blur-md border border-red-500/50 rounded-xl shadow-2xl text-center text-white font-semibold animate-shake-error">
+                {error}
+              </div>
+            </div>
+          )}
+          <AttemptsGrid attempts={attempts} gridRef={null} />
           <GameLegend />
         </>
       ) : (
         <>
           {/* Jogo finalizado */}
-          <AttemptsGrid
-            attempts={attempts}
-            gridRef={null} 
-          />
+          <AttemptsGrid attempts={attempts} gridRef={null} />
           <ResultCard
-            cardRef={characteristicsRef} 
+            cardRef={characteristicsRef}
             isWin={won && !gaveUp}
             selectedCharacter={selectedCharacter}
             attemptsCount={attempts.length}

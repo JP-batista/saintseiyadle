@@ -1,14 +1,15 @@
 // src/app/classico/components/StatsBar.tsx
-import React from "react";
+import React, { memo } from "react"; // Importado 'memo'
 
 type StatsBarProps = {
   currentStreak: number;
   onShowStats: () => void;
-  onShowNews: () => void; // Você pode implementar isso
-  onShowHelp: () => void; // Você pode implementar isso
+  onShowNews: () => void;
+  onShowHelp: () => void;
 };
 
-const StatsBar: React.FC<StatsBarProps> = ({
+// Renomeado para usar com 'memo'
+const StatsBarComponent: React.FC<StatsBarProps> = ({
   currentStreak,
   onShowStats,
   onShowNews,
@@ -29,7 +30,8 @@ const StatsBar: React.FC<StatsBarProps> = ({
 
       {/* 2. Sequência Atual */}
       <div className="relative group">
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-900/50 border-2 border-gray-700/50 flex flex-col items-center justify-center transition-all duration-300 animate-subtle-scale shadow-glow-yellow">
+        {/* OTIMIZAÇÃO 1: Removido 'animate-subtle-scale' */}
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-900/50 border-2 border-gray-700/50 flex flex-col items-center justify-center transition-all duration-300 shadow-glow-yellow">
           <span className="text-3xl">🔥</span>
           <span className="font-bold text-yellow-400 text-sm -mt-1">
             {currentStreak || 0}
@@ -63,4 +65,5 @@ const StatsBar: React.FC<StatsBarProps> = ({
   );
 };
 
-export default StatsBar;
+// OTIMIZAÇÃO 2: Envolvido com 'memo'
+export default memo(StatsBarComponent);

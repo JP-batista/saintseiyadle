@@ -21,32 +21,47 @@ const HintBlock: React.FC<HintBlockProps> = ({
 
   return (
     <div className="w-full max-w-md backdrop-gradient backdrop-blur-custom border border-gray-700/50 text-white rounded-2xl shadow-2xl p-5 sm:p-6 mb-6 animate-fadeInUp">
-      <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 text-yellow-400 tracking-wide animate-text-glow">
+      {/* OTIMIZAÇÃO 1: Removido 'animate-text-glow' para performance */}
+      <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 text-yellow-400 tracking-wide">
         Adivinha qual é a personagem de<br />Saint Seiya
       </h3>
 
       {/* Botões de Dica */}
       <div className="flex justify-between gap-4">
-        <div
-          onClick={() => canShowHint1 && setShowHint1(!showHint1)}
-          className={`cursor-pointer flex-1 p-3 text-center border-2 rounded-lg font-bold text-sm transition-all duration-300 transform ${
-            canShowHint1
-              ? "border-yellow-500/70 bg-gray-700/80 text-yellow-300 shadow-md shadow-yellow-500/20 hover:bg-yellow-500 hover:text-gray-900 hover:shadow-glow-yellow hover:scale-105 button-press"
-              : "border-gray-600/50 bg-gray-800/50 text-gray-500/70 cursor-not-allowed opacity-70"
-          }`}
+        {/* OTIMIZAÇÃO 2: Convertido de 'div' para '<button>' semântico */}
+        <button
+          onClick={() => setShowHint1(!showHint1)}
+          disabled={!canShowHint1}
+          className={`
+            flex-1 p-3 text-center border-2 rounded-lg font-bold text-sm transition-all duration-300 transform 
+            
+            border-yellow-500/70 bg-gray-700/80 text-yellow-300 shadow-md shadow-yellow-500/20 
+            hover:bg-yellow-500 hover:text-gray-900 hover:shadow-glow-yellow hover:scale-105 button-press
+            
+            disabled:bg-gray-800/50 disabled:border-gray-600/50 disabled:text-gray-500/70
+            disabled:cursor-not-allowed disabled:opacity-70 disabled:shadow-none 
+            disabled:hover:scale-100 disabled:hover:bg-gray-800/50 disabled:hover:text-gray-500/70
+          `}
         >
           Dica 1
-        </div>
-        <div
-          onClick={() => canShowHint2 && setShowHint2(!showHint2)}
-          className={`cursor-pointer flex-1 p-3 text-center border-2 rounded-lg font-bold text-sm transition-all duration-300 transform ${
-            canShowHint2
-              ? "border-yellow-500/70 bg-gray-700/80 text-yellow-300 shadow-md shadow-yellow-500/20 hover:bg-yellow-500 hover:text-gray-900 hover:shadow-glow-yellow hover:scale-105 button-press"
-              : "border-gray-600/50 bg-gray-800/50 text-gray-500/70 cursor-not-allowed opacity-70"
-          }`}
+        </button>
+        {/* OTIMIZAÇÃO 2: Convertido de 'div' para '<button>' semântico */}
+        <button
+          onClick={() => setShowHint2(!showHint2)}
+          disabled={!canShowHint2}
+          className={`
+            flex-1 p-3 text-center border-2 rounded-lg font-bold text-sm transition-all duration-300 transform 
+            
+            border-yellow-500/70 bg-gray-700/80 text-yellow-300 shadow-md shadow-yellow-500/20 
+            hover:bg-yellow-500 hover:text-gray-900 hover:shadow-glow-yellow hover:scale-105 button-press
+            
+            disabled:bg-gray-800/50 disabled:border-gray-600/50 disabled:text-gray-500/70
+            disabled:cursor-not-allowed disabled:opacity-70 disabled:shadow-none 
+            disabled:hover:scale-100 disabled:hover:bg-gray-800/50 disabled:hover:text-gray-500/70
+          `}
         >
           Dica 2
-        </div>
+        </button>
       </div>
 
       {/* Container para as dicas e contador de tentativas */}

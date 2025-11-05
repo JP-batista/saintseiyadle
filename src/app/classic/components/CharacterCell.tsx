@@ -14,6 +14,7 @@ const CharacterCell: React.FC<CharacterCellProps> = ({
   isLatest,
   animationDelay,
 }) => {
+
   return (
     <div
       className="flex flex-col items-center gap-2 attempt-row-enhanced transform-gpu will-change-transform"
@@ -41,11 +42,4 @@ const CharacterCell: React.FC<CharacterCellProps> = ({
   );
 };
 
-export default memo(CharacterCell, (prevProps, nextProps) => {
-  return (
-    prevProps.imgSrc === nextProps.imgSrc &&
-    prevProps.nome === nextProps.nome &&
-    prevProps.isLatest === nextProps.isLatest &&
-    prevProps.animationDelay === nextProps.animationDelay
-  );
-});
+export default memo(CharacterCell);

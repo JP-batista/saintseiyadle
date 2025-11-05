@@ -1,9 +1,12 @@
 // src/app/classico/components/ResultCard.tsx
-import React from "react";
-import { Character } from "../types"; // Importe seu tipo Character
+"use client"; // Adicionado para useRouter
+import React, { memo } from "react"; // Importado memo
+import { Character } from "../types";
+import { useRouter } from "next/navigation"; // Importado useRouter
+import GameModeButtons from "./GameModeButtons"; // OTIMIZAÇÃO 3: Importando o componente
 
 type ResultCardProps = {
-  cardRef: React.RefObject<HTMLDivElement | null>; // <-- ADICIONE O | null
+  cardRef: React.RefObject<HTMLDivElement | null>;
   isWin: boolean;
   selectedCharacter: Character | null;
   attemptsCount: number;
@@ -19,17 +22,19 @@ const ResultCard: React.FC<ResultCardProps> = ({
   timeRemaining,
   onShowStats,
 }) => {
+  const router = useRouter(); // OTIMIZAÇÃO 1: Instanciado o hook
+
   return (
     <div
       ref={cardRef}
       className={`mt-6 sm:mt-8 backdrop-gradient backdrop-blur-custom border border-gray-700/50 text-gray-100 p-4 sm:p-6 rounded-2xl shadow-2xl text-center w-full max-w-md mx-auto animate-fadeInUp`}
     >
-      {/* TÍTULO: Lógica de cor (verde/vermelho) */}
+      {/* TÍTULO */}
       <h2
         className={`text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 font-bold ${
           isWin
-            ? "text-green-400 animate-text-glow" // Cor e brilho para "Acertou"
-            : "text-red-400" // Cor para "Desistiu"
+            ? "text-green-400" // OTIMIZAÇÃO 2: Removido 'animate-text-glow'
+            : "text-red-400"
         }`}
       >
         {isWin ? "Parabéns! Você acertou!" : "Você desistiu!"}
@@ -45,8 +50,8 @@ const ResultCard: React.FC<ResultCardProps> = ({
           alt={selectedCharacter?.nome}
           className={`w-auto h-32 sm:h-36 md:h-40 rounded-xl mb-2 border-2 shadow-lg ${
             isWin
-              ? "correct-indicator-enhanced border-green-500" // Classe CSS para acerto
-              : "border-gray-600/50" // Borda padrão
+              ? "correct-indicator-enhanced border-green-500"
+              : "border-gray-600/50"
           }`}
         />
         <p className="text-xl sm:text-2xl mb-3 sm:mb-4 font-bold text-yellow-400">
@@ -89,11 +94,11 @@ const ResultCard: React.FC<ResultCardProps> = ({
             {/* Link Silhueta */}
             <div
               className="rounded-full flex items-center space-x-3 sm:space-x-4 cursor-pointer group w-full max-w-[380px] hover-lift-rotate transition-ultra-smooth"
-              onClick={() =>
-                (window.location.href = "/SaintSeiyaDLE/silhueta")
-              }
+              // OTIMIZAÇÃO 1: Trocado window.location.href por router.push
+              onClick={() => router.push("/SaintSeiyaDLE/silhueta")}
             >
-              <div className="w-16 h-16 sm:w-20 sm:h-20  rounded-full flex items-center justify-center border-4 border-gray-700 shadow-lg group-hover:border-yellow-500 transition-ultra-smooth flex-shrink-0 animate-wave-glow">
+              {/* OTIMIZAÇÃO 2: Removido 'animate-wave-glow' */}
+              <div className="w-16 h-16 sm:w-20 sm:h-20  rounded-full flex items-center justify-center border-4 border-gray-700 shadow-lg group-hover:border-yellow-500 transition-ultra-smooth flex-shrink-0">
                 <img
                   src="/dle_feed/silhouette_icon.png"
                   alt="Advinhe as Silhuetas"
@@ -110,42 +115,9 @@ const ResultCard: React.FC<ResultCardProps> = ({
               </div>
             </div>
 
-            {/* Botões de modos aninhados */}
-            <div className="gap-4 sm:gap-6 bg-gray-900/30 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 flex items-center justify-center flex-wrap">
-              {/* Modo Clássico */}
-              <div className="relative group">
-                <button
-                  className="rounded-full w-16 h-16 bg-transparent focus:outline-none transition-ultra-smooth hover-lift-rotate"
-                  onClick={() =>
-                    (window.location.href = "/SaintSeiyaDLE/classic")
-                  }
-                >
-                  <img
-                    src="/dle_feed/classic_icon.png"
-                    alt="Modo Classic"
-                    className="border-2 border-yellow-500 rounded-full w-full h-full object-contain transition-transform duration-300 group-hover:scale-110 animate-border-dance animate-subtle-scale"
-                  />
-                </button>
-                <div className="glass-tooltip">Modo Classic</div>
-              </div>
-
-              {/* Modo Silhueta */}
-              <div className="relative group">
-                <button
-                  className="rounded-full w-14 h-14 sm:w-16 sm:h-16 bg-transparent focus:outline-none transition-ultra-smooth hover-lift-rotate"
-                  onClick={() =>
-                    (window.location.href = "/SaintSeiyaDLE/silhueta")
-                  }
-                >
-                  <img
-                    src="/dle_feed/silhouette_icon.png"
-                    alt="Modo Silhouette"
-                    className="w-full h-full object-contain rounded-lg transition-transform duration-300 group-hover:scale-110 group-hover:shadow-glow-yellow animate-subtle-scale"
-                  />
-                </button>
-                <div className="glass-tooltip">Silhuetas</div>
-              </div>
-            </div>
+            {/* Botões de modos */}
+            <GameModeButtons /> 
+            {/* ^ Substitui todo o 'div' com os dois botões */}
           </div>
         </div>
       </div>
@@ -153,4 +125,5 @@ const ResultCard: React.FC<ResultCardProps> = ({
   );
 };
 
-export default ResultCard;
+// OTIMIZAÇÃO 4: Envolvido com memo
+export default memo(ResultCard);
