@@ -12,13 +12,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-// ... (Tipos e o componente CustomActiveDot permanecem os mesmos) ...
+// ... (Todos os componentes memoizados: CustomActiveDot, StatsChartComponent, GameHistoryRow) ...
+// ... (Eles não precisam de alteração) ...
+
 type StatsModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
 const CustomActiveDot = (props: any) => {
+  // ... (código do dot)
   const { cx, cy, payload } = props;
   if (!payload) return null;
   return (
@@ -33,7 +36,7 @@ const CustomActiveDot = (props: any) => {
       />
       <text
         x={cx}
-        y={cy - 15} // Posição 15px acima
+        y={cy - 15}
         textAnchor="middle"
         fill="#FCD34D"
         fontSize="14"
@@ -46,23 +49,17 @@ const CustomActiveDot = (props: any) => {
   );
 };
 
-// ====================================================================
-// Componente do Gráfico Memoizado (COM A CORREÇÃO)
-// ====================================================================
 const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
   return (
     <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4">
-      <h3 className="text-base sm:text-lg md:text-xl font-bold text-yellow-400 mb-3 sm:mb-4 text-center animate-text-glow">
+      {/* OTIMIZAÇÃO 2: Animação de brilho removida para performance */}
+      <h3 className="text-base sm:text-lg md:text-xl font-bold text-yellow-400 mb-3 sm:mb-4 text-center">
         Evolução de Tentativas
       </h3>
       <div className="w-full h-48 sm:h-56 md:h-64">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={chartData}
-            // ==================
-            //   A CORREÇÃO É AQUI
-            // ==================
-            // Aumentei o 'top' de 5 para 25 para dar espaço ao texto
             margin={{ top: 25, right: 10, left: -20, bottom: 5 }}
           >
             <CartesianGrid
@@ -98,8 +95,8 @@ const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
 };
 const MemoizedStatsChart = memo(StatsChartComponent);
 
-// ... (O resto do arquivo - GameHistoryRow, StatsModal, etc. - permanece o mesmo) ...
 const GameHistoryRowComponent = ({ game }: { game: any }) => {
+  // ... (código da linha do histórico)
   return (
     <div
       key={game.date}
@@ -131,7 +128,7 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
       </div>
       <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
         {game.firstTry && (
-          <span className="hidden sm:inline text-xs bg-purple-500 text-white px-2 py-1 rounded-full font-semibold whitespace-nowrap shadow-lg shadow-purple-500/30">
+          <span className="hidden sm:inline text-xs bg-purple-500 text-white px-2 py-1 rounded-full font-semibold whitespace-nowahora shadow-lg shadow-purple-500/30">
             🏆 1ª Tentativa!
           </span>
         )}
@@ -154,6 +151,9 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
 };
 const GameHistoryRow = memo(GameHistoryRowComponent);
 
+// ====================================================================
+// Componente Principal
+// ====================================================================
 export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
   const {
     totalWins,
@@ -166,31 +166,30 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
 
   const [showAllHistory, setShowAllHistory] = useState(false);
 
-  const wonGames = useMemo(() => {
-    return gamesHistory.filter((g) => g.won);
-  }, [gamesHistory]);
-
-  const chartData = useMemo(() => {
-    return [...wonGames]
-      .sort((a, b) => a.date.localeCompare(b.date))
-      .slice(-30)
-      .map((game) => ({
-        date: new Date(game.date + "T00:00:00").toLocaleDateString("pt-BR", {
-          day: "2-digit",
-          month: "2-digit",
-        }),
-        tentativas: game.attempts,
-        fullDate: game.date,
-      }));
-  }, [wonGames]);
-
-  const displayedHistory = useMemo(() => {
-    return showAllHistory ? wonGames : wonGames.slice(0, 5);
-  }, [wonGames, showAllHistory]);
-
-  const hasMoreGames = useMemo(() => {
-    return wonGames.length > 5;
-  }, [wonGames]);
+  // ... (Toda a lógica useMemo permanece a mesma) ...
+  const wonGames = useMemo(() => gamesHistory.filter((g) => g.won), [
+    gamesHistory,
+  ]);
+  const chartData = useMemo(
+    () =>
+      [...wonGames]
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .slice(-30)
+        .map((game) => ({
+          date: new Date(game.date + "T00:00:00").toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "2-digit",
+          }),
+          tentativas: game.attempts,
+          fullDate: game.date,
+        })),
+    [wonGames]
+  );
+  const displayedHistory = useMemo(
+    () => (showAllHistory ? wonGames : wonGames.slice(0, 5)),
+    [wonGames, showAllHistory]
+  );
+  const hasMoreGames = useMemo(() => wonGames.length > 5, [wonGames]);
 
   if (!isOpen) return null;
 
@@ -204,19 +203,22 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
           backdrop-gradient backdrop-blur-custom border border-gray-700/50 
           rounded-2xl shadow-2xl w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] 
           overflow-y-auto custom-scrollbar flex flex-col
+          
+          transform-gpu will-change-scroll
         "
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
+        {/* Header - Sticky */}
         <div
           className="
           sticky top-0 
-          bg-gray-900/80 backdrop-blur-md
+          bg-gray-900/80
           border-b-2 border-yellow-500 
           p-3 sm:p-4 md:p-6 flex justify-between items-center z-20
         "
         >
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400 animate-text-glow">
+          {/* OTIMIZAÇÃO 2: Animação de brilho removida para performance */}
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400">
             📊 Estatísticas
           </h2>
           <button
@@ -227,10 +229,11 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
           </button>
         </div>
 
-        {/* Content */}
+        {/* Content - flex-grow */}
         <div className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6 flex-grow">
           {/* Stats Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
+            {/* ... (os 5 cards de estatística) ... */}
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-green-400">
                 {totalWins}
@@ -278,8 +281,9 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
 
           {/* History */}
           {displayedHistory.length > 0 && (
-            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/5IT rounded-xl p-3 sm:p-4">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-yellow-400 mb-3 sm:mb-4 text-center animate-text-glow">
+            <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4">
+              {/* OTIMIZAÇÃO 2: Animação de brilho removida para performance */}
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-yellow-400 mb-3 sm:mb-4 text-center">
                 Histórico de Vitórias
               </h3>
               <div className="space-y-2 sm:space-y-3">
@@ -288,7 +292,7 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
                 ))}
               </div>
 
-              {/* "Ver Mais" / "Ver Menos" Buttons */}
+              {/* ... (Botões "Ver Mais" / "Ver Menos") ... */}
               {hasMoreGames && !showAllHistory && (
                 <button
                   onClick={() => setShowAllHistory(true)}
@@ -321,11 +325,11 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
           )}
         </div>
 
-        {/* Footer */}
+        {/* Footer - Sticky */}
         <div
           className="
           sticky bottom-0 
-          bg-gray-900/80 backdrop-blur-md 
+          bg-gray-900/80
           border-t-2 border-yellow-500 
           p-3 sm:p-4 z-20
         "
