@@ -304,10 +304,12 @@ export default function GamePage() {
 
   return (
     <div className="min-h-screen text-white flex flex-col items-center p-6">
-      <VictoryEffects 
-        isActive={showVictoryEffects} 
-        onComplete={() => setShowVictoryEffects(false)}
-      />
+      {showVictoryEffects && (
+        <VictoryEffects 
+          isActive={true} // Podemos deixar 'true' ou remover, já que o componente só existe se for pra estar ativo
+          onComplete={() => setShowVictoryEffects(false)}
+        />
+      )}
 
       <StatsModal isOpen={showStatsModal} onClose={() => setShowStatsModal(false)} />
       
