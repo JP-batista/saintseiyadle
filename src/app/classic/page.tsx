@@ -67,6 +67,12 @@ export default function GamePage() {
   const [showStatsModal, setShowStatsModal] = useState<boolean>(false);
   const [showVictoryEffects, setShowVictoryEffects] = useState<boolean>(false);
   const [attemptAnimation, setAttemptAnimation] = useState<number>(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  useEffect(() => {
+    // Trigger das animações de entrada após montagem
+    setIsLoaded(true);
+  }, []);
 
   useEffect(() => {
     const todayDate = getCurrentDateInBrazil();
@@ -355,13 +361,19 @@ export default function GamePage() {
 
       <StatsModal isOpen={showStatsModal} onClose={() => setShowStatsModal(false)} />
       
-      <div className="flex justify-center items-center mb-2">
+      {/* Logo com animação de entrada */}
+      <div className="flex justify-center items-center mb-8 relative z-10">
         <Link href="/" passHref>
-        <img
+          <img
             src="/dle_feed/logo_dle.png"
             alt="Logo Os Cavaleiros do Zodíaco"
-            className="w-auto h-52 hover:scale-105 transition-transform duration-500 ease-in-out cursor-pointer"
-        />
+            className={`w-auto h-44 sm:h-52 md:h-60 transition-all duration-1000 ${
+              isLoaded
+                ? "opacity-100 scale-100 rotate-0"
+                : "opacity-0 scale-75 -rotate-12"
+            } hover:scale-110 hover:drop-shadow-[0_0_15px_rgba(251,191,36,0.6)] cursor-pointer`}
+            style={{ transitionTimingFunction: "cubic-bezier(0.34, 1.56, 0.64, 1)" }}
+          />
         </Link>
       </div>
 
