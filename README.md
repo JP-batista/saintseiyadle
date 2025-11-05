@@ -1,156 +1,103 @@
-# Guia de Implementação - Sistema de Estatísticas
+# 🌟 Saint Seiya DLE (Daily Lore Experience)
 
-## Estrutura de Arquivos
+Um jogo diário de adivinhação de personagens de Saint Seiya (Os Cavaleiros do Zodíaco), inspirado em jogos como Wordle e LoLdle.
 
-```
-src/
-├── stores/
-│   ├── useGameStore.ts (atualizado)
-│   └── useStatsStore.ts (novo)
-├── components/
-│   └── StatsModal.tsx (novo)
-└── app/
-    └── classico/
-        └── page.tsx (atualizado)
-```
+## 📖 Sobre o Projeto
 
-## Dependências Necessárias
+Saint Seiya DLE é um jogo web diário onde os jogadores precisam adivinhar qual é o personagem misterioso do dia usando pistas baseadas em características como:
 
-Certifique-se de instalar a biblioteca de gráficos:
+- **Gênero**
+- **Idade**
+- **Altura**
+- **Peso**
+- **Signo**
+- **Patente** (Cavaleiro de Bronze, Prata, Ouro, etc.)
+- **Exército** (Athena, Poseidon, Hades, etc.)
+- **Local de Treinamento**
+- **Saga** (Santuário, Poseidon, Hades, Asgard, etc.)
 
-```bash
-npm install recharts
-# ou
-yarn add recharts
-```
+## ✨ Funcionalidades
 
-## Passos de Implementação
+### 🎮 Modo de Jogo Clássico
 
-### 1. Criar o Store de Estatísticas
+- **Sistema de Tentativas Ilimitadas**: Tente quantas vezes precisar até acertar
+- **Feedback Visual Inteligente**: 
+  - ✅ Verde = Correto
+  - ❌ Vermelho = Incorreto
+  - ⬆️ Seta para cima = Valor é maior
+  - ⬇️ Seta para baixo = Valor é menor
+- **Sistema de Dicas Progressivo**:
+  - Dica 1: Desbloqueada após 5 tentativas
+  - Dica 2: Desbloqueada após 10 tentativas
+- **Autocomplete Inteligente**: Busca por nome ou título do personagem
+- **Grid de Histórico**: Visualize todas as suas tentativas
 
-Crie o arquivo `src/stores/useStatsStore.ts` com o conteúdo fornecido no artifact `stats_store`.
+### 📊 Sistema de Estatísticas Completo
 
-**Funcionalidades:**
-- Armazena histórico completo de jogos (data, tentativas, vitória, primeira tentativa, nome e imagem do personagem)
-- Calcula automaticamente todas as estatísticas
-- Persiste dados no localStorage
-- Recalcula estatísticas ao carregar da storage
+- **Total de Vitórias**: Acompanhe seu progresso
+- **Média de Tentativas**: Veja seu desempenho médio
+- **Acertos na 1ª Tentativa**: Mostre sua maestria
+- **Sequência Atual**: Dias consecutivos jogando
+- **Melhor Sequência**: Seu recorde pessoal
+- **Gráfico de Evolução**: Visualize suas tentativas ao longo do tempo
+- **Histórico Detalhado**: Reveja todos os seus jogos passados
 
-### 2. Atualizar o Store do Jogo
+### 🕐 Sistema de Jogo Diário
 
-Substitua o conteúdo de `src/stores/useGameStore.ts` pelo artifact `updated_game_store`.
+- **Reset Configurável**: Horário personalizável para novo personagem
+- **Contador de Tempo**: Veja quando o próximo personagem estará disponível
+- **Personagens Únicos**: Sistema que evita repetição até completar o ciclo
+- **Persistência**: Seu progresso é salvo automaticamente
+- **Fuso Horário**: Respeita o horário de Brasília (America/Sao_Paulo)
 
-**Mudanças:**
-- Adicionado campo `gaveUp` para diferenciar desistência de vitória
-- Import do `useStatsStore` preparado para integração
+### 📱 Design Responsivo
 
-### 3. Criar o Modal de Estatísticas
+- **Mobile First**: Interface otimizada para smartphones
+- **Tablet Friendly**: Layout adaptável para tablets
+- **Desktop Experience**: Experiência completa em telas grandes
+- **Scroll Horizontal**: Grid de tentativas adaptável em mobile
+- **Touch Optimized**: Botões e interações pensados para touch
 
-Crie o arquivo `src/components/StatsModal.tsx` com o conteúdo do artifact `stats_modal`.
+### 🎨 Interface Moderna
 
-**Características:**
-- Modal responsivo com overlay
-- Exibe 5 estatísticas principais em cards (removido "Jogos Totais")
-- **Gráfico de linha** com evolução de tentativas ao longo do tempo
-  - Eixo X: Datas dos jogos
-  - Eixo Y: Quantidade de tentativas
-  - Mostra últimos 30 jogos
-- **Histórico detalhado dos últimos jogos** com:
-  - Imagem do personagem
-  - Nome do personagem
-  - Data completa formatada
-  - Quantidade de tentativas
-  - Badge especial para primeira tentativa
-- Botão "Ver Mais" quando houver mais de 5 jogos
-- Destaque para acertos na primeira tentativa
+- **Tema Dark**: Experiência visual confortável
+- **Paleta Saint Seiya**: Cores icônicas da série (amarelo/dourado e roxo)
+- **Animações Suaves**: Transições e hover effects
+- **Feedback Visual Imediato**: Resposta instantânea às ações
 
-### 4. Atualizar a Página do Jogo
+## 🗂️ Base de Dados
 
-Substitua `src/app/classico/page.tsx` pelo artifact `updated_game_page`.
+O jogo conta com **200+ personagens** de diversas sagas:
 
-**Integrações:**
-- Import do `useStatsStore` e `StatsModal`
-- Import do `recharts` para gráficos
-- Botão "Ver Estatísticas" no estado de vitória
-- Registro automático do resultado ao terminar o jogo (inclui nome e imagem do personagem)
-- Verificação para não duplicar registros do mesmo dia
+### Cavaleiros de Bronze/Prata/Ouro
+- **Clássico**: Seiya, Shiryu, Hyoga, Shun, Ikki + Cavaleiros de Ouro
+- **Lost Canvas**: Tenma, Dohko jovem, Manigold, Regulus, etc.
+- **Next Dimension**: Shion jovem, Ox de Touro, Shijima, etc.
+- **Omega**: Kouga, Souma, Yuna, Ryuho, etc.
 
-## Como Funciona
+### Outros Exércitos
+- **Marinas de Poseidon**: 7 Generais Marinas
+- **Espectros de Hades**: 3 Juízes + Espectros
+- **Guerreiros Deuses de Asgard**: 7 Guerreiros + Hilda
+- **Deuses**: Athena, Poseidon, Hades, Apolo, Artemis, etc.
 
-### Fluxo de Dados
+### Personagens Especiais
+- **Saintias**: Shoko, Kyoko, Mii, etc.
+- **Cavaleiros Negros**: Kenuma, Shinadekuro, Jid, etc.
+- **Marcianos e Pallasitos**: Marte, Pallas, Saturno, etc.
 
-1. **Início do Jogo:** Sistema carrega estado do localStorage
-2. **Durante o Jogo:** Tentativas são armazenadas no `useGameStore`
-3. **Fim do Jogo:** 
-   - `won` é setado como `true`
-   - Se desistiu, `gaveUp` também é `true`
-   - `useEffect` detecta mudança e chama `addGameResult()` com dados do personagem
-4. **Registro:** 
-   - Verifica se já existe registro para o dia
-   - Adiciona/atualiza no histórico com nome e imagem do personagem
-   - Recalcula todas as estatísticas
-5. **Visualização:** Modal exibe estatísticas calculadas e gráfico de linha
+## 🛠️ Tecnologias Utilizadas
 
-### Cálculo de Estatísticas
+### Frontend
+- **Next.js 14+**: Framework React com App Router
+- **TypeScript**: Tipagem estática para maior segurança
+- **Tailwind CSS**: Estilização utility-first
+- **Recharts**: Gráficos e visualizações
 
-**Total de Vitórias:** Conta jogos onde `won === true` e `gaveUp === false`
+### Gerenciamento de Estado
+- **Zustand**: State management leve e eficiente
+- **Zustand Persist**: Persistência automática no localStorage
 
-**Média de Tentativas:** 
-```typescript
-soma_tentativas_vitoriosas / total_vitorias
-// Arredondado para 1 casa decimal
-```
-
-**Primeira Tentativa:** Conta jogos onde `attempts === 1` e `won === true`
-
-**Current Streak:**
-- Conta vitórias consecutivas
-- Considera dias consecutivos
-- Reseta se faltar um dia ou perder
-
-**Max Streak:** Maior sequência de vitórias já registrada
-
-### Persistência
-
-Dois itens no localStorage:
-- `classic-game-daily-storage`: Estado do jogo (personagem, tentativas, vitória)
-- `classic-game-stats-storage`: Histórico completo e estatísticas
-
-## Validações Implementadas
-
-✅ Não registra o mesmo jogo duas vezes  
-✅ Diferencia vitória de desistência  
-✅ Mantém estado após F5  
-✅ Respeita virada diária  
-✅ Recalcula estatísticas ao carregar  
-✅ Trata jogos incompletos corretamente  
-
-## Testando o Sistema
-
-1. **Primeiro Jogo:** Complete um jogo e clique em "Ver Estatísticas"
-2. **Desistência:** Clique em "Desistir" e veja que não conta como vitória
-3. **Atualizar Página:** Pressione F5 e veja que estatísticas persistem
-4. **Múltiplos Dias:** Use DevTools para alterar a data e simular dias diferentes
-5. **Streaks:** Faça jogos consecutivos para ver o streak aumentar
-
-## Customizações Futuras
-
-- Adicionar gráfico de linha com evolução temporal
-- Implementar compartilhamento de resultados
-- Adicionar conquistas/badges
-- Exportar estatísticas como imagem
-- Comparação com média global (requer backend)
-
-## Troubleshooting
-
-**Estatísticas não aparecem:**
-- Verifique console do navegador
-- Confirme que `useStatsStore` foi importado corretamente
-- Limpe localStorage e teste novamente
-
-**Jogos duplicados:**
-- Certifique-se que `getGameByDate()` está sendo chamado antes de `addGameResult()`
-
-**Streaks incorretos:**
-- Verifique timezone no `getCurrentDateInBrazil()`
-- Confirme formato de data (YYYY-MM-DD)
+### Bibliotecas Adicionais
+- **Lucide React**: Ícones modernos
+- **Date-fns**: Manipulação de datas (se necessário)
