@@ -1,13 +1,16 @@
+// src/app/classico/components/StatsBar.tsx
 import React, { memo, useState } from "react";
-import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook
-import HelpModal from "../../components/HelpModal"; // Importa o modal de ajuda
-import NewsModal from "../../components/NewsModal"; // 💥 NOVO: Importa o modal de novidades
+import { useTranslation } from "../../i18n/useTranslation";
+import HelpModal from "../../components/HelpModal";
+import NewsModal from "../../components/NewsModal"; 
+// import { Disc } from "lucide-react"; // 💥 REMOVIDO: Ícone de Disc
 
 type StatsBarProps = {
   currentStreak: number;
   onShowStats: () => void;
   onShowNews: () => void;
-  onShowHelp?: () => void; // deixei opcional para maior flexibilidade
+  onShowHelp?: () => void;
+  // onShowData: () => void; // 💥 REMOVIDO: Prop onShowData
 };
 
 const StatsBarComponent: React.FC<StatsBarProps> = ({
@@ -15,10 +18,11 @@ const StatsBarComponent: React.FC<StatsBarProps> = ({
   onShowStats,
   onShowNews,
   onShowHelp,
+  // onShowData, // 💥 REMOVIDO: Prop onShowData
 }) => {
-  const { t } = useTranslation(); // Instancia a tradução
+  const { t } = useTranslation();
   const [isHelpOpen, setIsHelpOpen] = useState(false);
-  const [isNewsOpen, setIsNewsOpen] = useState(false); // 💥 NOVO: Estado para Novidades
+  const [isNewsOpen, setIsNewsOpen] = useState(false); 
 
   // Handlers para o Modal de Ajuda
   const handleOpenHelp = () => {
@@ -30,10 +34,9 @@ const StatsBarComponent: React.FC<StatsBarProps> = ({
     setIsHelpOpen(false);
   };
   
-  // Handlers para o Modal de Novidades
+  // Handlers para o Modal de Novidades (mantidos como exemplo)
   const handleOpenNews = () => {
     setIsNewsOpen(true);
-    // Chama o callback externo se existir (e.g., para rastreamento)
     if (onShowNews) onShowNews();
   };
   
@@ -43,62 +46,68 @@ const StatsBarComponent: React.FC<StatsBarProps> = ({
 
   return (
     <>
-      <div className="backdrop-gradient backdrop-blur-custom border border-gray-700/50 rounded-2xl shadow-2xl p-3 sm:p-4 mb-8 flex items-center justify-center gap-4 sm:gap-6 animate-fadeInUp">
+      <div className="backdrop-gradient backdrop-blur-custom border border-gray-700/50 rounded-2xl shadow-2xl p-3 sm:p-4 mb-8 flex items-center justify-center gap-2 sm:gap-4 animate-fadeInUp">
+        
         {/* 1. Estatísticas */}
         <div className="relative group">
           <button
             onClick={onShowStats}
-            className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-900/50 border-2 border-gray-700/50 flex items-center justify-center text-3xl sm:text-4xl focus:outline-none transition-ultra-smooth hover-lift-rotate group-hover:shadow-glow-yellow group-hover:border-yellow-500/50"
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-900/50 border-2 border-gray-700/50 flex items-center justify-center text-xl sm:text-2xl focus:outline-none transition-ultra-smooth hover-lift-rotate group-hover:shadow-glow-yellow group-hover:border-yellow-500/50"
             aria-label={t("stats_bar_stats")}
           >
             📊
           </button>
-          {/* I18N: Traduzido tooltip */}
           <div className="glass-tooltip">{t("stats_bar_stats")}</div>
         </div>
 
         {/* 2. Sequência Atual */}
         <div className="relative group">
-          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-900/50 border-2 border-gray-700/50 flex flex-col items-center justify-center transition-all duration-300 shadow-glow-yellow">
-            <span className="text-3xl">🔥</span>
-            <span className="font-bold text-yellow-400 text-sm -mt-1">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-900/50 border-2 border-gray-700/50 flex flex-col items-center justify-center transition-all duration-300 shadow-glow-yellow">
+            <span className="text-xl">🔥</span>
+            <span className="font-bold text-yellow-400 text-xs -mt-0.5">
               {currentStreak || 0}
             </span>
           </div>
-          {/* I18N: Traduzido tooltip */}
           <div className="glass-tooltip">{t("stats_bar_streak")}</div>
         </div>
+        
+        {/* 3. DADOS (Import/Export) 💥 REMOVIDO: Movido para o botão de Configurações no Layout */}
+        {/* <div className="relative group">
+          <button
+            onClick={onShowData}
+            // ... (Restante do botão de Disc)
+          >
+            <Disc className="w-5 h-5 sm:w-6 sm:h-6" /> 
+          </button>
+          <div className="glass-tooltip">{t("data_modal_title")}</div>
+        </div> */}
 
-        {/* 3. Novidades */}
+        {/* 4. Novidades */}
         <div className="relative group">
           <button
             onClick={handleOpenNews}
-            className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-900/50 border-2 border-gray-700/50 flex items-center justify-center text-3xl sm:text-4xl focus:outline-none transition-ultra-smooth hover-lift-rotate group-hover:shadow-glow-yellow group-hover:border-yellow-500/50"
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-900/50 border-2 border-gray-700/50 flex items-center justify-center text-xl sm:text-2xl focus:outline-none transition-ultra-smooth hover-lift-rotate group-hover:shadow-glow-yellow group-hover:border-yellow-500/50"
             aria-label={t("stats_bar_news")}
           >
             ✨
           </button>
-          {/* I18N: Traduzido tooltip */}
           <div className="glass-tooltip">{t("stats_bar_news")}</div>
         </div>
 
-        {/* 4. Como Jogar */}
+        {/* 5. Como Jogar */}
         <div className="relative group">
           <button
             onClick={handleOpenHelp}
-            className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-900/50 border-2 border-gray-700/50 flex items-center justify-center text-3xl sm:text-4xl focus:outline-none transition-ultra-smooth hover-lift-rotate group-hover:shadow-glow-yellow group-hover:border-yellow-500/50"
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-900/50 border-2 border-gray-700/50 flex items-center justify-center text-xl sm:text-2xl focus:outline-none transition-ultra-smooth hover-lift-rotate group-hover:shadow-glow-yellow group-hover:border-yellow-500/50"
             aria-label={t("stats_bar_help")}
           >
             ❓
           </button>
-          {/* I18N: Traduzido tooltip */}
           <div className="glass-tooltip">{t("stats_bar_help")}</div>
         </div>
       </div>
 
-      {/* Renderiza o modal de ajuda controlado localmente */}
       <HelpModal isOpen={isHelpOpen} onClose={handleCloseHelp} />
-      {/* 💥 NOVO MODAL */}
       <NewsModal isOpen={isNewsOpen} onClose={handleCloseNews} />
     </>
   );

@@ -132,7 +132,26 @@
   "news_date_i18n": "01 de Novembro de 2025",
   "news_desc_i18n": "Toda a estrutura de tradução foi aprimorada, facilitando a adição de novos idiomas no futuro. O jogo está pronto para se expandir!",
   
-  "prop_gender_default": "Desconhecido"
+  "prop_gender_default": "Desconhecido",
 
+  "data_modal_title": "Importar / Exportar Dados",
   
+  "export_title": "Exportar Dados",
+  "export_desc": "Baixe um backup do seu progresso (estatísticas e jogo atual) para salvar ou transferir para outro dispositivo.",
+  "export_button": "Baixar Arquivo de Backup (.json)",
+  "export_success": "Backup gerado com sucesso!",
+  
+  "import_title": "Importar Dados",
+  "import_desc": "Carregue um arquivo de backup (.json) para restaurar suas estatísticas e seu jogo salvo.",
+  "import_button": "Carregar Arquivo",
+  "import_loading": "Importando e Recarregando...",
+  
+  "import_success_reload": "Dados importados com sucesso! A página será recarregada.",
+  "import_export_error_no_data": "Nenhum dado encontrado para exportação.",
+  "import_export_error_invalid_format": "Formato de arquivo inválido. Por favor, carregue um arquivo JSON.",
+  "import_export_error_incompatible": "Arquivo incompatível ou versão desatualizada.",
+  "import_export_error_corrupted": "O arquivo de backup está corrompido ou faltando dados essenciais.",
+  "import_export_error_parse": "Falha ao ler ou analisar o conteúdo do arquivo.",
+  "import_export_error_generic": "Ocorreu um erro desconhecido durante a operação.",
+  "import_export_success_reload": "Dados importados com sucesso! A página será recarregada."
 }

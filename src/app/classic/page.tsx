@@ -1,11 +1,12 @@
+// src/app/classico/page.tsx
 "use client";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import React from "react";
 import { useGameStore } from "../stores/useGameStore";
 import { useStatsStore } from "../stores/useStatsStore";
 import StatsModal from "../components/StatsModal";
-import { useTranslation } from "../i18n/useTranslation"; // I18N: Importa o hook de tradução
-import { characterDataMap } from "../i18n/config"; // I18N: Importa o mapa de dados
+import { useTranslation } from "../i18n/useTranslation";
+import { characterDataMap } from "../i18n/config";
 import {
   getCurrentDateInBrazil,
   getNextMidnightInBrazil,
@@ -14,7 +15,7 @@ import {
 } from "../utils/dailyGame";
 import VictoryEffects from "../components/VictoryEffects";
 
-// Importe os novos tipos e componentes
+// Importe os tipos e componentes
 import { Character, AttemptComparison } from "./types";
 import LoadingSpinner from "./components/LoadingSpinner";
 import Logo from "./components/Logo";
@@ -26,24 +27,25 @@ import AttemptsGrid from "./components/AttemptsGrid";
 import ResultCard from "./components/ResultCard";
 import GameLegend from "./components/GameLegend";
 import { useRouter } from "next/navigation";
+// 💥 REMOVIDO: ImportExportModal não é mais gerenciado aqui.
 
 export default function GamePage() {
   const { t, locale } = useTranslation();
 
-  // 1. DADOS LOCALIZADOS (Substitui a importação estática)
+  // 1. DADOS LOCALIZADOS: Obtém a lista de personagens baseada no idioma ativo.
   const characters = useMemo(() => {
     const dataModule = characterDataMap[locale] || characterDataMap["pt"];
     return ((dataModule as any).default as Character[]) || [];
   }, [locale]);
 
-  // ... (Stores, Refs e Estados) ...
+  // 2. STORES E ESTADOS
   const {
     selectedCharacter,
     attempts,
     won,
     gaveUp,
     currentGameDate,
-    usedCharacterIndices, // Ainda obtemos isso para RASTREAR, não para SELECIONAR
+    usedCharacterIndices,
     addAttempt,
     setWon,
     resetDailyGame,
@@ -61,17 +63,16 @@ export default function GamePage() {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [timeRemaining, setTimeRemaining] = useState<string>("00:00:00");
   const [showStatsModal, setShowStatsModal] = useState<boolean>(false);
+  // 💥 REMOVIDO: [showDataModal, setShowDataModal] = useState<boolean>(false);
   const [showVictoryEffects, setShowVictoryEffects] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const dica1 = useMemo(() => {
-    // O campo 'dica1' existe em Character, que agora tem idKey
     return attempts.length >= 5 ? selectedCharacter?.dica1 : null;
   }, [attempts.length, selectedCharacter]);
 
   const dica2 = useMemo(() => {
-    // O campo 'dica2' existe em Character, que agora tem idKey
     return attempts.length >= 10 ? selectedCharacter?.dica2 : null;
   }, [attempts.length, selectedCharacter]);
 
@@ -79,27 +80,21 @@ export default function GamePage() {
     setIsClient(true);
   }, []);
 
-  // 2. EFEITO DE INICIALIZAÇÃO (Usa a lista localizada)
+  // 3. EFEITO DE INICIALIZAÇÃO E DETERMINISMO
   useEffect(() => {
     if (!isClient || !characters.length) return;
 
     const todayDate = getCurrentDateInBrazil();
 
     if (currentGameDate !== todayDate || !selectedCharacter) {
-      // 💥 CORREÇÃO APLICADA AQUI 💥
-      // A função agora é chamada SEM o usedCharacterIndices,
-      // garantindo que a seleção dependa apenas da data.
+      // Seleção determinística baseada apenas na data e no array de personagens
       const { character, index } = getDailyCharacter(
         todayDate,
         characters // Usa o array de dados LOCALIZADO
-        // O argumento 'usedCharacterIndices' foi removido da chamada
       );
 
-      // O reset do jogo continua o mesmo
       resetDailyGame(character, todayDate);
-      
-      // Nós ainda salvamos o índice que foi usado, para fins de estatística,
-      // mas ele NÃO influencia mais a seleção do próximo dia.
+
       if (!usedCharacterIndices.includes(index)) {
         addUsedCharacterIndex(index);
       }
@@ -108,12 +103,13 @@ export default function GamePage() {
     isClient,
     currentGameDate,
     selectedCharacter,
-    usedCharacterIndices, // Mantido como dependência para o 'addUsedCharacterIndex'
+    usedCharacterIndices,
     resetDailyGame,
     addUsedCharacterIndex,
-    characters, // Depende do array de dados (que muda com o idioma)
+    characters,
   ]);
-  // ... (Outros useEffects permanecem os mesmos) ...
+
+  // ... (Outros useEffects de Contagem, Mudança de Dia e Efeitos de Vitória permanecem os mesmos) ...
   useEffect(() => {
     if (!isClient) return;
     const updateCountdown = () => {
@@ -150,7 +146,7 @@ export default function GamePage() {
     }
   }, [won, gaveUp, attempts.length, isClient]);
 
-  // 3. EFEITO DE SALVAR (Passa o idKey)
+  // 4. EFEITO DE SALVAR O RESULTADO (Passa o idKey)
   useEffect(() => {
     if (
       (won || gaveUp) &&
@@ -166,7 +162,7 @@ export default function GamePage() {
           won && !gaveUp,
           selectedCharacter.nome,
           selectedCharacter.imgSrc,
-          selectedCharacter.idKey // CORREÇÃO: Removida a asserção 'as any'
+          selectedCharacter.idKey
         );
       }
     }
@@ -180,7 +176,7 @@ export default function GamePage() {
     selectedCharacter,
   ]);
 
-  // ... (Funções de Comparação e Normalização permanecem as mesmas) ...
+  // ... (Funções de Comparação e Normalização permanecem os mesmos) ...
   const parseHeight = useCallback((height: string): number => {
     if (height.toLowerCase() === "desconhecido") return NaN;
     return parseFloat(height.replace(",", ".").replace(" m", "").trim());
@@ -234,13 +230,13 @@ export default function GamePage() {
     [parseHeight]
   );
 
-  // 4. LÓGICA DE SUBMISSÃO (Implementação da Correção de ID)
+  // 5. LÓGICA DE SUBMISSÃO (Usa idKey para checar tentativa repetida)
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (!input.trim() || !selectedSuggestion || !selectedCharacter) return;
 
-      const guess = characters.find( // Usa o array 'characters' do useMemo
+      const guess = characters.find(
         (char: Character) =>
           char.nome.toLowerCase() === selectedSuggestion.nome.toLowerCase()
       );
@@ -250,10 +246,10 @@ export default function GamePage() {
         return;
       }
 
-      // 💥 CORREÇÃO CRÍTICA DO BUG DE IDIOMA/TENTATIVA REPETIDA
+      // CORREÇÃO CRÍTICA DO BUG DE IDIOMA/TENTATIVA REPETIDA
       if (
         attempts.some(
-          // Usamos agora a propriedade `idKey` que existe no `guessCharacter`
+          // Checa se o idKey do palpite já está na lista de tentativas
           (attempt) => attempt.guessCharacter.idKey === guess.idKey
         )
       ) {
@@ -267,7 +263,7 @@ export default function GamePage() {
 
       const comparison: AttemptComparison = {
         nome: guess.nome,
-        idKey: guess.idKey, // NOVO: Adicionando o idKey
+        idKey: guess.idKey,
         idade: compareAge(guess.idade, selectedCharacter.idade),
         altura: compareHeight(guess.altura, selectedCharacter.altura),
         peso: compareWeight(guess.peso, selectedCharacter.peso),
@@ -306,10 +302,11 @@ export default function GamePage() {
       addAttempt,
       setWon,
       t,
-      characters, // Adicionado 'characters'
+      characters,
     ]
   );
-  // ... (Restante dos handlers de input permanecem os mesmos) ...
+
+  // ... (Outras funções de input e sugestões permanecem os mesmos) ...
 
   const normalizeText = useCallback((text: string) => {
     return text
@@ -322,7 +319,6 @@ export default function GamePage() {
   const getFilteredSuggestions = useCallback(
     (value: string) => {
       const normalizedValue = normalizeText(value);
-      // CORREÇÃO: A verificação de 'alreadyTried' não precisa ser por nome aqui, mas funciona por nome também
       const alreadyTried = new Set(attempts.map((a) => a.nome.toLowerCase()));
 
       const filterAndSlice = (filterFn: (char: Character) => boolean) => {
@@ -374,10 +370,10 @@ export default function GamePage() {
     [getFilteredSuggestions]
   );
 
-  // 💥 ALTERAÇÃO CRÍTICA: Agora recebe o idKey em vez do objeto Character
+  // 6. HANDLER DE SUGESTÃO (Usa idKey para localizar no array 'characters')
   const handleSuggestionClick = useCallback(
     (idKey: string) => {
-      const suggestion = characters.find((c) => c.idKey === idKey); // Localiza o personagem pelo ID
+      const suggestion = characters.find((c) => c.idKey === idKey);
 
       if (suggestion) {
         setInput(suggestion.nome);
@@ -387,7 +383,7 @@ export default function GamePage() {
       }
     },
     [characters]
-  ); // Adiciona characters como dependência
+  );
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -419,7 +415,7 @@ export default function GamePage() {
   }
 
   return (
-    <div className="min-h-screen text-white flex flex-col items-center p-6">
+    <div className="min-h-screen text-white flex flex-col items-center p-6 pt-20 sm:pt-24"> {/* Ajuste o padding-top para compensar botões fixos */}
       {showVictoryEffects && (
         <VictoryEffects
           isActive={true}
@@ -431,6 +427,8 @@ export default function GamePage() {
         isOpen={showStatsModal}
         onClose={() => setShowStatsModal(false)}
       />
+      
+      {/* 💥 REMOVIDO: ImportExportModal não é mais renderizado aqui */}
 
       <Logo />
 
@@ -445,6 +443,7 @@ export default function GamePage() {
         onShowHelp={() => {
           /* Modal de 'Como Jogar' em breve! */
         }}
+        // 💥 REMOVIDO: Prop onShowData não é mais passado para StatsBar
       />
 
       <HintBlock
@@ -463,7 +462,7 @@ export default function GamePage() {
             onKeyDown={handleKeyDown}
             suggestions={suggestions}
             showDropdown={showDropdown && !error}
-            onSuggestionClick={handleSuggestionClick} // Chama com idKey
+            onSuggestionClick={handleSuggestionClick}
           />
           {/* Renderiza o erro no lugar do dropdown */}
           {error && !showDropdown && (
@@ -483,7 +482,6 @@ export default function GamePage() {
           <ResultCard
             cardRef={characteristicsRef}
             isWin={won && !gaveUp}
-            // O `selectedCharacter` é garantido de ser não-nulo pela verificação de inicialização
             selectedCharacter={selectedCharacter}
             attemptsCount={attempts.length}
             timeRemaining={timeRemaining}

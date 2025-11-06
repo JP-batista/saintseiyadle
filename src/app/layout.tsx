@@ -1,13 +1,15 @@
-// src/app/layout.tsx
+"use client";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer";
 import LocaleSwitcher from "./components/LocaleSwitcher";
+import SettingsModalComponent from "./components/SettingsButton"; // ✅ Importa o modal
+import { useState } from "react";
+import { Settings } from "lucide-react";
 
 // 1. IMPORTAÇÃO ESTÁTICA DOS JSONS
-// NOTA: Os caminhos de importação são ajustados para ir da raiz da app (src/app/) para o i18n
-import ptDict from './i18n/locales/pt.json'; 
+import ptDict from "./i18n/locales/pt.json";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,38 +21,51 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// 2. FUNÇÃO NATIVA DO NEXT.JS PARA METADATA ESTÁTICA
-// Usamos o dicionário Padrão (pt) para garantir que o SEO tenha um idioma base.
-// O Next.js NÃO permite usar hooks aqui.
-export const metadata: Metadata = {
-  // I18N: Usando o dicionário estático (pt.json)
-  title: ptDict.app_title, 
-  description: ptDict.app_description || "Jogo diário de adivinhação de personagens de Saint Seiya",
-};
-
+// 3. COMPONENTE PRINCIPAL
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
   return (
-    // 3. ATRIBUTO LANG FIXO: Como não usamos o Middleware, definimos o idioma Padrão (pt)
-    // O idioma da interface muda via React, mas o atributo HTML lang será pt-BR.
     <html lang="pt-BR" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-fixed bg-center bg-cover text-zinc-100 flex flex-col will-change-scroll`} 
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-fixed bg-center bg-cover text-zinc-100 flex flex-col will-change-scroll`}
         suppressHydrationWarning
       >
-        {/* Adicione o LocaleSwitcher no topo */}
+        {/* 🔧 BOTÃO DO MODAL NO CANTO SUPERIOR ESQUERDO */}
+        <div className="absolute top-4 left-4 z-50">
+          <button
+            onClick={() => setIsSettingsOpen(true)}
+            className="
+              p-1 rounded-full bg-gray-900/70 border-2 border-yellow-500/50 
+              transition-all duration-300 hover:scale-105 hover:bg-gray-800/80
+              shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400
+              flex items-center justify-center
+            "
+            aria-label="Abrir configurações"
+          >
+            {/* Ícone de Engrenagem (Sem rotação) */}
+            <Settings className="w-6 h-6 text-yellow-400" />
+          </button>
+        </div>
+
+        {/* 🌐 LocaleSwitcher no canto superior direito */}
         <div className="absolute top-4 right-4 z-50">
           <LocaleSwitcher />
         </div>
-        
-        <main className="flex-grow">
-          {children}
-        </main>
-        
+
+        {/* Conteúdo principal */}
+        <main className="flex-grow">{children}</main>
+
+        {/* Rodapé */}
         <Footer />
+
+        {/* 🪟 Modal de Configurações */}
+        <SettingsModalComponent
+          isOpen={isSettingsOpen}
+          onClose={() => setIsSettingsOpen(false)}
+        />
       </body>
     </html>
   );
