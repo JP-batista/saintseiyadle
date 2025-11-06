@@ -33,7 +33,7 @@ const LocaleSwitcher: React.FC = () => {
       <button
         onClick={() => setIsModalOpen(true)}
         className="
-          p-2 rounded-full bg-gray-900/70 border-2 border-yellow-500/50 
+          p-1 rounded-sm bg-gray-900/70 border-2 border-yellow-500/50 
           transition-all duration-300 hover:scale-105 hover:bg-gray-800/80
           shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400
         "
@@ -45,7 +45,7 @@ const LocaleSwitcher: React.FC = () => {
           alt={currentLocaleInfo.name} 
           width={24} 
           height={24} 
-          className="rounded-full object-cover"
+          className="rounded-sm object-cover"
         />
       </button>
 
