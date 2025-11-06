@@ -19,13 +19,13 @@ const AttemptRowComponent: React.FC<AttemptRowProps> = ({
 	// 1. Obtém o locale atual
 	const { locale } = useTranslation();
 
-	// 2. Localiza o personagem na lista LOCALIZADA usando o IDKey
+	// 2. Localiza o personagem na lista LOCALIZADA usando o idKey
 	const displayCharacter: Character = useMemo(() => {
 		// Pega a lista de personagens para o locale atual
 		const dataModule = characterDataMap[locale] || characterDataMap['pt'];
 		const localizedCharacters = (dataModule as any).default as Character[] || [];
 		
-		// 💥 MUDANÇA: Procura o personagem pelo IDKey
+		// 💥 MUDANÇA: Procura o personagem pelo idKey
 		const foundCharacter = localizedCharacters.find(c => c.idKey === attempt.idKey);
         
         // Retorna o personagem localizado ou, como fallback, o objeto salvo na tentativa (guessCharacter)

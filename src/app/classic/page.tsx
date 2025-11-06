@@ -140,7 +140,7 @@ export default function GamePage() {
 		}
 	}, [won, gaveUp, attempts.length, isClient]);
 
-	// 3. EFEITO DE SALVAR (Passa o IDKey)
+	// 3. EFEITO DE SALVAR (Passa o idKey)
 	useEffect(() => {
 		if (
 			(won || gaveUp) &&
@@ -364,7 +364,7 @@ export default function GamePage() {
 		[getFilteredSuggestions]
 	);
 
-	// 💥 ALTERAÇÃO CRÍTICA: Agora recebe o IDKey em vez do objeto Character
+	// 💥 ALTERAÇÃO CRÍTICA: Agora recebe o idKey em vez do objeto Character
 	const handleSuggestionClick = useCallback((idKey: string) => { 
 		const suggestion = characters.find(c => c.idKey === idKey); // Localiza o personagem pelo ID
 		

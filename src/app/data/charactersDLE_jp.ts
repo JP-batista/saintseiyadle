@@ -746,7 +746,7 @@ const characters = [
     //Cavaleiros Negros Classicos
 
     {
-        idkey: "keuma",
+        idKey: "keuma",
         nome: "Kenuma de Pégaso Negro",
         titulo: "Cavaleiro Pégaso Negro",
         idade: "13",
@@ -763,7 +763,7 @@ const characters = [
         dica2: "Enfrentou Seiya na Caverna dos Ventos."
       },
       {
-        idkey: "shinadekuro",
+        idKey: "shinadekuro",
         nome: "Shinadekuro de Dragão Negro",
         titulo: "Cavaleiro Dragão Negro",
         idade: "14",
@@ -780,7 +780,7 @@ const characters = [
         dica2: "Possui um irmão cego que o auxilia."
       },
       {
-        idkey: "jid",
+        idKey: "jid",
         nome: "Jid de Cisne Negro",
         titulo: "Cavaleiro Cisne Negro",
         idade: "14",
@@ -797,7 +797,7 @@ const characters = [
         dica2: "Enfrentou Hyoga em uma batalha gélida."
       },
       {
-        idkey: "andromedanegro",
+        idKey: "andromedanegro2",
         nome: "Andrômeda Negro",
         titulo: "Cavaleiro Andrômeda Negro",
         idade: "14",
@@ -814,7 +814,7 @@ const characters = [
         dica2: "Utiliza correntes similares às de Shun."
       },
       {
-        idkey: "ritahoa",
+        idKey: "ritahoa",
         nome: "Ritahoa de Fênix Negro",
         titulo: "Cavaleiro Fênix Negro",
         idade: "15",
@@ -831,7 +831,7 @@ const characters = [
         dica2: "Serviu como sombra de Ikki."
       },
       {
-        idkey: "jango",
+        idKey: "jango",
         nome: "Jango",
         titulo: "Líder dos Cavaleiros Negros",
         idade: "18",
@@ -848,7 +848,7 @@ const characters = [
         dica2: "Desafiou Ikki pelo controle da Ilha da Rainha da Morte."
       },
       {
-        idkey: "guilty",
+        idKey: "guilty",
         nome: "Guilty",
         titulo: "Mestre da Ilha da Rainha da Morte",
         idade: "Desconhecida",
@@ -869,7 +869,7 @@ const characters = [
     //Guerreiros do Santuário
 
     {
-        idkey: "docrates",
+        idKey: "docrates",
         nome: "Docrates",
         idade: "Desconhecida",
         altura: "2,20 m",
@@ -885,7 +885,7 @@ const characters = [
         dica2: "Irmão mais velho de Cassios."
       },
       {
-        idkey: "spartan",
+        idKey: "spartan",
         nome: "Spartan",
         idade: "Desconhecida",
         altura: "1,85 m",
@@ -901,7 +901,7 @@ const characters = [
         dica2: "Acompanhou Shaina e Algol em uma missão."
       },
       {
-        idkey: "gigas",
+        idKey: "gigas",
         nome: "Gigas",
         idade: "Desconhecida",
         altura: "1,88 m",
@@ -917,7 +917,7 @@ const characters = [
         dica2: "Conselheiro do Grande Mestre."
       },
       {
-        idkey: "phaeton",
+        idKey: "phaeton",
         nome: "Phaeton",
         idade: "Desconhecida",
         altura: "1,90 m",
@@ -936,7 +936,7 @@ const characters = [
     //Cavaleiros Fantasmas
 
     {
-        idkey: "geist",
+        idKey: "geist",
         nome: "Geist",
         idade: "16",
         altura: "1,70 m",
@@ -952,7 +952,7 @@ const characters = [
         dica2: "Única mulher entre os Cavaleiros Fantasmas."
       },
       {
-        idkey: "serpentemarina",
+        idKey: "serpentemarina",
         nome: "Serpente Marinha",
         titulo: "Cavaleiro de Serpente Marinha",
         idade: "15",
@@ -969,7 +969,7 @@ const characters = [
         dica2: "Enfrenta os Cavaleiros de Bronze ao lado de Geist."
       },
       {
-        idkey: "medusa",
+        idKey: "medusa",
         nome: "Medusa",
         titulo: "Cavaleiro de Medusa",
         idade: "15",
@@ -986,7 +986,7 @@ const characters = [
         dica2: "Utiliza um golpe que paralisa seus oponentes."
       },
       {
-        idkey: "golfinho",
+        idKey: "golfinho",
         nome: "Golfinho",
         titulo: "Cavaleiro de Golfinho",
         idade: "14",
@@ -1007,7 +1007,7 @@ const characters = [
     //Cavaleiros de Aço
 
     { 
-        idkey: "sho",
+        idKey: "sho",
         nome: "Sho de Céu",
         titulo: "Cavaleiro de Aço do Céu",
         idade: "15",
@@ -1024,7 +1024,7 @@ const characters = [
         dica2: "Sua armadura é associada ao elemento ar."
       },
       {
-        idkey: "daichi",
+        idKey: "daichi",
         nome: "Daichi de Terra",
         titulo: "Cavaleiro de Aço da Terra",
         idade: "14",
@@ -1041,7 +1041,7 @@ const characters = [
         dica2: "Sua armadura é associada ao elemento terra."
       },
       {
-        idkey: "usho",
+        idKey: "usho",
         nome: "Ushô de Mar",
         titulo: "Cavaleiro de Aço do Mar",
         idade: "14",
@@ -1061,7 +1061,7 @@ const characters = [
     //Guerreiros Deuses de Asgard
 
     {
-        idkey: "siegfried",
+        idKey: "siegfried",
         nome: "Siegfried de Dubhe",
         titulo: "Guerreiro Deus de Dubhe",
         idade: "Desconhecida",
@@ -1078,7 +1078,7 @@ const characters = [
         dica2: "Sacrificou-se para proteger Hilda."
       },
       {
-        idkey: "hagen",
+        idKey: "hagen",
         nome: "Hagen de Merak",
         titulo: "Guerreiro Deus de Merak",
         idade: "Desconhecida",
@@ -1095,7 +1095,7 @@ const characters = [
         dica2: "Nutre sentimentos por Freya."
       },
       {
-        idkey: "thor",
+        idKey: "thor",
         nome: "Thor de Phecda",
         titulo: "Guerreiro Deus de Phecda",
         idade: "Desconhecida",
@@ -1112,7 +1112,7 @@ const characters = [
         dica2: "É o maior e mais forte entre os Guerreiros Deuses."
       },
       {
-        idkey: "fenrir",
+        idKey: "fenrir",
         nome: "Fenrir de Alioth",
         titulo: "Guerreiro Deus de Alioth",
         idade: "Desconhecida",
@@ -1129,7 +1129,7 @@ const characters = [
         dica2: "Luta ao lado de uma matilha de lobos."
       },
       {
-        idkey: "mime",
+        idKey: "mime",
         nome: "Mime de Benetnasch",
         titulo: "Guerreiro Deus de Benetnasch",
         idade: "Desconhecida",
@@ -1146,7 +1146,7 @@ const characters = [
         dica2: "Seu passado é marcado por traições e rancor."
       },
       {
-        idkey: "alberich",
+        idKey: "alberich",
         nome: "Alberich de Megrez",
         titulo: "Guerreiro Deus de Megrez",
         idade: "Desconhecida",
@@ -1163,7 +1163,7 @@ const characters = [
         dica2: "Usa uma espada encantada como arma."
       },
       {
-        idkey: "shido",
+        idKey: "shido",
         nome: "Shido de Mizar",
         titulo: "Guerreiro Deus de Mizar",
         idade: "Desconhecida",
@@ -1180,7 +1180,7 @@ const characters = [
         dica2: "É o Guerreiro Deus associado à estrela Mizar."
       },
       {
-        idkey: "bado",
+        idKey: "bado",
         nome: "Bado de Alcor",
         titulo: "Guerreiro Deus de Alcor",
         idade: "Desconhecida",
@@ -1197,7 +1197,7 @@ const characters = [
         dica2: "Luta por razões diferentes das de seu irmão."
       },
       {
-        idkey: "hilda",
+        idKey: "hilda",
         nome: "Hilda de Polaris",
         titulo: "Sacerdotisa de Polaris",
         idade: "17",
@@ -1214,7 +1214,7 @@ const characters = [
         dica2: "É a líder espiritual de Asgard."
       },
       {
-        idkey: "freya",
+        idKey: "freya",
         nome: "Freya",
         idade: "15",
         altura: "1,65 m",
@@ -1233,7 +1233,7 @@ const characters = [
     //Marinas de Poseidon Classico
 
     {
-        idkey: "baian",
+        idKey: "baian",
         nome: "Baian de Cavalo Marinho",
         titulo: "Marina de Cavalo Marinho",
         idade: "18",
@@ -1250,7 +1250,7 @@ const characters = [
         dica2: "Enfrentou Seiya de Pégaso no templo submarino."
     },
     {
-        idkey: "io",
+        idKey: "io",
         nome: "Io de Scylla",
         titulo: "Marina de Scylla",
         idade: "17",
@@ -1267,7 +1267,7 @@ const characters = [
         dica2: "Lutou contra Shun de Andrômeda."
     },
     {
-        idkey: "krishna",
+        idKey: "krishna",
         nome: "Krishna de Chrysaor",
         titulo: "Marina de Chrysaor",
         idade: "19",
@@ -1284,7 +1284,7 @@ const characters = [
         dica2: "Enfrentou Shiryu de Dragão."
     },
     {
-        idkey: "kassa",
+        idKey: "kassa",
         nome: "Kassa de Lymnades",
         titulo: "Marina de Lymnades",
         idade: "18",
@@ -1301,7 +1301,7 @@ const characters = [
         dica2: "Derrotado por Seiya após revelar sua verdadeira forma."
     },
     {
-        idkey: "isaac",
+        idKey: "isaac",
         nome: "Isaac de Kraken",
         titulo: "Marina de Kraken",
         idade: "15",
@@ -1318,7 +1318,7 @@ const characters = [
         dica2: "Perdeu um olho ao salvar Hyoga no passado."
     },
     {
-        idkey: "sorento",
+        idKey: "sorento",
         nome: "Sorento de Sirene",
         titulo: "Marina de Sirene",
         idade: "16",
@@ -1335,7 +1335,7 @@ const characters = [
         dica2: "Teve um confronto com Shun de Andrômeda."
     },
     {
-        idkey: "kanon",
+        idKey: "kanon",
         nome: "Kanon de Dragão Marinho",
         titulo: "Marina de Dragão Marinho",
         idade: "28",
@@ -1352,7 +1352,7 @@ const characters = [
         dica2: "Infiltrou-se no exército de Poseidon com intenções próprias."
     },
     {
-        idkey: "tetis",
+        idKey: "tetis",
         nome: "Tetis de Sereia",
         titulo: "Marina de Sereia",
         idade: "16",
@@ -1372,7 +1372,7 @@ const characters = [
     //Deus Poseidon
 
     {
-        idkey: "poseidon",
+        idKey: "poseidon",
         nome: "Poseidon",
         titulo: "Deus dos Mares",
         idade: "Imortal",
@@ -1392,7 +1392,7 @@ const characters = [
     //Espectros de Hades Classico
 
     {
-        idkey: "radamanthys",
+        idKey: "radamanthys",
         nome: "Radamanthys de Wyvern",
         titulo: "Espectro de Wyvern",
         idade: "23",
@@ -1409,7 +1409,7 @@ const characters = [
         dica2: "Comandava os espectros diretamente em Giudecca."
     },
     {
-        idkey: "minos",
+        idKey: "minos",
         nome: "Minos de Griffon",
         titulo: "Espectro de Griffon",
         idade: "24",
@@ -1426,7 +1426,7 @@ const characters = [
         dica2: "Conhecido por sua crueldade e precisão."
     },
     {
-        idkey: "aiacos",
+        idKey: "aiacos",
         nome: "Aiacos de Garuda",
         titulo: "Espectro de Garuda",
         idade: "22",
@@ -1443,7 +1443,7 @@ const characters = [
         dica2: "Foi derrotado em um combate aéreo."
     },
     {
-        idkey: "niobe",
+        idKey: "niobe",
         nome: "Niobe de Deep",
         titulo: "Espectro de Deep",
         idade: "21",
@@ -1460,7 +1460,7 @@ const characters = [
         dica2: "Foi derrotado rapidamente por Aldebaran de Touro."
     },
     {
-        idkey: "myu",
+        idKey: "myu",
         nome: "Myu de Papillon (Borboleta)",
         titulo: "Espectro de Papillon",
         idade: "19",
@@ -1477,7 +1477,7 @@ const characters = [
         dica2: "Foi derrotado por Mu de Áries."
     },
     {
-        idkey: "giganto",
+        idKey: "giganto",
         nome: "Giganto de Ciclope",
         titulo: "Espectro de Ciclope",
         idade: "24",
@@ -1494,7 +1494,7 @@ const characters = [
         dica2: "Confrontou Seiya e os Cavaleiros de Bronze."
     },
     {
-        idkey: "laimi",
+        idKey: "laimi",
         nome: "Laimi de Verme",
         titulo: "Espectro de Verme",
         idade: "23",
@@ -1511,7 +1511,7 @@ const characters = [
         dica2: "Enfrentou os Cavaleiros no Submundo."
     },
     {
-        idkey: "zelos",
+        idKey: "zelos",
         nome: "Zelos de Sapo",
         titulo: "Espectro de Sapo",
         idade: "21",
@@ -1528,7 +1528,7 @@ const characters = [
         dica2: "Foi humilhado por Radamanthys."
     },
     {
-        idkey: "kiew",
+        idKey: "kiew",
         nome: "Kiew (Cube) de Durahan",
         titulo: "Espectro de Durahan",
         idade: "25",
@@ -1545,7 +1545,7 @@ const characters = [
         dica2: "Apareceu em Giudecca ao lado de Pandora."
     },
     {
-        idkey: "ox",
+        idKey: "ox",
         nome: "Ox de Górgona",
         titulo: "Espectro de Górgona",
         idade: "26",
@@ -1562,7 +1562,7 @@ const characters = [
         dica2: "Inspirado nas criaturas da mitologia grega."
     },
     {
-        idkey: "miles",
+        idKey: "miles",
         nome: "Miles de Elfo",
         titulo: "Espectro de Elfo",
         idade: "24",
@@ -1579,7 +1579,7 @@ const characters = [
         dica2: "Atuou como guarda no Submundo."
     },
     {
-        idkey: "caronte",
+        idKey: "caronte",
         nome: "Caronte de Aqueronte",
         titulo: "Espectro de Aqueronte",
         idade: "30",
@@ -1596,7 +1596,7 @@ const characters = [
         dica2: "Confrontou os Cavaleiros de Bronze na travessia do rio."
     },
     {
-        idkey: "lune",
+        idKey: "lune",
         nome: "Lune de Balron",
         titulo: "Espectro de Balron",
         idade: "22",
@@ -1613,7 +1613,7 @@ const characters = [
         dica2: "Usa uma balança como símbolo de seu poder."
     },
     {
-        idkey: "farao",
+        idKey: "farao",
         nome: "Faraó de Esfinge",
         titulo: "Espectro de Esfinge",
         idade: "20",
@@ -1630,7 +1630,7 @@ const characters = [
         dica2: "Aparece ao lado de Pandora para proteger o Submundo."
     },
     {
-        idkey: "iwan",
+        idKey: "iwan",
         nome: "Iwan de Troll",
         titulo: "Espectro de Troll",
         idade: "26",
@@ -1647,7 +1647,7 @@ const characters = [
         dica2: "Sua força descomunal é temida no Submundo."
     },
     {
-        idkey: "rock",
+        idKey: "rock",
         nome: "Rock de Golem",
         titulo: "Espectro de Golem",
         idade: "25",
@@ -1664,7 +1664,7 @@ const characters = [
         dica2: "Usa sua enorme resistência como arma."
     },
     {
-        idkey: "flegias",
+        idKey: "flegias",
         nome: "Flégias de Lycaon",
         titulo: "Espectro de Lycaon",
         idade: "22",
@@ -1681,7 +1681,7 @@ const characters = [
         dica2: "Desafiou os Cavaleiros de Bronze em um confronto direto."
     },
     {
-        idkey: "stand",
+        idKey: "stand",
         nome: "Stand de Besouro Mortal",
         titulo: "Espectro de Besouro Mortal",
         idade: "20",
@@ -1698,7 +1698,7 @@ const characters = [
         dica2: "É rápido e mortal em suas investidas."
     },
     {
-        idkey: "gordon",
+        idKey: "gordon",
         nome: "Gordon de Minotauro",
         titulo: "Espectro de Minotauro",
         idade: "25",
@@ -1715,7 +1715,7 @@ const characters = [
         dica2: "Desafiante direto de Shiryu de Dragão."
     },
     {
-        idkey: "queen",
+        idKey: "queen",
         nome: "Queen de Mandrágora (Alraune)",
         titulo: "Espectro de Mandrágora",
         idade: "22",
@@ -1732,7 +1732,7 @@ const characters = [
         dica2: "Inspirado em uma planta venenosa mitológica."
     },
     {
-        idkey: "sylphid",
+        idKey: "sylphid",
         nome: "Sylphid de Basilisco",
         titulo: "Espectro de Basilisco",
         idade: "21",
@@ -1749,7 +1749,7 @@ const characters = [
         dica2: "É ágil e mortal em combate."
     },
     {
-        idkey: "valentine",
+        idKey: "valentine",
         nome: "Valentine de Harpia",
         titulo: "Espectro de Harpia",
         idade: "23",
@@ -1766,7 +1766,7 @@ const characters = [
         dica2: "Enfrentou Seiya e os Cavaleiros de Bronze."
     },
     {
-        idkey: "pandora",
+        idKey: "pandora",
         nome: "Pandora",
         idade: "18",
         altura: "1,70 m",
@@ -1782,7 +1782,7 @@ const characters = [
         dica2: "É guardiã do selo de Hades no Submundo."
     },
     {
-        idkey: "hypnos",
+        idKey: "hypnos",
         nome: "Hypnos",
         titulo: "Deus do Sono",
         idade: "Imortal",
@@ -1799,7 +1799,7 @@ const characters = [
         dica2: "Foi derrotado pelos Cavaleiros de Bronze ao lado de seu irmão."
     },
     {
-        idkey: "thanatos",
+        idKey: "thanatos",
         nome: "Thanatos",
         titulo: "Deus da Morte",
         idade: "Imortal",
@@ -1816,7 +1816,7 @@ const characters = [
         dica2: "Foi derrotado após um confronto com a Armadura Divina."
     },
     {
-        idkey: "hades",
+        idKey: "hades",
         nome: "Hades",
         titulo: "Deus do Inferno",
         idade: "Imortal",
@@ -1836,7 +1836,7 @@ const characters = [
     //Cavaleiros de Ouro Lost Canvas
 
     {
-        idkey: "shion",
+        idKey: "shion",
         nome: "Shion de Áries (Lost Canvas)",
         titulo: "Cavaleiro de Áries",
         idade: "18",
@@ -1853,7 +1853,7 @@ const characters = [
         dica2: "Especialista em criar barreiras poderosas."
     },
     {
-        idkey: "hasgard",
+        idKey: "hasgard",
         nome: "Hasgard de Touro",
         titulo: "Cavaleiro de Touro",
         idade: "29",
@@ -1870,7 +1870,7 @@ const characters = [
         dica2: "Defendeu o Santuário com extrema lealdade."
     },
     {
-        idkey: "defteros",
+        idKey: "defteros",
         nome: "Defteros de Gêmeos",
         titulo: "Cavaleiro de Gêmeos",
         idade: "20",
@@ -1887,7 +1887,7 @@ const characters = [
         dica2: "Carrega o fardo da escuridão em seu coração."
     },
     {
-        idkey: "aspros",
+        idKey: "aspros",
         nome: "Aspros de Gêmeos",
         titulo: "Cavaleiro de Gêmeos",
         idade: "20",
@@ -1904,7 +1904,7 @@ const characters = [
         dica2: "Dominou técnicas tanto da luz quanto das trevas."
     },
     {
-        idkey: "manigold",
+        idKey: "manigold",
         nome: "Manigold de Câncer",
         titulo: "Cavaleiro de Câncer",
         idade: "23",
@@ -1921,7 +1921,7 @@ const characters = [
         dica2: "Enfrentou um Deus com bravura incomparável."
     },
     {
-        idkey: "regulus",
+        idKey: "regulus",
         nome: "Regulus de Leão",
         titulo: "Cavaleiro de Leão",
         idade: "15",
@@ -1938,7 +1938,7 @@ const characters = [
         dica2: "Combina velocidade com ataques devastadores."
     },
     {
-        idkey: "asmita",
+        idKey: "asmita",
         nome: "Asmita de Virgem",
         titulo: "Cavaleiro de Virgem",
         idade: "20",
@@ -1955,7 +1955,7 @@ const characters = [
         dica2: "Criou a poderosa rosário que sela espectros."
     },
     {
-        idkey: "dohko",
+        idKey: "dohko",
         nome: "Dohko de Libra (Lost Canvas)",
         titulo: "Cavaleiro de Libra",
         idade: "18",
@@ -1972,7 +1972,7 @@ const characters = [
         dica2: "Usa as doze armas da balança em combate."
     },
     {
-        idkey: "kardia",
+        idKey: "kardia",
         nome: "Kardia de Escorpião",
         titulo: "Cavaleiro de Escorpião",
         idade: "18",
@@ -1989,7 +1989,7 @@ const characters = [
         dica2: "Possui uma técnica que lembra uma ferroada fatal."
     },
     {
-        idkey: "sisifo",
+        idKey: "sisifo",
         nome: "Sísifo de Sagitário",
         titulo: "Cavaleiro de Sagitário",
         idade: "23",
@@ -2006,7 +2006,7 @@ const characters = [
         dica2: "Suas flechas são guiadas pela justiça."
     },
     {
-        idkey: "elcid",
+        idKey: "elcid",
         nome: "El Cid de Capricórnio",
         titulo: "Cavaleiro de Capricórnio",
         idade: "23",
@@ -2023,7 +2023,7 @@ const characters = [
         dica2: "Demonstra honra em todas as suas ações."
     },
     {
-        idkey: "degel",
+        idKey: "degel",
         nome: "Dégel de Aquário",
         titulo: "Cavaleiro de Aquário",
         idade: "22",
@@ -2040,7 +2040,7 @@ const characters = [
         dica2: "Utiliza técnicas baseadas no gelo absoluto."
     },
     {
-        idkey: "albafica",
+        idKey: "albafica",
         nome: "Albafica de Peixes",
         titulo: "Cavaleiro de Peixes",
         idade: "22",
@@ -2060,7 +2060,7 @@ const characters = [
     //Cavaleiros de Bronze/Prata Lost Canvas
 
     {
-        idkey: "tenma",
+        idKey: "tenma",
         nome: "Tenma de Pégaso",
         titulo: "Cavaleiro de Pégaso",
         idade: "15",
@@ -2077,7 +2077,7 @@ const characters = [
         dica2: "Determinado, nunca desiste de proteger seus amigos."
     },
     {
-        idkey: "yato",
+        idKey: "yato",
         nome: "Yato de Unicórnio",
         titulo: "Cavaleiro de Unicórnio",
         idade: "16",
@@ -2094,7 +2094,7 @@ const characters = [
         dica2: "Possui um golpe que lembra uma investida."
     },
     {
-        idkey: "yuzuriha",
+        idKey: "yuzuriha",
         nome: "Yuzuriha de Grou",
         titulo: "Cavaleiro de Grou",
         idade: "17",
@@ -2111,7 +2111,7 @@ const characters = [
         dica2: "Luta com graça e precisão, como a ave que representa."
     },
     {
-        idkey: "hakurei",
+        idKey: "hakurei",
         nome: "Hakurei de Altar",
         titulo: "Cavaleiro de Altar",
         idade: "265",
@@ -2131,7 +2131,7 @@ const characters = [
     //Cavaleiros de Ouro Next Dimension
 
     {
-        idkey: "shionnd",
+        idKey: "shionnd",
         nome: "Shion de Áries (Next Dimension)", 
         titulo: "Cavaleiro de Áries",
         idade: "18",
@@ -2148,7 +2148,7 @@ const characters = [
         dica2: "Considerado um dos cavaleiros mais sábios de sua geração."
     },
     {
-        idkey: "oxtouro",
+        idKey: "oxtouro",
         nome: "Ox de Touro",
         titulo: "Cavaleiro de Touro",
         idade: "20",
@@ -2165,7 +2165,7 @@ const characters = [
         dica2: "É um guardião incansável contra invasores."
     },
     {
-        idkey: "caingemeos",
+        idKey: "caingemeos",
         nome: "Cain de Gêmeos",
         titulo: "Cavaleiro de Gêmeos",
         idade: "23",
@@ -2182,7 +2182,7 @@ const characters = [
         dica2: "Domina ataques de energia devastadores."
     },
     {
-        idkey: "abelgemeos",
+        idKey: "abelgemeos",
         nome: "Abel de Gêmeos",
         titulo: "Cavaleiro de Gêmeos",
         idade: "23",
@@ -2199,7 +2199,7 @@ const characters = [
         dica2: "Sua presença sempre gera tensão no Santuário."
     },
     {
-        idkey: "contadorcancer",
+        idKey: "contadorcancer",
         nome: "Contador da Morte de Câncer",
         titulo: "Cavaleiro de Câncer",
         idade: "25",
@@ -2216,7 +2216,7 @@ const characters = [
         dica2: "Sua força está ligada à manipulação de almas."
     },
     {
-        idkey: "kaiser",
+        idKey: "kaiser",
         nome: "Kaiser de Leão",
         titulo: "Cavaleiro de Leão",
         idade: "19",
@@ -2233,7 +2233,7 @@ const characters = [
         dica2: "Protege seu território com um leão ao seu lado."
     },
     {
-        idkey: "shijimand",
+        idKey: "shijimand",
         nome: "Shijima de Virgem", 
         titulo: "Cavaleiro de Virgem",
         idade: "20",
@@ -2250,7 +2250,7 @@ const characters = [
         dica2: "Sua técnica combina força mental e espiritual."
     },
     {
-        idkey: "dohkond",
+        idKey: "dohkond",
         nome: "Dohko de Libra (Next Dimension)", 
         titulo: "Cavaleiro de Libra",
         idade: "18",
@@ -2267,7 +2267,7 @@ const characters = [
         dica2: "Carrega o equilíbrio das doze armas da balança."
     },
     {
-        idkey: "izo",
+        idKey: "izo",
         nome: "Izo de Capricórnio",
         titulo: "Cavaleiro de Capricórnio",
         idade: "20",
@@ -2284,7 +2284,7 @@ const characters = [
         dica2: "É conhecido por sua habilidade de cortar até dimensões."
     },
     {
-        idkey: "mystoria",
+        idKey: "mystoria",
         nome: "Mystoria de Aquário",
         titulo: "Cavaleiro de Aquário",
         idade: "21",
@@ -2301,7 +2301,7 @@ const characters = [
         dica2: "Sua técnica é calma e letal como o gelo."
     },
     {
-        idkey: "cardinale",
+        idKey: "cardinale",
         nome: "Cardinale de Peixes",
         titulo: "Cavaleiro de Peixes",
         idade: "23",
@@ -2321,7 +2321,7 @@ const characters = [
     //Cavaleiros de Bronze/Prata Omega
 
     {
-        idkey: "kouga",
+        idKey: "kouga",
         nome: "Kouga de Pégaso",
         titulo: "Cavaleiro de Pégaso",
         idade: "13",
@@ -2338,7 +2338,7 @@ const characters = [
         dica2: "Possui uma determinação que cresce em meio aos desafios."
     },
     {
-        idkey: "souma",
+        idKey: "souma",
         nome: "Souma de Leão Menor",
         titulo: "Cavaleiro de Leão Menor",
         idade: "14",
@@ -2355,7 +2355,7 @@ const characters = [
         dica2: "Usa ataques inspirados na ferocidade de um leão."
     },
     {
-        idkey: "yuna",
+        idKey: "yuna",
         nome: "Yuna de Águia",
         titulo: "Cavaleira de Águia",
         idade: "14",
@@ -2372,7 +2372,7 @@ const characters = [
         dica2: "Luta pela liberdade e justiça."
     },
     {
-        idkey: "ryuho",
+        idKey: "ryuho",
         nome: "Ryuho de Dragão",
         titulo: "Cavaleiro de Dragão",
         idade: "12",
@@ -2389,7 +2389,7 @@ const characters = [
         dica2: "Usa um escudo indestrutível em combate."
     },
     {
-        idkey: "haruto",
+        idKey: "haruto",
         nome: "Haruto de Lobo",
         titulo: "Cavaleiro de Lobo",
         idade: "15",
@@ -2406,7 +2406,7 @@ const characters = [
         dica2: "Combina astúcia e força em suas batalhas."
     },
     {
-        idkey: "eden",
+        idKey: "eden",
         nome: "Eden de Órion",
         titulo: "Cavaleiro de Órion",
         idade: "15",
@@ -2423,7 +2423,7 @@ const characters = [
         dica2: "Carrega um poder devastador associado ao trovão."
     },
     {
-        idkey: "subaru",
+        idKey: "subaru",
         nome: "Subaru de Cavalo Menor",
         titulo: "Cavaleiro de Cavalo Menor",
         idade: "13",
@@ -2444,7 +2444,7 @@ const characters = [
     //Cavaleiros de Ouro Omega 
 
     {
-        idkey: "shiryuLibra",
+        idKey: "shiryuLibra",
         nome: "Shiryu de Libra",
         titulo: "Cavaleiro de Libra",
         idade: "29",
@@ -2461,7 +2461,7 @@ const characters = [
         dica2: "Porta as doze armas da balança em batalha."
     },
     {
-        idkey: "kiki",
+        idKey: "kiki",
         nome: "Kiki de Áries",
         titulo: "Cavaleiro de Áries",
         idade: "20",
@@ -2478,7 +2478,7 @@ const characters = [
         dica2: "Especialista em telecinese e criação de barreiras."
     },
     {
-        idkey: "harbinger",
+        idKey: "harbinger",
         nome: "Harbinger de Touro",
         titulo: "Cavaleiro de Touro",
         idade: "25",
@@ -2495,7 +2495,7 @@ const characters = [
         dica2: "Protege a segunda casa com bravura."
     },
     {
-        idkey: "paradox",
+        idKey: "paradox",
         nome: "Paradox de Gêmeos",
         titulo: "Cavaleira de Gêmeos",
         idade: "19",
@@ -2512,7 +2512,7 @@ const characters = [
         dica2: "Sua técnica é tão enigmática quanto seu comportamento."
     },
     {
-        idkey: "schiller",
+        idKey: "schiller",
         nome: "Schiller de Câncer",
         titulo: "Cavaleiro de Câncer",
         idade: "23",
@@ -2529,7 +2529,7 @@ const characters = [
         dica2: "Guarda a casa de Câncer com técnicas mortais."
     },
     {
-        idkey: "micenas",
+        idKey: "micenas",
         nome: "Micenas de Leão",
         titulo: "Cavaleiro de Leão",
         idade: "27",
@@ -2546,7 +2546,7 @@ const characters = [
         dica2: "Protege o Santuário com ataques poderosos."
     },
     {
-        idkey: "fudou",
+        idKey: "fudou",
         nome: "Fudou de Virgem",
         titulo: "Cavaleiro de Virgem",
         idade: "25",
@@ -2563,7 +2563,7 @@ const characters = [
         dica2: "Seus ataques são baseados em meditação e energia espiritual."
     },
     {
-        idkey: "gembu",
+        idKey: "gembu",
         nome: "Gembu de Libra",
         titulo: "Cavaleiro de Libra",
         idade: "28",
@@ -2580,7 +2580,7 @@ const characters = [
         dica2: "Lutou ao lado de Shiryu em sua juventude."
     },
     {
-        idkey: "sonia",
+        idKey: "sonia",
         nome: "Sonia de Escorpião",
         titulo: "Cavaleira de Escorpião",
         idade: "17",
@@ -2597,7 +2597,7 @@ const characters = [
         dica2: "Seu passado está ligado a grandes desafios pessoais."
     },
     {
-        idkey: "seiyasagitario",
+        idKey: "seiyasagitario",
         nome: "Seiya de Sagitário",
         titulo: "Cavaleiro de Sagitário",
         idade: "29",
@@ -2614,7 +2614,7 @@ const characters = [
         dica2: "Seu legado é reconhecido por todos os cavaleiros."
     },
     {
-        idkey: "ionia",
+        idKey: "ionia",
         nome: "Ionia de Capricórnio",
         titulo: "Cavaleiro de Capricórnio",
         idade: "500",
@@ -2631,7 +2631,7 @@ const characters = [
         dica2: "Possui habilidades de combate excepcionais."
     },
     {
-        idkey: "tokisada",
+        idKey: "tokisada",
         nome: "Tokisada de Aquário",
         titulo: "Cavaleiro de Aquário",
         idade: "22",
@@ -2648,7 +2648,7 @@ const characters = [
         dica2: "É conhecido por sua precisão e inteligência."
     },
     {
-        idkey: "amor",
+        idKey: "amor",
         nome: "Amor de Peixes",
         titulo: "Cavaleiro de Peixes",
         idade: "20",
@@ -2668,7 +2668,7 @@ const characters = [
     //Marcianos
 
     {
-        idkey: "marte",
+        idKey: "marte",
         nome: "Marte",
         titulo: "Deus da Guerra",
         idade: "Imortal",
@@ -2688,7 +2688,7 @@ const characters = [
     //Palasitos
     
     {
-        idkey: "pallas",
+        idKey: "pallas",
         nome: "Pallas",
         titulo: "Deusa da Tragédia",
         idade: "Imortal",
@@ -2705,7 +2705,7 @@ const characters = [
         dica2: "Sua missão está ligada ao equilíbrio universal."
     },
     {
-        idkey: "saturno",
+        idKey: "saturno",
         nome: "Saturno",
         titulo: "Deus do Tempo",
         idade: "Imortal",
@@ -2722,7 +2722,7 @@ const characters = [
         dica2: "Seu poder transcende todos os cavaleiros."
     },
     {
-        idkey: "titan",
+        idKey: "titan",
         nome: "Titan",
         titulo: "Pallasito de Primeira Classe",
         idade: "Desconhecida",
@@ -2739,7 +2739,7 @@ const characters = [
         dica2: "Sua força é tão sólida quanto sua lealdade."
     },
     {
-        idkey: "hyperion",
+        idKey: "hyperion",
         nome: "Hyperion",
         titulo: "Pallasito de Primeira Classe",
         idade: "Desconhecida",
@@ -2756,7 +2756,7 @@ const characters = [
         dica2: "Empunha uma arma imensa que reflete seu poder."
     },
     {
-        idkey: "gallia",
+        idKey: "gallia",
         nome: "Gallia",
         titulo: "Pallasito de Primeira Classe",
         idade: "Desconhecida",
@@ -2773,7 +2773,7 @@ const characters = [
         dica2: "Combina inteligência e força em suas batalhas."
     },
     {
-        idkey: "aegir",
+        idKey: "aegir",
         nome: "Aegir",
         titulo: "Pallasito de Primeira Classe",
         idade: "Desconhecida",
@@ -2793,7 +2793,7 @@ const characters = [
     //Anjos Prologo do Céu
 
     {
-        idkey: "artemis",
+        idKey: "artemis",
         nome: "Artemis",
         titulo: "Deusa da Lua",
         idade: "Imortal",
@@ -2810,7 +2810,7 @@ const characters = [
         dica2: "Comanda os Cavaleiros Celestiais em sua missão divina."
     },
     {
-        idkey: "apolo",
+        idKey: "apolo",
         nome: "Apolo",
         titulo: "Deus do Sol",
         idade: "Imortal",
@@ -2827,7 +2827,7 @@ const characters = [
         dica2: "Seu brilho e poder são incomparáveis no Olimpo."
     },
     {
-        idkey: "odysseu",
+        idKey: "odysseu",
         nome: "Odysseu",
         idade: "Desconhecida",
         altura: "Desconhecida",
@@ -2843,7 +2843,7 @@ const characters = [
         dica2: "Sua lealdade à deusa da Lua é inquestionável."
     },
     {
-        idkey: "teseu",
+        idKey: "teseu",
         nome: "Teseu",
         idade: "Desconhecida",
         altura: "Desconhecida",
@@ -2859,7 +2859,7 @@ const characters = [
         dica2: "Tem um papel crucial na defesa do Monte Olimpo."
     },
     {
-        idkey: "tohma",
+        idKey: "tohma",
         nome: "Tohma de Ícaro",
         idade: "13",
         altura: "1,68 m",
@@ -2878,7 +2878,7 @@ const characters = [
     //Saintias
 
     {
-        idkey: "shoko",
+        idKey: "shoko",
         nome: "Shoko de Cavalo Menor",
         titulo: "Saintia de Cavalo Menor",
         idade: "14",
@@ -2895,7 +2895,7 @@ const characters = [
         dica2: "Sua conexão com Cavalo Menor é um legado familiar."
     },
     {
-        idkey: "kyoko",
+        idKey: "kyoko",
         nome: "Kyoko de Cavalo Menor",
         titulo: "Saintia de Cavalo Menor",
         idade: "16",
@@ -2912,7 +2912,7 @@ const characters = [
         dica2: "Sua luta reflete o desejo de proteger Shoko."
     },
     {
-        idkey: "mii",
+        idKey: "mii",
         nome: "Mii de Golfinho",
         titulo: "Saintia de Golfinho",
         idade: "16",
@@ -2929,7 +2929,7 @@ const characters = [
         dica2: "Sua habilidade é comparável à graciosidade de um golfinho."
     },
     {
-        idkey: "xiaoling",
+        idKey: "xiaoling",
         nome: "Xiaoling de Ursa Menor",
         titulo: "Saintia de Ursa Menor",
         idade: "12",
@@ -2946,7 +2946,7 @@ const characters = [
         dica2: "Sua força e determinação superam sua idade."
     },
     {
-        idkey: "katya",
+        idKey: "katya",
         nome: "Katya de Coroa Boreal",
         titulo: "Saintia de Coroa Boreal",
         idade: "18",
@@ -2963,7 +2963,7 @@ const characters = [
         dica2: "Seu poder reflete a constelação que representa."
     },
     {
-        idkey: "elda",
+        idKey: "elda",
         nome: "Elda de Cassiopeia",
         titulo: "Saintia de Cassiopeia",
         idade: "17",
