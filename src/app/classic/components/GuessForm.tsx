@@ -1,13 +1,13 @@
+// src/app/classico/components/GuessForm.tsx
 import React, { memo, useId, useRef, useState, useEffect } from "react";
 import { Character } from "../types";
-import { useTranslation } from "../../i18n/useTranslation"; // Caminho corrigido para alias @/
+import { useTranslation } from "../../i18n/useTranslation";
 
 // ====================================================================
 // Componente Memoizado do Item da Sugestão
 // ====================================================================
 type SuggestionItemProps = {
   suggestion: Character;
-  // 💥 ALTERAÇÃO: onSelect agora recebe o idKey (string) diretamente
   onSelect: (idKey: string) => void; 
   t: (key: any, replacements?: any) => string;
 };
@@ -18,14 +18,11 @@ const SuggestionItem = memo(({
   t,
 }: SuggestionItemProps) => { 
   const handleClick = () => {
-    // 💥 ALTERAÇÃO: Passa o idKey para o onSelect
     onSelect(suggestion.idKey); 
   };
 
   return (
     <li
-      // 💥 CORREÇÃO: Usar o IDKey como chave de renderização (key)
-      key={suggestion.idKey} 
       role="option"
       className="flex items-center p-2.5 m-1 hover:bg-yellow-500/10 hover:border-yellow-500/30 border border-transparent rounded-lg cursor-pointer suggestion-item smooth-transition"
       onClick={handleClick}
@@ -36,6 +33,8 @@ const SuggestionItem = memo(({
         src={suggestion.imgSrc || "/default-image.png"}
         alt={suggestion.nome || t('form_default_name')} 
         className="w-10 h-10 rounded-lg mr-3 shadow-lg flex-shrink-0"
+        loading="eager"
+        decoding="async"
       />
       <div className="flex flex-col min-w-0">
         <span className="font-semibold text-gray-100 truncate">
@@ -47,7 +46,10 @@ const SuggestionItem = memo(({
       </div>
     </li>
   );
+}, (prevProps, nextProps) => {
+  return prevProps.suggestion.idKey === nextProps.suggestion.idKey;
 });
+
 SuggestionItem.displayName = "SuggestionItem";
 
 // ====================================================================
@@ -60,7 +62,6 @@ type GuessFormProps = {
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   suggestions: Character[];
   showDropdown: boolean;
-  // 💥 ALTERAÇÃO: onSuggestionClick agora recebe o idKey (string)
   onSuggestionClick: (idKey: string) => void; 
   onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 };
@@ -87,7 +88,6 @@ const GuessForm: React.FC<GuessFormProps> = ({
   }, [input, shouldSubmit]); 
 
   const handleSuggestionSelect = (idKey: string) => {
-    // 💥 ALTERAÇÃO: Passa o idKey para o onSuggestionClick
     onSuggestionClick(idKey);
     setShouldSubmit(true);
   };
@@ -120,10 +120,8 @@ const GuessForm: React.FC<GuessFormProps> = ({
           >
             {suggestions.map((suggestion) => (
               <SuggestionItem
-                // 💥 CORREÇÃO: Usar o IDKey como chave
                 key={suggestion.idKey}
                 suggestion={suggestion}
-                // Agora onSelect em SuggestionItem tem a mesma lógica de handleSuggestionSelect no GuessForm
                 onSelect={handleSuggestionSelect} 
                 t={t} 
               />
@@ -142,4 +140,10 @@ const GuessForm: React.FC<GuessFormProps> = ({
   );
 };
 
-export default memo(GuessForm);
+export default memo(GuessForm, (prevProps, nextProps) => {
+  return (
+    prevProps.input === nextProps.input &&
+    prevProps.showDropdown === nextProps.showDropdown &&
+    prevProps.suggestions.length === nextProps.suggestions.length
+  );
+});

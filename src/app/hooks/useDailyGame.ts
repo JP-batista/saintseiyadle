@@ -4,6 +4,7 @@ import { useGameStore } from '../stores/useGameStore';
 import { getCurrentDateInBrazil, getDailyCharacter } from '../utils/dailyGame';
 
 type Character = {
+  idKey: string; // ADICIONADO
   nome: string;
   titulo?: string;
   idade: string;
@@ -40,8 +41,6 @@ export function useDailyGame(characters: Character[]) {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    // OTIMIZAÇÃO 1: Removida a verificação 'typeof window' (desnecessária)
-
     const todayDate = getCurrentDateInBrazil();
 
     // Cenário 1: Dia mudou - novo jogo
@@ -82,14 +81,15 @@ export function useDailyGame(characters: Character[]) {
       
       setIsInitialized(true);
     }
-  // OTIMIZAÇÃO 2: Array de dependências limpo
-  // Removidos 'won' (não usado) e os setters do Zustand (são estáveis)
   }, [
     characters,
     currentGameDate,
     selectedCharacter,
     usedCharacterIndices,
-    // As funções setter foram removidas daqui
+    resetDailyGame,
+    addUsedCharacterIndex,
+    setSelectedCharacter,
+    setCurrentGameDate,
   ]);
 
   return {
