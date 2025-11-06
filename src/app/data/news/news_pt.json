@@ -1,5 +1,13 @@
 [
   {
+    "id": "data_import_export",
+    "icon": "Database",
+    "title": "💾 Importação e Exportação de Dados",
+    "date": "06 de Novembro de 2025",
+    "description": "Agora é possível exportar e importar seu progresso, estatísticas e histórico do modo clássico com facilidade — ideal para quem deseja fazer backup ou transferir seus dados entre dispositivos.",
+    "glow": "border-purple-500/50 shadow-lg shadow-purple-500/20"
+  },
+  {
     "id": "news_system",
     "icon": "Info",
     "title": "📰 Sistema de notícias implementado",

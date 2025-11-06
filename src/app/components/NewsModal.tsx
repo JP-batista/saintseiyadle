@@ -44,7 +44,7 @@ const IconMap: Record<string, React.FC<any>> = {
     Shuffle: Shuffle,
     Database: Database,
     Image: Image,
-    Rocket
+    Rocket: Rocket
 };
 
 const NewsModalComponent: React.FC<NewsModalProps> = ({ isOpen, onClose }) => {
@@ -96,10 +96,7 @@ const NewsModalComponent: React.FC<NewsModalProps> = ({ isOpen, onClose }) => {
                 // Seleciona o componente de ícone com fallback seguro
                 const IconComponent = IconMap[item.icon] || IconMap.Component;
                 
-                // Define a cor base para os ícones
-                const iconColor = item.icon === 'Trophy' ? 'text-yellow-500' : 
-                                  item.icon === 'RefreshCw' ? 'text-blue-500' :
-                                  item.icon === 'Flag' ? 'text-green-500' : 'text-gray-400';
+               
                                   
                 return (
                     <div
@@ -110,7 +107,7 @@ const NewsModalComponent: React.FC<NewsModalProps> = ({ isOpen, onClose }) => {
                         `}
                     >
                         <div className="flex-shrink-0 mr-4 mt-1">
-                            <IconComponent className={`w-5 h-5 ${iconColor}`} />
+                            <IconComponent />
                         </div>
                         <div className="flex-1 min-w-0">
                             <h4 className="font-bold text-base text-white truncate">
