@@ -4,7 +4,7 @@ const characters = [
     // Cavaleiros de Bronze Clássico
     {
         idKey: "seiya",
-        nome: "Seiya de Pégaso portugues",
+        nome: "Seiya de Pégaso",
         titulo: "Cavaleiro de Pégaso",
         idade: "13",
         altura: "1,65 m",

@@ -65,10 +65,12 @@ export default function GamePage() {
 	const [error, setError] = useState<string | null>(null);
 
 	const dica1 = useMemo(() => {
+		// O campo 'dica1' existe em Character, que agora tem idKey
 		return attempts.length >= 5 ? selectedCharacter?.dica1 : null;
 	}, [attempts.length, selectedCharacter]);
 
 	const dica2 = useMemo(() => {
+		// O campo 'dica2' existe em Character, que agora tem idKey
 		return attempts.length >= 10 ? selectedCharacter?.dica2 : null;
 	}, [attempts.length, selectedCharacter]);
 
@@ -88,7 +90,8 @@ export default function GamePage() {
 				characters, // Usa o array de dados LOCALIZADO
 				usedCharacterIndices
 			);
-			resetDailyGame(character, todayDate);
+			// Este é o ponto que falhava: `character` é um `Character` que agora possui `idKey`
+			resetDailyGame(character, todayDate); 
 			addUsedCharacterIndex(index);
 		}
 	}, [
@@ -153,7 +156,7 @@ export default function GamePage() {
 					won && !gaveUp,
 					selectedCharacter.nome,
 					selectedCharacter.imgSrc,
-					(selectedCharacter as any).idKey // NOVO: Passando idKey
+					selectedCharacter.idKey // CORREÇÃO: Removida a asserção 'as any'
 				);
 			}
 		}
@@ -240,8 +243,8 @@ export default function GamePage() {
 			// 💥 CORREÇÃO CRÍTICA DO BUG DE IDIOMA/TENTATIVA REPETIDA
 			if (
 				attempts.some(
-					// Devemos usar o idKey do personagem adivinhado para verificar o histórico
-					(attempt) => (attempt.guessCharacter as any).idKey === guess.idKey 
+					// Usamos agora a propriedade `idKey` que existe no `guessCharacter`
+					(attempt) => attempt.guessCharacter.idKey === guess.idKey 
 				)
 			) {
 				setError(t("form_error_already_tried"));
@@ -464,6 +467,7 @@ export default function GamePage() {
 					<ResultCard
 						cardRef={characteristicsRef}
 						isWin={won && !gaveUp}
+						// O `selectedCharacter` é garantido de ser não-nulo pela verificação de inicialização
 						selectedCharacter={selectedCharacter}
 						attemptsCount={attempts.length}
 						timeRemaining={timeRemaining}
