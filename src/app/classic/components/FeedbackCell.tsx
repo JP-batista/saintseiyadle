@@ -1,5 +1,6 @@
 // src/app/classico/components/FeedbackCell.tsx
-import React, { memo, useMemo } from "react"; // Removido useCallback, adicionado useMemo
+import React, { memo, useMemo } from "react";
+import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook
 
 type FeedbackCellProps = {
   status: string;
@@ -14,11 +15,10 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
   isLatest,
   animationDelay,
 }) => {
+  const { t } = useTranslation(); // Instancia a tradução
   const isCorrect = status === "green";
 
-  // OTIMIZAÇÃO 2: Substituído useCallback por useMemo
-  // Em vez de memoizar a função, memoizamos o *valor* de 'iconSrc'.
-  // Isto é mais direto e eficiente.
+  // OTIMIZAÇÃO: Memoização do valor de 'iconSrc'.
   const iconSrc = useMemo(() => {
     switch (status) {
       case "green":
@@ -32,7 +32,7 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
       default:
         return "/dle_feed/errado.png";
     }
-  }, [status]); // A lógica só re-executa se 'status' mudar
+  }, [status]);
 
   return (
     <div
@@ -47,8 +47,9 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
           <div className="absolute inset-0 bg-green-500/40 rounded-xl blur-lg animate-pulse-success" />
         )}
         <img
-          src={iconSrc} // Usa o valor memoizado
-          alt="Feedback"
+          src={iconSrc}
+          // I18N: Traduzido o texto alternativo
+          alt={t('feedback_icon_alt')} 
           loading="eager"
           decoding="async"
           className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl object-cover shadow-lg transition-all duration-300 ${
@@ -61,12 +62,10 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
         />
       </div>
       <span className="text-[10px] sm:text-xs md:text-sm text-gray-300 text-center break-words leading-tight">
-        {value}
+        {value} {/* O valor já vem traduzido do array de dados */}
       </span>
     </div>
   );
 };
 
-// OTIMIZAÇÃO 1: Função de comparação customizada removida.
-// O 'memo' padrão já faz essa checagem de props rasas.
 export default memo(FeedbackCell);

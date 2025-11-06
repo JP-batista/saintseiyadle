@@ -1,4 +1,3 @@
-// src/app/classico/components/CharacterCell.tsx
 import React, { memo } from "react";
 
 type CharacterCellProps = {
@@ -8,17 +7,18 @@ type CharacterCellProps = {
   animationDelay: number;
 };
 
-const CharacterCell: React.FC<CharacterCellProps> = ({
+// Renomeado para component base
+const CharacterCellComponent: React.FC<CharacterCellProps> = ({
   imgSrc,
   nome,
   isLatest,
   animationDelay,
 }) => {
-
+  // A classe 'transform-gpu' e o estilo 'contain' são mantidos para otimização de renderização.
   return (
     <div
       className="flex flex-col items-center gap-2 attempt-row-enhanced transform-gpu will-change-transform"
-      style={{ 
+      style={{
         animationDelay: `${animationDelay}s`,
         contain: 'layout style paint'
       }}
@@ -28,6 +28,7 @@ const CharacterCell: React.FC<CharacterCellProps> = ({
           <div className="absolute inset-0 bg-yellow-500/30 rounded-xl blur-xl animate-pulse-glow" />
         )}
         <img
+          // O nome e a imagem são passados já localizados pelo AttemptRow
           src={imgSrc}
           alt={nome}
           loading="eager"
@@ -42,4 +43,5 @@ const CharacterCell: React.FC<CharacterCellProps> = ({
   );
 };
 
-export default memo(CharacterCell);
+// Exporta o componente memoizado
+export default memo(CharacterCellComponent);

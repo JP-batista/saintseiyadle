@@ -1,32 +1,37 @@
-// OTIMIZAÇÃO 1: Importado 'memo'
+// Footer.tsx
+"use client";
+
 import { Twitter, Facebook, Instagram, Linkedin } from "lucide-react";
 import React, { memo } from "react";
+import { useTranslation } from "../i18n/useTranslation"; // I18N: Importa o hook
 
+// Dados dos links sociais (Mantemos as chaves em inglês, que é o padrão de acessibilidade)
 const socialLinks = [
-  {
-    href: "https://x.com/jotape_rba",
+  { 
+    href: "https://x.com/jotape_rba", 
     label: "Twitter",
-    icon: <Twitter className="w-5 h-5" />,
+    icon: <Twitter className="w-5 h-5" /> 
   },
-  {
-    href: "https://www.facebook.com/jpribeiro.batista",
+  { 
+    href: "https://www.facebook.com/jpribeiro.batista", 
     label: "Facebook",
-    icon: <Facebook className="w-5 h-5" />,
+    icon: <Facebook className="w-5 h-5" /> 
   },
-  {
-    href: "https://www.instagram.com/jp_batista20/",
+  { 
+    href: "https://www.instagram.com/jp_batista20/", 
     label: "Instagram",
-    icon: <Instagram className="w-5 h-5" />,
+    icon: <Instagram className="w-5 h-5" /> 
   },
-  {
-    href: "https://www.linkedin.com/in/joao-pedro-ribeiro-batista-araujo-1583b1332/",
+  { 
+    href: "https://www.linkedin.com/in/joao-pedro-ribeiro-batista-araujo-1583b1332/", 
     label: "Linkedin",
-    icon: <Linkedin className="w-5 h-5" />,
+    icon: <Linkedin className="w-5 h-5" /> 
   },
 ];
 
-// Renomeado para usar com 'memo'
 const FooterComponent = () => {
+  const { t } = useTranslation(); // Esta linha agora é executada no cliente
+
   return (
     <footer
       className="
@@ -44,11 +49,11 @@ const FooterComponent = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={link.label}
+              // I18N: Usamos uma chave para o label de acessibilidade
+              aria-label={t('footer_social_link', { network: link.label })} 
               className="
                 w-10 h-10 rounded-full 
                 bg-gray-900/50 
-                /* OTIMIZAÇÃO 2: Removido 'backdrop-blur-sm' */
                 border border-gray-700/50
                 flex items-center justify-center
                 text-gray-300 
@@ -67,7 +72,8 @@ const FooterComponent = () => {
 
         {/* Informações do Desenvolvedor */}
         <p className="text-sm text-gray-300">
-          Desenvolvido por{" "}
+          {/* I18N: Traduzido "Desenvolvido por" */}
+          {t('footer_developed_by')}{" "}
           <span className="font-semibold text-white">João Pedro Batista</span>
         </p>
 
@@ -77,9 +83,8 @@ const FooterComponent = () => {
             &copy; {new Date().getFullYear()} saintseiyadle.
           </p>
           <p className="mt-2 text-xs text-gray-400 max-w-2xl">
-            Saint Seiya © Masami Kurumada/Shueisha, Toei Animation. Todos os
-            direitos da série são reservados aos seus respectivos donos. Este
-            site é uma homenagem à obra original.
+            {/* I18N: Traduzido o aviso legal */}
+            {t('footer_legal_disclaimer')}
           </p>
         </div>
       </div>
@@ -87,5 +92,4 @@ const FooterComponent = () => {
   );
 };
 
-// OTIMIZAÇÃO 1: Envolvido com 'memo'
 export default memo(FooterComponent);

@@ -11,17 +11,17 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
-
-// ... (Todos os componentes memoizados: CustomActiveDot, StatsChartComponent, GameHistoryRow) ...
-// ... (Eles não precisam de alteração) ...
+import { useTranslation } from "../i18n/useTranslation"; // I18N: Importa o hook
 
 type StatsModalProps = {
   isOpen: boolean;
   onClose: () => void;
 };
 
+// ====================================================================
+// Helper: CustomActiveDot (Sem alteração, exceto a importação de t)
+// ====================================================================
 const CustomActiveDot = (props: any) => {
-  // ... (código do dot)
   const { cx, cy, payload } = props;
   if (!payload) return null;
   return (
@@ -49,12 +49,16 @@ const CustomActiveDot = (props: any) => {
   );
 };
 
+// ====================================================================
+// StatsChartComponent (Modificado para i18n)
+// ====================================================================
 const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
+  const { t } = useTranslation();
   return (
     <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4">
-      {/* OTIMIZAÇÃO 2: Animação de brilho removida para performance */}
       <h3 className="text-base sm:text-lg md:text-xl font-bold text-yellow-400 mb-3 sm:mb-4 text-center">
-        Evolução de Tentativas
+        {/* I18N: Traduzido título do gráfico */}
+        {t('stats_chart_title')}
       </h3>
       <div className="w-full h-48 sm:h-56 md:h-64">
         <ResponsiveContainer width="100%" height="100%">
@@ -95,8 +99,27 @@ const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
 };
 const MemoizedStatsChart = memo(StatsChartComponent);
 
+// ====================================================================
+// GameHistoryRowComponent (Modificado para i18n)
+// ====================================================================
 const GameHistoryRowComponent = ({ game }: { game: any }) => {
-  // ... (código da linha do histórico)
+  const { t, locale } = useTranslation();
+  
+  // I18N: Formata a data para o locale ativo (pt/en)
+  const formattedDate = useMemo(() => {
+    return new Date(game.date + "T00:00:00").toLocaleDateString(
+        locale === 'en' ? 'en-US' : 'pt-BR', // Escolhe o locale para formatação
+      {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+      }
+    );
+  }, [game.date, locale]);
+
+  // Lógica de singular/plural para 'tentativa'
+  const attemptText = game.attempts === 1 ? t('stats_attempt_singular') : t('stats_attempt_plural');
+
   return (
     <div
       key={game.date}
@@ -118,18 +141,15 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
             {game.characterName}
           </span>
           <span className="text-xs text-gray-400 truncate">
-            {new Date(game.date + "T00:00:00").toLocaleDateString("pt-BR", {
-              day: "2-digit",
-              month: "long",
-              year: "numeric",
-            })}
+            {formattedDate} {/* Usa a data localizada */}
           </span>
         </div>
       </div>
       <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
         {game.firstTry && (
           <span className="hidden sm:inline text-xs bg-purple-500 text-white px-2 py-1 rounded-full font-semibold whitespace-nowahora shadow-lg shadow-purple-500/30">
-            🏆 1ª Tentativa!
+            {/* I18N: Traduzido badge */}
+            {t('stats_first_try_badge')}
           </span>
         )}
         {game.firstTry && (
@@ -142,7 +162,8 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
             {game.attempts}
           </div>
           <div className="text-xs text-gray-400 hidden sm:block">
-            {game.attempts === 1 ? "tentativa" : "tentativas"}
+            {/* I18N: Usa texto singular/plural */}
+            {attemptText}
           </div>
         </div>
       </div>
@@ -152,7 +173,7 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
 const GameHistoryRow = memo(GameHistoryRowComponent);
 
 // ====================================================================
-// Componente Principal
+// Componente Principal StatsModal
 // ====================================================================
 export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
   const {
@@ -165,8 +186,9 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
   } = useStatsStore();
 
   const [showAllHistory, setShowAllHistory] = useState(false);
+  const { t, locale } = useTranslation(); // I18N: Obtém t e locale
 
-  // ... (Toda a lógica useMemo permanece a mesma) ...
+  // ... (Toda a lógica useMemo para dados derivados permanece a mesma) ...
   const wonGames = useMemo(() => gamesHistory.filter((g) => g.won), [
     gamesHistory,
   ]);
@@ -176,14 +198,18 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
         .sort((a, b) => a.date.localeCompare(b.date))
         .slice(-30)
         .map((game) => ({
-          date: new Date(game.date + "T00:00:00").toLocaleDateString("pt-BR", {
-            day: "2-digit",
-            month: "2-digit",
-          }),
+          // I18N: Formata a data do gráfico para o locale ativo
+          date: new Date(game.date + "T00:00:00").toLocaleDateString(
+            locale === 'en' ? 'en-US' : 'pt-BR',
+            {
+              day: "2-digit",
+              month: "2-digit",
+            }
+          ),
           tentativas: game.attempts,
           fullDate: game.date,
         })),
-    [wonGames]
+    [wonGames, locale] // Adicionado locale como dependência
   );
   const displayedHistory = useMemo(
     () => (showAllHistory ? wonGames : wonGames.slice(0, 5)),
@@ -217,9 +243,9 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
           p-3 sm:p-4 md:p-6 flex justify-between items-center z-20
         "
         >
-          {/* OTIMIZAÇÃO 2: Animação de brilho removida para performance */}
+          {/* I18N: Traduzido título do modal */}
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-yellow-400">
-            📊 Estatísticas
+            {t('stats_title')}
           </h2>
           <button
             onClick={onClose}
@@ -233,45 +259,49 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
         <div className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6 flex-grow">
           {/* Stats Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
-            {/* ... (os 5 cards de estatística) ... */}
+            {/* Vitórias */}
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-green-400">
                 {totalWins}
               </div>
               <div className="text-sm sm:text-base text-gray-300 mt-1 uppercase tracking-wider font-semibold">
-                Vitórias
+                {t('stats_wins')}
               </div>
             </div>
+            {/* Média */}
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-blue-400">
                 {averageAttempts}
               </div>
               <div className="text-sm sm:text-base text-gray-300 mt-1 uppercase tracking-wider font-semibold">
-                Média
+                {t('stats_average')}
               </div>
             </div>
+            {/* 1ª Tentativa */}
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-purple-400">
                 {firstTryWins}
               </div>
               <div className="text-sm sm:text-base text-gray-300 mt-1 uppercase tracking-wider font-semibold">
-                1ª Tentativa
+                {t('stats_first_try')}
               </div>
             </div>
+            {/* Sequência */}
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-orange-400">
                 {currentStreak}
               </div>
               <div className="text-sm sm:text-base text-gray-300 mt-1 uppercase tracking-wider font-semibold">
-                Sequência
+                {t('stats_streak')}
               </div>
             </div>
+            {/* Recorde */}
             <div className="bg-gray-900/5D backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105 col-span-2 sm:col-span-1">
               <div className="text-3xl sm:text-4xl font-bold text-yellow-400">
                 {maxStreak}
               </div>
               <div className="text-sm sm:text-base text-gray-300 mt-1 uppercase tracking-wider font-semibold">
-                Recorde
+                {t('stats_record')}
               </div>
             </div>
           </div>
@@ -282,9 +312,8 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
           {/* History */}
           {displayedHistory.length > 0 && (
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4">
-              {/* OTIMIZAÇÃO 2: Animação de brilho removida para performance */}
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-yellow-400 mb-3 sm:mb-4 text-center">
-                Histórico de Vitórias
+                {t('stats_history_title')}
               </h3>
               <div className="space-y-2 sm:space-y-3">
                 {displayedHistory.map((game) => (
@@ -292,13 +321,14 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
                 ))}
               </div>
 
-              {/* ... (Botões "Ver Mais" / "Ver Menos") ... */}
+              {/* Botões "Ver Mais" / "Ver Menos" */}
               {hasMoreGames && !showAllHistory && (
                 <button
                   onClick={() => setShowAllHistory(true)}
                   className="w-full mt-3 sm:mt-4 bg-gray-700/80 border border-gray-600/50 text-yellow-300 py-2 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base hover:bg-gray-700/100 hover:border-gray-500 hover:text-yellow-200"
                 >
-                  Ver Mais ({wonGames.length - 5} jogos)
+                  {/* I18N: Botão Ver Mais com placeholder */}
+                  {t('stats_more', { count: wonGames.length - 5 })}
                 </button>
               )}
               {showAllHistory && (
@@ -306,7 +336,7 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
                   onClick={() => setShowAllHistory(false)}
                   className="w-full mt-3 sm:mt-4 bg-gray-700/80 border border-gray-600/50 text-yellow-300 py-2 rounded-lg font-semibold transition-all duration-300 text-sm sm:text-base hover:bg-gray-700/100 hover:border-gray-500 hover:text-yellow-200"
                 >
-                  Ver Menos
+                  {t('stats_less')}
                 </button>
               )}
             </div>
@@ -316,10 +346,10 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
           {gamesHistory.length === 0 && (
             <div className="text-center py-6 sm:py-8 text-gray-400 bg-gray-900/50 backdrop-blur-sm border-2 border-gray-700/50 border-dashed rounded-xl">
               <p className="text-base sm:text-lg">
-                Nenhum jogo registrado ainda.
+                {t('stats_history_empty')}
               </p>
               <p className="text-xs sm:text-sm mt-2">
-                Complete seu primeiro jogo para ver as estatísticas!
+                {t('stats_history_msg')}
               </p>
             </div>
           )}
@@ -338,7 +368,7 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
             onClick={onClose}
             className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-900 py-2 sm:py-3 rounded-lg font-bold text-base sm:text-lg transition-all duration-300 button-press hover-lift hover:from-yellow-600 hover:to-orange-600 hover:shadow-glow-yellow"
           >
-            Fechar
+            {t('stats_button_close')}
           </button>
         </div>
       </div>

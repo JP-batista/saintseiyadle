@@ -10,6 +10,7 @@ type GameHistory = {
   firstTry: boolean;
   characterName: string;
   characterImage: string;
+  characterIdKey: string;
 };
 
 interface StatsState {
@@ -24,7 +25,8 @@ interface StatsState {
     attempts: number, 
     won: boolean,
     characterName: string,
-    characterImage: string
+    characterImage: string,
+    characterIdKey: string
   ) => void;
   calculateStats: () => void;
   getGameByDate: (date: string) => GameHistory | undefined;
@@ -44,7 +46,7 @@ export const useStatsStore = create<StatsState>()(
       // ===========================
       // OTIMIZAÇÃO 2 APLICADA AQUI
       // ===========================
-      addGameResult: (date, attempts, won, characterName, characterImage) => {
+      addGameResult: (date, attempts, won, characterName, characterImage, characterIdKey) => {
         set((state) => {
           // Cria o novo registro do jogo
           const newGame: GameHistory = {
@@ -54,6 +56,7 @@ export const useStatsStore = create<StatsState>()(
             firstTry: attempts === 1 && won,
             characterName,
             characterImage,
+            characterIdKey,
           };
           
           // Filtra o registro antigo (se houver) e adiciona o novo no início.

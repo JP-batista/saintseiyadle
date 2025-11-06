@@ -1,11 +1,10 @@
-// src/app/game-selection/page.tsx
+// src/app/page.tsx
 "use client";
 
-import React, { useEffect, useState, memo } from "react";
-// OTIMIZAÇÃO: Importado Logo otimizado
+import React, { useEffect, useState, memo, useMemo } from "react"; // Adicionado useMemo
 import Logo from "./classic/components/Logo"; 
-// OTIMIZAÇÃO: Importado o novo GameCard
 import GameCard from "./components/GameCard"; 
+import { useTranslation } from "./i18n/useTranslation"; // I18N: Importa o hook
 
 // OTIMIZAÇÃO: Dados de partículas movidos para fora (não dependem de props/estado)
 const generateParticles = () => {
@@ -17,39 +16,46 @@ const generateParticles = () => {
     }));
 };
 
-const games = [
-    {
-        name: "Clássico",
-        description: "Consiga pistas a cada tentativa",
-        icon: "/dle_feed/classic_icon.png",
-        link: "/classic", // CORREÇÃO: Adicionado o prefixo correto
-        gradient: "from-yellow-500/20 to-orange-500/20",
-        hoverGlow: "shadow-yellow-500/50",
-    },
-    // { ... outro modo ... }
-];
-
 const GameSelectionPage = () => {
+    const { t } = useTranslation(); // I18N: Instancia a tradução
     const [isLoaded, setIsLoaded] = useState(false);
     const [particles, setParticles] = useState<any[]>([]);
     
-    // OTIMIZAÇÃO: Remoção de 'hoveredCard' desnecessário (a lógica agora está em GameCard)
+    // OTIMIZAÇÃO: Usa useMemo para criar a lista de jogos APENAS quando o idioma muda
+    const localizedGames = useMemo(() => ([
+        {
+            // I18N: Traduzido nome e descrição
+            name: t('mode_classic_name'),
+            description: t('mode_classic_desc'),
+            icon: "/dle_feed/classic_icon.png",
+            link: "/classic", // CORREÇÃO: Usar o prefixo completo
+            gradient: "from-yellow-500/20 to-orange-500/20",
+            hoverGlow: "shadow-yellow-500/50",
+        },
+        // {
+        //     // I18N: Traduzido nome e descrição
+        //     name: t('mode_silhouette_name'),
+        //     description: t('mode_silhouette_desc'),
+        //     icon: "/dle_feed/silhouette_icon.png",
+        //     link: "/SaintSeiyaDLE/silhueta",
+        //     gradient: "from-blue-500/20 to-purple-500/20",
+        //     hoverGlow: "shadow-blue-500/50",
+        // },
+    ]), [t]); // Depende da função 't'
 
     useEffect(() => {
         setParticles(generateParticles());
     }, []);
 
     useEffect(() => {
-        // Trigger das animações de entrada após montagem
         setIsLoaded(true);
     }, []);
 
 
     return (
-        // OTIMIZAÇÃO 3: Removido min-h-screen (deixado para o RootLayout)
         <div className="flex flex-col items-center justify-start text-white px-4 py-8 relative overflow-hidden min-h-[90vh]">
             
-            {/* Background particles - OTIMIZAÇÃO 1: Animação mantida para o fundo */}
+            {/* Background particles */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {particles.map((p, i) => (
                     <div
@@ -67,7 +73,7 @@ const GameSelectionPage = () => {
 
             {/* Logo (Importado) */}
             <div className="mb-8 relative z-10">
-                <Logo /> {/* OTIMIZAÇÃO: Reutiliza o componente Logo */}
+                <Logo />
             </div>
 
 
@@ -77,25 +83,24 @@ const GameSelectionPage = () => {
                     isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
             >
-                {/* OTIMIZAÇÃO 1: Removido 'animate-shimmer' e 'animate-text-glow' para performance. */}
-                {/* O brilho animado de fundo e o brilho do texto eram contínuos e caros. */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/10 to-transparent" />
                 
                 <h3 className="text-xl sm:text-2xl font-bold text-center text-yellow-400 relative z-10">
-                    Adivinha os personagens de <br /> Os Cavaleiros do Zodíaco
+                    {/* I18N: Traduzido título principal */}
+                    {t('game_selection_title')}
                 </h3>
             </div>
 
             {/* Lista de Jogos - Grid Responsivo */}
             <div
                 className={`w-full max-w-4xl grid gap-6 px-2 relative z-10 ${
-                    games.length === 1
+                    localizedGames.length === 1
                         ? "grid-cols-1 justify-items-center"
-                        : "grid-cols-1 sm:grid-cols-2 justify-items-center" // Ajustado para 1 ou 2 colunas
+                        : "grid-cols-1 sm:grid-cols-2 justify-items-center"
                 }`}
             >
                 {/* OTIMIZAÇÃO 2: Usa o GameCard memoizado */}
-                {games.map((game, index) => (
+                {localizedGames.map((game, index) => (
                     <GameCard 
                         key={game.name}
                         game={game} 
@@ -111,7 +116,7 @@ const GameSelectionPage = () => {
                     isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
             >
-                <p className="text-gray-400 text-sm mb-2">Mais modos de jogo em breve!</p>
+                <p className="text-gray-400 text-sm mb-2">{t('game_selection_subtitle')}</p>
                 <div className="flex justify-center space-x-2">
                     {[...Array(3)].map((_, i) => (
                         <div

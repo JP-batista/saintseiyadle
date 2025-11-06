@@ -4,6 +4,7 @@ import { persist } from 'zustand/middleware';
 
 // ... (Tipos Character e Attempt permanecem os mesmos) ...
 type Character = {
+  idKey: string;
   nome: string;
   titulo?: string;
   idade: string;
@@ -21,6 +22,7 @@ type Character = {
 };
 
 type Attempt = {
+  idKey: string;
   nome: string;
   idade: string;
   altura: string;

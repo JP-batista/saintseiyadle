@@ -1,6 +1,7 @@
 // src/app/classico/components/HintBlock.tsx
 "use client";
 import React, { useState } from "react";
+import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook
 
 type HintBlockProps = {
   attemptsCount: number;
@@ -13,22 +14,28 @@ const HintBlock: React.FC<HintBlockProps> = ({
   dica1,
   dica2,
 }) => {
+  const { t } = useTranslation(); // Instancia a tradução
   const [showHint1, setShowHint1] = useState(false);
   const [showHint2, setShowHint2] = useState(false);
 
   const canShowHint1 = attemptsCount >= 5;
   const canShowHint2 = attemptsCount >= 10;
 
+  // Cálculos de tentativas restantes
+  const attemptsToHint1 = 5 - attemptsCount;
+  const attemptsToHint2 = 10 - attemptsCount;
+
   return (
     <div className="w-full max-w-md backdrop-gradient backdrop-blur-custom border border-gray-700/50 text-white rounded-2xl shadow-2xl p-5 sm:p-6 mb-6 animate-fadeInUp">
-      {/* OTIMIZAÇÃO 1: Removido 'animate-text-glow' para performance */}
+      
+      {/* TÍTULO */}
       <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 text-yellow-400 tracking-wide">
-        Adivinha qual é a personagem de<br />Saint Seiya
+        {t('hint_block_title')}
       </h3>
 
       {/* Botões de Dica */}
       <div className="flex justify-between gap-4">
-        {/* OTIMIZAÇÃO 2: Convertido de 'div' para '<button>' semântico */}
+        {/* Dica 1 */}
         <button
           onClick={() => setShowHint1(!showHint1)}
           disabled={!canShowHint1}
@@ -43,9 +50,10 @@ const HintBlock: React.FC<HintBlockProps> = ({
             disabled:hover:scale-100 disabled:hover:bg-gray-800/50 disabled:hover:text-gray-500/70
           `}
         >
-          Dica 1
+          {t('hint_button_1')}
         </button>
-        {/* OTIMIZAÇÃO 2: Convertido de 'div' para '<button>' semântico */}
+        
+        {/* Dica 2 */}
         <button
           onClick={() => setShowHint2(!showHint2)}
           disabled={!canShowHint2}
@@ -60,7 +68,7 @@ const HintBlock: React.FC<HintBlockProps> = ({
             disabled:hover:scale-100 disabled:hover:bg-gray-800/50 disabled:hover:text-gray-500/70
           `}
         >
-          Dica 2
+          {t('hint_button_2')}
         </button>
       </div>
 
@@ -71,7 +79,8 @@ const HintBlock: React.FC<HintBlockProps> = ({
             className="p-3 bg-gray-900/50 backdrop-blur-sm border border-yellow-500/50 rounded-lg text-center text-sm font-semibold text-yellow-300 shadow-lg hint-appear"
             key={`hint1-${dica1}`}
           >
-            {dica1 || "Nenhuma dica disponível para este personagem."}
+            {/* Mensagem de dica, com fallback traduzido */}
+            {dica1 || t('hint_default_msg')}
           </div>
         )}
         {showHint2 && canShowHint2 && (
@@ -79,7 +88,8 @@ const HintBlock: React.FC<HintBlockProps> = ({
             className="p-3 bg-gray-900/50 backdrop-blur-sm border border-yellow-500/50 rounded-lg text-center text-sm font-semibold text-yellow-300 shadow-lg hint-appear"
             key={`hint2-${dica2}`}
           >
-            {dica2 || "Nenhuma dica disponível para este personagem."}
+            {/* Mensagem de dica, com fallback traduzido */}
+            {dica2 || t('hint_default_msg')}
           </div>
         )}
 
@@ -87,26 +97,18 @@ const HintBlock: React.FC<HintBlockProps> = ({
         <div className="p-3 bg-gray-900/50 border border-gray-700/50 rounded-lg text-center text-sm">
           {attemptsCount < 5 && (
             <p className="text-gray-300">
-              Faltam{" "}
-              <span className="font-bold text-yellow-400">
-                {5 - attemptsCount}
-              </span>{" "}
-              tentativas para a{" "}
-              <span className="font-semibold text-yellow-300">Dica 1</span>.
+              {/* I18N: Mensagem com Placeholder */}
+              {t('hint_attempts_missing_1', { count: attemptsToHint1 })}
             </p>
           )}
           {attemptsCount >= 5 && attemptsCount < 10 && (
             <p className="text-gray-300">
-              Faltam{" "}
-              <span className="font-bold text-yellow-400">
-                {10 - attemptsCount}
-              </span>{" "}
-              tentativas para a{" "}
-              <span className="font-semibold text-yellow-300">Dica 2</span>.
+              {/* I18N: Mensagem com Placeholder */}
+              {t('hint_attempts_missing_2', { count: attemptsToHint2 })}
             </p>
           )}
           {attemptsCount >= 10 && (
-            <p className="text-gray-300">Todas as dicas foram desbloqueadas.</p>
+            <p className="text-gray-300">{t('hint_all_unlocked')}</p>
           )}
         </div>
       </div>

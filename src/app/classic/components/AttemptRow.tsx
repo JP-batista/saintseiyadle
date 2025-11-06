@@ -1,75 +1,87 @@
-// src/app/classico/components/AttemptRow.tsx
-import React, { useMemo, memo } from "react"; // Importa useMemo e memo
-import { AttemptComparison } from "../types";
+import React, { useMemo, memo } from "react"; 
+import { AttemptComparison, Character } from "../types"; // Import Character for type safety
 import FeedbackCell from "./FeedbackCell";
 import CharacterCell from "./CharacterCell";
+import { useTranslation } from "../../i18n/useTranslation"; // 💥 NOVO: Importa locale
+import { characterDataMap } from "../../i18n/config"; // 💥 NOVO: Importa o mapa de dados
 
 type AttemptRowProps = {
-  attempt: AttemptComparison;
-  isLatest: boolean;
-  animationDelay: number;
+	attempt: AttemptComparison;
+	isLatest: boolean;
+	animationDelay: number;
 };
 
-// Renomeado para component base
 const AttemptRowComponent: React.FC<AttemptRowProps> = ({
-  attempt,
-  isLatest,
-  animationDelay,
+	attempt,
+	isLatest,
+	animationDelay,
 }) => {
-  const { guessCharacter } = attempt;
+	// 1. Obtém o locale atual
+	const { locale } = useTranslation();
 
-  // OTIMIZAÇÃO 2: useMemo
-  // O array agora só é criado uma vez por componente,
-  // a menos que 'attempt' ou 'guessCharacter' mudem.
-  const feedbackData = useMemo(
-    () => [
-      // OTIMIZAÇÃO 3: Chave estável adicionada
-      { key: "genero", status: attempt.genero, value: guessCharacter.genero },
-      { key: "idade", status: attempt.idade, value: guessCharacter.idade },
-      { key: "altura", status: attempt.altura, value: guessCharacter.altura },
-      { key: "peso", status: attempt.peso, value: guessCharacter.peso },
-      { key: "signo", status: attempt.signo, value: guessCharacter.signo },
-      { key: "patente", status: attempt.patente, value: guessCharacter.patente },
-      { key: "exercito", status: attempt.exercito, value: guessCharacter.exercito },
-      {
-        key: "localDeTreinamento",
-        status: attempt.localDeTreinamento,
-        value: guessCharacter.localDeTreinamento,
-      },
-      {
-        key: "saga",
-        status: attempt.saga,
-        value: guessCharacter.saga || "N/A",
-      },
-    ],
-    [attempt, guessCharacter] // Dependências do useMemo
-  );
+	// 2. Localiza o personagem na lista LOCALIZADA usando o IDKey
+	const displayCharacter: Character = useMemo(() => {
+		// Pega a lista de personagens para o locale atual
+		const dataModule = characterDataMap[locale] || characterDataMap['pt'];
+		const localizedCharacters = (dataModule as any).default as Character[] || [];
+		
+		// 💥 MUDANÇA: Procura o personagem pelo IDKey
+		const foundCharacter = localizedCharacters.find(c => c.idKey === attempt.idKey);
+        
+        // Retorna o personagem localizado ou, como fallback, o objeto salvo na tentativa (guessCharacter)
+        // Isso garante que os status (green, red, up/down) permaneçam os mesmos.
+		return foundCharacter || attempt.guessCharacter;
+	}, [attempt.idKey, locale, attempt.guessCharacter]); 
 
-  return (
-    <React.Fragment>
-      {/* Coluna 1: Personagem */}
-      <CharacterCell
-        imgSrc={attempt.imgSrc}
-        nome={attempt.nome}
-        isLatest={isLatest}
-        animationDelay={animationDelay}
-      />
 
-      {/* Colunas 2-10: Feedback */}
-      {feedbackData.map((data) => (
-        <FeedbackCell
-          key={data.key} // OTIMIZAÇÃO 3: Usando a chave estável
-          status={data.status}
-          value={data.value}
-          isLatest={isLatest}
-          animationDelay={animationDelay}
-        />
-      ))}
-    </React.Fragment>
-  );
+	// OTIMIZAÇÃO: useMemo
+	const feedbackData = useMemo(
+		() => [
+			// Mapeamento de feedback para as células (usando o valor do personagem localizado)
+			{ key: "genero", status: attempt.genero, value: displayCharacter.genero },
+			{ key: "idade", status: attempt.idade, value: displayCharacter.idade },
+			{ key: "altura", status: attempt.altura, value: displayCharacter.altura },
+			{ key: "peso", status: attempt.peso, value: displayCharacter.peso },
+			{ key: "signo", status: attempt.signo, value: displayCharacter.signo },
+			{ key: "patente", status: attempt.patente, value: displayCharacter.patente },
+			{ key: "exercito", status: attempt.exercito, value: displayCharacter.exercito },
+			{
+				key: "localDeTreinamento",
+				status: attempt.localDeTreinamento,
+				value: displayCharacter.localDeTreinamento,
+			},
+			{
+				key: "saga",
+				status: attempt.saga,
+				value: displayCharacter.saga || "N/A",
+			},
+		],
+		[attempt, displayCharacter] 
+	);
+
+	return (
+		<React.Fragment>
+			<CharacterCell
+				// Usando o nome e a imagem do personagem localizado
+				imgSrc={displayCharacter.imgSrc} 
+				nome={displayCharacter.nome} 
+				isLatest={isLatest}
+				animationDelay={animationDelay}
+			/>
+
+			{feedbackData.map((data) => (
+				<FeedbackCell
+					// A chave interna é o atributo (genero, idade, etc.), que é estável
+					key={data.key} 
+					status={data.status}
+					value={data.value}
+					isLatest={isLatest}
+					animationDelay={animationDelay}
+				/>
+			))}
+		</React.Fragment>
+	);
 };
 
-// OTIMIZAÇÃO 1: React.memo
-// Impede a re-renderização desta linha se suas props não mudarem.
 export const AttemptRow = memo(AttemptRowComponent);
 export default AttemptRow;

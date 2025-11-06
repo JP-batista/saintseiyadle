@@ -2,6 +2,7 @@
 
 // O tipo do personagem, como definido na sua página
 export type Character = {
+  idKey: string;
   nome: string;
   titulo?: string;
   idade: string;
@@ -20,6 +21,7 @@ export type Character = {
 
 // O tipo do objeto de comparação de tentativa
 export type AttemptComparison = {
+  idKey: string;
   nome: string;
   idade: string;
   altura: string;

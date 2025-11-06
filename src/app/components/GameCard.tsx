@@ -1,6 +1,7 @@
-// src/app/game-selection/components/GameCard.tsx
+// src/app/components/GameCard.tsx
 import React, { memo, useState } from "react";
 import Link from "next/link";
+import { useTranslation } from "../i18n/useTranslation"; // I18N: Importa o hook
 
 interface GameCardProps {
   game: {
@@ -16,6 +17,7 @@ interface GameCardProps {
 }
 
 const GameCardComponent: React.FC<GameCardProps> = ({ game, index, isLoaded }) => {
+  const { t } = useTranslation(); // Instancia a tradução
   const [isCardHovered, setIsCardHovered] = useState(false);
 
   return (
@@ -24,7 +26,7 @@ const GameCardComponent: React.FC<GameCardProps> = ({ game, index, isLoaded }) =
         className={`group relative transition-all duration-500 transform ${
           isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
-        style={{ transitionDelay: `${500 + index * 150}ms`, willChange: 'transform, opacity' }} // Adicionado willChange
+        style={{ transitionDelay: `${500 + index * 150}ms`, willChange: 'transform, opacity' }}
         onMouseEnter={() => setIsCardHovered(true)}
         onMouseLeave={() => setIsCardHovered(false)}
       >
@@ -57,8 +59,8 @@ const GameCardComponent: React.FC<GameCardProps> = ({ game, index, isLoaded }) =
             
             <img
               src={game.icon}
-              alt={game.name}
-              loading="lazy" // Podemos usar lazy aqui, pois os cards não são LCP
+              alt={game.name} // game.name já é localizado pelo pai
+              loading="lazy"
               className="w-16 h-16 sm:w-20 sm:h-20 object-contain transition-transform duration-300 group-hover:scale-110"
             />
           </div>
@@ -100,7 +102,8 @@ const GameCardComponent: React.FC<GameCardProps> = ({ game, index, isLoaded }) =
         {/* Tooltip flutuante */}
         <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
           <div className="bg-gray-900 text-yellow-400 text-xs font-semibold px-3 py-1 rounded-lg shadow-lg border border-yellow-500/50 whitespace-nowrap">
-            Clique para jogar!
+            {/* I18N: Traduzido tooltip */}
+            {t('legend_click_to_play')}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 bg-gray-900 border-r border-b border-yellow-500/50 rotate-45" />
           </div>
         </div>

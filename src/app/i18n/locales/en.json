@@ -1,0 +1,113 @@
+{
+  "app_title": "Saint Seiya DLE",
+  "game_selection_title": "Guess the characters of Knights of the Zodiac",
+  "game_selection_subtitle": "More game modes coming soon!",
+  
+  "mode_classic_name": "Classic",
+  "mode_classic_desc": "Get clues with each attempt",
+  "mode_silhouette_name": "Silhouettes",
+  "mode_silhouette_desc": "Guess the armor by the silhouette",
+
+  "stats_bar_stats": "Statistics",
+  "stats_bar_news": "News",
+  "stats_bar_help": "How to Play",
+
+  "hint_block_title": "Guess the Saint Seiya character",
+  "hint_button_1": "Hint 1",
+  "hint_button_2": "Hint 2",
+  "hint_default_msg": "No hint available for this character.",
+  "hint_attempts_missing_1": "{count} attempts left for Hint 1.",
+  "hint_attempts_missing_2": "{count} attempts left for Hint 2.",
+  "hint_all_unlocked": "All hints have been unlocked.",
+
+  "form_placeholder": "Type the name of the Knight",
+  "form_button_try": "Try",
+  "form_error_not_found": "Character not found!",
+  "form_error_already_tried": "You have already tried this character!",
+
+  "grid_header_gender": "Gender",
+  "grid_header_age": "Age",
+  "grid_header_height": "Height",
+  "grid_header_weight": "Weight",
+  "grid_header_sign": "Sign",
+  "grid_header_rank": "Rank",
+  "grid_header_army": "Army",
+  "grid_header_training": "Training",
+  "grid_header_saga": "Saga",
+
+  "legend_indicators": "Indicators",
+  "legend_correct": "Correct",
+  "legend_incorrect": "Incorrect",
+  "legend_higher": "Higher",
+  "legend_lower": "Lower",
+  "legend_next_mode": "Next mode:",
+  "legend_click_to_play": "Click to play!",
+  
+  "result_win_title": "Congratulations! You got it!",
+  "result_lose_title": "You gave up!",
+  "result_character_was": "The character of the day was:",
+  "result_attempts_count": "Number of attempts:",
+  "result_next_in": "Next character in:",
+  "result_button_stats": "📊 View Statistics",
+  
+  "stats_title": "Statistics",
+  "stats_wins": "Wins",
+  "stats_average": "Average",
+  "stats_first_try": "First Try",
+  "stats_streak": "Streak",
+  "stats_record": "Record",
+  "stats_history_title": "Win History",
+  "stats_history_empty": "No games recorded yet.",
+  "stats_history_msg": "Complete your first game to see the statistics!",
+  "stats_button_close": "Close",
+  "stats_first_try_badge": "🏆 1st Try!",
+  "stats_more": "View More ({count} games)",
+  "stats_less": "View Less",
+  "stats_attempt_singular": "attempt",
+  "stats_attempt_plural": "attempts",
+"form_error_already_tried": "You have already tried this character!",
+
+  "grid_header_name": "Character",
+  "grid_header_gender": "Gender",
+
+  "form_error_already_tried": "You have already tried this character!",
+
+  "grid_header_name": "Character",
+  "grid_header_gender": "Gender",
+  
+  "feedback_icon_alt": "Characteristic comparison result",
+
+  "form_placeholder": "Type the name of the Knight",
+  "form_button_try": "Try",
+  "form_default_name": "No name",
+  "form_default_title": "No title",
+  "stats_attempt_plural": "attempts",
+  
+  "loading_message": "Loading...",
+
+  "app_title": "Saint Seiya DLE",
+  "app_logo_alt": "Knights of the Zodiac Logo",
+  "game_selection_title": "Guess the characters of Knights of the Zodiac",
+
+  "stats_bar_stats": "Statistics",
+  "stats_bar_news": "News",
+  "stats_bar_help": "How to Play",
+  "stats_bar_streak": "Current Streak",
+
+  "footer_developed_by": "Developed by",
+  "footer_social_link": "Link to {network}",
+  "footer_legal_disclaimer": "Saint Seiya © Masami Kurumada/Shueisha, Toei Animation. All series rights are reserved by their respective owners. This site is a tribute to the original work.",
+
+  "stats_bar_help": "How to Play",
+  
+  "switch_language_to": "Switch language to {lang}",
+  "loading_message": "Loading...",
+
+  "stats_chart_title": "Attempt Evolution",
+
+  "app_description": "Daily character guessing game for Saint Seiya",
+
+  "switch_language_to": "Switch language to {lang}",
+  "switch_language_open": "Open language selector (Current: {lang})",
+  "switch_language_modal_title": "Change Language"
+}
