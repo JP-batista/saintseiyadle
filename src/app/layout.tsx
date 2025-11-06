@@ -7,6 +7,7 @@ import LocaleSwitcher from "./components/LocaleSwitcher";
 import SettingsModalComponent from "./components/SettingsButton"; // ✅ Importa o modal
 import { useState } from "react";
 import { Settings } from "lucide-react";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // 1. IMPORTAÇÃO ESTÁTICA DOS JSONS
 import ptDict from "./i18n/locales/pt.json";
