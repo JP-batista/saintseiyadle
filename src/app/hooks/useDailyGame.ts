@@ -1,7 +1,7 @@
 // src/hooks/useDailyGame.ts
-import { useEffect, useState } from 'react';
-import { useGameStore } from '../stores/useGameStore';
-import { getCurrentDateInBrazil, getDailyCharacter } from '../utils/dailyGame';
+import { useEffect, useState } from "react";
+import { useGameStore } from "../stores/useGameStore";
+import { getCurrentDateInBrazil, getDailyCharacter } from "../utils/dailyGame";
 
 type Character = {
   idKey: string; // ADICIONADO
@@ -45,14 +45,17 @@ export function useDailyGame(characters: Character[]) {
 
     // Cenário 1: Dia mudou - novo jogo
     if (currentGameDate && currentGameDate !== todayDate) {
+      // 💥 CORREÇÃO APLICADA AQUI:
+      // Removemos 'usedCharacterIndices' da chamada.
+      // A seleção agora depende apenas da data.
       const { character, index } = getDailyCharacter(
         todayDate,
-        characters,
-        usedCharacterIndices
+        characters
+        // usedCharacterIndices (REMOVIDO)
       );
-      
+
       resetDailyGame(character, todayDate);
-      addUsedCharacterIndex(index);
+      addUsedCharacterIndex(index); // Ainda rastreamos o índice, mas ele não afeta a seleção
       setIsInitialized(true);
       return;
     }
@@ -65,20 +68,22 @@ export function useDailyGame(characters: Character[]) {
 
     // Cenário 3: Primeira visita ou estado inválido - inicializa
     if (!currentGameDate || !selectedCharacter) {
+      // 💥 CORREÇÃO APLICADA AQUI:
+      // Removemos 'usedCharacterIndices' da chamada.
       const { character, index } = getDailyCharacter(
         todayDate,
-        characters,
-        usedCharacterIndices
+        characters
+        // usedCharacterIndices (REMOVIDO)
       );
-      
+
       setSelectedCharacter(character);
       setCurrentGameDate(todayDate);
-      
+
       // Só adiciona o índice se não estiver na lista
       if (!usedCharacterIndices.includes(index)) {
         addUsedCharacterIndex(index);
       }
-      
+
       setIsInitialized(true);
     }
   }, [
