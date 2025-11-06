@@ -67,6 +67,7 @@ export default function RootLayout({
           isOpen={isSettingsOpen}
           onClose={() => setIsSettingsOpen(false)}
         />
+        <SpeedInsights />
       </body>
     </html>
   );
