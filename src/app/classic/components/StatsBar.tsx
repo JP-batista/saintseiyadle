@@ -1,7 +1,7 @@
-// src/app/classico/components/StatsBar.tsx
 import React, { memo, useState } from "react";
 import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook
 import HelpModal from "../../components/HelpModal"; // Importa o modal de ajuda
+import NewsModal from "../../components/NewsModal"; // 💥 NOVO: Importa o modal de novidades
 
 type StatsBarProps = {
   currentStreak: number;
@@ -18,15 +18,27 @@ const StatsBarComponent: React.FC<StatsBarProps> = ({
 }) => {
   const { t } = useTranslation(); // Instancia a tradução
   const [isHelpOpen, setIsHelpOpen] = useState(false);
+  const [isNewsOpen, setIsNewsOpen] = useState(false); // 💥 NOVO: Estado para Novidades
 
+  // Handlers para o Modal de Ajuda
   const handleOpenHelp = () => {
     setIsHelpOpen(true);
-    // chama callback externo se existir (mantém compatibilidade)
     if (onShowHelp) onShowHelp();
   };
 
   const handleCloseHelp = () => {
     setIsHelpOpen(false);
+  };
+  
+  // Handlers para o Modal de Novidades
+  const handleOpenNews = () => {
+    setIsNewsOpen(true);
+    // Chama o callback externo se existir (e.g., para rastreamento)
+    if (onShowNews) onShowNews();
+  };
+  
+  const handleCloseNews = () => {
+    setIsNewsOpen(false);
   };
 
   return (
@@ -60,7 +72,7 @@ const StatsBarComponent: React.FC<StatsBarProps> = ({
         {/* 3. Novidades */}
         <div className="relative group">
           <button
-            onClick={onShowNews}
+            onClick={handleOpenNews}
             className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-900/50 border-2 border-gray-700/50 flex items-center justify-center text-3xl sm:text-4xl focus:outline-none transition-ultra-smooth hover-lift-rotate group-hover:shadow-glow-yellow group-hover:border-yellow-500/50"
             aria-label={t("stats_bar_news")}
           >
@@ -86,6 +98,8 @@ const StatsBarComponent: React.FC<StatsBarProps> = ({
 
       {/* Renderiza o modal de ajuda controlado localmente */}
       <HelpModal isOpen={isHelpOpen} onClose={handleCloseHelp} />
+      {/* 💥 NOVO MODAL */}
+      <NewsModal isOpen={isNewsOpen} onClose={handleCloseNews} />
     </>
   );
 };

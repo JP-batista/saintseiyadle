@@ -1,0 +1,98 @@
+[
+  {
+    "id": "news_system",
+    "icon": "Info",
+    "title": "📰 Sistema de notícias implementado",
+    "date": "06 de Novembro de 2025",
+    "description": "Sessão de novidades criada para exibir changelog interno e atualizações visuais (ex.: suporte a traduções, evolução do algoritmo diário, ajustes de streaks e correções).",
+    "glow": "border-neutral-500/50 shadow-lg shadow-neutral-500/20"
+  },
+  {
+    "id": "i18n_support",
+    "icon": "Flag",
+    "title": "🌐 Suporte para Novas Traduções",
+    "date": "01 de Novembro de 2025",
+    "description": "Toda a estrutura de tradução foi aprimorada, facilitando a adição de novos idiomas no futuro. O jogo está pronto para se expandir!",
+    "glow": "border-green-500/50 shadow-lg shadow-green-500/20"
+  },
+  {
+    "id": "accessibility_and_perf",
+    "icon": "Activity",
+    "title": "♿ Acessibilidade e performance",
+    "date": "05 de Novembro de 2025",
+    "description": "Melhorias em performance: memoização de funções, otimizações em renders, limite de sugestões no dropdown, e pequenos ajustes de acessibilidade (aria-labels, foco e contraste).",
+    "glow": "border-violet-500/50 shadow-lg shadow-violet-500/20"
+  },
+  {
+    "id": "header_component",
+    "icon": "Menu",
+    "title": "🧭 Novo componente Header",
+    "date": "04 de Novembro de 2025",
+    "description": "Header modular criado (logo, modos, estatísticas, sequências e tooltips), deixando `GamePage` mais limpa e facilitando reutilização em outras rotas.",
+    "glow": "border-sky-500/50 shadow-lg shadow-sky-500/20"
+  },
+  {
+    "id": "ui_responsiveness",
+    "icon": "Smartphone",
+    "title": "📱 Melhorias de responsividade e UI",
+    "date": "03 de Novembro de 2025",
+    "description": "Cards e grid da tela inicial refatorados para `w-full` com `max-w-*`, comportamento adaptativo para 1/2/3 cards, animações de entrada e microinterações no hover para uma experiência consistente em mobile e desktop.",
+    "glow": "border-emerald-500/50 shadow-lg shadow-emerald-500/20"
+  },
+  {
+    "id": "victory_effects",
+    "icon": "Sparkles",
+    "title": "🎉 Animação de vitória implementada",
+    "date": "02 de Novembro de 2025",
+    "description": "Efeitos visuais de vitória adicionados (brilho, confetes/partículas e destaque nos atributos), disparados quando o estado `won` é verdadeiro e persistidos após reload via Zustand.",
+    "glow": "border-pink-500/50 shadow-lg shadow-pink-500/20"
+  },
+  {
+    "id": "stats_store_and_modal",
+    "icon": "BarChart2",
+    "title": "📊 Estatísticas salvas e modal de visualização",
+    "date": "01 de Novembro de 2025",
+    "description": "Criado store de estatísticas com histórico de jogos, cálculo de média de tentativas, total de vitórias, acertos na 1ª tentativa e streaks; modal responsivo para exibir histórico e gráfico.",
+    "glow": "border-yellow-500/50 shadow-lg shadow-yellow-500/20"
+  },
+  {
+    "id": "persistence_win_fix",
+    "icon": "Save",
+    "title": "✅ Persistência da vitória corrigida",
+    "date": "31 de Outubro de 2025",
+    "description": "Corrigido bug em que ao acertar e atualizar a página o personagem mudava mas o estado de vitória era mantido de forma inconsistente; agora o estado 'won' e a data do jogo são persistidos corretamente.",
+    "glow": "border-green-500/50 shadow-lg shadow-green-500/20"
+  },
+  {
+    "id": "daily_selection_random",
+    "icon": "Shuffle",
+    "title": "🎲 Seleção diária aleatória sem repetições",
+    "date": "30 de Outubro de 2025",
+    "description": "Substituímos a sequência previsível por um algoritmo que escolhe aleatoriamente o personagem do dia e evita repetições até que todos os personagens tenham sido usados.",
+    "glow": "border-blue-500/50 shadow-lg shadow-blue-500/20"
+  },
+  {
+    "id": "zustand_store",
+    "icon": "Database",
+    "title": "🔧 Estado global com Zustand",
+    "date": "29 de Outubro de 2025",
+    "description": "Implementado store com Zustand para o jogo clássico (estado do personagem, tentativas, vitória, histórico), substituindo utilitários ad-hoc de localStorage.",
+    "glow": "border-cyan-500/50 shadow-lg shadow-cyan-500/20"
+  },
+  {
+    "id": "background_fixed",
+    "icon": "Image",
+    "title": "🖼️ Fundo fixo aplicado em todas as páginas",
+    "date": "27 de Outubro de 2025",
+    "description": "Imagem de fundo global adicionada ao layout com `background-attachment: fixed` e overlay ajustável para melhorar contraste e legibilidade.",
+    "glow": "border-purple-500/50 shadow-lg shadow-purple-500/20"
+  },
+  {
+    "id": "project_launch",
+    "icon": "Rocket",
+    "title": "🚀 Lançamento do Projeto SaintSeiyaDLE",
+    "date": "25 de Outubro de 2025",
+    "description": "Repositório inicial criado com Next.js (App Router + TypeScript) e Tailwind — estrutura base pronta para começar a construir os modos de jogo.",
+    "glow": "border-indigo-500/50 shadow-lg shadow-indigo-500/20"
+  }
+]

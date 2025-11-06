@@ -115,5 +115,24 @@
   "prop_training_desc": "Ex.: Grécia, Sibéria, Ilha de Andrômeda, Cinco Picos Antigos.",
   "prop_saga_title": "Saga",
   "prop_saga_type": "Categórico",
-  "prop_saga_desc": "Ex.: Clássica, Asgard, Poseidon, Hades, Lost Canvas, Omega. Personagens podem aparecer em múltiplas sagas (sobreposição)."
+  "prop_saga_desc": "Ex.: Clássica, Asgard, Poseidon, Hades, Lost Canvas, Omega. Personagens podem aparecer em múltiplas sagas (sobreposição).",
+  
+  "news_modal_title": "Novidades e Atualizações",
+  "news_intro_message": "Fique por dentro das últimas melhorias e novos recursos do Saint Seiya DLE:",
+  
+  "news_title_streak": "🏆 Melhoria na Sequência de Vitórias",
+  "news_date_streak": "30 de Outubro de 2025",
+  "news_desc_streak": "O cálculo da sua sequência de vitórias (Streak) foi revisado para maior precisão e confiabilidade. Tente alcançar o recorde!",
+  
+  "news_title_determinism": "🔄 Personagem Diário Universal",
+  "news_date_determinism": "31 de Outubro de 2025",
+  "news_desc_determinism": "Garantimos que o Personagem Diário agora é o mesmo para todos os jogadores do mundo, independentemente do cache ou do dispositivo.",
+  
+  "news_title_i18n": "🌐 Suporte para Novas Traduções",
+  "news_date_i18n": "01 de Novembro de 2025",
+  "news_desc_i18n": "Toda a estrutura de tradução foi aprimorada, facilitando a adição de novos idiomas no futuro. O jogo está pronto para se expandir!",
+  
+  "prop_gender_default": "Desconhecido"
+
+  
 }
