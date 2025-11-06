@@ -1,4 +1,4 @@
-// src/app/classico/types.ts
+// srcapp/classicc/types.ts
 
 // O tipo do personagem, como definido na sua página
 export type Character = {

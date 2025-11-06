@@ -1,4 +1,4 @@
-// src/app/classico/components/LoadingSpinner.tsx
+// srcapp/classicc/components/LoadingSpinner.tsx
 "use client"; // Adicionado para usar o hook
 import React from "react";
 import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook

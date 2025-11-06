@@ -1,4 +1,4 @@
-// src/app/classico/components/GameLegend.tsx
+// srcapp/classicc/components/GameLegend.tsx
 "use client"; // Necessário para o hook useRouter
 import React, { memo } from "react";
 import { useRouter } from "next/navigation";

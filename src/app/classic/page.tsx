@@ -1,4 +1,4 @@
-// src/app/classico/page.tsx
+// srcapp/classicc/page.tsx
 "use client";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import React from "react";

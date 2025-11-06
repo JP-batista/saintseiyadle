@@ -1,4 +1,4 @@
-// src/app/classico/components/ResultCard.tsx
+// srcapp/classicc/components/ResultCard.tsx
 "use client";
 import React, { memo } from "react";
 import { Character } from "../types";

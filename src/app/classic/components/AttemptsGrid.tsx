@@ -1,4 +1,4 @@
-// src/app/classico/components/AttemptsGrid.tsx
+// srcapp/classicc/components/AttemptsGrid.tsx
 import React, { useMemo } from "react";
 import { AttemptComparison } from "../types";
 import AttemptRow from "./AttemptRow";

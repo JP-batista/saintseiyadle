@@ -1,4 +1,4 @@
-// src/app/classico/components/HintBlock.tsx
+// srcapp/classicc/components/HintBlock.tsx
 "use client";
 import React, { useState } from "react";
 import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook

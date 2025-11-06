@@ -1,4 +1,4 @@
-// src/app/classico/components/GuessForm.tsx
+// srcapp/classicc/components/GuessForm.tsx
 import React, { memo, useId, useRef, useState, useEffect } from "react";
 import { Character } from "../types";
 import { useTranslation } from "../../i18n/useTranslation";

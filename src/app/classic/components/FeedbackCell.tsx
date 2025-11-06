@@ -1,4 +1,4 @@
-// src/app/classico/components/FeedbackCell.tsx
+// srcapp/classicc/components/FeedbackCell.tsx
 import React, { memo, useMemo } from "react";
 import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook
 

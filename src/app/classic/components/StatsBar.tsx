@@ -1,4 +1,4 @@
-// src/app/classico/components/StatsBar.tsx
+// srcapp/classicc/components/StatsBar.tsx
 import React, { memo, useState } from "react";
 import { useTranslation } from "../../i18n/useTranslation";
 import HelpModal from "../../components/HelpModal";

@@ -1,4 +1,4 @@
-// src/app/data/characters.ts
+// src/app/data/charactersDLE/charactersDLE_en.ts
 
 const characters = [
     // Cavaleiros de Bronze Clássico
@@ -1386,7 +1386,7 @@ const characters = [
         saga: "Poseidon",
         imgSrc: "/dle/poseidon.jpg",
         dica1: "Este deus dos mares reencarnou no corpo de Julian Solo para executar seu plano de inundar a Terra.",
-        dica2: "Durante a batalha contra Atena, ele foi selado novamente na ânfora sagrada após ser derrotado pelos Cavaleiros de Bronze."
+        dica2: "Durante a batalha contra Athena, ele foi selado novamente na ânfora sagrada após ser derrotado pelos Cavaleiros de Bronze."
     },
 
     //Espectros de Hades Classico
@@ -1830,7 +1830,7 @@ const characters = [
         saga: "Hades",
         imgSrc: "/dle/hades.jpg",
         dica1: "É o principal antagonista da saga do Submundo.",
-        dica2: "Reencarna a cada 243 anos para confrontar Atena."
+        dica2: "Reencarna a cada 243 anos para confrontar Athena."
     },
 
     //Cavaleiros de Ouro Lost Canvas
@@ -2002,7 +2002,7 @@ const characters = [
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
         imgSrc: "/dle/sisifo.jpg",
-        dica1: "Considerado o braço direito de Atena.",
+        dica1: "Considerado o braço direito de Athena.",
         dica2: "Suas flechas são guiadas pela justiça."
     },
     {
@@ -2334,7 +2334,7 @@ const characters = [
         exercito: "Exército de Athena",
         saga: "Omega",
         imgSrc: "/dle/kouga.jpg",
-        dica1: "Um jovem escolhido pelo destino para proteger Atena.",
+        dica1: "Um jovem escolhido pelo destino para proteger Athena.",
         dica2: "Possui uma determinação que cresce em meio aos desafios."
     },
     {
@@ -2701,7 +2701,7 @@ const characters = [
         exercito: "Exército de Pallas",
         saga: "Omega",
         imgSrc: "/dle/pallas.jpg",
-        dica1: "Irmã de Atena com um complexo de rivalidade.",
+        dica1: "Irmã de Athena com um complexo de rivalidade.",
         dica2: "Sua missão está ligada ao equilíbrio universal."
     },
     {
@@ -2806,7 +2806,7 @@ const characters = [
         exercito: "Exército de Artemis",
         saga: "Prologo do Céu",
         imgSrc: "/dle/artemis.jpg",
-        dica1: "Deusa da Lua e irmã de Atena.",
+        dica1: "Deusa da Lua e irmã de Athena.",
         dica2: "Comanda os Cavaleiros Celestiais em sua missão divina."
     },
     {
@@ -2925,7 +2925,7 @@ const characters = [
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
         imgSrc: "/dle/mii.jpg",
-        dica1: "Fiel assistente de Atena no Santuário.",
+        dica1: "Fiel assistente de Athena no Santuário.",
         dica2: "Sua habilidade é comparável à graciosidade de um golfinho."
     },
     {

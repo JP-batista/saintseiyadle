@@ -1,4 +1,4 @@
-// src/app/classico/components/GameModeButtons.tsx
+// srcapp/classicc/components/GameModeButtons.tsx
 "use client";
 import React, { memo } from "react";
 import { useRouter } from "next/navigation";
