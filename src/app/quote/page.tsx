@@ -112,27 +112,35 @@ export default function QuoteGamePage() {
     return () => clearInterval(interval);
   }, []);
 
+  const attemptedIdKeys = useMemo(() => {
+    return new Set(attempts.map(a => a.idKey));
+  }, [attempts]); // Recalcula apenas quando 'attempts' mudar
+  
   // --- Lógica de Jogo: Input e Sugestões (Sem alteração) ---
-  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setInput(value);
-    setError(null);
-    setActiveSuggestionIndex(-1);
+  // --- Lógica de Jogo: Input e Sugestões ---
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInput(value);
+    setError(null);
+    setActiveSuggestionIndex(-1);
 
+    if (value.length > 0) {
+      const filtered = allCharacters
+        .filter((c) => c.nome.toLowerCase().includes(value.toLowerCase()))
+          // ===================================
+          // CORREÇÃO 2: Adicionar filtro para excluir os IDs já tentados
+          // ===================================
+          .filter((c) => !attemptedIdKeys.has(c.idKey))
+        .slice(0, 5); 
+      setSuggestions(filtered as Character[]);
+      setShowDropdown(true);
+    } else {
+      setShowDropdown(false);
+    }
     // ===================================
-    // CORREÇÃO AQUI (Requisição 1)
-    // Alterado de 'value.length > 1' para 'value.length > 0'
+    // CORREÇÃO 3: Adicionar 'attemptedIdKeys' ao array de dependências
     // ===================================
-    if (value.length > 0) {
-      const filtered = allCharacters
-        .filter((c) => c.nome.toLowerCase().includes(value.toLowerCase()))
-        .slice(0, 5); 
-      setSuggestions(filtered as Character[]);
-      setShowDropdown(true);
-    } else {
-      setShowDropdown(false);
-    }
-  }, [allCharacters]);
+  }, [allCharacters, attemptedIdKeys]);
 
   // --- Lógica de Jogo: Submissão do Palpite ---
   const processGuess = (guessName: string) => {

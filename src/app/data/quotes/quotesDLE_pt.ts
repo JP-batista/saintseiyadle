@@ -184,15 +184,15 @@ const quotes = [
         imgSrc: "/dle/hyoga.jpg",
         quotes: [
             {
-                idQuote: "hyoga_001",
-                texts: "O verdadeiro poder vem do coração e da determinação!", 
+                idQuote: "",
+                texts: "", 
                 dica1: "",
                 dica2: ""
             },
         ]
     },
     {
-         idKey: "shun",
+        idKey: "shun",
         nome: "Shun de Andrômeda",
         titulo: "Cavaleiro de Andrômeda",
         idade: "13",
@@ -207,12 +207,11 @@ const quotes = [
         imgSrc: "/dle/shun.jpg",
         quotes: [
             {
-                idQuote: "shun_001",
-                texts: "O verdadeiro poder vem do coração e da determinação!", 
+                idQuote: "",
+                texts: "", 
                 dica1: "",
                 dica2: ""
             },
-
         ]
     },
     {
@@ -231,8 +230,313 @@ const quotes = [
         imgSrc: "/dle/ikki.jpg",
         quotes: [
             {
-                idQuote: "ikki_001",
-                texts: "O verdadeiro poder vem do coração e da determinação!", 
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+    },
+
+    //Cavaleiros de Ouro Classicos
+
+    {
+        idKey: "mu",
+        nome: "Mu de Áries",
+        titulo: "Cavaleiro de Áries",
+        idade: "20",
+        altura: "1,82 m",
+        genero: "Masculino",
+        peso: "75 kg",
+        signo: "Áries",
+        localDeTreinamento: "Jamiel, Tibete",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/mu.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+      {
+        idKey: "aldebaran",
+        nome: "Aldebaran de Touro",
+        titulo: "Cavaleiro de Touro",
+        idade: "20",
+        altura: "2,10 m",
+        genero: "Masculino",
+        peso: "130 kg",
+        signo: "Touro",
+        localDeTreinamento: "Brasil",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/aldebaran.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+      {
+        idKey: "saga",
+        nome: "Saga de Gêmeos",
+        titulo: "Cavaleiro de Gêmeos",
+        idade: "28",
+        altura: "1,88 m",
+        genero: "Masculino",
+        peso: "87 kg",
+        signo: "Gêmeos",
+        localDeTreinamento: "Santuário, Grécia",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/saga.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+      {
+        idKey: "mascaradamorte",
+        nome: "Máscara da Morte de Câncer",
+        titulo: "Cavaleiro de Câncer",
+        idade: "23",
+        altura: "1,84 m",
+        genero: "Masculino",
+        peso: "82 kg",
+        signo: "Câncer",
+        localDeTreinamento: "Sicília, Itália",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/mascaradamorte.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+      {
+        idKey: "aiolia",
+        nome: "Aiolia de Leão",
+        titulo: "Cavaleiro de Leão",
+        idade: "20",
+        altura: "1,85 m",
+        genero: "Masculino",
+        peso: "85 kg",
+        signo: "Leão",
+        localDeTreinamento: "Santuário, Grécia",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/aiolia.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+      {
+        idKey: "shaka",
+        nome: "Shaka de Virgem",
+        titulo: "Cavaleiro de Virgem",
+        idade: "20",
+        altura: "1,82 m",
+        genero: "Masculino",
+        peso: "68 kg",
+        signo: "Virgem",
+        localDeTreinamento: "Índia",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/shaka.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+      {
+        idKey: "dohko",
+        nome: "Dohko de Libra (Clássico)",
+        titulo: "Cavaleiro de Libra",
+        idade: "261",
+        altura: "1,40 m",
+        genero: "Masculino",
+        peso: "68 kg",
+        signo: "Libra",
+        localDeTreinamento: "Cinco Picos de Rozan, China",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/mestreanciao.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+      {
+        idKey: "milo",
+        nome: "Milo de Escorpião",
+        titulo: "Cavaleiro de Escorpião",
+        idade: "20",
+        altura: "1,85 m",
+        genero: "Masculino",
+        peso: "84 kg",
+        signo: "Escorpião",
+        localDeTreinamento: "Milo, Grécia",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/milo.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+      {
+        idKey: "aiolos",
+        nome: "Aiolos de Sagitário",
+        titulo: "Cavaleiro de Sagitário",
+        idade: "14",
+        altura: "1,87 m",
+        genero: "Masculino",
+        peso: "85 kg",
+        signo: "Sagitário",
+        localDeTreinamento: "Santuário, Grécia",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/aiolos.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+      {
+        idKey: "shura",
+        nome: "Shura de Capricórnio",
+        titulo: "Cavaleiro de Capricórnio",
+        idade: "23",
+        altura: "1,86 m",
+        genero: "Masculino",
+        peso: "83 kg",
+        signo: "Capricórnio",
+        localDeTreinamento: "Espanha",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/shura.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+      {
+        idKey: "camus",
+        nome: "Camus de Aquário",
+        titulo: "Cavaleiro de Aquário",
+        idade: "20",
+        altura: "1,84 m",
+        genero: "Masculino",
+        peso: "76 kg",
+        signo: "Aquário",
+        localDeTreinamento: "Sibéria",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/camus.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+      {
+        idKey: "afrodite",
+        nome: "Afrodite de Peixes",
+        titulo: "Cavaleiro de Peixes",
+        idade: "22",
+        altura: "1,83 m",
+        genero: "Masculino",
+        peso: "72 kg",
+        signo: "Peixes",
+        localDeTreinamento: "Groenlândia",
+        patente: "Cavaleiro de Ouro",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/afrodite.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
+                dica1: "",
+                dica2: ""
+            },
+        ]
+      },
+
+    //Deusa Athena 
+
+    {
+        idKey: "athena",
+        nome: "Athena",
+        titulo: "Deusa da Sabedoria e da Guerra",
+        idade: "Imortal",
+        altura: "1,70 m",
+        genero: "Feminino",
+        peso: "55 kg",
+        signo: "Sagitário",
+        localDeTreinamento: "Santuário, Grécia",
+        patente: "Deusa",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/athena.jpg",
+        quotes: [
+            {
+                idQuote: "",
+                texts: "", 
                 dica1: "",
                 dica2: ""
             },
