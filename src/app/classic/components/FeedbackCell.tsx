@@ -44,7 +44,7 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
     >
       <div className="relative group">
         {isCorrect && (
-          <div className="absolute inset-0 bg-green-500/40 rounded-xl blur-lg animate-pulse-success" />
+          <div className="absolute inset-0 rounded-xl blur-lg animate-pulse-success" />
         )}
         <img
           src={iconSrc}
@@ -54,9 +54,9 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
           decoding="async"
           className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl object-cover shadow-lg transition-all duration-300 ${
             isCorrect
-              ? "border-2 border-green-500 correct-indicator-enhanced hover:scale-110 hover:shadow-green-500/50"
+              ? "border-2 border-green-500 correct-indicator-enhanced c"
               : status === "up" || status === "down"
-              ? "border-2 border-gray-600/50 hover:scale-105"
+              ? "border-2 border-gray-600/50"
               : "border-2 border-gray-600/50"
           }`}
         />
