@@ -18,21 +18,57 @@ const quotes = [
         quotes: [
             {
                 idQuote: "seiya_001",
-                texts: "Eu sou um Cavaleiro de Athena. E não vou desistir da luta, mesmo que morra!",
-                dica1: "Participou de um torneio para conquistar uma armadura dourada.",
-                dica2: "Seu golpe principal é inspirado em corpos celestes."
+                texts: "Se há uma coisa que deveria-se deixar para os homens que perderam tudo, é a esperança.",
+                dica1: "",
+                dica2: ""
             },
             {
                 idQuote: "seiya_002",
-                texts: "Enquanto eu tiver vida, nunca vou desistir de proteger aqueles que amo!",
-                dica1: "Tem uma irmã mais nova chamada Seika.",
-                dica2: "É conhecido por sua determinação inabalável."
+                texts: "Deve ser mais difícil viver como a reencarnação de uma Deusa, que morrer como uma simples mortal.",
+                dica1: "",
+                dica2: ""
             },
             {
-                idQuote: "seiya_003",    
-                texts: "Nunca subestime o poder do Cosmo!",
-                dica1: "Treinou sob a tutela do Mestre Kido.",
-                dica2: "Sua armadura é conhecida por sua resistência e agilidade."
+                idQuote: "seiya_003",
+                texts: "Cicatrizes são marcas da coragem… são verdadeiras medalhas da coragem! Como é que vc que não conhece a dor, pode ter orgulho de sua vitória?!’",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "seiya_004",
+                texts: "O tempo não tem misericórdia….’",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "seiya_005",
+                texts: "Eu também possuo a eternidade. Quando nós explodimos o nosso Cosmo, criamos uma força. Nesse momento, nós, Cavaleiros, nos fundimos com o Universo… E chegamos perto da eternidade.’",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "seiya_006",
+                texts: "Vc não compreende! É vc que não tem esse direito! Vc apenas adquiriu superficialmente o poder destrutivo dos Cavaleiros! Mas alguma vez você já sentiu a força do Universo percorrer até a última célula do seu corpo?!’",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "seiya_007",
+                texts: "Uma vez a Saori disse que todo ser humano deve viver de acordo com as estrelas sob as quais nasceu. Alguns nascem sob estrelas de sorte; outros, sob estrelas de azar. Mas eu só posso dizer que eu farei o possível, sejam quais forem as minhas estrelas.”",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "seiya_008",
+                texts: "Saoooooori!!",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "seiya_00",
+                texts: "",
+                dica1: "",
+                dica2: ""
             },
         ]
     },
@@ -53,22 +89,83 @@ const quotes = [
         quotes: [
             {
                 idQuote: "shiryu_001",
-                texts: "O verdadeiro poder vem do coração e da determinação!", 
-                dica1: "Treinou em um templo nas montanhas da China.",
-                dica2: "Sua armadura é conhecida por sua defesa impenetrável."
+                texts: "Pela justiça e pela amizade … um cavaleiro é invencível e supera todos os obstáculos!",
+                dica1: "",
+                dica2: ""
             },
             {
                 idQuote: "shiryu_002",
-                texts: "A força de um Cavaleiro não está apenas em seus golpes, mas em sua coragem!",
-                dica1: "É amigo próximo de Seiya e os outros Cavaleiros de Bronze.",
-                dica2: "Tem uma técnica especial chamada 'Cólera do Dragão'."
+                texts: "Não é a sua força que se iguala à sabedoria. É nossa sabedoria que se iguala a sua força!",
+                dica1: "",
+                dica2: ""
             },
             {
                 idQuote: "shiryu_003",
-                texts: "Mesmo que eu caia, sempre me levantarei para proteger meus amigos!",
-                dica1: "É conhecido por sua lealdade e senso de justiça.",
-                dica2: "Sua armadura possui um escudo poderoso que o protege de ataques."
-            }
+                texts: "A verdadeira justiça é sempre justiça!’",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "shiryu_004",
+                texts: "Na vida pode não existir nada com que vale a pena nos sacrificarmos, exceto.. pela amizade… Não sabemos o que é amor de pai, não sabemos o que é amor de mãe.. por isso, amigos é tudo o que nos resta.",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "shiryu_005",
+                texts: "Poucas pessoas conhecem a beleza deste mundo… poucas pessoas a protegem…’",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "shiryu_006",
+                texts: "Se acha que a força… é igual à sabedoria… então vou lhe mostrar a força…. a força secreta do Dragão…. prepare-se para conhecê-la!!",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "shiryu_007",
+                texts: "Dizem que o deus Dragão mata qualquer pessoa que menospreze as suas coisas mais importantes com ódio! Esse é o resultado quando se enfurece o Dragão!! E essa minha ira só vai se acalmar quando você morrer!!!",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "shiryu_008",
+                texts: "Se Saori conseguir apagar todo o mal e trazer paz aos homens, fazer com que não existam mais órfãos infelizes como nós… o meu sacrifício vai significar muito.”",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "shiryu_009",
+                texts: "Está enganado… não é a sua força que se iguala à sabedoria… é a nossa sabedoria que se iguala à força!!’",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "shiryu_010",
+                texts: "As forças do mal estão executando um plano perverso contra a paz de toda a humanidade e é a minha missão protegê-la. Nós, os cavaleiros não temos tempo para descansar…",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "shiryu_011",
+                texts: "Mesmo que meus olhos não possam ver, meu caminho me conduz até o mestre.”",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "shiryu_012",
+                texts: "Vocês esqueceram que tem um corpo substituto. O Cosmo é o fogo do coração.",
+                dica1: "",
+                dica2: ""
+            },
+            {
+                idQuote: "shiryu_00",
+                texts: "",
+                dica1: "",
+                dica2: ""
+            },
+            
         ]
     },
     {
@@ -76,11 +173,11 @@ const quotes = [
         nome: "Hyoga de Cisne",
         titulo: "Cavaleiro de Cisne",
         idade: "14",
-        altura: "1,72 m",
+        altura: "1,73 m",
         genero: "Masculino",
-        peso: "53 kg",
+        peso: "60 kg",
         signo: "Aquário",
-        localDeTreinamento: "Sibéria, Rússia",
+        localDeTreinamento: "Sibéria Oriental",
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -89,21 +186,56 @@ const quotes = [
             {
                 idQuote: "hyoga_001",
                 texts: "O verdadeiro poder vem do coração e da determinação!", 
-                dica1: "Treinou em um templo nas montanhas da China.",
-                dica2: "Sua armadura é conhecida por sua defesa impenetrável."
+                dica1: "",
+                dica2: ""
             },
+        ]
+    },
+    {
+         idKey: "shun",
+        nome: "Shun de Andrômeda",
+        titulo: "Cavaleiro de Andrômeda",
+        idade: "13",
+        altura: "1,65 m",
+        genero: "Masculino",
+        peso: "51 kg",
+        signo: "Virgem",
+        localDeTreinamento: "Ilha de Andrômeda",
+        patente: "Cavaleiro de Bronze",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/shun.jpg",
+        quotes: [
             {
-                idQuote: "hyoga_002",
-                texts: "A força de um Cavaleiro não está apenas em seus golpes, mas em sua coragem!",
-                dica1: "É amigo próximo de Seiya e os outros Cavaleiros de Bronze.",
-                dica2: "Tem uma técnica especial chamada 'Cólera do Dragão'."
+                idQuote: "shun_001",
+                texts: "O verdadeiro poder vem do coração e da determinação!", 
+                dica1: "",
+                dica2: ""
             },
+
+        ]
+    },
+    {
+        idKey: "ikki",
+        nome: "Ikki de Fênix",
+        titulo: "Cavaleiro de Fênix",
+        idade: "15",
+        altura: "1,75 m",
+        genero: "Masculino",
+        peso: "62 kg",
+        signo: "Leão",
+        localDeTreinamento: "Ilha da Rainha da Morte",
+        patente: "Cavaleiro de Bronze",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/ikki.jpg",
+        quotes: [
             {
-                idQuote: "hyoga_003",
-                texts: "Mesmo que eu caia, sempre me levantarei para proteger meus amigos!",
-                dica1: "É conhecido por sua lealdade e senso de justiça.",
-                dica2: "Sua armadura possui um escudo poderoso que o protege de ataques."
-            }
+                idQuote: "ikki_001",
+                texts: "O verdadeiro poder vem do coração e da determinação!", 
+                dica1: "",
+                dica2: ""
+            },
         ]
     },
 ];

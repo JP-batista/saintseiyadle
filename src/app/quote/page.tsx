@@ -343,7 +343,7 @@ export default function QuoteGamePage() {
         ) : (
           // --- Estado: Jogo Finalizado (Vitória ou Desistência) ---
           <div className="w-full flex flex-col items-center">
-            
+            <QuoteDisplay text={selectedQuote.quote.texts} />
             {/* // ==========================================
                 // ATUALIZAÇÃO AQUI: Usa a lista vertical
                 // ========================================== */}
