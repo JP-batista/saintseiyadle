@@ -1,16 +1,10 @@
-"use client";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Footer from "./components/Footer";
-import LocaleSwitcher from "./components/LocaleSwitcher";
-import SettingsModalComponent from "./components/SettingsButton"; // ✅ Importa o modal
-import { useState } from "react";
-import { Settings } from "lucide-react";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
-// 1. IMPORTAÇÃO ESTÁTICA DOS JSONS
-import ptDict from "./i18n/locales/pt.json";
+// 1. Importa o novo wrapper que contém a lógica do cliente
+import ClientWrapper from "./components/ClientWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,51 +16,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// 3. COMPONENTE PRINCIPAL
+// 2. ✅ AQUI ESTÁ O TÍTULO DO SEU SITE!
+export const metadata: Metadata = {
+  title: "Saintseiyadle",
+  description: "Adivinhe o personagem de Saint Seiya! O jogo diário.",
+  // Você também pode adicionar um ícone (favicon) aqui
+  // icons: "/favicon.ico", 
+};
+
+// 3. O RootLayout agora é limpo (Server Component)
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-fixed bg-center bg-cover text-zinc-100 flex flex-col will-change-scroll`}
         suppressHydrationWarning
       >
-        {/* 🔧 BOTÃO DO MODAL NO CANTO SUPERIOR ESQUERDO */}
-        <div className="absolute top-4 left-4 z-50">
-          <button
-            onClick={() => setIsSettingsOpen(true)}
-            className="
-              p-1 rounded-full bg-gray-900/70 border-2 border-yellow-500/50 
-              transition-all duration-300 hover:scale-105 hover:bg-gray-800/80
-              shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400
-              flex items-center justify-center
-            "
-            aria-label="Abrir configurações"
-          >
-            {/* Ícone de Engrenagem (Sem rotação) */}
-            <Settings className="w-6 h-6 text-yellow-400" />
-          </button>
-        </div>
+        {/* 4. O ClientWrapper cuida dos botões e modais */}
+        <ClientWrapper>
+          {children}
+        </ClientWrapper>
 
-        {/* 🌐 LocaleSwitcher no canto superior direito */}
-        <div className="absolute top-4 right-4 z-50">
-          <LocaleSwitcher />
-        </div>
-
-        {/* Conteúdo principal */}
-        <main className="flex-grow">{children}</main>
-
-        {/* Rodapé */}
-        <Footer />
-
-        {/* 🪟 Modal de Configurações */}
-        <SettingsModalComponent
-          isOpen={isSettingsOpen}
-          onClose={() => setIsSettingsOpen(false)}
-        />
         <SpeedInsights />
       </body>
     </html>
