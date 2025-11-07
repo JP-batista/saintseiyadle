@@ -26,7 +26,8 @@ const flattenQuoteData = (dataModule: any): SelectedQuote[] => {
             idKey: character.idKey,
             nome: character.nome,
             imgSrc: character.imgSrc,
-            // (Podemos adicionar mais campos se o ResultCard precisar)
+            patente: character.patente,
+            titulo: character.titulo,
         };
 
         // Adiciona cada fala individual, combinada com os dados do personagem
@@ -41,6 +42,8 @@ const flattenQuoteData = (dataModule: any): SelectedQuote[] => {
                 },
                 // O personagem correto (a resposta)
                 character: characterInfo,
+                patente: character.patente,
+                titulo: character.titulo,
             });
         }
     }
