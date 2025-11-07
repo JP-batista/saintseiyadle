@@ -1,4 +1,4 @@
-// srcapp/classicc/page.tsx
+// src/app/classic/page.tsx
 "use client";
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import React from "react";
@@ -19,20 +19,26 @@ import VictoryEffects from "../components/VictoryEffects";
 import { Character, AttemptComparison } from "./types";
 import LoadingSpinner from "./components/LoadingSpinner";
 import Logo from "./components/Logo";
-import GameModeButtons from "./components/GameModeButtons";
-import StatsBar from "./components/StatsBar";
+// REMOVIDO: GameModeButtons será renderizado por GameLegend/ResultCard
+// import GameModeButtons from "./components/GameModeButtons"; 
+import StatsBar from "../components/StatsBar"; // ATUALIZADO: Path corrigido
 import HintBlock from "./components/HintBlock";
 import GuessForm from "./components/GuessForm";
 import AttemptsGrid from "./components/AttemptsGrid";
 import ResultCard from "./components/ResultCard";
 import GameLegend from "./components/GameLegend";
 import { useRouter } from "next/navigation";
-// 💥 REMOVIDO: ImportExportModal não é mais gerenciado aqui.
+
+// ATUALIZADO: Importar os modais que a StatsBar agora controla
+import NewsModal from "../components/NewsModal";
+import HelpModal from "./components/HelpModal";
+import GameModeButtons from "../components/GameModeButtons";
+
 
 export default function GamePage() {
   const { t, locale } = useTranslation();
 
-  // 1. DADOS LOCALIZADOS: Obtém a lista de personagens baseada no idioma ativo.
+  // 1. DADOS LOCALIZADOS
   const characters = useMemo(() => {
     const dataModule = characterDataMap[locale] || characterDataMap["pt"];
     return ((dataModule as any).default as Character[]) || [];
@@ -56,17 +62,21 @@ export default function GamePage() {
   const characteristicsRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
 
+  // Estados da UI
   const [selectedSuggestion, setSelectedSuggestion] =
     useState<Character | null>(null);
   const [input, setInput] = useState<string>("");
   const [suggestions, setSuggestions] = useState<Character[]>([]);
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [timeRemaining, setTimeRemaining] = useState<string>("00:00:00");
-  const [showStatsModal, setShowStatsModal] = useState<boolean>(false);
-  // 💥 REMOVIDO: [showDataModal, setShowDataModal] = useState<boolean>(false);
   const [showVictoryEffects, setShowVictoryEffects] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // ATUALIZADO: Estados dos Modais
+  const [showStatsModal, setShowStatsModal] = useState<boolean>(false);
+  const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   const dica1 = useMemo(() => {
     return attempts.length >= 5 ? selectedCharacter?.dica1 : null;
@@ -87,10 +97,9 @@ export default function GamePage() {
     const todayDate = getCurrentDateInBrazil();
 
     if (currentGameDate !== todayDate || !selectedCharacter) {
-      // Seleção determinística baseada apenas na data e no array de personagens
       const { character, index } = getDailyCharacter(
         todayDate,
-        characters // Usa o array de dados LOCALIZADO
+        characters
       );
 
       resetDailyGame(character, todayDate);
@@ -109,7 +118,7 @@ export default function GamePage() {
     characters,
   ]);
 
-  // ... (Outros useEffects de Contagem, Mudança de Dia e Efeitos de Vitória permanecem os mesmos) ...
+  // ... (Outros useEffects de Contagem, Mudança de Dia e Efeitos de Vitória) ...
   useEffect(() => {
     if (!isClient) return;
     const updateCountdown = () => {
@@ -146,7 +155,7 @@ export default function GamePage() {
     }
   }, [won, gaveUp, attempts.length, isClient]);
 
-  // 4. EFEITO DE SALVAR O RESULTADO (Passa o idKey)
+  // 4. EFEITO DE SALVAR O RESULTADO
   useEffect(() => {
     if (
       (won || gaveUp) &&
@@ -176,7 +185,7 @@ export default function GamePage() {
     selectedCharacter,
   ]);
 
-  // ... (Funções de Comparação e Normalização permanecem os mesmos) ...
+  // ... (Funções de Comparação e Normalização) ...
   const parseHeight = useCallback((height: string): number => {
     if (height.toLowerCase() === "desconhecido") return NaN;
     return parseFloat(height.replace(",", ".").replace(" m", "").trim());
@@ -202,7 +211,7 @@ export default function GamePage() {
   const compareWeight = useCallback((value: string, target: string): string => {
     const valueLower = value.toLowerCase();
     const targetLower = target.toLowerCase();
-    if (valueLower === "desconhecido" && targetLower === "desconhecido")
+    if (valueLower === "desconhecido" && targetLower === "desconhecida")
       return "green";
     if (valueLower === "desconhecido" || targetLower === "desconhecido")
       return "ignore";
@@ -230,7 +239,7 @@ export default function GamePage() {
     [parseHeight]
   );
 
-  // 5. LÓGICA DE SUBMISSÃO (Usa idKey para checar tentativa repetida)
+  // 5. LÓGICA DE SUBMISSÃO
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -246,10 +255,8 @@ export default function GamePage() {
         return;
       }
 
-      // CORREÇÃO CRÍTICA DO BUG DE IDIOMA/TENTATIVA REPETIDA
       if (
         attempts.some(
-          // Checa se o idKey do palpite já está na lista de tentativas
           (attempt) => attempt.guessCharacter.idKey === guess.idKey
         )
       ) {
@@ -306,7 +313,7 @@ export default function GamePage() {
     ]
   );
 
-  // ... (Outras funções de input e sugestões permanecem os mesmos) ...
+  // ... (Funções de input e sugestões) ...
 
   const normalizeText = useCallback((text: string) => {
     return text
@@ -370,7 +377,6 @@ export default function GamePage() {
     [getFilteredSuggestions]
   );
 
-  // 6. HANDLER DE SUGESTÃO (Usa idKey para localizar no array 'characters')
   const handleSuggestionClick = useCallback(
     (idKey: string) => {
       const suggestion = characters.find((c) => c.idKey === idKey);
@@ -415,7 +421,7 @@ export default function GamePage() {
   }
 
   return (
-    <div className="min-h-screen text-white flex flex-col items-center p-6 pt-20 sm:pt-24"> {/* Ajuste o padding-top para compensar botões fixos */}
+    <div className="min-h-screen text-white flex flex-col items-center p-6 pt-20 sm:pt-24">
       {showVictoryEffects && (
         <VictoryEffects
           isActive={true}
@@ -423,27 +429,38 @@ export default function GamePage() {
         />
       )}
 
+      {/* ATUALIZADO: Passa a prop 'mode' */}
       <StatsModal
         isOpen={showStatsModal}
         onClose={() => setShowStatsModal(false)}
+        mode="classic"
       />
       
-      {/* 💥 REMOVIDO: ImportExportModal não é mais renderizado aqui */}
+      {/* ATUALIZADO: Renderiza os modais de News e Help */}
+      <NewsModal
+        isOpen={isNewsModalOpen}
+        onClose={() => setIsNewsModalOpen(false)}
+      />
+      <HelpModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
+      />
 
       <Logo />
 
-      <GameModeButtons />
+      {/* Botões de modos */}
+      <div>
+        <GameModeButtons />
+      </div>
+      {/* REMOVIDO: Chamada duplicada do GameModeButtons */}
+      {/* <GameModeButtons /> */}
 
+      {/* ATUALIZADO: Passa as props corretas para o StatsBar */}
       <StatsBar
         currentStreak={currentStreak}
         onShowStats={() => setShowStatsModal(true)}
-        onShowNews={() => {
-          /* Modal de novidades em breve! */
-        }}
-        onShowHelp={() => {
-          /* Modal de 'Como Jogar' em breve! */
-        }}
-        // 💥 REMOVIDO: Prop onShowData não é mais passado para StatsBar
+        onShowNews={() => setIsNewsModalOpen(true)}
+        onShowHelp={() => setIsHelpModalOpen(true)}
       />
 
       <HintBlock
@@ -464,7 +481,6 @@ export default function GamePage() {
             showDropdown={showDropdown && !error}
             onSuggestionClick={handleSuggestionClick}
           />
-          {/* Renderiza o erro no lugar do dropdown */}
           {error && !showDropdown && (
             <div className="relative w-full max-w-md -mt-4 mb-8">
               <div className="absolute left-0 right-0 p-3 bg-red-800/90 backdrop-blur-md border border-red-500/50 rounded-xl shadow-2xl text-center text-white font-semibold animate-shake-error">

@@ -1,6 +1,9 @@
 // src/components/StatsModal.tsx
 "use client";
+// 1. IMPORTAR AMBOS OS STORES DE ESTATÍSTICAS
 import { useStatsStore } from "../stores/useStatsStore";
+import { useQuoteStatsStore } from "../stores/useQuoteStatsStore";
+
 import { X } from "lucide-react";
 import { useState, useMemo, memo } from "react";
 import {
@@ -11,17 +14,19 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
-import { useTranslation } from "../i18n/useTranslation"; // I18N: Importa o hook
+import { useTranslation } from "../i18n/useTranslation"; 
 
 type StatsModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  mode: 'classic' | 'quote'; // 2. NOVA PROP 'MODE'
 };
 
 // ====================================================================
-// Helper: CustomActiveDot (Sem alteração relevante)
+// Helper: CustomActiveDot (Sem alteração)
 // ====================================================================
 const CustomActiveDot = (props: any) => {
+  // ... (código idêntico ao anterior)
   const { cx, cy, payload } = props;
   if (!payload) return null;
   return (
@@ -50,9 +55,10 @@ const CustomActiveDot = (props: any) => {
 };
 
 // ====================================================================
-// StatsChartComponent (mantém apenas uso de t para texto)
+// StatsChartComponent (Sem alteração)
 // ====================================================================
 const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
+  // ... (código idêntico ao anterior)
   const { t } = useTranslation();
   return (
     <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4">
@@ -99,12 +105,12 @@ const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
 const MemoizedStatsChart = memo(StatsChartComponent);
 
 // ====================================================================
-// GameHistoryRowComponent (removida dependência de 'locale' — usa toLocaleDateString simples)
+// GameHistoryRowComponent (ATUALIZADO)
 // ====================================================================
+// 3. ATUALIZAÇÃO: O Histórico agora aceita 'any' e verifica os campos
 const GameHistoryRowComponent = ({ game }: { game: any }) => {
   const { t } = useTranslation();
 
-  // Formata a data usando o método padrão do runtime (sem lógica de locale aqui)
   const formattedDate = useMemo(() => {
     return new Date(game.date + "T00:00:00").toLocaleDateString(undefined, {
       day: "2-digit",
@@ -113,7 +119,6 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
     });
   }, [game.date]);
 
-  // Lógica de singular/plural (usa apenas t)
   const attemptText =
     game.attempts === 1 ? t("stats_attempt_singular") : t("stats_attempt_plural");
 
@@ -137,12 +142,18 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
           <span className="font-bold text-yellow-400 text-sm sm:text-base truncate">
             {game.characterName}
           </span>
+          {/* 4. ATUALIZAÇÃO: Exibe a fala se ela existir (apenas no Modo Fala) */}
+          {game.quoteText && (
+            <span className="text-xs text-gray-400 italic truncate">
+              &ldquo;{game.quoteText}&rdquo;
+            </span>
+          )}
           <span className="text-xs text-gray-400 truncate">{formattedDate}</span>
         </div>
       </div>
       <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
         {game.firstTry && (
-          <span className="hidden sm:inline text-xs bg-purple-500 text-white px-2 py-1 rounded-full font-semibold whitespace-nowahora shadow-lg shadow-purple-500/30">
+          <span className="hidden sm:inline text-xs bg-purple-500 text-white px-2 py-1 rounded-full font-semibold whitespace-nowrap shadow-lg shadow-purple-500/30">
             {t("stats_first_try_badge")}
           </span>
         )}
@@ -164,9 +175,10 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
 const GameHistoryRow = memo(GameHistoryRowComponent);
 
 // ====================================================================
-// Componente Principal StatsModal
+// Componente Principal StatsModal (ATUALIZADO)
 // ====================================================================
-export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
+export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
+  // 5. ATUALIZAÇÃO: Hook condicional para buscar dados do store correto
   const {
     totalWins,
     averageAttempts,
@@ -174,17 +186,20 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
     currentStreak,
     maxStreak,
     gamesHistory,
-  } = useStatsStore();
+  } = mode === 'classic' 
+      ? useStatsStore() // Se for 'classic', usa o store clássico
+      // @ts-ignore // Ignora o mismatch de tipo (QuoteGameHistory vs GameHistory)
+      : useQuoteStatsStore(); // Se for 'quote', usa o novo store
 
   const [showAllHistory, setShowAllHistory] = useState(false);
-  const { t } = useTranslation(); // Mantém apenas t — toda lógica de locale centralizada fora
+  const { t } = useTranslation();
 
-  // Filtra apenas jogos ganhos para gráficos/histórico
+  // (O restante do código é idêntico, pois os nomes das variáveis são os mesmos)
+
   const wonGames = useMemo(() => gamesHistory.filter((g) => g.won), [
     gamesHistory,
   ]);
 
-  // Prepara os dados do gráfico: usa toLocaleDateString padrão do runtime (sem branch de locale)
   const chartData = useMemo(
     () =>
       [...wonGames]
@@ -201,7 +216,7 @@ export default function StatsModal({ isOpen, onClose }: StatsModalProps) {
           tentativas: game.attempts,
           fullDate: game.date,
         })),
-    [wonGames] // sem dependência de locale aqui
+    [wonGames]
   );
 
   const displayedHistory = useMemo(

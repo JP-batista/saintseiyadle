@@ -88,6 +88,7 @@ function seededRandom(seed: number): () => number {
 }
 
 /**
+ * (Modo Clássico)
  * Seleciona o personagem do dia de forma determinística (depende SÓ da data)
  * @param date Data no formato YYYY-MM-DD
  * @param characters Lista completa de personagens
@@ -110,6 +111,32 @@ export function getDailyCharacter<T>(
 
   return {
     character: characters[selectedIndex],
+    index: selectedIndex,
+  };
+}
+
+/**
+ * (Modo Fala)
+ * Seleciona a fala do dia de forma determinística (depende SÓ da data)
+ * @param date Data no formato YYYY-MM-DD
+ * @param allQuotes Lista completa de *todas* as falas (array "achatado")
+ * @returns Objeto com a fala e seu índice
+ */
+export function getDailyQuote<T>(
+  date: string,
+  allQuotes: T[]
+): { quote: T; index: number } {
+  // 1. Gera um seed único baseado na data
+  const seed = simpleHash(date);
+
+  // 2. Cria um gerador de aleatoriedade baseado no seed
+  const random = seededRandom(seed);
+
+  // 3. Pega um índice aleatório (mas determinístico) do TOTAL de falas
+  const selectedIndex = Math.floor(random() * allQuotes.length);
+
+  return {
+    quote: allQuotes[selectedIndex],
     index: selectedIndex,
   };
 }

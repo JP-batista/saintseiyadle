@@ -12,6 +12,12 @@ import * as pt_data from '../data/charactersDLE/charactersDLE_pt';
 // import * as en_data from '../data/charactersDLE/charactersDLE_en'; 
 // import * as jp_data from '../data/charactersDLE/charactersDLE_jp'; 
 
+// --- 1. Importar os novos dados de Falas ---
+import * as pt_quotes from '../data/quotes/quotesDLE_pt'; 
+// import * as en_quotes from '../data/quotes/quotesDLE_en'; 
+// import * as jp_quotes from '../data/quotes/quotesDLE_jp'; 
+
+
 export const locales = ['pt'] as const; 
 export type Locale = typeof locales[number];
 export const defaultLocale: Locale = 'pt';
@@ -41,10 +47,23 @@ export const characterDataMap: Record<Locale, any> = {
     // 'jp': jp_data,
 };
 
+// --- 2. Criar o novo Mapeamento de Falas (Modo Fala) ---
+export const quoteDataMap: Record<Locale, any> = {
+    'pt': pt_quotes,
+    // 'en': en_quotes,
+    // 'jp': jp_quotes,
+};
+
+
 export const getDictionary = (locale: Locale) => dictionaries[locale] ?? dictionaries[defaultLocale];
 
 // 💥 NOVO: Função para obter os dados de notícias localizados
 export const getNewsData = (locale: Locale): NewsItem[] => {
     // Retorna os dados localizados ou o padrão (pt)
     return newsDataMap[locale] ?? newsDataMap[defaultLocale];
+}
+
+// --- 3. Criar a nova Função para obter dados de Falas ---
+export const getQuoteData = (locale: Locale): any => {
+    return quoteDataMap[locale] ?? quoteDataMap[defaultLocale];
 }

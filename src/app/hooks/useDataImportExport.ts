@@ -1,65 +1,82 @@
 import { useCallback } from 'react';
 import { useTranslation } from '../i18n/useTranslation';
 import { useRouter } from 'next/navigation';
-import { useGameStore } from '../stores/useGameStore';
-import { useStatsStore } from '../stores/useStatsStore';
+// Removidos imports desnecessários do useGameStore e useStatsStore
 
 // CONFIGURAÇÃO
 const APP_ID = 'SaintSeiyaDLE';
 const DATA_VERSION = 1;
-// Use the actual persistent storage keys directly instead of trying to access internal persist helpers
-const STATS_KEY = 'classic-game-stats-storage';
-const GAME_KEY = 'classic-game-daily-storage';
 
-// Definimos o formato esperado no arquivo JSON de exportação
+// ===================================
+// ATUALIZAÇÃO 1: Definir todas as chaves
+// ===================================
+// Agora definimos explicitamente as chaves para TODOS os modos
+const CLASSIC_STATS_KEY = 'classic-game-stats-storage';
+const CLASSIC_GAME_KEY = 'classic-game-daily-storage';
+const QUOTE_STATS_KEY = 'quote-game-stats-storage';
+const QUOTE_GAME_KEY = 'quote-game-daily-storage';
+
+// ===================================
+// ATUALIZAÇÃO 2: Atualizar o formato de exportação
+// ===================================
+// O formato agora inclui os dados do Modo Fala.
+// Também permite 'null' caso o usuário nunca tenha jogado um modo.
 type ExportDataFormat = {
   appId: string;
   version: number;
   data: {
-    stats: string; // Conteúdo raw string de classic-game-stats-storage
-    game: string;  // Conteúdo raw string de classic-game-daily-storage
+    classicStats: string | null;
+    classicGame: string | null;
+    quoteStats: string | null;
+    quoteGame: string | null;
   };
 };
 
 /**
  * Hook para gerenciar a exportação e importação de dados do localStorage.
- * Usa chaves fixas para garantir a portabilidade.
+ * Exporta/Importa dados de TODOS os modos de jogo.
  */
 export const useDataImportExport = () => {
   const { t } = useTranslation();
   const router = useRouter();
 
   // ==============================
-  // 1. EXPORTAR DADOS
+  // 1. EXPORTAR DADOS (ATUALIZADO)
   // ==============================
   const exportData = useCallback(() => {
     try {
-      // 1. Acessa as strings RAW salvas pelo Zustand no localStorage
-      const statsData = localStorage.getItem(STATS_KEY);
-      const gameData = localStorage.getItem(GAME_KEY);
+      // 1. Acessa as strings RAW de TODOS os modos
+      const classicStatsData = localStorage.getItem(CLASSIC_STATS_KEY);
+      const classicGameData = localStorage.getItem(CLASSIC_GAME_KEY);
+      const quoteStatsData = localStorage.getItem(QUOTE_STATS_KEY);
+      const quoteGameData = localStorage.getItem(QUOTE_GAME_KEY);
 
-      if (!statsData || !gameData) {
+      // 2. Validação: Só exporta se houver *pelo menos um* dado salvo
+      if (!classicStatsData && !classicGameData && !quoteStatsData && !quoteGameData) {
         throw new Error(t('import_export_error_no_data'));
       }
 
-      // 2. Monta o objeto de exportação com metadados
+      // 3. Monta o objeto de exportação com metadados
       const exportObject: ExportDataFormat = {
         appId: APP_ID,
         version: DATA_VERSION,
         data: {
-          stats: statsData,
-          game: gameData,
+          classicStats: classicStatsData,
+          classicGame: classicGameData,
+          quoteStats: quoteStatsData,
+          quoteGame: quoteGameData,
         },
       };
 
-      // 3. Cria o blob JSON e força o download
+      // 4. Cria o blob JSON e força o download
       const jsonString = JSON.stringify(exportObject, null, 2);
       const blob = new Blob([jsonString], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       
       const a = document.createElement('a');
       a.href = url;
-      a.download = `SaintSeiyaDLE_backup_${new Date().toISOString().split('T')[0]}.json`;
+      // Nome do arquivo atualizado para refletir o backup completo
+      a.download = `SaintSeiyaDLE_backup_completo_${new Date().toISOString().split('T')[0]}.json`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -77,7 +94,7 @@ export const useDataImportExport = () => {
   }, [t]);
 
   // ==============================
-  // 2. IMPORTAR DADOS
+  // 2. IMPORTAR DADOS (ATUALIZADO)
   // ==============================
   const importData = useCallback(async (file: File) => {
     if (file.type !== 'application/json') {
@@ -94,19 +111,34 @@ export const useDataImportExport = () => {
       }
 
       // 2. Validação da integridade dos dados
-      if (!importedObject.data || !importedObject.data.stats || !importedObject.data.game) {
+      // Apenas checa se o objeto 'data' existe
+      if (!importedObject.data) {
          return { success: false, message: t('import_export_error_corrupted') };
       }
       
-      // 3. Injeção no localStorage
-      // Injetamos as strings RAW do arquivo diretamente nas chaves persistidas.
-      localStorage.setItem(STATS_KEY, importedObject.data.stats);
-      localStorage.setItem(GAME_KEY, importedObject.data.game);
+      // ===================================
+      // ATUALIZAÇÃO 3: Injeção de TODOS os dados
+      // ===================================
+      // Lista de todos os dados a serem importados
+      const keysToImport = [
+        { key: CLASSIC_STATS_KEY, data: importedObject.data.classicStats },
+        { key: CLASSIC_GAME_KEY, data: importedObject.data.classicGame },
+        { key: QUOTE_STATS_KEY, data: importedObject.data.quoteStats },
+        { key: QUOTE_GAME_KEY, data: importedObject.data.quoteGame },
+      ];
+
+      // Itera e injeta no localStorage
+      // Se a data for 'null' ou 'undefined' no JSON, remove a chave do localStorage
+      for (const item of keysToImport) {
+        if (item.data) { // Se a string de dados existir (não null ou undefined)
+          localStorage.setItem(item.key, item.data);
+        } else { // Se for null ou undefined no arquivo
+          localStorage.removeItem(item.key);
+        }
+      }
       
       // 4. Forçar reidratação do Zustand/Recarregar App
-      // A forma mais confiável de fazer o Zustand reidratar é recarregar a página.
       router.refresh(); 
-      // Alternativa: window.location.reload();
       
       return { success: true, message: t('import_export_success_reload') };
 

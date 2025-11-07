@@ -153,5 +153,21 @@
   "import_export_error_corrupted": "O arquivo de backup está corrompido ou faltando dados essenciais.",
   "import_export_error_parse": "Falha ao ler ou analisar o conteúdo do arquivo.",
   "import_export_error_generic": "Ocorreu um erro desconhecido durante a operação.",
-  "import_export_success_reload": "Dados importados com sucesso! A página será recarregada."
+  "import_export_success_reload": "Dados importados com sucesso! A página será recarregada.",
+
+  "mode_quote_name": "Fala",
+  "mode_quote_desc": "Adivinhe quem disse a citação",
+  "quote_attempts_title": "Suas Tentativas",
+
+  "quote_help_objective_title": "Objetivo do Jogo",
+  "quote_help_objective_desc": "Adivinhe qual personagem de Saint Seiya disse a citação do dia com o menor número possível de tentativas.",
+  "quote_help_how_title": "Como Jogar",
+  "quote_help_how_desc": "Leia a citação e use as dicas para adivinhar qual personagem de Saint Seiya a disse. Digite o nome do cavaleiro e envie seu palpite.",
+
+  "yesterday_character_title": "Personagem de Ontem",
+  "yesterday_character_desc": "Veja o personagem que foi destaque no jogo de ontem.",
+
+  "yesterday_quote_title": "Fala de Ontem",
+  "yesterday_correct_answer": "Resposta Correta:"
+
 }

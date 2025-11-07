@@ -32,6 +32,15 @@ const GameSelectionPage = () => {
             gradient: "from-yellow-500/20 to-orange-500/20",
             hoverGlow: "shadow-yellow-500/50",
         },
+        // --- MODO FALA ADICIONADO ---
+        {
+            name: t('mode_quote_name'),
+            description: t('mode_quote_desc'),
+            icon: "/dle_feed/quote_icon.png", // (Necessário criar este ícone)
+            link: "/quote", // Link para a nova página
+            gradient: "from-green-500/20 to-emerald-500/20",
+            hoverGlow: "shadow-green-500/50",
+        },
         // {
         //     // I18N: Traduzido nome e descrição
         //     name: t('mode_silhouette_name'),

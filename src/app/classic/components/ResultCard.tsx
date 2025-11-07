@@ -3,7 +3,7 @@
 import React, { memo } from "react";
 import { Character } from "../types";
 import { useRouter } from "next/navigation";
-import GameModeButtons from "./GameModeButtons";
+import GameModeButtons from "../../components/GameModeButtons";
 import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook
 
 type ResultCardProps = {
@@ -120,7 +120,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
             </div>
 
             {/* Botões de modos */}
-            <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3">
+            <div>
               <GameModeButtons />
             </div>
           </div>

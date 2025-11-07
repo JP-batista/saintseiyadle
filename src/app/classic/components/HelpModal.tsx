@@ -2,7 +2,7 @@
 
 import React, { memo } from "react";
 import { X } from "lucide-react";
-import { useTranslation } from "../i18n/useTranslation";
+import { useTranslation } from "../../i18n/useTranslation";
 
 interface HelpModalProps {
   isOpen: boolean;

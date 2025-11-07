@@ -2,8 +2,9 @@
 "use client"; // Necessário para o hook useRouter
 import React, { memo } from "react";
 import { useRouter } from "next/navigation";
-import GameModeButtons from "./GameModeButtons";
+import GameModeButtons from "../../components/GameModeButtons";
 import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook de tradução
+import YesterdayClassic from '../components/YesterdayClassic';
 
 const GameLegendComponent = () => {
   const router = useRouter();
@@ -103,6 +104,8 @@ const GameLegendComponent = () => {
             </p>
           </div>
         </div>
+        
+        <YesterdayClassic />
 
         {/* Botões de modos */}
         <GameModeButtons />
