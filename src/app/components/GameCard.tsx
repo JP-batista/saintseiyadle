@@ -23,7 +23,8 @@ const GameCardComponent: React.FC<GameCardProps> = ({ game, index, isLoaded }) =
   return (
     <Link key={index} href={game.link}>
       <div
-        className={`group relative transition-all duration-500 transform ${
+        // ✅ CORREÇÃO AQUI: Adicionado 'w-full'
+        className={`group relative w-full transition-all duration-500 transform ${
           isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
         }`}
         style={{ transitionDelay: `${500 + index * 150}ms`, willChange: 'transform, opacity' }}

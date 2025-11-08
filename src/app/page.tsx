@@ -100,21 +100,17 @@ const GameSelectionPage = () => {
                 </h3>
             </div>
 
-            {/* Lista de Jogos - Grid Responsivo */}
+            {/* Lista de Jogos - Lista Vertical */}
             <div
-                className={`w-full max-w-4xl grid gap-6 px-2 relative z-10 ${
-                    localizedGames.length === 1
-                        ? "grid-cols-1 justify-items-center"
-                        : "grid-cols-1 sm:grid-cols-2 justify-items-center"
-                }`}
+                className="w-full max-w-4xl flex flex-col items-center gap-6 px-2 relative z-10"
             >
                 {/* OTIMIZAÇÃO 2: Usa o GameCard memoizado */}
                 {localizedGames.map((game, index) => (
-                    <GameCard 
-                        key={game.name}
-                        game={game} 
-                        index={index} 
-                        isLoaded={isLoaded}
+                    <GameCard
+                    key={game.name}
+                    game={game}
+                    index={index}
+                    isLoaded={isLoaded}
                     />
                 ))}
             </div>
