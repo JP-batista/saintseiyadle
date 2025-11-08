@@ -30,6 +30,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
+      <meta name="google-site-verification" content="9MVcrYg5zxMSi-yRc4lZNeouckv7jZlZIJiA9YFK1B4" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-fixed bg-center bg-cover text-zinc-100 flex flex-col will-change-scroll`}
         suppressHydrationWarning
