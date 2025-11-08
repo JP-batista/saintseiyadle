@@ -8,9 +8,9 @@ import pt_news from '../data/news/news_pt.json'; // 💥 NOVO: Importa o array d
 // import en_news from './locales/news_en.json';
 // import jp_news from './locales/news_jp.json';
 
-import * as pt_data from '../data/charactersDLE/charactersDLE_pt'; 
-// import * as en_data from '../data/charactersDLE/charactersDLE_en'; 
-// import * as jp_data from '../data/charactersDLE/charactersDLE_jp'; 
+import * as pt_data from '../data/characters/charactersDLE_pt'; 
+// import * as en_data from '../data/characters/charactersDLE_en'; 
+// import * as jp_data from '../data/characters/charactersDLE_jp'; 
 
 // --- 1. Importar os novos dados de Falas ---
 import * as pt_quotes from '../data/quotes/quotesDLE_pt'; 

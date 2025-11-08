@@ -43,11 +43,11 @@ const GameSelectionPage = () => {
         },
         // {
         //     // I18N: Traduzido nome e descrição
-        //     name: t('mode_silhouette_name'),
-        //     description: t('mode_silhouette_desc'),
-        //     icon: "/dle_feed/silhouette_icon.png",
-        //     link: "/SaintSeiyaDLE/silhueta",
-        //     gradient: "from-blue-500/20 to-purple-500/20",
+        //     name: t('mode_attack_name'),
+        //     description: t('mode_attack_desc'),
+        //     icon: "/dle_feed/attack_icon.png",
+        //     link: "/attack",
+        //     gradient: "from-blue-500/20 to-blue-500/20",
         //     hoverGlow: "shadow-blue-500/50",
         // },
     ]), [t]); // Depende da função 't'

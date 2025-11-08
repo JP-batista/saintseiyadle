@@ -168,6 +168,9 @@
   "yesterday_character_desc": "Veja o personagem que foi destaque no jogo de ontem.",
 
   "yesterday_quote_title": "Fala de Ontem",
-  "yesterday_correct_answer": "Resposta Correta:"
+  "yesterday_correct_answer": "Resposta Correta:",
+
+  "mode_attack_name": "Golpe",
+  "mode_attack_desc": "Adivinhe qual o Golpe"
 
 }

@@ -1,4 +1,4 @@
-// src/app/data/charactersDLE/charactersDLE_jp.ts
+// src/app/data/characters/charactersDLE_jp.ts
 
 const characters = [
     // Cavaleiros de Bronze Clássico
