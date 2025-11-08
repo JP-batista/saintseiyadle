@@ -1,5 +1,13 @@
 [
   {
+    "id": "quote_mode_release",
+    "icon": "MessageSquare",
+    "title": "💬 Novo Modo: Adivinhe a Fala",
+    "date": "07 de Novembro de 2025",
+    "description": "Chegou o aguardado modo de adivinhação de falas! Teste seus conhecimentos e descubra qual personagem disse cada frase icônica do universo de Saint Seiya. Um novo desafio diário para os verdadeiros Cavaleiros!",
+    "glow": "border-pink-500/50 shadow-lg shadow-pink-500/20"
+  },  
+  {
     "id": "data_import_export",
     "icon": "Database",
     "title": "💾 Importação e Exportação de Dados",

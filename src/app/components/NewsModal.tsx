@@ -17,7 +17,8 @@ import {
   Shuffle, 
   Database, 
   Image, 
-  Rocket 
+  Rocket,
+  MessageSquare
 } from "lucide-react"; 
 import { useTranslation } from "../i18n/useTranslation";
 import { getNewsData } from "../i18n/config"; // Importa a função para pegar o array de notícias
@@ -44,7 +45,8 @@ const IconMap: Record<string, React.FC<any>> = {
     Shuffle: Shuffle,
     Database: Database,
     Image: Image,
-    Rocket: Rocket
+    Rocket: Rocket,
+    MessageSquare: MessageSquare
 };
 
 const NewsModalComponent: React.FC<NewsModalProps> = ({ isOpen, onClose }) => {
