@@ -14,49 +14,94 @@ export type NewsItem = {
     glow: string; // Tailwind glow classes
 };
 
-// --- NOVOS TIPOS PARA O MODO FALA (QUOTE MODE) ---
+// --- TIPOS BASE COMPARTILHADOS ---
+
+/**
+ * Informações básicas do personagem.
+ */
+export type CharacterBaseInfo = {
+    patente: any;
+    titulo: any;
+    idKey: string;
+    nome: string;
+    imgSrc: string;
+};
+
+// --- NOVOS TIPOS PARA O MODO ATAQUE (ATTACK MODE) ---
+
+/**
+ * A estrutura de um ataque individual (aninhada no arquivo de dados).
+ */
+export type Attack = {
+    idAttack: string;
+    name: string; // Nome do ataque (a resposta)
+    gifSrc: string; // URL do GIF
+};
+
+/**
+ * Define a estrutura do arquivo de dados de ataques (ex: attackDLE_pt.ts).
+ * Contém os dados do personagem + um array de seus ataques.
+ */
+export type CharacterWithAttacks = CharacterBaseInfo & {
+    // O array de ataques
+    attacks: Attack[];
+};
+
+/**
+ * O objeto "achatado" (flattened) usado pelo useDailyAttack e pelo store.
+ * Esta é a estrutura do "ataque do dia".
+ */
+export type SelectedAttack = {
+    attack: Attack; // O ataque em si
+    character: CharacterBaseInfo; // O personagem correto (a resposta)
+};
+
+/**
+ * Tipo para o histórico de jogos do Modo Ataque (usado no useAttackStatsStore).
+ */
+export type AttackGameHistory = {
+    date: string; // YYYY-MM-DD
+    attempts: number;
+    won: boolean;
+    firstTry: boolean;
+    attackName: string; 
+    attackId: string;
+    characterName: string;
+    characterImage: string;
+    characteridKey: string;
+};
+
+
+// --- TIPOS PARA O MODO FALA (QUOTE MODE) ---
 
 /**
  * A estrutura de uma fala individual (aninhada no arquivo de dados).
  */
 export type Quote = {
-  idQuote: string; // <-- CORRIGIDO DE 'id' PARA 'idQuote'
-  texts: string;
-  dica1: string;
-  dica2: string;
+    idQuote: string; // <-- CORRIGIDO DE 'id' PARA 'idQuote'
+    texts: string;
+    dica1: string;
+    dica2: string;
 };
 
 /**
- * Informações básicas do personagem, usadas para
- * identificar o autor correto da fala.
- */
-export type CharacterBaseInfo = {
-  patente: any;
-  titulo: any;
-  idKey: string;
-  nome: string;
-  imgSrc: string;
-  // Outros campos (titulo, etc.) podem ser adicionados se o ResultCard precisar
-};
-
-/**
- * Define a estrutura do arquivo de dados (ex: quotesDLE_pt.ts).
+ * Define a estrutura do arquivo de dados de falas (ex: quotesDLE_pt.ts).
  * Contém os dados do personagem + um array de suas falas.
  */
 export type CharacterWithQuotes = CharacterBaseInfo & {
-  // Dados completos do personagem (opcional, mas bom para consistência)
-  titulo?: string;
-  idade: string;
-  altura: string;
-  genero: string;
-  peso: string;
-  signo: string;
-  localDeTreinamento: string;
-  patente: string;
-  exercito: string;
-  saga?: string;
-  // O array de falas
-  quotes: Quote[];
+    // Dados completos do personagem (opcional, mas bom para consistência)
+    titulo?: string;
+    idade: string;
+    altura: string;
+    genero: string;
+    peso: string;
+    signo: string;
+    localDeTreinamento: string;
+    patente: string;
+    exercito: string;
+    saga?: string;
+    // O array de falas
+    quotes: Quote[];
 };
 
 /**
@@ -64,8 +109,25 @@ export type CharacterWithQuotes = CharacterBaseInfo & {
  * Esta é a estrutura da "fala do dia".
  */
 export type SelectedQuote = {
-  patente: any;
-  titulo: any;
-  quote: Quote; // A fala em si
-  character: CharacterBaseInfo; // O personagem correto (a resposta)
+    patente: any;
+    titulo: any;
+    quote: Quote; // A fala em si
+    character: CharacterBaseInfo; // O personagem correto (a resposta)
+};
+
+/**
+ * Tipo para o histórico de jogos do Modo Fala (usado no useQuoteStatsStore).
+ */
+export type QuoteGameHistory = {
+    date: string; // YYYY-MM-DD
+    attempts: number;
+    won: boolean;
+    firstTry: boolean;
+    
+    // Dados específicos do Modo Fala
+    characterName: string; 
+    characterImage: string;
+    characteridKey: string;
+    quoteText: string; 
+    quoteId: string; 
 };

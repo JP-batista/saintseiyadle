@@ -41,15 +41,15 @@ const GameSelectionPage = () => {
             gradient: "from-green-500/20 to-emerald-500/20",
             hoverGlow: "shadow-green-500/50",
         },
-        // {
-        //     // I18N: Traduzido nome e descrição
-        //     name: t('mode_attack_name'),
-        //     description: t('mode_attack_desc'),
-        //     icon: "/dle_feed/attack_icon.png",
-        //     link: "/attack",
-        //     gradient: "from-blue-500/20 to-blue-500/20",
-        //     hoverGlow: "shadow-blue-500/50",
-        // },
+        {
+            // I18N: Traduzido nome e descrição
+            name: t('mode_attack_name'),
+            description: t('mode_attack_desc'),
+            icon: "/dle_feed/attack_icon.png",
+            link: "/attack",
+            gradient: "from-blue-500/20 to-blue-500/20",
+            hoverGlow: "shadow-blue-500/50",
+        },
     ]), [t]); // Depende da função 't'
 
     useEffect(() => {

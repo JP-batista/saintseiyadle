@@ -30,7 +30,7 @@ const characters = [
             {
                 idAttack: "meteoro_pegaso", 
                 name: "Meteoro de Pégaso",
-                gifSrc: "/dle/characters/characters/attacks/seiya/meteoro_de_pegaso.gif",
+                gifSrc: "/dle/characters/characters/attacks/seiya/meteoro_de_pegaso_los.gif",
             },
         ]
       },

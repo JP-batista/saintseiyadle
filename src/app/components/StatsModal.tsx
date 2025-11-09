@@ -1,8 +1,10 @@
 // src/components/StatsModal.tsx
 "use client";
-// 1. IMPORTAR AMBOS OS STORES DE ESTATÍSTICAS
+// 1. IMPORTAR TODOS OS STORES DE ESTATÍSTICAS
 import { useStatsStore } from "../stores/useStatsStore";
 import { useQuoteStatsStore } from "../stores/useQuoteStatsStore";
+// NOVO: Importa o store de estatísticas do Modo Ataque
+import { useAttackStatsStore } from "../stores/useAttackStatsStore"; 
 
 import { X } from "lucide-react";
 import { useState, useMemo, memo } from "react";
@@ -19,14 +21,14 @@ import { useTranslation } from "../i18n/useTranslation";
 type StatsModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  mode: 'classic' | 'quote'; // 2. NOVA PROP 'MODE'
+  // ATUALIZADO: Inclui 'attack' no tipo 'mode'
+  mode: 'classic' | 'quote' | 'attack'; 
 };
 
 // ====================================================================
 // Helper: CustomActiveDot (Sem alteração)
 // ====================================================================
 const CustomActiveDot = (props: any) => {
-  // ... (código idêntico ao anterior)
   const { cx, cy, payload } = props;
   if (!payload) return null;
   return (
@@ -58,7 +60,6 @@ const CustomActiveDot = (props: any) => {
 // StatsChartComponent (Sem alteração)
 // ====================================================================
 const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
-  // ... (código idêntico ao anterior)
   const { t } = useTranslation();
   return (
     <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4">
@@ -105,9 +106,8 @@ const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
 const MemoizedStatsChart = memo(StatsChartComponent);
 
 // ====================================================================
-// GameHistoryRowComponent (ATUALIZADO)
+// GameHistoryRowComponent (ATUALIZADO para Modo Ataque)
 // ====================================================================
-// 3. ATUALIZAÇÃO: O Histórico agora aceita 'any' e verifica os campos
 const GameHistoryRowComponent = ({ game }: { game: any }) => {
   const { t } = useTranslation();
 
@@ -121,6 +121,14 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
 
   const attemptText =
     game.attempts === 1 ? t("stats_attempt_singular") : t("stats_attempt_plural");
+
+  // NOVO: Determina o sub-texto a ser exibido (Fala ou Nome do Ataque)
+  const subText = game.quoteText
+    ? `"${game.quoteText}"` // Modo Fala
+    : game.attackName
+    ? `Golpe: ${game.attackName}` // Modo Ataque
+    : null; // Modo Clássico (sem sub-texto extra)
+
 
   return (
     <div
@@ -142,10 +150,10 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
           <span className="font-bold text-yellow-400 text-sm sm:text-base truncate">
             {game.characterName}
           </span>
-          {/* 4. ATUALIZAÇÃO: Exibe a fala se ela existir (apenas no Modo Fala) */}
-          {game.quoteText && (
+          {/* Exibe o sub-texto (Fala ou Golpe) */}
+          {subText && (
             <span className="text-xs text-gray-400 italic truncate">
-              &ldquo;{game.quoteText}&rdquo;
+              {subText}
             </span>
           )}
           <span className="text-xs text-gray-400 truncate">{formattedDate}</span>
@@ -187,14 +195,15 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
     maxStreak,
     gamesHistory,
   } = mode === 'classic' 
-      ? useStatsStore() // Se for 'classic', usa o store clássico
-      // @ts-ignore // Ignora o mismatch de tipo (QuoteGameHistory vs GameHistory)
-      : useQuoteStatsStore(); // Se for 'quote', usa o novo store
+      ? useStatsStore() // Modo Clássico
+      : mode === 'quote' 
+      ? useQuoteStatsStore() // Modo Fala
+      // NOVO: Modo Ataque
+      // @ts-ignore // Ignora o mismatch de tipo (AttackGameHistory vs GameHistory)
+      : useAttackStatsStore(); 
 
   const [showAllHistory, setShowAllHistory] = useState(false);
   const { t } = useTranslation();
-
-  // (O restante do código é idêntico, pois os nomes das variáveis são os mesmos)
 
   const wonGames = useMemo(() => gamesHistory.filter((g) => g.won), [
     gamesHistory,

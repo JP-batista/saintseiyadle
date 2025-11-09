@@ -18,7 +18,14 @@ const gameModes = [
     iconSrc: "/dle_feed/quote_icon.png",
     translationKey: "mode_quote_name" as const, // Garante o tipo
   },
-  // Adicione futuros modos de jogo aqui
+  // NOVO MODO: ATAQUE (GOLPE)
+  {
+    key: "attack",
+    path: "/attack",
+    iconSrc: "/dle_feed/attack_icon.png", // Ícone que representa um ataque/golpe
+    translationKey: "mode_attack_name" as const, // Chave de tradução
+  },
+  // MODO FUTURO (Exemplo de inclusão)
   // {
   //   key: "silhouette",
   //   path: "/silhouette",

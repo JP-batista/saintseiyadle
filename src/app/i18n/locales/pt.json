@@ -171,6 +171,33 @@
   "yesterday_correct_answer": "Resposta Correta:",
 
   "mode_attack_name": "Golpe",
-  "mode_attack_desc": "Adivinhe qual o Golpe"
+  "mode_attack_desc": "Adivinhe qual o Golpe",
 
+  "attack_attempts_title": "Golpes Tentados",
+  "attack_form_placeholder": "Digite o nome do golpe",
+  "attack_decrease_blur": "Diminuir Borrão",
+  "attack_blur_info": "O borrado diminui automaticamente após {attempts} tentativas.",
+
+  "attack_toggle_blur": "Auto-Desfoque",
+  "attack_blur_on": "Ligado",
+  "attack_blur_off": "Desligado",
+  "attack_blur_info_on": "O borrado diminuirá automaticamente após {attempts} tentativas.",
+  "attack_blur_info_off": "O borrado não diminuirá automaticamente.",
+
+  "attack_toggle_color": "Cores",
+  "attack_color_label": "Cores",
+  
+  "attack_result_was": "O golpe era:",
+  "yesterday_attack_title": "Golpe de Ontem",
+  
+  "attack_help_objective_title": "Objetivo do Jogo",
+  "attack_help_objective_desc": "Adivinhe qual o golpe (ataque) do dia com o menor número de tentativas.",
+  "attack_help_how_title": "Como Jogar",
+  "attack_help_how_desc": "Observe o GIF borrado e em preto e branco. Digite o nome do golpe que você acha que é e envie.",
+  "attack_help_controls_title": "Controles de Filtro",
+  "attack_help_controls_desc": "Você pode usar os interruptores para ajustar a dificuldade:",
+  "attack_help_toggle_blur_desc": "Controla se o borrão diminui automaticamente a cada tentativa (LIGADO) ou se permanece no nível máximo (DESLIGADO).",
+  "attack_help_toggle_color_desc": "Controla se o GIF é exibido em preto e branco (LIGADO) ou em cores (DESLIGADO).",
+  "attack_help_no_hints_title": "Sem Dicas",
+  "attack_help_no_hints_desc": "Este modo é um desafio de reconhecimento visual puro. Não há dicas textuais disponíveis; a revelação progressiva é a única ajuda."
 }

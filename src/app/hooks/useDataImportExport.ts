@@ -15,11 +15,14 @@ const CLASSIC_STATS_KEY = 'classic-game-stats-storage';
 const CLASSIC_GAME_KEY = 'classic-game-daily-storage';
 const QUOTE_STATS_KEY = 'quote-game-stats-storage';
 const QUOTE_GAME_KEY = 'quote-game-daily-storage';
+// NOVO: Chaves para o Modo Ataque
+const ATTACK_STATS_KEY = 'attack-game-stats-storage';
+const ATTACK_GAME_KEY = 'attack-game-daily-storage';
 
 // ===================================
 // ATUALIZAÇÃO 2: Atualizar o formato de exportação
 // ===================================
-// O formato agora inclui os dados do Modo Fala.
+// O formato agora inclui os dados do Modo Fala e Ataque.
 // Também permite 'null' caso o usuário nunca tenha jogado um modo.
 type ExportDataFormat = {
   appId: string;
@@ -29,6 +32,9 @@ type ExportDataFormat = {
     classicGame: string | null;
     quoteStats: string | null;
     quoteGame: string | null;
+    // NOVO: Chaves para Modo Ataque
+    attackStats: string | null;
+    attackGame: string | null;
   };
 };
 
@@ -50,9 +56,12 @@ export const useDataImportExport = () => {
       const classicGameData = localStorage.getItem(CLASSIC_GAME_KEY);
       const quoteStatsData = localStorage.getItem(QUOTE_STATS_KEY);
       const quoteGameData = localStorage.getItem(QUOTE_GAME_KEY);
+      // NOVO: Obtém dados do Modo Ataque
+      const attackStatsData = localStorage.getItem(ATTACK_STATS_KEY);
+      const attackGameData = localStorage.getItem(ATTACK_GAME_KEY);
 
       // 2. Validação: Só exporta se houver *pelo menos um* dado salvo
-      if (!classicStatsData && !classicGameData && !quoteStatsData && !quoteGameData) {
+      if (!classicStatsData && !classicGameData && !quoteStatsData && !quoteGameData && !attackStatsData && !attackGameData) {
         throw new Error(t('import_export_error_no_data'));
       }
 
@@ -65,6 +74,9 @@ export const useDataImportExport = () => {
           classicGame: classicGameData,
           quoteStats: quoteStatsData,
           quoteGame: quoteGameData,
+          // NOVO: Inclui dados do Modo Ataque
+          attackStats: attackStatsData,
+          attackGame: attackGameData,
         },
       };
 
@@ -125,6 +137,9 @@ export const useDataImportExport = () => {
         { key: CLASSIC_GAME_KEY, data: importedObject.data.classicGame },
         { key: QUOTE_STATS_KEY, data: importedObject.data.quoteStats },
         { key: QUOTE_GAME_KEY, data: importedObject.data.quoteGame },
+        // NOVO: Inclui o Modo Ataque
+        { key: ATTACK_STATS_KEY, data: importedObject.data.attackStats },
+        { key: ATTACK_GAME_KEY, data: importedObject.data.attackGame },
       ];
 
       // Itera e injeta no localStorage

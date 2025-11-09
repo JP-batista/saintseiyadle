@@ -142,6 +142,32 @@ export function getDailyQuote<T>(
 }
 
 /**
+ * (Modo Ataque)
+ * Seleciona o ataque do dia de forma determinística (depende SÓ da data)
+ * @param date Data no formato YYYY-MM-DD
+ * @param allAttacks Lista completa de *todos* os ataques (array "achatado")
+ * @returns Objeto com o ataque e seu índice
+ */
+export function getDailyAttack<T>(
+  date: string,
+  allAttacks: T[]
+): { attack: T; index: number } {
+  // 1. Gera um seed único baseado na data
+  const seed = simpleHash(date);
+
+  // 2. Cria um gerador de aleatoriedade baseado no seed
+  const random = seededRandom(seed);
+
+  // 3. Pega um índice aleatório (mas determinístico) do TOTAL de ataques
+  const selectedIndex = Math.floor(random() * allAttacks.length);
+
+  return {
+    attack: allAttacks[selectedIndex],
+    index: selectedIndex,
+  };
+}
+
+/**
  * Formata o tempo restante para o próximo personagem
  */
 export function formatTimeRemaining(targetDate: Date): string {

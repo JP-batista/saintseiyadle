@@ -1,4 +1,4 @@
-// srcapp/classicc/components/ResultCard.tsx
+// src/app/classic/components/ResultCard.tsx
 "use client";
 import React, { memo } from "react";
 import { Character } from "../types";
@@ -25,6 +25,12 @@ const ResultCard: React.FC<ResultCardProps> = ({
 }) => {
   const router = useRouter();
   const { t } = useTranslation(); // Instancia a tradução
+
+  // Handler para garantir que o push de rota é limpo
+  const navigateToMode = (path: string) => {
+    // Usa um path absoluto limpo para garantir a navegação correta
+    router.push(path);
+  }
 
   return (
     <div
@@ -96,10 +102,33 @@ const ResultCard: React.FC<ResultCardProps> = ({
             {t('legend_next_mode')}
           </h3>
           <div className="flex flex-col items-center space-y-4">
-            {/* Link Silhueta */}
+            
+            {/* NOVO LINK: MODO ATAQUE */}
             <div
               className="rounded-full flex items-center space-x-3 sm:space-x-4 cursor-pointer group w-full max-w-[380px] hover-lift-rotate transition-ultra-smooth"
-              onClick={() => router.push("/SaintSeiyaDLE/silhueta")}
+              onClick={() => navigateToMode("/attack")}
+            >
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center border-4 border-gray-700 shadow-lg group-hover:border-yellow-500 transition-ultra-smooth flex-shrink-0">
+                <img
+                  src="/dle_feed/attack_icon.png" // Ícone do Modo Ataque
+                  alt={t('mode_attack_name')}
+                  className="w-14 h-14 sm:w-16 sm:h-16 object-contain"
+                />
+              </div>
+              <div className="bg-gray-800/50 border-2 border-gray-700 p-3 sm:p-4 rounded-lg shadow-lg flex-1 group-hover:border-yellow-500 transition-ultra-smooth h-16 sm:h-20 flex flex-col justify-center">
+                <h3 className="text-base sm:text-xl font-bold text-yellow-400 group-hover:text-yellow-300">
+                  {t('mode_attack_name')}
+                </h3>
+                <p className="text-gray-300 text-xs sm:text-sm">
+                  {t('mode_attack_desc')}
+                </p>
+              </div>
+            </div>
+
+            {/* Link Silhueta (mantido) */}
+            <div
+              className="rounded-full flex items-center space-x-3 sm:space-x-4 cursor-pointer group w-full max-w-[380px] hover-lift-rotate transition-ultra-smooth"
+              onClick={() => navigateToMode("/silhouette")}
             >
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center border-4 border-gray-700 shadow-lg group-hover:border-yellow-500 transition-ultra-smooth flex-shrink-0">
                 <img
@@ -119,7 +148,7 @@ const ResultCard: React.FC<ResultCardProps> = ({
               </div>
             </div>
 
-            {/* Botões de modos */}
+            {/* Botões de modos (GameModeButtons) */}
             <div>
               <GameModeButtons />
             </div>
