@@ -97,16 +97,14 @@ function seededRandom(seed: number): () => number {
 export function getDailyCharacter<T>(
   date: string,
   characters: T[]
-  // REMOVIDO: O parâmetro usedIndices foi removido daqui
 ): { character: T; index: number } {
-  // 1. Gera um seed único baseado na data
-  const seed = simpleHash(date);
+  // 1. Gera um seed único baseado na data + "SAL" (para diferenciar dos outros modos)
+  const seed = simpleHash(date + "CLASSIC_CHARACTER");
 
   // 2. Cria um gerador de aleatoriedade baseado no seed
   const random = seededRandom(seed);
 
   // 3. Pega um índice aleatório (mas determinístico) do TOTAL de personagens
-  // A seleção agora ignora completamente o usedIndices e depende apenas da data.
   const selectedIndex = Math.floor(random() * characters.length);
 
   return {
@@ -126,8 +124,8 @@ export function getDailyQuote<T>(
   date: string,
   allQuotes: T[]
 ): { quote: T; index: number } {
-  // 1. Gera um seed único baseado na data
-  const seed = simpleHash(date);
+  // 1. Gera um seed único baseado na data + "SAL"
+  const seed = simpleHash(date + "QUOTE_OF_THE_DAY");
 
   // 2. Cria um gerador de aleatoriedade baseado no seed
   const random = seededRandom(seed);
@@ -152,8 +150,8 @@ export function getDailyAttack<T>(
   date: string,
   allAttacks: T[]
 ): { attack: T; index: number } {
-  // 1. Gera um seed único baseado na data
-  const seed = simpleHash(date);
+  // 1. Gera um seed único baseado na data + "SAL"
+  const seed = simpleHash(date + "ATTACK_OF_THE_DAY");
 
   // 2. Cria um gerador de aleatoriedade baseado no seed
   const random = seededRandom(seed);

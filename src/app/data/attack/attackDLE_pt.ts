@@ -8,70 +8,16 @@ const attacks = [
         imgSrc: "/dle/characters/seiya.jpg",
         attacks: [
             {
-                idAttack: "meteoro_pegaso1", 
+                idAttack: "meteoro_pegaso", 
+                name: "Meteoro de Pégaso",
+                gifSrc: "/dle/attacks/meteoro_de_pegaso.gif",
+            },
+            {
+                idAttack: "meteoro_pegaso_los", 
                 name: "Meteoro de Pégaso (Lenda do Santuario)",
                 gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
             },
-            {
-                idAttack: "1", 
-                name: "teste 1",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },
-            {
-                idAttack: "2", 
-                name: "teste 2",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },
-            {
-                idAttack: "3", 
-                name: "teste 3",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },
-            {
-                idAttack: "4", 
-                name: "teste 4",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },
-            {
-                idAttack: "5", 
-                name: "teste 5",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },
-            {
-                idAttack: "6", 
-                name: "teste 6",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },
-            {
-                idAttack: "7", 
-                name: "teste 7",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },
-            {
-                idAttack: "8", 
-                name: "teste 8",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },
-            {
-                idAttack: "9", 
-                name: "teste 9",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },
-            {
-                idAttack: "10", 
-                name: "teste 10",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },
-            {
-                idAttack: "11", 
-                name: "teste 11",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },
-            {
-                idAttack: "12", 
-                name: "teste 12",
-                gifSrc: "/dle/attacks/meteoro_de_pegaso_los.gif",
-            },       
+    
         ]
     },
     {
@@ -79,7 +25,13 @@ const attacks = [
         nome: "Shiryu de Dragão",
         patente: "Cavaleiro de Bronze",
         imgSrc: "/dle/characters/shiryu.jpg",
-        attacks: []
+        attacks: [
+            {
+                idAttack: "colera_do_dragao", 
+                name: "Colera do Dragão",
+                gifSrc: "/dle/attacks/colera_do_dragao.gif",
+            },
+        ]
     },
 ];
 
