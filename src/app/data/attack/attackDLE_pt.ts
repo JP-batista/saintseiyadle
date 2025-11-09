@@ -5,17 +5,17 @@ const attacks = [
         idKey: "seiya",
         nome: "Seiya de Pégaso",
         patente: "Cavaleiro de Bronze",
-        imgSrc: "/dle/seiya.jpg",
+        imgSrc: "/dle/characters/seiya.jpg",
         attacks: [
             {
                 idAttack: "meteoro_pegaso", 
                 name: "Meteoro de Pégaso",
-                gifSrc: "/dle/attacks/seiya/meteoro_de_pegaso.gif",
+                gifSrc: "/dle/characters/attacks/seiya/meteoro_de_pegaso.gif",
             },
             {
                 idAttack: "cometa_pegaso",
                 name: "Cometa de Pégaso",
-                gifSrc: "/dle/attacks/seiya/cometa_de_pegaso.gif",
+                gifSrc: "/dle/characters/attacks/seiya/cometa_de_pegaso.gif",
             },
         ]
     },
@@ -23,12 +23,12 @@ const attacks = [
         idKey: "shiryu",
         nome: "Shiryu de Dragão",
         patente: "Cavaleiro de Bronze",
-        imgSrc: "/dle/shiryu.jpg",
+        imgSrc: "/dle/characters/shiryu.jpg",
         attacks: [
             {
                 idAttack: "colera_dragao",
                 name: "Cólera do Dragão",
-                gifSrc: "/dle/attacks/shiryu/colera_do_dragao.gif",
+                gifSrc: "/dle/characters/attacks/shiryu/colera_do_dragao.gif",
             },
         ]
     },

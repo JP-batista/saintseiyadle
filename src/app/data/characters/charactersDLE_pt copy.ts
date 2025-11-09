@@ -1,91 +1,114 @@
-// src/app/data/characters/charactersDLE_jp.ts
+// src/app/data/characters/charactersDLE_pt.ts
 
 const characters = [
     // Cavaleiros de Bronze Clássico
-      {
+    {
         idKey: "seiya",
-        nome: "星矢（ペガサスの星矢）",
-        titulo: "ペガサスの聖闘士",
+        nome: "Seiya de Pégaso",
+        titulo: "Cavaleiro de Pégaso",
         idade: "13",
-        altura: "1.65 m",
-        genero: "男性",
+        altura: "1,65 m",
+        genero: "Masculino",
         peso: "53 kg",
-        signo: "射手座",
-        localDeTreinamento: "ギリシャ・サンクチュアリ",
-        patente: "ブロンズ聖闘士",
-        exercito: "アテナ軍",
-        saga: "サンクチュアリ編",
-        imgSrc: "/dle/seiya.jpg",
-        dica1: "黄金聖衣を手に入れるためのトーナメントに参加した。",
-        dica2: "彼の主要な技は天体にインスパイアされている。"
+        signo: "Sagitário",
+        localDeTreinamento: "Santuário, Grécia",
+        patente: "Cavaleiro de Bronze",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/characters/characters/seiya.jpg",
+        dica1: "Participou de um torneio para conquistar uma armadura dourada.",
+        dica2: "Seu golpe principal é inspirado em corpos celestes.",
+        quotes: [
+            {
+                idQuote: "seiya_001",
+                texts: "Se há uma coisa que deveria-se deixar para os homens que perderam tudo, é a esperança.",
+                dica1: "",
+                dica2: ""
+            },
+        ],
+        attacks: [
+            {
+                idAttack: "meteoro_pegaso", 
+                name: "Meteoro de Pégaso",
+                gifSrc: "/dle/characters/characters/attacks/seiya/meteoro_de_pegaso.gif",
+            },
+        ]
       },
       {
         idKey: "shiryu",
-        nome: "紫龍（ドラゴンの紫龍）",
-        titulo: "ドラゴンの聖闘士",
+        nome: "Shiryu de Dragão",
+        titulo: "Cavaleiro de Dragão",
         idade: "14",
-        altura: "1.72 m",
-        genero: "男性",
+        altura: "1,72 m",
+        genero: "Masculino",
         peso: "53 kg",
-        signo: "天秤座",
-        localDeTreinamento: "中国・廬山五老峰",
-        patente: "ブロンズ聖闘士",
-        exercito: "アテナ軍",
-        saga: "サンクチュアリ編",
-        imgSrc: "/dle/shiryu.jpg",
-        dica1: "危機的状況で消える刺青を持っている。",
-        dica2: "彼の師匠は最も古く尊敬される聖闘士の一人。"
+        signo: "Libra",
+        localDeTreinamento: "Cinco Picos de Rozan, China",
+        patente: "Cavaleiro de Bronze",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/characters/characters/shiryu.jpg",
+        dica1: "Possui uma tatuagem que desaparece em situações críticas.",
+        dica2: "Seu mestre é um dos cavaleiros mais antigos e respeitados.",
+        quotes: [],
+        attacks: []
       },
       {
         idKey: "hyoga",
-        nome: "氷河（キグナスの氷河）",
-        titulo: "キグナスの聖闘士",
+        nome: "Hyoga de Cisne",
+        titulo: "Cavaleiro de Cisne",
         idade: "14",
-        altura: "1.73 m",
-        genero: "男性",
+        altura: "1,73 m",
+        genero: "Masculino",
         peso: "60 kg",
-        signo: "水瓶座",
-        localDeTreinamento: "シベリア東部",
-        patente: "ブロンズ聖闘士",
-        exercito: "アテナ軍",
-        saga: "サンクチュアリ編",
-        imgSrc: "/dle/hyoga.jpg",
-        dica1: "氷の下に沈む場所を頻繁に訪れる。",
-        dica2: "彼の主な技は北極の鳥をモチーフにしている。"
+        signo: "Aquário",
+        localDeTreinamento: "Sibéria Oriental",
+        patente: "Cavaleiro de Bronze",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/characters/characters/hyoga.jpg",
+        dica1: "Visita frequentemente um local submerso no gelo.",
+        dica2: "Sua técnica principal é inspirada em uma ave polar.",
+        quotes: [],
+        attacks: []
       },
       {
         idKey: "shun",
-        nome: "瞬（アンドロメダの瞬）",
-        titulo: "アンドロメダの聖闘士",
+        nome: "Shun de Andrômeda",
+        titulo: "Cavaleiro de Andrômeda",
         idade: "13",
-        altura: "1.65 m",
-        genero: "男性",
+        altura: "1,65 m",
+        genero: "Masculino",
         peso: "51 kg",
-        signo: "乙女座",
-        localDeTreinamento: "アンドロメダ島",
-        patente: "ブロンズ聖闘士",
-        exercito: "アテナ軍",
-        saga: "サンクチュアリ編",
-        imgSrc: "/dle/shun.jpg",
-        dica1: "危険な島で修行を受けた。",
-        dica2: "戦闘では多機能な鎖を使う。"
+        signo: "Virgem",
+        localDeTreinamento: "Ilha de Andrômeda",
+        patente: "Cavaleiro de Bronze",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/characters/characters/shun.jpg",
+        dica1: "Foi treinado em uma ilha perigosa.",
+        dica2: "Utiliza correntes com múltiplas funções em combate.",
+        quotes: [],
+        attacks: []
       },
       {
         idKey: "ikki",
-        nome: "一輝（フェニックスの一輝）",
-        titulo: "フェニックスの聖闘士",
+        nome: "Ikki de Fênix",
+        titulo: "Cavaleiro de Fênix",
         idade: "15",
-        altura: "1.75 m",
-        genero: "男性",
+        altura: "1,75 m",
+        genero: "Masculino",
         peso: "62 kg",
-        signo: "獅子座",
-        localDeTreinamento: "死の女王島",
-        patente: "ブロンズ聖闘士",
-        exercito: "アテナ軍",
-        saga: "サンクチュアリ編",
-        imgSrc: "/dle/ikki.jpg",
-        dica1: "敗北のたびに蘇る不死鳥のような存在。",
-        dica2: "かつては反逆者たちのリーダーであった。"
+        signo: "Leão",
+        localDeTreinamento: "Ilha da Rainha da Morte",
+        patente: "Cavaleiro de Bronze",
+        exercito: "Exército de Athena",
+        saga: "Santuário",
+        imgSrc: "/dle/characters/characters/ikki.jpg",
+        dica1: "Ressurge após cada derrota.",
+        dica2: "Liderou um grupo de cavaleiros renegados.",
+        quotes: [],
+        attacks: []
       },
       {
         idKey: "jabu",
@@ -100,9 +123,11 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/jabu.jpg",
+        imgSrc: "/dle/characters/characters/jabu.jpg",
         dica1: "Este cavaleiro possui uma técnica que remete a um animal mitológico com um único chifre.",
-        dica2: "Ele foi derrotado por Shun de Andrômeda na Guerra Galáctica."
+        dica2: "Ele foi derrotado por Shun de Andrômeda na Guerra Galáctica.",
+        quotes: [],
+        attacks: []
       },
       {
         idKey: "ichi",
@@ -117,9 +142,11 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/ichi.jpg",
+        imgSrc: "/dle/characters/characters/ichi.jpg",
         dica1: "Suas técnicas envolvem o uso de veneno.",
-        dica2: "Foi derrotado por Hyoga de Cisne na Guerra Galáctica."
+        dica2: "Foi derrotado por Hyoga de Cisne na Guerra Galáctica.",
+        quotes: [],
+        attacks: []
       },
       {
         idKey: "nachi",
@@ -134,9 +161,11 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/nachi.jpg",
+        imgSrc: "/dle/characters/characters/nachi.jpg",
         dica1: "Este cavaleiro tem uma técnica que remete a um uivo.",
-        dica2: "Foi derrotado por Ikki de Fênix na Guerra Galáctica."
+        dica2: "Foi derrotado por Ikki de Fênix na Guerra Galáctica.",
+        quotes: [],
+        attacks: []
       },
       {
         idKey: "ban",
@@ -151,9 +180,11 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/ban.jpg",
+        imgSrc: "/dle/characters/characters/ban.jpg",
         dica1: "Sua técnica principal é inspirada em um felino de menor porte.",
-        dica2: "Foi derrotado por Jabu de Unicórnio na Guerra Galáctica."
+        dica2: "Foi derrotado por Jabu de Unicórnio na Guerra Galáctica.",
+        quotes: [],
+        attacks: []
       },
       {
         idKey: "geki",
@@ -168,9 +199,11 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/geki.jpg",
+        imgSrc: "/dle/characters/characters/geki.jpg",
         dica1: "Este cavaleiro é conhecido por sua força bruta e técnicas de agarramento.",
-        dica2: "Foi derrotado por Seiya de Pégaso na Guerra Galáctica."
+        dica2: "Foi derrotado por Seiya de Pégaso na Guerra Galáctica.",
+        quotes: [],
+        attacks: []
       },
       {
         idKey: "june",
@@ -185,9 +218,11 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/june.jpg",
+        imgSrc: "/dle/characters/characters/june.jpg",
         dica1: "Ela treinou na mesma ilha que Shun de Andrômeda.",
-        dica2: "Possui técnicas que envolvem camuflagem e uso de uma corrente."
+        dica2: "Possui técnicas que envolvem camuflagem e uso de uma corrente.",
+        quotes: [],
+        attacks: []
       },
 
 
@@ -205,7 +240,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/shina.jpg",
+        imgSrc: "/dle/characters/characters/shina.jpg",
         dica1: "Amazona que inicialmente perseguia Seiya.",
         dica2: "Desenvolveu sentimentos pelo Cavaleiro de Pégaso."
       },
@@ -222,7 +257,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/misty.jpg",
+        imgSrc: "/dle/characters/characters/misty.jpg",
         dica1: "Cavaleiro que subestimou Seiya e foi derrotado.",
         dica2: "Conhecido por sua vaidade e confiança excessiva."
       },
@@ -239,7 +274,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/babel.jpg",
+        imgSrc: "/dle/characters/characters/babel.jpg",
         dica1: "Utiliza chamas em suas técnicas de combate.",
         dica2: "Enfrentou os Cavaleiros de Bronze no Coliseu."
       },
@@ -256,7 +291,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/capella.jpg",
+        imgSrc: "/dle/characters/characters/capella.jpg",
         dica1: "Emprega discos cortantes como arma principal.",
         dica2: "Foi derrotado por Ikki de Fênix."
       },
@@ -273,7 +308,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/dante.jpg",
+        imgSrc: "/dle/characters/characters/dante.jpg",
         dica1: "Utiliza correntes pesadas em combate.",
         dica2: "Enfrentou Seiya e Shun em uma floresta."
       },
@@ -290,7 +325,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/jamian.jpg",
+        imgSrc: "/dle/characters/characters/jamian.jpg",
         dica1: "Comanda um grupo de corvos em suas batalhas.",
         dica2: "Tentou sequestrar Saori Kido."
       },
@@ -307,7 +342,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/asterion.jpg",
+        imgSrc: "/dle/characters/characters/asterion.jpg",
         dica1: "Possui a habilidade de ler mentes.",
         dica2: "Foi derrotado por Marin de Águia."
       },
@@ -324,7 +359,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/moses.jpg",
+        imgSrc: "/dle/characters/characters/moses.jpg",
         dica1: "Conhecido por sua força física descomunal.",
         dica2: "Enfrentou Seiya e Marin em uma praia."
       },
@@ -341,7 +376,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/algol.jpg",
+        imgSrc: "/dle/characters/characters/algol.jpg",
         dica1: "Seu escudo pode transformar inimigos em pedra.",
         dica2: "Foi derrotado por Shiryu de Dragão."
       },
@@ -358,7 +393,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/dio.jpg",
+        imgSrc: "/dle/characters/characters/dio.jpg",
         dica1: "Conhecido por sua velocidade em combate."
       },
       {
@@ -374,7 +409,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/sirius.jpg",
+        imgSrc: "/dle/characters/characters/sirius.jpg",
         dica1: "Liderou uma missão ao lado de Dio e Algethi.",
         dica2: "Derrotado por Seiya de Pégaso."
       },
@@ -391,7 +426,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/algheti.jpg",
+        imgSrc: "/dle/characters/characters/algheti.jpg",
         dica1: "Conhecido por sua força descomunal.",
         dica2: "Enfrentou Seiya de Pégaso e foi derrotado."
       },
@@ -408,7 +443,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/shiva.jpg",
+        imgSrc: "/dle/characters/characters/shiva.jpg",
         dica1: "Discípulo de Shaka de Virgem.",
         dica2: "Lutou contra Ikki de Fênix ao lado de Ágora."
       },
@@ -425,7 +460,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/agora.jpg",
+        imgSrc: "/dle/characters/characters/agora.jpg",
         dica1: "Discípulo de Shaka de Virgem.",
         dica2: "Lutou contra Ikki de Fênix ao lado de Shiva."
       },
@@ -442,7 +477,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/albion.jpg",
+        imgSrc: "/dle/characters/characters/albion.jpg",
         dica1: "Mestre de Shun de Andrômeda.",
         dica2: "Assassinado por Milo de Escorpião."
       },
@@ -459,7 +494,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/marin.jpg",
+        imgSrc: "/dle/characters/characters/marin.jpg",
         dica1: "Mestre de Seiya de Pégaso.",
         dica2: "Suspeita-se que seja a irmã de Seiya."
       },
@@ -476,7 +511,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/aracne.jpg",
+        imgSrc: "/dle/characters/characters/aracne.jpg",
         dica1: "Tentou matar Seiya em uma caverna.",
         dica2: "Derrotado por Seiya de Pégaso."
       },
@@ -493,7 +528,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/tremy.jpg",
+        imgSrc: "/dle/characters/characters/tremy.jpg",
         dica1: "Atirou uma flecha em Saori Kido.",
         dica2: "Derrotado por Seiya de Pégaso."
       },
@@ -510,7 +545,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Hades",
-        imgSrc: "/dle/orfeu.jpg",
+        imgSrc: "/dle/characters/characters/orfeu.jpg",
         dica1: "Músico que encantou até Hades.",
         dica2: "Sacrificou-se para ajudar Seiya e seus amigos."
       },
@@ -530,7 +565,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/mu.jpg",
+        imgSrc: "/dle/characters/characters/mu.jpg",
         dica1: "Único capaz de reparar armaduras.",
         dica2: "Discípulo de Shion."
       },
@@ -547,7 +582,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/aldebaran.jpg",
+        imgSrc: "/dle/characters/characters/aldebaran.jpg",
         dica1: "Possui uma técnica que lembra uma estrela.",
         dica2: "Enfrentou Seiya na Casa de Touro."
       },
@@ -564,7 +599,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/saga.jpg",
+        imgSrc: "/dle/characters/characters/saga.jpg",
         dica1: "Duas personalidades em um só corpo.",
         dica2: "Usurpou o posto de Grande Mestre."
       },
@@ -581,7 +616,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/mascaradamorte.jpg",
+        imgSrc: "/dle/characters/characters/mascaradamorte.jpg",
         dica1: "Decora sua casa com rostos de vítimas.",
         dica2: "Enfrentou Shiryu na Casa de Câncer."
       },
@@ -598,7 +633,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/aiolia.jpg",
+        imgSrc: "/dle/characters/characters/aiolia.jpg",
         dica1: "Irmão mais novo de um Cavaleiro de Ouro.",
         dica2: "Conhecido por sua velocidade e força."
       },
@@ -615,7 +650,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/shaka.jpg",
+        imgSrc: "/dle/characters/characters/shaka.jpg",
         dica1: "Considerado o homem mais próximo de Deus.",
         dica2: "Luta frequentemente de olhos fechados."
       },
@@ -632,7 +667,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/mestreanciao.jpg",
+        imgSrc: "/dle/characters/characters/mestreanciao.jpg",
         dica1: "Sobreviveu à última Guerra Santa.",
         dica2: "Mestre de Shiryu de Dragão."
       },
@@ -649,7 +684,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/milo.jpg",
+        imgSrc: "/dle/characters/characters/milo.jpg",
         dica1: "Sua técnica principal envolve agulhas.",
         dica2: "Enfrentou Hyoga na Casa de Escorpião."
       },
@@ -666,7 +701,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/aiolos.jpg",
+        imgSrc: "/dle/characters/characters/aiolos.jpg",
         dica1: "Salvou a reencarnação de Athena.",
         dica2: "Irmão mais velho de Aiolia."
       },
@@ -683,7 +718,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/shura.jpg",
+        imgSrc: "/dle/characters/characters/shura.jpg",
         dica1: "Sua técnica principal é uma espada invisível.",
         dica2: "Enfrentou Shiryu na Casa de Capricórnio."
       },
@@ -700,7 +735,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/camus.jpg",
+        imgSrc: "/dle/characters/characters/camus.jpg",
         dica1: "Mestre do frio absoluto",
         dica2: "Treinou um Cavaleiro de Bronze na Sibéria"
       },
@@ -717,7 +752,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/afrodite.jpg",
+        imgSrc: "/dle/characters/characters/afrodite.jpg",
         dica1: "Suas armas são flores letais",
         dica2: "Guarda a última Casa do Zodíaco"
       },
@@ -737,14 +772,10 @@ const characters = [
         patente: "Deusa",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/athena.jpg",
+        imgSrc: "/dle/characters/characters/athena.jpg",
         dica1: "Deusa que renasce a cada 200 anos para proteger a humanidade.",
         dica2: "Empunha o báculo Niké e lidera os Cavaleiros do Zodíaco."
     },
-    
-
-    //Cavaleiros Negros Classicos
-
     {
         idKey: "keuma",
         nome: "Kenuma de Pégaso Negro",
@@ -758,7 +789,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/kenuma.jpg",
+        imgSrc: "/dle/characters/characters/kenuma.jpg",
         dica1: "Reflexo sombrio do Cavaleiro de Pégaso.",
         dica2: "Enfrentou Seiya na Caverna dos Ventos."
       },
@@ -775,7 +806,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/shinadekuro.jpg",
+        imgSrc: "/dle/characters/characters/shinadekuro.jpg",
         dica1: "Espelho obscuro do Cavaleiro de Dragão.",
         dica2: "Possui um irmão cego que o auxilia."
       },
@@ -792,7 +823,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/jid.jpg",
+        imgSrc: "/dle/characters/characters/jid.jpg",
         dica1: "Contraparte sombria do Cavaleiro de Cisne.",
         dica2: "Enfrentou Hyoga em uma batalha gélida."
       },
@@ -809,7 +840,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/andromedanegro.jpg",
+        imgSrc: "/dle/characters/characters/andromedanegro.jpg",
         dica1: "Sombra do Cavaleiro de Andrômeda.",
         dica2: "Utiliza correntes similares às de Shun."
       },
@@ -826,7 +857,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/ritahoa.jpg",
+        imgSrc: "/dle/characters/characters/ritahoa.jpg",
         dica1: "Reflexo obscuro do Cavaleiro de Fênix.",
         dica2: "Serviu como sombra de Ikki."
       },
@@ -843,7 +874,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/jango.jpg",
+        imgSrc: "/dle/characters/characters/jango.jpg",
         dica1: "Líder dos Cavaleiros Negros.",
         dica2: "Desafiou Ikki pelo controle da Ilha da Rainha da Morte."
       },
@@ -860,7 +891,7 @@ const characters = [
         patente: "Desconhecida",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/guilty.jpg",
+        imgSrc: "/dle/characters/characters/guilty.jpg",
         dica1: "Mestre de Ikki na Ilha da Rainha da Morte.",
         dica2: "Usa uma máscara que oculta seu rosto."
       },
@@ -880,7 +911,7 @@ const characters = [
         patente: "Guerreiro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/docrates.jpg",
+        imgSrc: "/dle/characters/characters/docrates.jpg",
         dica1: "Enviado para recuperar a Armadura de Sagitário.",
         dica2: "Irmão mais velho de Cassios."
       },
@@ -896,7 +927,7 @@ const characters = [
         patente: "Guerreiro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/spartan.jpg",
+        imgSrc: "/dle/characters/characters/spartan.jpg",
         dica1: "Possui habilidades telecinéticas.",
         dica2: "Acompanhou Shaina e Algol em uma missão."
       },
@@ -912,7 +943,7 @@ const characters = [
         patente: "Guerreiro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/gigas.jpg",
+        imgSrc: "/dle/characters/characters/gigas.jpg",
         dica1: "Oficial de ordem chefe do Santuário.",
         dica2: "Conselheiro do Grande Mestre."
       },
@@ -928,7 +959,7 @@ const characters = [
         patente: "Guerreiro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/phaeton.jpg",
+        imgSrc: "/dle/characters/characters/phaeton.jpg",
         dica1: "Assumiu o posto de Chefe do Estado-Maior após o desaparecimento de Gigas.",
         dica2: "Enviou assassinos do Santuário para eliminar os Cavaleiros de Bronze."
       },
@@ -947,7 +978,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/geist.jpg",
+        imgSrc: "/dle/characters/characters/geist.jpg",
         dica1: "Lidera os Cavaleiros Fantasmas na Ilha do Diabo.",
         dica2: "Única mulher entre os Cavaleiros Fantasmas."
       },
@@ -964,7 +995,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/serpentemarina.jpg",
+        imgSrc: "/dle/characters/characters/serpentemarina.jpg",
         dica1: "Seu nome remete a uma criatura mitológica aquática.",
         dica2: "Enfrenta os Cavaleiros de Bronze ao lado de Geist."
       },
@@ -981,7 +1012,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/medusa.jpg",
+        imgSrc: "/dle/characters/characters/medusa.jpg",
         dica1: "Seu nome faz referência a um monstro da mitologia grega.",
         dica2: "Utiliza um golpe que paralisa seus oponentes."
       },
@@ -998,7 +1029,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/chama.jpg",
+        imgSrc: "/dle/characters/characters/chama.jpg",
         dica1: "Seu nome alude a um animal marinho amigável.",
         dica2: "Participa do ataque liderado por Geist."
       },
@@ -1019,7 +1050,7 @@ const characters = [
         patente: "Cavaleiro de Aço",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/sho.jpg",
+        imgSrc: "/dle/characters/characters/sho.jpg",
         dica1: "Seu nome significa 'voar' em japonês.",
         dica2: "Sua armadura é associada ao elemento ar."
       },
@@ -1036,7 +1067,7 @@ const characters = [
         patente: "Cavaleiro de Aço",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/daichi.jpg",
+        imgSrc: "/dle/characters/characters/daichi.jpg",
         dica1: "Seu nome significa 'terra' em japonês.",
         dica2: "Sua armadura é associada ao elemento terra."
       },
@@ -1053,7 +1084,7 @@ const characters = [
         patente: "Cavaleiro de Aço",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/ushio.jpg",
+        imgSrc: "/dle/characters/characters/ushio.jpg",
         dica1: "Seu nome significa 'maré' em japonês.",
         dica2: "Sua armadura é associada ao elemento água."
       },      
@@ -1073,7 +1104,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/siegfried.jpg",
+        imgSrc: "/dle/characters/characters/siegfried.jpg",
         dica1: "Sua força é comparada à de um dragão lendário.",
         dica2: "Sacrificou-se para proteger Hilda."
       },
@@ -1090,7 +1121,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/hagen.jpg",
+        imgSrc: "/dle/characters/characters/hagen.jpg",
         dica1: "Possui poderes relacionados ao fogo e ao gelo.",
         dica2: "Nutre sentimentos por Freya."
       },
@@ -1107,7 +1138,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/thor.jpg",
+        imgSrc: "/dle/characters/characters/thor.jpg",
         dica1: "Empunha um martelo gigantesco como arma.",
         dica2: "É o maior e mais forte entre os Guerreiros Deuses."
       },
@@ -1124,7 +1155,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/fenrir.jpg",
+        imgSrc: "/dle/characters/characters/fenrir.jpg",
         dica1: "Foi criado por lobos após perder sua família.",
         dica2: "Luta ao lado de uma matilha de lobos."
       },
@@ -1141,7 +1172,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/mime.jpg",
+        imgSrc: "/dle/characters/characters/mime.jpg",
         dica1: "Toca harpa e usa música como arma.",
         dica2: "Seu passado é marcado por traições e rancor."
       },
@@ -1158,7 +1189,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/alberich.jpg",
+        imgSrc: "/dle/characters/characters/alberich.jpg",
         dica1: "É o mais astuto entre os Guerreiros Deuses.",
         dica2: "Usa uma espada encantada como arma."
       },
@@ -1175,7 +1206,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/syd.jpg",
+        imgSrc: "/dle/characters/characters/syd.jpg",
         dica1: "Tem um irmão gêmeo que vive na sombra.",
         dica2: "É o Guerreiro Deus associado à estrela Mizar."
       },
@@ -1192,7 +1223,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/bud.jpg",
+        imgSrc: "/dle/characters/characters/bud.jpg",
         dica1: "É a contraparte sombria de Shido de Mizar.",
         dica2: "Luta por razões diferentes das de seu irmão."
       },
@@ -1209,7 +1240,7 @@ const characters = [
         patente: "Sacerdotisa de Odin",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/hilda.jpg",
+        imgSrc: "/dle/characters/characters/hilda.jpg",
         dica1: "Foi corrompida pelo Anel de Nibelungo.",
         dica2: "É a líder espiritual de Asgard."
       },
@@ -1225,7 +1256,7 @@ const characters = [
         patente: "Habitante de Asgard",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/freya.jpg",
+        imgSrc: "/dle/characters/characters/freya.jpg",
         dica1: "Irmã mais nova de Hilda.",
         dica2: "Ajudou os Cavaleiros de Bronze contra os Guerreiros Deuses."
       },      
@@ -1245,7 +1276,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/baian.jpg",
+        imgSrc: "/dle/characters/characters/baian.jpg",
         dica1: "Conhecido por sua técnica 'Ondas do Inferno'.",
         dica2: "Enfrentou Seiya de Pégaso no templo submarino."
     },
@@ -1262,7 +1293,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/io.jpg",
+        imgSrc: "/dle/characters/characters/io.jpg",
         dica1: "Possui seis ataques baseados em diferentes criaturas marinhas.",
         dica2: "Lutou contra Shun de Andrômeda."
     },
@@ -1279,7 +1310,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/krishna.jpg",
+        imgSrc: "/dle/characters/characters/krishna.jpg",
         dica1: "Mestre na arte da lança dourada.",
         dica2: "Enfrentou Shiryu de Dragão."
     },
@@ -1296,7 +1327,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/kassa.jpg",
+        imgSrc: "/dle/characters/characters/kassa.jpg",
         dica1: "Habilidade de assumir a forma de entes queridos das vítimas.",
         dica2: "Derrotado por Seiya após revelar sua verdadeira forma."
     },
@@ -1313,7 +1344,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/isaac.jpg",
+        imgSrc: "/dle/characters/characters/isaac.jpg",
         dica1: "Antigo companheiro de Hyoga de Cisne.",
         dica2: "Perdeu um olho ao salvar Hyoga no passado."
     },
@@ -1330,7 +1361,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/sorento.jpg",
+        imgSrc: "/dle/characters/characters/sorento.jpg",
         dica1: "Utiliza uma flauta para executar ataques sonoros.",
         dica2: "Teve um confronto com Shun de Andrômeda."
     },
@@ -1347,7 +1378,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/kanon.jpg",
+        imgSrc: "/dle/characters/characters/kanon.jpg",
         dica1: "Irmão gêmeo de Saga de Gêmeos.",
         dica2: "Infiltrou-se no exército de Poseidon com intenções próprias."
     },
@@ -1364,7 +1395,7 @@ const characters = [
         patente: "Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/tetis.jpg",
+        imgSrc: "/dle/characters/characters/tetis.jpg",
         dica1: "Salvou Julian Solo de um naufrágio.",
         dica2: "Serviu lealmente a Poseidon após ser transformada em Marina."
     },
@@ -1384,7 +1415,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/poseidon.jpg",
+        imgSrc: "/dle/characters/characters/poseidon.jpg",
         dica1: "Este deus dos mares reencarnou no corpo de Julian Solo para executar seu plano de inundar a Terra.",
         dica2: "Durante a batalha contra Athena, ele foi selado novamente na ânfora sagrada após ser derrotado pelos Cavaleiros de Bronze."
     },
@@ -1404,7 +1435,7 @@ const characters = [
         patente: "Juiz do Inferno",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/radamanthys.jpg",
+        imgSrc: "/dle/characters/characters/radamanthys.jpg",
         dica1: "Famoso por sua força bruta entre os juízes do inferno.",
         dica2: "Comandava os espectros diretamente em Giudecca."
     },
@@ -1421,7 +1452,7 @@ const characters = [
         patente: "Juiz do Inferno",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/minos.jpg",
+        imgSrc: "/dle/characters/characters/minos.jpg",
         dica1: "Sua técnica envolve manipular inimigos como marionetes.",
         dica2: "Conhecido por sua crueldade e precisão."
     },
@@ -1438,7 +1469,7 @@ const characters = [
         patente: "Juiz do Inferno",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/aiacos.jpg",
+        imgSrc: "/dle/characters/characters/aiacos.jpg",
         dica1: "Seu ataque principal é inspirado em uma ave mitológica.",
         dica2: "Foi derrotado em um combate aéreo."
     },
@@ -1455,7 +1486,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/niobe.jpg",
+        imgSrc: "/dle/characters/characters/niobe.jpg",
         dica1: "Seus ataques envolvem gases venenosos.",
         dica2: "Foi derrotado rapidamente por Aldebaran de Touro."
     },
@@ -1472,7 +1503,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/myu.jpg",
+        imgSrc: "/dle/characters/characters/myu.jpg",
         dica1: "Sua armadura reflete a metamorfose de um inseto.",
         dica2: "Foi derrotado por Mu de Áries."
     },
@@ -1489,7 +1520,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/giganto.jpg",
+        imgSrc: "/dle/characters/characters/giganto.jpg",
         dica1: "Usa sua força gigantesca como principal arma.",
         dica2: "Confrontou Seiya e os Cavaleiros de Bronze."
     },
@@ -1506,7 +1537,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/laimi.jpg",
+        imgSrc: "/dle/characters/characters/laimi.jpg",
         dica1: "Especialista em ataques subterrâneos.",
         dica2: "Enfrentou os Cavaleiros no Submundo."
     },
@@ -1523,7 +1554,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/zelos.jpg",
+        imgSrc: "/dle/characters/characters/zelos.jpg",
         dica1: "Gosta de zombar de seus oponentes.",
         dica2: "Foi humilhado por Radamanthys."
     },
@@ -1540,7 +1571,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/kiew.jpg",
+        imgSrc: "/dle/characters/characters/kiew.jpg",
         dica1: "Sua armadura é inspirada em cavaleiros sem cabeça.",
         dica2: "Apareceu em Giudecca ao lado de Pandora."
     },
@@ -1557,7 +1588,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/ox.jpg",
+        imgSrc: "/dle/characters/characters/ox.jpg",
         dica1: "Seu ataque principal petrifica o inimigo.",
         dica2: "Inspirado nas criaturas da mitologia grega."
     },
@@ -1574,7 +1605,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/miles.jpg",
+        imgSrc: "/dle/characters/characters/miles.jpg",
         dica1: "Seu nome remete a criaturas da floresta.",
         dica2: "Atuou como guarda no Submundo."
     },
@@ -1591,7 +1622,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/caronte.jpg",
+        imgSrc: "/dle/characters/characters/caronte.jpg",
         dica1: "Responsável por guiar almas pelo rio Aqueronte.",
         dica2: "Confrontou os Cavaleiros de Bronze na travessia do rio."
     },
@@ -1608,7 +1639,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/lune.jpg",
+        imgSrc: "/dle/characters/characters/lune.jpg",
         dica1: "É conhecido por julgar almas no Submundo.",
         dica2: "Usa uma balança como símbolo de seu poder."
     },
@@ -1625,7 +1656,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/farao.jpg",
+        imgSrc: "/dle/characters/characters/farao.jpg",
         dica1: "Seus ataques envolvem melodias mortais.",
         dica2: "Aparece ao lado de Pandora para proteger o Submundo."
     },
@@ -1642,7 +1673,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/iwan.jpg",
+        imgSrc: "/dle/characters/characters/iwan.jpg",
         dica1: "É um dos espectros mais fortes em termos físicos.",
         dica2: "Sua força descomunal é temida no Submundo."
     },
@@ -1659,7 +1690,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/rock.jpg",
+        imgSrc: "/dle/characters/characters/rock.jpg",
         dica1: "Sua armadura é inspirada em uma criatura de pedra.",
         dica2: "Usa sua enorme resistência como arma."
     },
@@ -1676,7 +1707,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/flegias.jpg",
+        imgSrc: "/dle/characters/characters/flegias.jpg",
         dica1: "Seus ataques são rápidos como um lobo.",
         dica2: "Desafiou os Cavaleiros de Bronze em um confronto direto."
     },
@@ -1693,7 +1724,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/stand.jpg",
+        imgSrc: "/dle/characters/characters/stand.jpg",
         dica1: "Sua armadura é baseada em um inseto mortal.",
         dica2: "É rápido e mortal em suas investidas."
     },
@@ -1710,7 +1741,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/gordon.jpg",
+        imgSrc: "/dle/characters/characters/gordon.jpg",
         dica1: "Seu ataque lembra o avanço de um touro enfurecido.",
         dica2: "Desafiante direto de Shiryu de Dragão."
     },
@@ -1727,7 +1758,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/queen.jpg",
+        imgSrc: "/dle/characters/characters/queen.jpg",
         dica1: "Seus ataques evocam gritos paralisantes.",
         dica2: "Inspirado em uma planta venenosa mitológica."
     },
@@ -1744,7 +1775,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/sylphid.jpg",
+        imgSrc: "/dle/characters/characters/sylphid.jpg",
         dica1: "Possui ataques venenosos como sua criatura símbolo.",
         dica2: "É ágil e mortal em combate."
     },
@@ -1761,7 +1792,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/valentine.jpg",
+        imgSrc: "/dle/characters/characters/valentine.jpg",
         dica1: "Sua armadura é inspirada em uma criatura alada mitológica.",
         dica2: "Enfrentou Seiya e os Cavaleiros de Bronze."
     },
@@ -1777,7 +1808,7 @@ const characters = [
         patente: "Líder dos Espectros",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/pandora.jpg",
+        imgSrc: "/dle/characters/characters/pandora.jpg",
         dica1: "Serve como líder dos Espectros de Hades.",
         dica2: "É guardiã do selo de Hades no Submundo."
     },
@@ -1794,7 +1825,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/hypnos.jpg",
+        imgSrc: "/dle/characters/characters/hypnos.jpg",
         dica1: "É o deus do sono eterno.",
         dica2: "Foi derrotado pelos Cavaleiros de Bronze ao lado de seu irmão."
     },
@@ -1811,7 +1842,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/thanatos.jpg",
+        imgSrc: "/dle/characters/characters/thanatos.jpg",
         dica1: "É o deus da morte instantânea.",
         dica2: "Foi derrotado após um confronto com a Armadura Divina."
     },
@@ -1828,7 +1859,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/hades.jpg",
+        imgSrc: "/dle/characters/characters/hades.jpg",
         dica1: "É o principal antagonista da saga do Submundo.",
         dica2: "Reencarna a cada 243 anos para confrontar Athena."
     },
@@ -1848,7 +1879,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/shion.jpg",
+        imgSrc: "/dle/characters/characters/shion.jpg",
         dica1: "Futuro Grande Mestre do Santuário.",
         dica2: "Especialista em criar barreiras poderosas."
     },
@@ -1865,7 +1896,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/hasgard.jpg",
+        imgSrc: "/dle/characters/characters/hasgard.jpg",
         dica1: "É conhecido por sua força avassaladora.",
         dica2: "Defendeu o Santuário com extrema lealdade."
     },
@@ -1882,7 +1913,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/defteros.jpg",
+        imgSrc: "/dle/characters/characters/defteros.jpg",
         dica1: "O irmão que vive nas sombras.",
         dica2: "Carrega o fardo da escuridão em seu coração."
     },
@@ -1899,7 +1930,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/aspros.jpg",
+        imgSrc: "/dle/characters/characters/aspros.jpg",
         dica1: "O irmão que busca a perfeição na luz.",
         dica2: "Dominou técnicas tanto da luz quanto das trevas."
     },
@@ -1916,7 +1947,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/manigold.jpg",
+        imgSrc: "/dle/characters/characters/manigold.jpg",
         dica1: "Cavaleiro com conexão especial com a morte.",
         dica2: "Enfrentou um Deus com bravura incomparável."
     },
@@ -1933,7 +1964,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/regulus.jpg",
+        imgSrc: "/dle/characters/characters/regulus.jpg",
         dica1: "O cavaleiro mais jovem e prodigioso.",
         dica2: "Combina velocidade com ataques devastadores."
     },
@@ -1950,7 +1981,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/asmita.jpg",
+        imgSrc: "/dle/characters/characters/asmita.jpg",
         dica1: "Cavaleiro que busca a iluminação espiritual.",
         dica2: "Criou a poderosa rosário que sela espectros."
     },
@@ -1967,7 +1998,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/dohko.jpg",
+        imgSrc: "/dle/characters/characters/dohko.jpg",
         dica1: "Futuro Mestre Ancião.",
         dica2: "Usa as doze armas da balança em combate."
     },
@@ -1984,7 +2015,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/kardia.jpg",
+        imgSrc: "/dle/characters/characters/kardia.jpg",
         dica1: "Luta com paixão ardente.",
         dica2: "Possui uma técnica que lembra uma ferroada fatal."
     },
@@ -2001,7 +2032,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/sisifo.jpg",
+        imgSrc: "/dle/characters/characters/sisifo.jpg",
         dica1: "Considerado o braço direito de Athena.",
         dica2: "Suas flechas são guiadas pela justiça."
     },
@@ -2018,7 +2049,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/elcid.jpg",
+        imgSrc: "/dle/characters/characters/elcid.jpg",
         dica1: "Sua espada pode cortar qualquer coisa.",
         dica2: "Demonstra honra em todas as suas ações."
     },
@@ -2035,7 +2066,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/degel.jpg",
+        imgSrc: "/dle/characters/characters/degel.jpg",
         dica1: "Cavaleiro conhecido por seu intelecto e frieza.",
         dica2: "Utiliza técnicas baseadas no gelo absoluto."
     },
@@ -2052,7 +2083,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/albafica.jpg",
+        imgSrc: "/dle/characters/characters/albafica.jpg",
         dica1: "Usa rosas como armas mortais.",
         dica2: "Carrega uma beleza fatal em suas técnicas."
     },
@@ -2072,7 +2103,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/tenma.jpg",
+        imgSrc: "/dle/characters/characters/tenma.jpg",
         dica1: "Um jovem com uma forte conexão com Hades.",
         dica2: "Determinado, nunca desiste de proteger seus amigos."
     },
@@ -2089,7 +2120,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/yato.jpg",
+        imgSrc: "/dle/characters/characters/yato.jpg",
         dica1: "Impulsivo, mas leal aos seus companheiros.",
         dica2: "Possui um golpe que lembra uma investida."
     },
@@ -2106,7 +2137,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/yuzuriha.jpg",
+        imgSrc: "/dle/characters/characters/yuzuriha.jpg",
         dica1: "É a primeira Cavaleira de Prata a aparecer na história.",
         dica2: "Luta com graça e precisão, como a ave que representa."
     },
@@ -2123,7 +2154,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/hakurei.jpg",
+        imgSrc: "/dle/characters/characters/hakurei.jpg",
         dica1: "É o irmão de Sage e possui vasta experiência.",
         dica2: "Sua sabedoria é tão forte quanto suas habilidades de combate."
     },
@@ -2143,7 +2174,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/shionnd.jpg",
+        imgSrc: "/dle/characters/characters/shionnd.jpg",
         dica1: "Herdou técnicas avançadas de telecinese.",
         dica2: "Considerado um dos cavaleiros mais sábios de sua geração."
     },
@@ -2160,7 +2191,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/oxtouro.jpg",
+        imgSrc: "/dle/characters/characters/oxtouro.jpg",
         dica1: "Sua força é incomparável no Santuário.",
         dica2: "É um guardião incansável contra invasores."
     },
@@ -2177,7 +2208,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/cain.jpg",
+        imgSrc: "/dle/characters/characters/cain.jpg",
         dica1: "Representa a face justa e equilibrada de Gêmeos.",
         dica2: "Domina ataques de energia devastadores."
     },
@@ -2194,7 +2225,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/abel.jpg",
+        imgSrc: "/dle/characters/characters/abel.jpg",
         dica1: "É a contraparte sombria de Cain.",
         dica2: "Sua presença sempre gera tensão no Santuário."
     },
@@ -2211,7 +2242,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/contador.jpg",
+        imgSrc: "/dle/characters/characters/contador.jpg",
         dica1: "Especialista em técnicas que envolvem o submundo.",
         dica2: "Sua força está ligada à manipulação de almas."
     },
@@ -2228,7 +2259,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/kaiser.jpg",
+        imgSrc: "/dle/characters/characters/kaiser.jpg",
         dica1: "Seu golpe lembra a força de um leão real.",
         dica2: "Protege seu território com um leão ao seu lado."
     },
@@ -2245,7 +2276,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/shijima.jpg",
+        imgSrc: "/dle/characters/characters/shijima.jpg",
         dica1: "Segue a filosofia do silêncio e da meditação.",
         dica2: "Sua técnica combina força mental e espiritual."
     },
@@ -2262,7 +2293,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/dohkond.jpg",
+        imgSrc: "/dle/characters/characters/dohkond.jpg",
         dica1: "Reconhecido por sua sabedoria desde jovem.",
         dica2: "Carrega o equilíbrio das doze armas da balança."
     },
@@ -2279,7 +2310,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/izo.jpg",
+        imgSrc: "/dle/characters/characters/izo.jpg",
         dica1: "Possui uma lâmina afiada como símbolo de sua determinação.",
         dica2: "É conhecido por sua habilidade de cortar até dimensões."
     },
@@ -2296,7 +2327,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/mystoria.jpg",
+        imgSrc: "/dle/characters/characters/mystoria.jpg",
         dica1: "Manipula o frio com maestria.",
         dica2: "Sua técnica é calma e letal como o gelo."
     },
@@ -2313,7 +2344,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/cardinale.jpg",
+        imgSrc: "/dle/characters/characters/cardinale.jpg",
         dica1: "Utiliza flores venenosas para combater seus inimigos.",
         dica2: "É conhecido por sua beleza tão perigosa quanto letal."
     },
@@ -2333,7 +2364,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/kouga.jpg",
+        imgSrc: "/dle/characters/characters/kouga.jpg",
         dica1: "Um jovem escolhido pelo destino para proteger Athena.",
         dica2: "Possui uma determinação que cresce em meio aos desafios."
     },
@@ -2350,7 +2381,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/souma.jpg",
+        imgSrc: "/dle/characters/characters/souma.jpg",
         dica1: "Sua força está ligada ao poder de sua amizade.",
         dica2: "Usa ataques inspirados na ferocidade de um leão."
     },
@@ -2367,7 +2398,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/yuna.jpg",
+        imgSrc: "/dle/characters/characters/yuna.jpg",
         dica1: "Cavaleira com forte ligação ao vento.",
         dica2: "Luta pela liberdade e justiça."
     },
@@ -2384,7 +2415,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/ryuho.jpg",
+        imgSrc: "/dle/characters/characters/ryuho.jpg",
         dica1: "Filho de um lendário Cavaleiro de Ouro.",
         dica2: "Usa um escudo indestrutível em combate."
     },
@@ -2401,7 +2432,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/haruto.jpg",
+        imgSrc: "/dle/characters/characters/haruto.jpg",
         dica1: "Mestre em técnicas ninjas.",
         dica2: "Combina astúcia e força em suas batalhas."
     },
@@ -2418,7 +2449,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/eden.jpg",
+        imgSrc: "/dle/characters/characters/eden.jpg",
         dica1: "Inicialmente lutou contra os Cavaleiros de Bronze.",
         dica2: "Carrega um poder devastador associado ao trovão."
     },
@@ -2435,7 +2466,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/subaru.jpg",
+        imgSrc: "/dle/characters/characters/subaru.jpg",
         dica1: "Um Cavaleiro em busca de sua verdadeira força.",
         dica2: "Seu potencial vai além do que aparenta."
     },
@@ -2456,7 +2487,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/shiryuLibra.jpg",
+        imgSrc: "/dle/characters/characters/shiryuLibra.jpg",
         dica1: "Assumiu o legado de seu mestre no Santuário.",
         dica2: "Porta as doze armas da balança em batalha."
     },
@@ -2473,7 +2504,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/kiki.jpg",
+        imgSrc: "/dle/characters/characters/kiki.jpg",
         dica1: "Um ex-discípulo que se tornou um poderoso cavaleiro.",
         dica2: "Especialista em telecinese e criação de barreiras."
     },
@@ -2490,7 +2521,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/harbinger.jpg",
+        imgSrc: "/dle/characters/characters/harbinger.jpg",
         dica1: "Sua força avassaladora é sua principal arma.",
         dica2: "Protege a segunda casa com bravura."
     },
@@ -2507,7 +2538,7 @@ const characters = [
         patente: "Cavaleira de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/paradox.jpg",
+        imgSrc: "/dle/characters/characters/paradox.jpg",
         dica1: "Possui uma personalidade complexa e contraditória.",
         dica2: "Sua técnica é tão enigmática quanto seu comportamento."
     },
@@ -2524,7 +2555,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/schiller.jpg",
+        imgSrc: "/dle/characters/characters/schiller.jpg",
         dica1: "Controla almas com suas habilidades sombrias.",
         dica2: "Guarda a casa de Câncer com técnicas mortais."
     },
@@ -2541,7 +2572,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/micenas.jpg",
+        imgSrc: "/dle/characters/characters/micenas.jpg",
         dica1: "É conhecido por sua força de líder nato.",
         dica2: "Protege o Santuário com ataques poderosos."
     },
@@ -2558,7 +2589,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/fudou.jpg",
+        imgSrc: "/dle/characters/characters/fudou.jpg",
         dica1: "É calmo e busca equilíbrio em suas lutas.",
         dica2: "Seus ataques são baseados em meditação e energia espiritual."
     },
@@ -2575,7 +2606,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/gembu.jpg",
+        imgSrc: "/dle/characters/characters/gembu.jpg",
         dica1: "Um mestre em artes marciais e justiça.",
         dica2: "Lutou ao lado de Shiryu em sua juventude."
     },
@@ -2592,7 +2623,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/sonia.jpg",
+        imgSrc: "/dle/characters/characters/sonia.jpg",
         dica1: "Carrega a determinação de um escorpião em combate.",
         dica2: "Seu passado está ligado a grandes desafios pessoais."
     },
@@ -2609,7 +2640,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/seiyasagitario.jpg",
+        imgSrc: "/dle/characters/characters/seiyasagitario.jpg",
         dica1: "Um herói que alcançou o posto de Cavaleiro de Ouro.",
         dica2: "Seu legado é reconhecido por todos os cavaleiros."
     },
@@ -2626,7 +2657,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/ionia.jpg",
+        imgSrc: "/dle/characters/characters/ionia.jpg",
         dica1: "Um cavaleiro antigo com séculos de experiência.",
         dica2: "Possui habilidades de combate excepcionais."
     },
@@ -2643,7 +2674,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/tokisada.jpg",
+        imgSrc: "/dle/characters/characters/tokisada.jpg",
         dica1: "Manipula o tempo como sua principal habilidade.",
         dica2: "É conhecido por sua precisão e inteligência."
     },
@@ -2660,7 +2691,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/amor.jpg",
+        imgSrc: "/dle/characters/characters/amor.jpg",
         dica1: "Luta com beleza e eficiência mortais.",
         dica2: "Seus ataques utilizam rosas venenosas."
     },
@@ -2680,7 +2711,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/mars.jpg",
+        imgSrc: "/dle/characters/characters/mars.jpg",
         dica1: "Busca moldar o mundo de acordo com sua visão.",
         dica2: "É um deus associado ao fogo e à guerra."
     },
@@ -2700,7 +2731,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/pallas.jpg",
+        imgSrc: "/dle/characters/characters/pallas.jpg",
         dica1: "Irmã de Athena com um complexo de rivalidade.",
         dica2: "Sua missão está ligada ao equilíbrio universal."
     },
@@ -2717,7 +2748,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Saturno",
         saga: "Omega",
-        imgSrc: "/dle/saturno.jpg",
+        imgSrc: "/dle/characters/characters/saturno.jpg",
         dica1: "Representa o tempo e o julgamento final.",
         dica2: "Seu poder transcende todos os cavaleiros."
     },
@@ -2734,7 +2765,7 @@ const characters = [
         patente: "Pallasito de Primeira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/titan.jpg",
+        imgSrc: "/dle/characters/characters/titan.jpg",
         dica1: "Leal a Pallas até o fim.",
         dica2: "Sua força é tão sólida quanto sua lealdade."
     },
@@ -2751,7 +2782,7 @@ const characters = [
         patente: "Pallasito de Primeira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/hyperion.jpg",
+        imgSrc: "/dle/characters/characters/hyperion.jpg",
         dica1: "O mais poderoso entre os Pallasitos.",
         dica2: "Empunha uma arma imensa que reflete seu poder."
     },
@@ -2768,7 +2799,7 @@ const characters = [
         patente: "Pallasito de Primeira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/gallia.jpg",
+        imgSrc: "/dle/characters/characters/gallia.jpg",
         dica1: "Sua determinação é tão letal quanto um escorpião.",
         dica2: "Combina inteligência e força em suas batalhas."
     },
@@ -2785,7 +2816,7 @@ const characters = [
         patente: "Pallasito de Primeira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/aegir.jpg",
+        imgSrc: "/dle/characters/characters/aegir.jpg",
         dica1: "Ágil e rápido como uma corrente marítima.",
         dica2: "Possui habilidades únicas de manipulação da água."
     }, 
@@ -2805,7 +2836,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Artemis",
         saga: "Prologo do Céu",
-        imgSrc: "/dle/artemis.jpg",
+        imgSrc: "/dle/characters/characters/artemis.jpg",
         dica1: "Deusa da Lua e irmã de Athena.",
         dica2: "Comanda os Cavaleiros Celestiais em sua missão divina."
     },
@@ -2822,7 +2853,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Apolo",
         saga: "Prologo do Céu",
-        imgSrc: "/dle/apolo.jpg",
+        imgSrc: "/dle/characters/characters/apolo.jpg",
         dica1: "Deus do Sol e irmão gêmeo de Artemis.",
         dica2: "Seu brilho e poder são incomparáveis no Olimpo."
     },
@@ -2838,7 +2869,7 @@ const characters = [
         patente: "Cavaleiro Celestial",
         exercito: "Exército de Artemis",
         saga: "Prologo do Céu",
-        imgSrc: "/dle/odysseu.jpg",
+        imgSrc: "/dle/characters/characters/odysseu.jpg",
         dica1: "Um Cavaleiro Celestial conhecido por sua sabedoria.",
         dica2: "Sua lealdade à deusa da Lua é inquestionável."
     },
@@ -2854,7 +2885,7 @@ const characters = [
         patente: "Cavaleiro Celestial",
         exercito: "Exército de Artemis",
         saga: "Prologo do Céu",
-        imgSrc: "/dle/teseu.jpg",
+        imgSrc: "/dle/characters/characters/teseu.jpg",
         dica1: "Sua estratégia em batalha é comparada a lendas antigas.",
         dica2: "Tem um papel crucial na defesa do Monte Olimpo."
     },
@@ -2870,7 +2901,7 @@ const characters = [
         patente: "Cavaleiro Celestial",
         exercito: "Exército de Artemis",
         saga: "Prologo do Céu",
-        imgSrc: "/dle/tohma.jpg",
+        imgSrc: "/dle/characters/characters/tohma.jpg",
         dica1: "Sua armadura reflete a lenda do voo de Ícaro.",
         dica2: "Busca redenção enquanto serve aos deuses celestiais."
     },
@@ -2890,7 +2921,7 @@ const characters = [
         patente: "Saintia de Bronze",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/shoko.jpg",
+        imgSrc: "/dle/characters/characters/shoko.jpg",
         dica1: "Descobriu seu destino após eventos misteriosos.",
         dica2: "Sua conexão com Cavalo Menor é um legado familiar."
     },
@@ -2907,7 +2938,7 @@ const characters = [
         patente: "Saintia de Bronze",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/kyoko.jpg",
+        imgSrc: "/dle/characters/characters/kyoko.jpg",
         dica1: "Irmã mais velha com uma determinação inabalável.",
         dica2: "Sua luta reflete o desejo de proteger Shoko."
     },
@@ -2924,7 +2955,7 @@ const characters = [
         patente: "Saintia de Bronze",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/mii.jpg",
+        imgSrc: "/dle/characters/characters/mii.jpg",
         dica1: "Fiel assistente de Athena no Santuário.",
         dica2: "Sua habilidade é comparável à graciosidade de um golfinho."
     },
@@ -2941,7 +2972,7 @@ const characters = [
         patente: "Saintia de Bronze",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/xiaoling.jpg",
+        imgSrc: "/dle/characters/characters/xiaoling.jpg",
         dica1: "A mais jovem entre as Saintias.",
         dica2: "Sua força e determinação superam sua idade."
     },
@@ -2958,7 +2989,7 @@ const characters = [
         patente: "Saintia de Prata",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/katya.jpg",
+        imgSrc: "/dle/characters/characters/katya.jpg",
         dica1: "Vem de terras geladas e luta com serenidade.",
         dica2: "Seu poder reflete a constelação que representa."
     },
@@ -2975,7 +3006,7 @@ const characters = [
         patente: "Saintia de Prata",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/elda.jpg",
+        imgSrc: "/dle/characters/characters/elda.jpg",
         dica1: "Uma guerreira com espírito de liderança.",
         dica2: "Representa a constelação de uma rainha mítica."
     }    

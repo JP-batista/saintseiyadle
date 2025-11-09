@@ -14,7 +14,7 @@ const quotes = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/seiya.jpg",
+        imgSrc: "/dle/characters/seiya.jpg",
         quotes: [
             {
                 idQuote: "seiya_001",
@@ -85,7 +85,7 @@ const quotes = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/shiryu.jpg",
+        imgSrc: "/dle/characters/shiryu.jpg",
         quotes: [
             {
                 idQuote: "shiryu_001",
@@ -181,7 +181,7 @@ const quotes = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/hyoga.jpg",
+        imgSrc: "/dle/characters/hyoga.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -204,7 +204,7 @@ const quotes = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/shun.jpg",
+        imgSrc: "/dle/characters/shun.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -227,7 +227,7 @@ const quotes = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/ikki.jpg",
+        imgSrc: "/dle/characters/ikki.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -253,7 +253,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/mu.jpg",
+        imgSrc: "/dle/characters/mu.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -276,7 +276,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/aldebaran.jpg",
+        imgSrc: "/dle/characters/aldebaran.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -299,7 +299,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/saga.jpg",
+        imgSrc: "/dle/characters/saga.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -322,7 +322,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/mascaradamorte.jpg",
+        imgSrc: "/dle/characters/mascaradamorte.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -345,7 +345,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/aiolia.jpg",
+        imgSrc: "/dle/characters/aiolia.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -368,7 +368,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/shaka.jpg",
+        imgSrc: "/dle/characters/shaka.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -391,7 +391,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/mestreanciao.jpg",
+        imgSrc: "/dle/characters/mestreanciao.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -414,7 +414,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/milo.jpg",
+        imgSrc: "/dle/characters/milo.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -437,7 +437,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/aiolos.jpg",
+        imgSrc: "/dle/characters/aiolos.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -460,7 +460,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/shura.jpg",
+        imgSrc: "/dle/characters/shura.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -483,7 +483,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/camus.jpg",
+        imgSrc: "/dle/characters/camus.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -506,7 +506,7 @@ const quotes = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/afrodite.jpg",
+        imgSrc: "/dle/characters/afrodite.jpg",
         quotes: [
             {
                 idQuote: "",
@@ -532,7 +532,7 @@ const quotes = [
         patente: "Deusa",
         exercito: "Exército de Athena",
         saga: "Santuário",
-        imgSrc: "/dle/athena.jpg",
+        imgSrc: "/dle/characters/athena.jpg",
         quotes: [
             {
                 idQuote: "",

@@ -13,7 +13,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/seiya.jpg" 
+        imgSrc: "/dle/characters/seiya.jpg" 
     },
     {
         nome: "Shiryu de Dragão",
@@ -26,7 +26,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/shiryu.jpg" 
+        imgSrc: "/dle/characters/shiryu.jpg" 
     },
     {
         nome: "Hyoga de Cisne",
@@ -39,7 +39,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuario",          
-        imgSrc: "/dle/hyoga.jpg" 
+        imgSrc: "/dle/characters/hyoga.jpg" 
     },
     {
         nome: "Shun de Andrômeda",
@@ -52,7 +52,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/shun.jpg" 
+        imgSrc: "/dle/characters/shun.jpg" 
     },
     {
         nome: "Ikki de Fênix",
@@ -65,7 +65,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/ikki.jpg" 
+        imgSrc: "/dle/characters/ikki.jpg" 
     },
     {
         nome: "Jabu de Unicórnio",
@@ -78,7 +78,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/jabu.jpg"
+        imgSrc: "/dle/characters/jabu.jpg"
     },
     {
         nome: "Ichi de Hidra",
@@ -91,7 +91,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/ichi.jpg"
+        imgSrc: "/dle/characters/ichi.jpg"
     },
     {
         nome: "Nachi de Lobo",
@@ -104,7 +104,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/nachi.jpg"
+        imgSrc: "/dle/characters/nachi.jpg"
     },
     {
         nome: "Ban de Leão Menor",
@@ -117,7 +117,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/ban.jpg"
+        imgSrc: "/dle/characters/ban.jpg"
     },
     {
         nome: "Geki de Urso",
@@ -130,7 +130,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/geki.jpg"
+        imgSrc: "/dle/characters/geki.jpg"
     },
     {
         nome: "June de Camaleão",
@@ -143,7 +143,7 @@ const characters = [
         patente: "Cavaleira de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/june.jpg"
+        imgSrc: "/dle/characters/june.jpg"
     },
 
     //Cavaleiros de Prata Classicos
@@ -159,7 +159,7 @@ const characters = [
         patente: "Cavaleira de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/shina.jpg"
+        imgSrc: "/dle/characters/shina.jpg"
     },
     {
         nome: "Misty de Lagarto",
@@ -172,7 +172,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/misty.jpg"
+        imgSrc: "/dle/characters/misty.jpg"
     },
     {
         nome: "Babel de Centauro",
@@ -185,7 +185,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/babel.jpg"
+        imgSrc: "/dle/characters/babel.jpg"
     },
     {
         nome: "Capella de Auriga",
@@ -198,7 +198,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/capella.jpg"
+        imgSrc: "/dle/characters/capella.jpg"
     },
     {
         nome: "Dante de Cérbero",
@@ -211,7 +211,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/dante.jpg"
+        imgSrc: "/dle/characters/dante.jpg"
     },
     {
         nome: "Jamian de Corvo",
@@ -224,7 +224,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/jamian.jpg"
+        imgSrc: "/dle/characters/jamian.jpg"
     },
     {
         nome: "Asterion de Cães de Caça",
@@ -237,7 +237,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/asterion.jpg"
+        imgSrc: "/dle/characters/asterion.jpg"
     },
     {
         nome: "Mouses de Baleia",
@@ -250,7 +250,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/mouses.jpg"
+        imgSrc: "/dle/characters/mouses.jpg"
     },
     {
         nome: "Algol de Perseu",
@@ -263,7 +263,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/algol.jpg"
+        imgSrc: "/dle/characters/algol.jpg"
     },
     {
         nome: "Dio de Mosca",
@@ -276,7 +276,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/dio.jpg"
+        imgSrc: "/dle/characters/dio.jpg"
     },
     {
         nome: "Sirius de Cão Maior",
@@ -289,7 +289,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/sirius.jpg"
+        imgSrc: "/dle/characters/sirius.jpg"
     },
     {
         nome: "Algheti de Hércules",
@@ -302,7 +302,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/algheti.jpg"
+        imgSrc: "/dle/characters/algheti.jpg"
     },
     {
         nome: "Shiva de Pavão",
@@ -315,7 +315,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/shiva.jpg"
+        imgSrc: "/dle/characters/shiva.jpg"
     },
     {
         nome: "Ágora de Lótus",
@@ -328,7 +328,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/agora.jpg"
+        imgSrc: "/dle/characters/agora.jpg"
     },
     {
         nome: "Albion (Daidaros) de Cefeu",
@@ -341,7 +341,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/albion.jpg"
+        imgSrc: "/dle/characters/albion.jpg"
     },
     {
         nome: "Marin de Águia",
@@ -354,7 +354,7 @@ const characters = [
         patente: "Cavaleira de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/marin.jpg"
+        imgSrc: "/dle/characters/marin.jpg"
     },
     {
         nome: "Aracne de Tarântula",
@@ -367,7 +367,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/aracne.jpg"
+        imgSrc: "/dle/characters/aracne.jpg"
     },
     {
         nome: "Tremy de Flecha (Sagita)",
@@ -380,7 +380,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/tremy.jpg"
+        imgSrc: "/dle/characters/tremy.jpg"
     },
     {
         nome: "Orfeu de Lira",
@@ -393,7 +393,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Hades",
-        imgSrc: "/dle/orfeu.jpg"
+        imgSrc: "/dle/characters/orfeu.jpg"
     },
 
     //Cavaleiros de Ouro Classicos
@@ -409,7 +409,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/mu.jpg"
+        imgSrc: "/dle/characters/mu.jpg"
     },
     {
         nome: "Aldebaran de Touro",
@@ -422,7 +422,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/aldebaran.jpg"
+        imgSrc: "/dle/characters/aldebaran.jpg"
     },
     {
         nome: "Saga de Gêmeos",
@@ -435,7 +435,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/saga.jpg"
+        imgSrc: "/dle/characters/saga.jpg"
     },
     {
         nome: "Máscara da Morte de Câncer",
@@ -448,7 +448,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/mascaradamorte.jpg"
+        imgSrc: "/dle/characters/mascaradamorte.jpg"
     },
     {
         nome: "Aiolia de Leão",
@@ -461,7 +461,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/aiolia.jpg"
+        imgSrc: "/dle/characters/aiolia.jpg"
     },
     {
         nome: "Shaka de Virgem",
@@ -474,7 +474,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/shaka.jpg"
+        imgSrc: "/dle/characters/shaka.jpg"
     },
     {
         nome: "Dohko de Libra (Classico)",
@@ -487,7 +487,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/mestreanciao.jpg"
+        imgSrc: "/dle/characters/mestreanciao.jpg"
     },
     {
         nome: "Milo de Escorpião",
@@ -500,7 +500,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/milo.jpg"
+        imgSrc: "/dle/characters/milo.jpg"
     },
     {
         nome: "Aiolos de Sagitário",
@@ -513,7 +513,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/aiolos.jpg"
+        imgSrc: "/dle/characters/aiolos.jpg"
     },
     {
         nome: "Shura de Capricórnio",
@@ -526,7 +526,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/shura.jpg"
+        imgSrc: "/dle/characters/shura.jpg"
     },
     {
         nome: "Camus de Aquário",
@@ -539,7 +539,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/camus.jpg"
+        imgSrc: "/dle/characters/camus.jpg"
     },
     {
         nome: "Afrodite de Peixes",
@@ -552,7 +552,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/afrodite.jpg"
+        imgSrc: "/dle/characters/afrodite.jpg"
     },
 
     //Deusa Athena 
@@ -568,7 +568,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/athena.jpg"
+        imgSrc: "/dle/characters/athena.jpg"
     },
 
     //Cavaleiros Negros Classicos
@@ -584,7 +584,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/kenuma.jpg"
+        imgSrc: "/dle/characters/kenuma.jpg"
     },
     {
         nome: "Shinadekuro de Dragão Negro",
@@ -597,7 +597,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/shinadekuro.jpg"
+        imgSrc: "/dle/characters/shinadekuro.jpg"
     },
     {
         nome: "Jid de Cisne Negro",
@@ -610,7 +610,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/jid.jpg"
+        imgSrc: "/dle/characters/jid.jpg"
     },
     {
         nome: "Andrômeda Negro",
@@ -623,7 +623,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/andromedanegro.jpg"
+        imgSrc: "/dle/characters/andromedanegro.jpg"
     },
     {
         nome: "Ritahoa de Fênix Negro",
@@ -636,7 +636,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/ritahoa.jpg"
+        imgSrc: "/dle/characters/ritahoa.jpg"
     },
     {
         nome: "Jango",
@@ -649,7 +649,7 @@ const characters = [
         patente: "Cavaleiro Negro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/jango.jpg"
+        imgSrc: "/dle/characters/jango.jpg"
     },
     {
         nome: "Guilty",
@@ -662,7 +662,7 @@ const characters = [
         patente: "Desconhecida",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/guilty.jpg"
+        imgSrc: "/dle/characters/guilty.jpg"
     },
     
     //Guerreiros do Santuario
@@ -678,7 +678,7 @@ const characters = [
         patente: "Guerreiro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/docrates.jpg"
+        imgSrc: "/dle/characters/docrates.jpg"
     },
     {
         nome: "Spartan",
@@ -691,7 +691,7 @@ const characters = [
         patente: "Guerreiro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/spartan.jpg"
+        imgSrc: "/dle/characters/spartan.jpg"
     },
     {
         nome: "Gigas",
@@ -704,7 +704,7 @@ const characters = [
         patente: "Guerreiro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/gigas.jpg"
+        imgSrc: "/dle/characters/gigas.jpg"
     },
     {
         nome: "Phaeton",
@@ -717,7 +717,7 @@ const characters = [
         patente: "Guerreiro",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/phaeton.jpg"
+        imgSrc: "/dle/characters/phaeton.jpg"
     },
 
     //Cavaleiros Fantasmas
@@ -733,7 +733,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/geist.jpg"
+        imgSrc: "/dle/characters/geist.jpg"
     },
     {
         nome: "Serpente Marinha",
@@ -746,7 +746,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/serpentemarina.jpg"
+        imgSrc: "/dle/characters/serpentemarina.jpg"
     },
     {
         nome: "Medusa",
@@ -759,7 +759,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/medusa.jpg"
+        imgSrc: "/dle/characters/medusa.jpg"
     },
     {
         nome: "Golfinho",
@@ -772,7 +772,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/chama.jpg"
+        imgSrc: "/dle/characters/chama.jpg"
     },
     
     //Cavaleiros de Aço
@@ -788,7 +788,7 @@ const characters = [
         patente: "Cavaleiro de Aço",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/sho.jpg"
+        imgSrc: "/dle/characters/sho.jpg"
     },
     {
         nome: "Daichi de Terra",
@@ -801,7 +801,7 @@ const characters = [
         patente: "Cavaleiro de Aço",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/daichi.jpg"
+        imgSrc: "/dle/characters/daichi.jpg"
     },
     {
         nome: "Ushô de Mar",
@@ -814,7 +814,7 @@ const characters = [
         patente: "Cavaleiro de Aço",
         exercito: "Exército de Athena",
         saga: "Santuario",
-        imgSrc: "/dle/ushio.jpg"
+        imgSrc: "/dle/characters/ushio.jpg"
     },
 
     //Guerreiros Deuses de Asgard
@@ -830,7 +830,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/siegfried.jpg"
+        imgSrc: "/dle/characters/siegfried.jpg"
     },
     {
         nome: "Hagen de Merak",
@@ -843,7 +843,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/hagen.jpg"
+        imgSrc: "/dle/characters/hagen.jpg"
     },
     {
         nome: "Thor de Phecda",
@@ -856,7 +856,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/thor.jpg"
+        imgSrc: "/dle/characters/thor.jpg"
     },
     {
         nome: "Fenrir de Alioth",
@@ -869,7 +869,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/fenrir.jpg"
+        imgSrc: "/dle/characters/fenrir.jpg"
     },
     {
         nome: "Mime de Benetnasch",
@@ -882,7 +882,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/mime.jpg"
+        imgSrc: "/dle/characters/mime.jpg"
     },
     {
         nome: "Alberich de Megrez",
@@ -895,7 +895,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/alberich.jpg"
+        imgSrc: "/dle/characters/alberich.jpg"
     },
     {
         nome: "Shido de Mizar",
@@ -908,7 +908,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/syd.jpg"
+        imgSrc: "/dle/characters/syd.jpg"
     },
     {
         nome: "Bado de Alcor",
@@ -921,7 +921,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/bud.jpg"
+        imgSrc: "/dle/characters/bud.jpg"
     },
     {
         nome: "Hilda de Polaris",
@@ -934,7 +934,7 @@ const characters = [
         patente: "Sacerdotisa de Odin",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/hilda.jpg"
+        imgSrc: "/dle/characters/hilda.jpg"
     },
     {
         nome: "Freya",
@@ -947,7 +947,7 @@ const characters = [
         patente: "Habitante de Asgard",
         exercito: "Exército de Asgard",
         saga: "Asgard",
-        imgSrc: "/dle/freya.jpg"
+        imgSrc: "/dle/characters/freya.jpg"
     },
 
     //Deus Odin
@@ -963,7 +963,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Odin",
         saga: "Asgard",
-        imgSrc: "/dle/odin.jpg"
+        imgSrc: "/dle/characters/odin.jpg"
     },
 
     //Marinas de Poseidon Classico
@@ -979,7 +979,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/baian.jpg"
+        imgSrc: "/dle/characters/baian.jpg"
     },
     {
         nome: "Io de Scylla",
@@ -992,7 +992,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/io.jpg"
+        imgSrc: "/dle/characters/io.jpg"
     },
     {
         nome: "Krishna de Chrysaor",
@@ -1005,7 +1005,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/krishna.jpg"
+        imgSrc: "/dle/characters/krishna.jpg"
     },
     {
         nome: "Kassa de Lymnades",
@@ -1018,7 +1018,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/kassa.jpg"
+        imgSrc: "/dle/characters/kassa.jpg"
     },
     {
         nome: "Isaac de Kraken",
@@ -1031,7 +1031,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/isaac.jpg"
+        imgSrc: "/dle/characters/isaac.jpg"
     },
     {
         nome: "Sorento de Sirene",
@@ -1044,7 +1044,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/sorento.jpg"
+        imgSrc: "/dle/characters/sorento.jpg"
     },
     {
         nome: "Kanon de Dragão Marinho",
@@ -1057,7 +1057,7 @@ const characters = [
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/kanon.jpg"
+        imgSrc: "/dle/characters/kanon.jpg"
     },
     {
         nome: "Tetis de Sereia",
@@ -1070,7 +1070,7 @@ const characters = [
         patente: "Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/tetis.jpg"
+        imgSrc: "/dle/characters/tetis.jpg"
     },
     
     //Deus Poseidon
@@ -1086,7 +1086,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
-        imgSrc: "/dle/poseidon.jpg"
+        imgSrc: "/dle/characters/poseidon.jpg"
     },
 
     //Espectros de Hades Classico
@@ -1102,7 +1102,7 @@ const characters = [
         patente: "Juiz do Inferno",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/radamanthys.jpg"
+        imgSrc: "/dle/characters/radamanthys.jpg"
     },
     {
         nome: "Minos de Griffon",
@@ -1115,7 +1115,7 @@ const characters = [
         patente: "Juiz do Inferno",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/minos.jpg"
+        imgSrc: "/dle/characters/minos.jpg"
     },
     {
         nome: "Aiacos de Garuda",
@@ -1128,7 +1128,7 @@ const characters = [
         patente: "Juiz do Inferno",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/aiacos.jpg"
+        imgSrc: "/dle/characters/aiacos.jpg"
     },
     {
         nome: "Niobe de Deep",
@@ -1141,7 +1141,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/niobe.jpg"
+        imgSrc: "/dle/characters/niobe.jpg"
     },
     {
         nome: "Myu de Papillon (Borboleta)",
@@ -1154,7 +1154,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/myu.jpg"
+        imgSrc: "/dle/characters/myu.jpg"
     },
     {
         nome: "Giganto de Ciclope",
@@ -1167,7 +1167,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/giganto.jpg"
+        imgSrc: "/dle/characters/giganto.jpg"
     },
     {
         nome: "Laimi de Verme",
@@ -1180,7 +1180,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/laimi.jpg"
+        imgSrc: "/dle/characters/laimi.jpg"
     },
     {
         nome: "Zelos de Sapo",
@@ -1193,7 +1193,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/zelos.jpg"
+        imgSrc: "/dle/characters/zelos.jpg"
     },
     {
         nome: "Kiew (Cube) de Durahan",
@@ -1206,7 +1206,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/kiew.jpg"
+        imgSrc: "/dle/characters/kiew.jpg"
     },
     {
         nome: "Ox de Górgona",
@@ -1219,7 +1219,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/ox.jpg"
+        imgSrc: "/dle/characters/ox.jpg"
     },
     {
         nome: "Miles de Elfo",
@@ -1232,7 +1232,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/miles.jpg"
+        imgSrc: "/dle/characters/miles.jpg"
     },
     {
         nome: "Caronte de Aqueronte",
@@ -1245,7 +1245,7 @@ const characters = [
         patente: "Barqueiro do Inferno",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/caronte.jpg"
+        imgSrc: "/dle/characters/caronte.jpg"
     },
     {
         nome: "Lune de Balron",
@@ -1258,7 +1258,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/lune.jpg"
+        imgSrc: "/dle/characters/lune.jpg"
     },
     {
         nome: "Faraó de Esfinge",
@@ -1271,7 +1271,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/farao.jpg"
+        imgSrc: "/dle/characters/farao.jpg"
     },
     {
         nome: "Iwan de Troll",
@@ -1284,7 +1284,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/iwan.jpg"
+        imgSrc: "/dle/characters/iwan.jpg"
     },
     {
         nome: "Rock de Golem",
@@ -1297,7 +1297,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/rock.jpg"
+        imgSrc: "/dle/characters/rock.jpg"
     },
     {
         nome: "Flégias de Lycaon",
@@ -1310,7 +1310,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/flegias.jpg"
+        imgSrc: "/dle/characters/flegias.jpg"
     },
     {
         nome: "Stand de Besouro Mortal",
@@ -1323,7 +1323,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/stand.jpg"
+        imgSrc: "/dle/characters/stand.jpg"
     },
     {
         nome: "Markino",
@@ -1336,7 +1336,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/markino.jpg"
+        imgSrc: "/dle/characters/markino.jpg"
     },
     {
         nome: "Gordon de Minotauro",
@@ -1349,7 +1349,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/gordon.jpg"
+        imgSrc: "/dle/characters/gordon.jpg"
     },
     {
         nome: "Queen de Mandrágora (Alraune)",
@@ -1362,7 +1362,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/queen.jpg"
+        imgSrc: "/dle/characters/queen.jpg"
     },
     {
         nome: "Sylphid de Basilisco",
@@ -1375,7 +1375,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/sylphid.jpg"
+        imgSrc: "/dle/characters/sylphid.jpg"
     },
     {
         nome: "Valentine de Harpia",
@@ -1388,7 +1388,7 @@ const characters = [
         patente: "Espectro",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/valentine.jpg"
+        imgSrc: "/dle/characters/valentine.jpg"
     },    
     {
         nome: "Pandora",
@@ -1401,7 +1401,7 @@ const characters = [
         patente: "Líder dos Espectros",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/pandora.jpg"
+        imgSrc: "/dle/characters/pandora.jpg"
     },
     {
         nome: "Hypnos",
@@ -1414,7 +1414,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/hypnos.jpg"
+        imgSrc: "/dle/characters/hypnos.jpg"
     },
     {
         nome: "Thanatos",
@@ -1427,7 +1427,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/thanatos.jpg"
+        imgSrc: "/dle/characters/thanatos.jpg"
     },
     {
         nome: "Hades",
@@ -1440,7 +1440,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Hades",
         saga: "Hades",
-        imgSrc: "/dle/hades.jpg"
+        imgSrc: "/dle/characters/hades.jpg"
     },
 
     //Cavaleiros de Ouro Lost Canvas
@@ -1456,7 +1456,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/shion.jpg"
+        imgSrc: "/dle/characters/shion.jpg"
     },
     {
         nome: "Hasgard de Touro",
@@ -1469,7 +1469,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/hasgard.jpg"
+        imgSrc: "/dle/characters/hasgard.jpg"
     },
     {
         nome: "Teneo de Touro",
@@ -1482,7 +1482,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/teneo.jpg"
+        imgSrc: "/dle/characters/teneo.jpg"
     },
     {
         nome: "Defteros de Gêmeos",
@@ -1495,7 +1495,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/defteros.jpg"
+        imgSrc: "/dle/characters/defteros.jpg"
     },
     {
         nome: "Aspros de Gêmeos",
@@ -1508,7 +1508,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/aspros.jpg"
+        imgSrc: "/dle/characters/aspros.jpg"
     },
     {
         nome: "Manigold de Câncer",
@@ -1521,7 +1521,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/manigold.jpg"
+        imgSrc: "/dle/characters/manigold.jpg"
     },
     {
         nome: "Regulus de Leão",
@@ -1534,7 +1534,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/regulus.jpg"
+        imgSrc: "/dle/characters/regulus.jpg"
     },
     {
         nome: "Ilias de Leão",
@@ -1547,7 +1547,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/ilias.jpg"
+        imgSrc: "/dle/characters/ilias.jpg"
     },
     {
         nome: "Asmita de Virgem",
@@ -1560,7 +1560,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/asmita.jpg"
+        imgSrc: "/dle/characters/asmita.jpg"
     },
     {
         nome: "Dohko de Libra (Lost Canvas)",
@@ -1573,7 +1573,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/dohko.jpg"
+        imgSrc: "/dle/characters/dohko.jpg"
     },
     {
         nome: "Kardia de Escorpião",
@@ -1586,7 +1586,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/kardia.jpg"
+        imgSrc: "/dle/characters/kardia.jpg"
     },
     {
         nome: "Sísifo de Sagitário",
@@ -1599,7 +1599,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/sisifo.jpg"
+        imgSrc: "/dle/characters/sisifo.jpg"
     },
     {
         nome: "El Cid de Capricórnio",
@@ -1612,7 +1612,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/elcid.jpg"
+        imgSrc: "/dle/characters/elcid.jpg"
     },
     {
         nome: "Dégel de Aquário",
@@ -1625,7 +1625,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/degel.jpg"
+        imgSrc: "/dle/characters/degel.jpg"
     },
     {
         nome: "Albafica de Peixes",
@@ -1638,7 +1638,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/albafica.jpg"
+        imgSrc: "/dle/characters/albafica.jpg"
     },
     {
         nome: "Lugonis de Peixes",
@@ -1651,7 +1651,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/lugonis.jpg"
+        imgSrc: "/dle/characters/lugonis.jpg"
     },
 
     //Cavaleiros de Bronze/Prata Lost Canvas
@@ -1667,7 +1667,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/tenma.jpg"
+        imgSrc: "/dle/characters/tenma.jpg"
     },
     {
         nome: "Yato de Unicórnio",
@@ -1680,7 +1680,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/yato.jpg"
+        imgSrc: "/dle/characters/yato.jpg"
     },
     {
         nome: "Yuzuriha de Grou",
@@ -1693,7 +1693,7 @@ const characters = [
         patente: "Cavaleira de Prata",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/yuzuriha.jpg"
+        imgSrc: "/dle/characters/yuzuriha.jpg"
     },
     {
         nome: "Hakurei de Altar",
@@ -1706,7 +1706,7 @@ const characters = [
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
-        imgSrc: "/dle/hakurei.jpg"
+        imgSrc: "/dle/characters/hakurei.jpg"
     },
 
     //Cavaleiros de Ouro Next Dimension
@@ -1722,7 +1722,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/shionnd.jpg"
+        imgSrc: "/dle/characters/shionnd.jpg"
     },
     {
         nome: "Ox de Touro",
@@ -1735,7 +1735,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/oxtouro.jpg"
+        imgSrc: "/dle/characters/oxtouro.jpg"
     },
     {
         nome: "Cain de Gêmeos",
@@ -1748,7 +1748,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/cain.jpg"
+        imgSrc: "/dle/characters/cain.jpg"
     },
     {
         nome: "Abel de Gêmeos",
@@ -1761,7 +1761,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/abel.jpg"
+        imgSrc: "/dle/characters/abel.jpg"
     },
     {
         nome: "Contador da Morte de Câncer",
@@ -1774,7 +1774,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/contador.jpg"
+        imgSrc: "/dle/characters/contador.jpg"
     },
     {
         nome: "Kaiser de Leão",
@@ -1787,7 +1787,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/kaiser.jpg"
+        imgSrc: "/dle/characters/kaiser.jpg"
     },
     {
         nome: "Shijima de Virgem",
@@ -1800,7 +1800,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/shijima.jpg"
+        imgSrc: "/dle/characters/shijima.jpg"
     },
     {
         nome: "Dohko de Libra (Next Dimension)",
@@ -1813,7 +1813,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/dohkond.jpg"
+        imgSrc: "/dle/characters/dohkond.jpg"
     },
     {
         nome: "Escarlate (Écarlate) de Escorpião",
@@ -1826,7 +1826,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/escarlate.jpg"
+        imgSrc: "/dle/characters/escarlate.jpg"
     },
     {
         nome: "Gestalt de Sagitário",
@@ -1839,7 +1839,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/gestalt.jpg"
+        imgSrc: "/dle/characters/gestalt.jpg"
     },
     {
         nome: "Izo de Capricórnio",
@@ -1852,7 +1852,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/izo.jpg"
+        imgSrc: "/dle/characters/izo.jpg"
     },
     {
         nome: "Mystoria de Aquário",
@@ -1865,7 +1865,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/mystoria.jpg"
+        imgSrc: "/dle/characters/mystoria.jpg"
     },
     {
         nome: "Cardinale de Peixes",
@@ -1878,7 +1878,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
-        imgSrc: "/dle/cardinale.jpg"
+        imgSrc: "/dle/characters/cardinale.jpg"
     },
 
     //Cavaleiros de Bronze/Prata Omega
@@ -1894,7 +1894,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/kouga.jpg"
+        imgSrc: "/dle/characters/kouga.jpg"
     },
     {
         nome: "Souma de Leão Menor",
@@ -1907,7 +1907,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/souma.jpg"
+        imgSrc: "/dle/characters/souma.jpg"
     },
     {
         nome: "Yuna de Águia",
@@ -1920,7 +1920,7 @@ const characters = [
         patente: "Cavaleira de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/yuna.jpg"
+        imgSrc: "/dle/characters/yuna.jpg"
     },
     {
         nome: "Ryuho de Dragão",
@@ -1933,7 +1933,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/ryuho.jpg"
+        imgSrc: "/dle/characters/ryuho.jpg"
     },
     {
         nome: "Haruto de Lobo",
@@ -1946,7 +1946,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/haruto.jpg"
+        imgSrc: "/dle/characters/haruto.jpg"
     },
     {
         nome: "Eden de Órion",
@@ -1959,7 +1959,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/eden.jpg"
+        imgSrc: "/dle/characters/eden.jpg"
     },
     {
         nome: "Subaru de Cavalo Menor",
@@ -1972,7 +1972,7 @@ const characters = [
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/subaru.jpg"
+        imgSrc: "/dle/characters/subaru.jpg"
     },
     
 
@@ -1989,7 +1989,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/shiryuLibra.jpg"
+        imgSrc: "/dle/characters/shiryuLibra.jpg"
     },
     {
         nome: "Kiki de Áries",
@@ -2002,7 +2002,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/kiki.jpg"
+        imgSrc: "/dle/characters/kiki.jpg"
     },
     {
         nome: "Harbinger de Touro",
@@ -2015,7 +2015,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/harbinger.jpg"
+        imgSrc: "/dle/characters/harbinger.jpg"
     },
     {
         nome: "Paradox de Gêmeos",
@@ -2028,7 +2028,7 @@ const characters = [
         patente: "Cavaleira de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/paradox.jpg"
+        imgSrc: "/dle/characters/paradox.jpg"
     },
     {
         nome: "Schiller de Câncer",
@@ -2041,7 +2041,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/schiller.jpg"
+        imgSrc: "/dle/characters/schiller.jpg"
     },
     {
         nome: "Micenas de Leão",
@@ -2054,7 +2054,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/micenas.jpg"
+        imgSrc: "/dle/characters/micenas.jpg"
     },
     {
         nome: "Fudou de Virgem",
@@ -2067,7 +2067,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/fudou.jpg"
+        imgSrc: "/dle/characters/fudou.jpg"
     },
     {
         nome: "Gembu de Libra",
@@ -2080,7 +2080,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/gembu.jpg"
+        imgSrc: "/dle/characters/gembu.jpg"
     },
     {
         nome: "Sonia de Escorpião",
@@ -2093,7 +2093,7 @@ const characters = [
         patente: "Cavaleira de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/sonia.jpg"
+        imgSrc: "/dle/characters/sonia.jpg"
     },
     {
         nome: "Seiya de Sagitário",
@@ -2106,7 +2106,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/seiyasagitario.jpg"
+        imgSrc: "/dle/characters/seiyasagitario.jpg"
     },
     {
         nome: "Ionia de Capricórnio",
@@ -2119,7 +2119,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/ionia.jpg"
+        imgSrc: "/dle/characters/ionia.jpg"
     },
     {
         nome: "Tokisada de Aquário",
@@ -2132,7 +2132,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/tokisada.jpg"
+        imgSrc: "/dle/characters/tokisada.jpg"
     },
     {
         nome: "Amor de Peixes",
@@ -2145,7 +2145,7 @@ const characters = [
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
-        imgSrc: "/dle/amor.jpg"
+        imgSrc: "/dle/characters/amor.jpg"
     },
     
     //Marcianos
@@ -2161,7 +2161,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/mars.jpg"
+        imgSrc: "/dle/characters/mars.jpg"
     },
     {
         nome: "Ordykia de Mantis",
@@ -2174,7 +2174,7 @@ const characters = [
         patente: "Marciano",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/ordykia.jpg"
+        imgSrc: "/dle/characters/ordykia.jpg"
     },
     {
         nome: "Radzinsky de Formiga",
@@ -2187,7 +2187,7 @@ const characters = [
         patente: "Marciano",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/radzinsky.jpg"
+        imgSrc: "/dle/characters/radzinsky.jpg"
     },
     {
         nome: "Ragno de Aranha",
@@ -2200,7 +2200,7 @@ const characters = [
         patente: "Marciano",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/ragno.jpg"
+        imgSrc: "/dle/characters/ragno.jpg"
     },
     {
         nome: "Comandante Marciano",
@@ -2213,7 +2213,7 @@ const characters = [
         patente: "Comandante",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/comandante.jpg"
+        imgSrc: "/dle/characters/comandante.jpg"
     },
     {
         nome: "Sonia de Vespa",
@@ -2226,7 +2226,7 @@ const characters = [
         patente: "Cavaleira de Ouro",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/soniavespa.jpg"
+        imgSrc: "/dle/characters/soniavespa.jpg"
     },
     {
         nome: "Medea",
@@ -2239,7 +2239,7 @@ const characters = [
         patente: "Sacerdotisa",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/medea.jpg"
+        imgSrc: "/dle/characters/medea.jpg"
     },
     {
         nome: "Baco",
@@ -2252,7 +2252,7 @@ const characters = [
         patente: "Marciano",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/baco.jpg"
+        imgSrc: "/dle/characters/baco.jpg"
     },
     {
         nome: "Diana",
@@ -2265,7 +2265,7 @@ const characters = [
         patente: "Marciana",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/diana.jpg"
+        imgSrc: "/dle/characters/diana.jpg"
     },
     {
         nome: "Vulcano",
@@ -2278,7 +2278,7 @@ const characters = [
         patente: "Marciano",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/vulcano.jpg"
+        imgSrc: "/dle/characters/vulcano.jpg"
     },
     {
         nome: "Rômulo",
@@ -2291,7 +2291,7 @@ const characters = [
         patente: "Marciano",
         exercito: "Exército de Marte",
         saga: "Omega",
-        imgSrc: "/dle/romulo.jpg"
+        imgSrc: "/dle/characters/romulo.jpg"
     },
 
     //Palasitos
@@ -2307,7 +2307,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/pallas.jpg"
+        imgSrc: "/dle/characters/pallas.jpg"
     },
     {
         nome: "Saturno",
@@ -2320,7 +2320,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Saturno",
         saga: "Omega",
-        imgSrc: "/dle/saturno.jpg"
+        imgSrc: "/dle/characters/saturno.jpg"
     },
     {
         nome: "Titan",
@@ -2333,7 +2333,7 @@ const characters = [
         patente: "Pallasito de Primeira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/titan.jpg"
+        imgSrc: "/dle/characters/titan.jpg"
     },
     {
         nome: "Hyperion",
@@ -2346,7 +2346,7 @@ const characters = [
         patente: "Pallasito de Primeira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/hyperion.jpg"
+        imgSrc: "/dle/characters/hyperion.jpg"
     },
     {
         nome: "Gallia",
@@ -2359,7 +2359,7 @@ const characters = [
         patente: "Pallasito de Primeira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/gallia.jpg"
+        imgSrc: "/dle/characters/gallia.jpg"
     },
     {
         nome: "Aegir",
@@ -2372,7 +2372,7 @@ const characters = [
         patente: "Pallasito de Primeira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/aegir.jpg"
+        imgSrc: "/dle/characters/aegir.jpg"
     }, 
     {
         nome: "Miller de Luva Alquímica",
@@ -2385,7 +2385,7 @@ const characters = [
         patente: "Pallasite de Classe Desconhecida",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/miller.jpg"
+        imgSrc: "/dle/characters/miller.jpg"
     },
     {
         nome: "Dione de Cobra de Plasma (Chicote)",
@@ -2398,7 +2398,7 @@ const characters = [
         patente: "Pallasite de Segunda Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/dione.jpg"
+        imgSrc: "/dle/characters/dione.jpg"
     },
     {
         nome: "Réia de Marionetes",
@@ -2411,7 +2411,7 @@ const characters = [
         patente: "Pallasite de Segunda Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/reia.jpg"
+        imgSrc: "/dle/characters/reia.jpg"
     },
     {
         nome: "Europa de Corte Retalhador (Chakram)",
@@ -2424,7 +2424,7 @@ const characters = [
         patente: "Pallasite de Segunda Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/europa.jpg"
+        imgSrc: "/dle/characters/europa.jpg"
     },
     {
         nome: "Aegir de Braço Fantasma (Manopla)",
@@ -2437,7 +2437,7 @@ const characters = [
         patente: "Pallasite de Segunda Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/aegir2.jpg"
+        imgSrc: "/dle/characters/aegir2.jpg"
     },
     {
         nome: "Surtr de Pedra Mística",
@@ -2450,7 +2450,7 @@ const characters = [
         patente: "Pallasite de Segunda Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/surtr.jpg"
+        imgSrc: "/dle/characters/surtr.jpg"
     },
     {
         nome: "Paradox de Jano Escarlate (Cetro)",
@@ -2463,7 +2463,7 @@ const characters = [
         patente: "Pallasite de Segunda Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/paradox2.jpg"
+        imgSrc: "/dle/characters/paradox2.jpg"
     },
     {
         nome: "Tokisada de Relógio da Morte",
@@ -2476,7 +2476,7 @@ const characters = [
         patente: "Pallasite de Segunda Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/tokisada2.jpg"
+        imgSrc: "/dle/characters/tokisada2.jpg"
     },
     {
         nome: "Tarvos de Esmagador de Estrelas (Mangual)",
@@ -2489,7 +2489,7 @@ const characters = [
         patente: "Pallasite de Terceira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/tarvos.jpg"
+        imgSrc: "/dle/characters/tarvos.jpg"
     },
     {
         nome: "Loge de Brionac (Lança)",
@@ -2502,7 +2502,7 @@ const characters = [
         patente: "Pallasite de Terceira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/loge.jpg"
+        imgSrc: "/dle/characters/loge.jpg"
     },
     {
         nome: "Ymir de Máxima Brilhante (Garras)",
@@ -2515,7 +2515,7 @@ const characters = [
         patente: "Pallasite de Terceira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/ymir.jpg"
+        imgSrc: "/dle/characters/ymir.jpg"
     },
     {
         nome: "Metone de Máxima Brilhante (Garras)",
@@ -2528,7 +2528,7 @@ const characters = [
         patente: "Pallasite de Terceira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/metone.jpg"
+        imgSrc: "/dle/characters/metone.jpg"
     },
     {
         nome: "Halimede (Barra Tripla)",
@@ -2541,7 +2541,7 @@ const characters = [
         patente: "Pallasite de Terceira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/halimede.jpg"
+        imgSrc: "/dle/characters/halimede.jpg"
     },
     {
         nome: "Hati (Adaga)",
@@ -2554,7 +2554,7 @@ const characters = [
         patente: "Pallasite de Terceira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/hati.jpg"
+        imgSrc: "/dle/characters/hati.jpg"
     },
     {
         nome: "Tebe de Impacto Demoníaco (Martelo)",
@@ -2567,7 +2567,7 @@ const characters = [
         patente: "Pallasite de Terceira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/tebe.jpg"
+        imgSrc: "/dle/characters/tebe.jpg"
     },
     {
         nome: "Cilene de Matador de Almas (Foice da Morte)",
@@ -2580,7 +2580,7 @@ const characters = [
         patente: "Pallasite de Terceira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/cilene.jpg"
+        imgSrc: "/dle/characters/cilene.jpg"
     },
     {
         nome: "Greip de Matador de Almas (Foice da Morte)",
@@ -2593,7 +2593,7 @@ const characters = [
         patente: "Pallasite de Terceira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/greip.jpg"
+        imgSrc: "/dle/characters/greip.jpg"
     },
     {
         nome: "Eden de Mapa de Impulso (Clava)",
@@ -2606,7 +2606,7 @@ const characters = [
         patente: "Pallasite de Terceira Classe",
         exercito: "Exército de Pallas",
         saga: "Omega",
-        imgSrc: "/dle/edenpala.jpg"
+        imgSrc: "/dle/characters/edenpala.jpg"
     },
     
 
@@ -2623,7 +2623,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Éris",
         saga: "O Santo Guerreiro",
-        imgSrc: "/dle/eris.jpg"
+        imgSrc: "/dle/characters/eris.jpg"
     },
     {
         nome: "Maiya de Sagita",
@@ -2636,7 +2636,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Éris",
         saga: "O Santo Guerreiro",
-        imgSrc: "/dle/maiya.jpg"
+        imgSrc: "/dle/characters/maiya.jpg"
     },
     {
         nome: "Yan de Escudo",
@@ -2649,7 +2649,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Éris",
         saga: "O Santo Guerreiro",
-        imgSrc: "/dle/yan.jpg"
+        imgSrc: "/dle/characters/yan.jpg"
     },
     {
         nome: "Kraisto de Cruzeiro do Sul",
@@ -2662,7 +2662,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Éris",
         saga: "O Santo Guerreiro",
-        imgSrc: "/dle/kraisto.jpg"
+        imgSrc: "/dle/characters/kraisto.jpg"
     },
     {
         nome: "Orfeu de Harpa",
@@ -2675,7 +2675,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Éris",
         saga: "O Santo Guerreiro",
-        imgSrc: "/dle/orfeu.jpg"
+        imgSrc: "/dle/characters/orfeu.jpg"
     },
     {
         nome: "Jaga de Orion",
@@ -2688,7 +2688,7 @@ const characters = [
         patente: "Cavaleiro Fantasma",
         exercito: "Exército de Éris",
         saga: "O Santo Guerreiro",
-        imgSrc: "/dle/jaga.jpg"
+        imgSrc: "/dle/characters/jaga.jpg"
     },
 
     //A Grande Batalha dos Deuses
@@ -2704,7 +2704,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Odin",
         saga: "A Grande Batalha dos Deuses",
-        imgSrc: "/dle/durval.jpg"
+        imgSrc: "/dle/characters/durval.jpg"
     },
     {
         nome: "Loki",
@@ -2717,7 +2717,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Odin",
         saga: "A Grande Batalha dos Deuses",
-        imgSrc: "/dle/lokibt.jpg"
+        imgSrc: "/dle/characters/lokibt.jpg"
     },
     {
         nome: "Rung",
@@ -2730,7 +2730,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Odin",
         saga: "A Grande Batalha dos Deuses",
-        imgSrc: "/dle/rung.jpg"
+        imgSrc: "/dle/characters/rung.jpg"
     },
     {
         nome: "Midgard",
@@ -2743,7 +2743,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Odin",
         saga: "A Grande Batalha dos Deuses",          
-        imgSrc: "/dle/midgard.jpg" 
+        imgSrc: "/dle/characters/midgard.jpg" 
     },
     {
         nome: "Ur",
@@ -2756,7 +2756,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Odin",
         saga: "A Grande Batalha dos Deuses",
-        imgSrc: "/dle/ur.jpg"
+        imgSrc: "/dle/characters/ur.jpg"
     },
     
     //Cavaleiros da Coroa do Sol
@@ -2772,7 +2772,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Abel",
         saga: "Lenda dos Defensores de Athena",
-        imgSrc: "/dle/abel1.jpg"
+        imgSrc: "/dle/characters/abel1.jpg"
     },
     {
         nome: "Atlas de Carina",
@@ -2785,7 +2785,7 @@ const characters = [
         patente: "Cavaleiro da Coroa Solar",
         exercito: "Exército de Abel",
         saga: "Lenda dos Defensores de Athena",
-        imgSrc: "/dle/atlas.jpg"
+        imgSrc: "/dle/characters/atlas.jpg"
     },
     {
         nome: "Jaoh de Lince",
@@ -2798,7 +2798,7 @@ const characters = [
         patente: "Cavaleiro da Coroa Solar",
         exercito: "Exército de Abel",
         saga: "Lenda dos Defensores de Athena",
-        imgSrc: "/dle/jaoh.jpg"
+        imgSrc: "/dle/characters/jaoh.jpg"
     },
     {
         nome: " Berengue de Coma",
@@ -2811,7 +2811,7 @@ const characters = [
         patente: "Cavaleiro da Coroa Solar",
         exercito: "Exército de Abel",
         saga: "Lenda dos Defensores de Athena",
-        imgSrc: "/dle/berenice.jpg"
+        imgSrc: "/dle/characters/berenice.jpg"
     },
 
     //Exercito Lúcifer
@@ -2827,7 +2827,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Lúcifer",
         saga: "Os Guerreiros do Armagedon",
-        imgSrc: "/dle/lucifer.jpg"
+        imgSrc: "/dle/characters/lucifer.jpg"
     },
     {
         nome: "Belzebu de Serafim",
@@ -2840,7 +2840,7 @@ const characters = [
         patente: "Anjo da Morte",
         exercito: "Exército de Lúcifer",
         saga: "Os Guerreiros do Armagedon",
-        imgSrc: "/dle/belzebu.jpg"
+        imgSrc: "/dle/characters/belzebu.jpg"
     },
     {
         nome: "Ashtarote de Querubim",
@@ -2853,7 +2853,7 @@ const characters = [
         patente: "Anjo da Morte",
         exercito: "Exército de Lúcifer",
         saga: "Os Guerreiros do Armagedon",
-        imgSrc: "/dle/ashtarote.jpg"
+        imgSrc: "/dle/characters/ashtarote.jpg"
     },
     {
         nome: "Érigor de Virtude",
@@ -2866,7 +2866,7 @@ const characters = [
         patente: "Anjo da Morte",
         exercito: "Exército de Lúcifer",
         saga: "Os Guerreiros do Armagedon",
-        imgSrc: "/dle/erigor.jpg"
+        imgSrc: "/dle/characters/erigor.jpg"
     },
     {
         nome: "Moa de Trono",
@@ -2879,7 +2879,7 @@ const characters = [
         patente: "Anjo da Morte",
         exercito: "Exército de Lúcifer",
         saga: "Os Guerreiros do Armagedon",
-        imgSrc: "/dle/moa.jpg"
+        imgSrc: "/dle/characters/moa.jpg"
     },
 
     //Anjos Prologo do Céu
@@ -2895,7 +2895,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Artemis",
         saga: "Prologo do Céu",
-        imgSrc: "/dle/artemis.jpg"
+        imgSrc: "/dle/characters/artemis.jpg"
     },
     {
         nome: "Apolo",
@@ -2908,7 +2908,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Apolo",
         saga: "Prologo do Céu",
-        imgSrc: "/dle/apolo.jpg"
+        imgSrc: "/dle/characters/apolo.jpg"
     },
     {
         nome: "Odysseu",
@@ -2921,7 +2921,7 @@ const characters = [
         patente: "Cavaleiro Celestial",
         exercito: "Exército de Artemis",
         saga: "Prologo do Céu",
-        imgSrc: "/dle/odysseu.jpg"
+        imgSrc: "/dle/characters/odysseu.jpg"
     },
     {
         nome: "Teseu",
@@ -2934,7 +2934,7 @@ const characters = [
         patente: "Cavaleiro Celestial",
         exercito: "Exército de Artemis",
         saga: "Prologo do Céu",
-        imgSrc: "/dle/teseu.jpg"
+        imgSrc: "/dle/characters/teseu.jpg"
     },
     {
         nome: "Tohma de Ícaro",
@@ -2947,7 +2947,7 @@ const characters = [
         patente: "Cavaleiro Celestial",
         exercito: "Exército de Artemis",
         saga: "Prologo do Céu",
-        imgSrc: "/dle/tohma.jpg"
+        imgSrc: "/dle/characters/tohma.jpg"
     },
 
     //Soul of Gold
@@ -2962,7 +2962,7 @@ const characters = [
         patente: "Deus",
         exercito: "Exército de Loki",
         saga: "Soul of Gold",
-        imgSrc: "/dle/loki.jpg"
+        imgSrc: "/dle/characters/loki.jpg"
     },
     {
         nome: "Andreas",
@@ -2975,7 +2975,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Soul of Gold",
-        imgSrc: "/dle/andr2eas.jpg"
+        imgSrc: "/dle/characters/andr2eas.jpg"
     },
     {
         nome: "Frodi de Gullinbursti",
@@ -2988,7 +2988,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Soul of Gold",
-        imgSrc: "/dle/fro2di.jpg"
+        imgSrc: "/dle/characters/fro2di.jpg"
     },
     {
         nome: "Hércules de Tanngrisnir",
@@ -3001,7 +3001,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Soul of Gold",
-        imgSrc: "/dle/herc2ules.jpg"
+        imgSrc: "/dle/characters/herc2ules.jpg"
     },
     {
         nome: "Fafner de Nidhogg",
@@ -3014,7 +3014,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Soul of Gold",
-        imgSrc: "/dle/faf2ner.jpg"
+        imgSrc: "/dle/characters/faf2ner.jpg"
     },
     {
         nome: "Surtr de Eikschnir",
@@ -3027,7 +3027,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Soul of Gold",
-        imgSrc: "/dle/sur2tr.jpg"
+        imgSrc: "/dle/characters/sur2tr.jpg"
     },
     {
         nome: "Sigmund de Granyl",
@@ -3040,7 +3040,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Soul of Gold",
-        imgSrc: "/dle/sigmund2.jpg"
+        imgSrc: "/dle/characters/sigmund2.jpg"
     },
     {
         nome: "Balder de Hraesvelgr",
@@ -3053,7 +3053,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Soul of Gold",
-        imgSrc: "/dle/balder2.jpg"
+        imgSrc: "/dle/characters/balder2.jpg"
     },
     {
         nome: "Utgardar de Garmr",
@@ -3066,7 +3066,7 @@ const characters = [
         patente: "Guerreiro Deus",
         exercito: "Exército de Asgard",
         saga: "Soul of Gold",
-        imgSrc: "/dle/utgardar2.jpg"
+        imgSrc: "/dle/characters/utgardar2.jpg"
     },
     
     //Saintias
@@ -3082,7 +3082,7 @@ const characters = [
         patente: "Saintia de Bronze",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/shoko.jpg"
+        imgSrc: "/dle/characters/shoko.jpg"
     },
     {
         nome: "Kyoko de Cavalo Menor",
@@ -3095,7 +3095,7 @@ const characters = [
         patente: "Saintia de Bronze",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/kyoko.jpg"
+        imgSrc: "/dle/characters/kyoko.jpg"
     },
     {
         nome: "Mii de Golfinho",
@@ -3108,7 +3108,7 @@ const characters = [
         patente: "Saintia de Bronze",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/mii.jpg"
+        imgSrc: "/dle/characters/mii.jpg"
     },
     {
         nome: "Xiaoling de Ursa Menor",
@@ -3121,7 +3121,7 @@ const characters = [
         patente: "Saintia de Bronze",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/xiaoling.jpg"
+        imgSrc: "/dle/characters/xiaoling.jpg"
     },
     {
         nome: "Katya de Coroa Boreal",
@@ -3134,7 +3134,7 @@ const characters = [
         patente: "Saintia de Prata",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/katya.jpg"
+        imgSrc: "/dle/characters/katya.jpg"
     },
     {
         nome: "Elda de Cassiopeia",
@@ -3147,7 +3147,7 @@ const characters = [
         patente: "Saintia de Prata",
         exercito: "Exército de Athena",
         saga: "Saintia Shô",
-        imgSrc: "/dle/elda.jpg"
+        imgSrc: "/dle/characters/elda.jpg"
     }
 ];
 
