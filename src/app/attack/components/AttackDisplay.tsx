@@ -42,7 +42,7 @@ const AttackDisplayComponent: React.FC<AttackDisplayProps> = ({
   // 2. Calcula o nível de blur em pixels
   const blurPx = useMemo(() => {
     
-    // ATUALIZADO: Decide qual nível de blur usar
+    // Decide qual nível de blur usar
     // Se o toggle (Laranja) estiver LIGADO, usa o blur das tentativas.
     // Se estiver DESLIGADO (Cinza), usa o blur INICIAL.
     const levelToShow = autoDecreaseActive ? attemptBlurLevel : INITIAL_BLUR_LEVEL_VALUE;
@@ -75,9 +75,14 @@ const AttackDisplayComponent: React.FC<AttackDisplayProps> = ({
           <img
             src={gifSrc}
             alt={attackName}
-            className={`w-full h-full object-contain transition-all duration-500 transform-gpu will-change-filter ${
-              isWonOrGaveUp ? 'opacity-100' : 'opacity-80'
-            }`}
+            className={`
+              w-full h-full object-contain transition-all duration-500 transform-gpu will-change-filter
+              ${isWonOrGaveUp ? 'opacity-100' : 'opacity-80 pointer-events-none'}
+            `}
+            /* A MUDANÇA ESTÁ ACIMA:
+              Se o jogo NÃO terminou (!isWonOrGaveUp), adicionamos 'pointer-events-none'.
+              Isso impede o clique direito e o arrastar da imagem.
+            */
             style={filterStyle} // O filtro (blur/grayscale) agora persiste
             loading="eager"
             onError={(e) => {
@@ -99,10 +104,9 @@ const AttackDisplayComponent: React.FC<AttackDisplayProps> = ({
                 role="switch"
                 aria-checked={autoDecreaseActive}
                 onClick={toggleAutoDecrease}
-                // ATUALIZADO: A classe .toggle-switch-on (laranja) é aplicada se autoDecreaseActive for true
                 className={`toggle-switch ${autoDecreaseActive ? 'toggle-switch-on' : ''}`}
                 aria-label={t('attack_toggle_blur')}
-                // ATUALIZADO: O botão NUNCA é desabilitado
+                // O botão NUNCA é desabilitado
                 disabled={false} 
               >
                 <div className="toggle-switch-circle"></div>
