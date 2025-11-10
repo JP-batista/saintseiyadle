@@ -24,7 +24,7 @@ import Logo from '../classic/components/Logo';
 import StatsBar from '../components/StatsBar';
 import HintBlock from '../classic/components/HintBlock';
 import GuessForm from '../classic/components/GuessForm';
-import ResultCard from '../classic/components/ResultCard';
+import ResultCard from './components/ResultCard';
 import VictoryEffects from '../components/VictoryEffects';
 import StatsModal from '../components/StatsModal';
 import NewsModal from '../components/NewsModal';

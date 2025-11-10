@@ -98,29 +98,28 @@ const ResultCard: React.FC<ResultCardProps> = ({
         {/* Seção "Próximo modo" */}
         <div className="mt-4 sm:mt-6 w-full">
           <h3 className="text-base sm:text-lg font-bold mb-2 text-yellow-400">
-            {/* I18N: Traduzido título do próximo modo */}
             {t('legend_next_mode')}
           </h3>
           <div className="flex flex-col items-center space-y-4">
             
-            {/* NOVO LINK: MODO ATAQUE */}
+            {/* Link Silhueta (Próximo visual) */}
             <div
               className="rounded-full flex items-center space-x-3 sm:space-x-4 cursor-pointer group w-full max-w-[380px] hover-lift-rotate transition-ultra-smooth"
-              onClick={() => navigateToMode("/attack")}
+              onClick={() => navigateToMode("/silhouette")}
             >
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center border-4 border-gray-700 shadow-lg group-hover:border-yellow-500 transition-ultra-smooth flex-shrink-0">
                 <img
-                  src="/dle_feed/attack_icon.png" // Ícone do Modo Ataque
-                  alt={t('mode_attack_name')}
+                  src="/dle_feed/silhouette_icon.png"
+                  alt={t('mode_silhouette_name')}
                   className="w-14 h-14 sm:w-16 sm:h-16 object-contain"
                 />
               </div>
               <div className="bg-gray-800/50 border-2 border-gray-700 p-3 sm:p-4 rounded-lg shadow-lg flex-1 group-hover:border-yellow-500 transition-ultra-smooth h-16 sm:h-20 flex flex-col justify-center">
                 <h3 className="text-base sm:text-xl font-bold text-yellow-400 group-hover:text-yellow-300">
-                  {t('mode_attack_name')}
+                  {t('mode_silhouette_name')}
                 </h3>
                 <p className="text-gray-300 text-xs sm:text-sm">
-                  {t('mode_attack_desc')}
+                  {t('mode_silhouette_desc')}
                 </p>
               </div>
             </div>

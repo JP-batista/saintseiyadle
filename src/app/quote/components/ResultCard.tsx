@@ -1,42 +1,36 @@
-// src/app/attack/components/AttackResultCard.tsx
+// src/app/classic/components/ResultCard.tsx
 "use client";
 import React, { memo } from "react";
+import { Character } from "../../classic/types";
 import { useRouter } from "next/navigation";
 import GameModeButtons from "../../components/GameModeButtons";
-import { useTranslation } from "../../i18n/useTranslation";
-// Importa o tipo do ataque do dia
-import { SelectedAttack } from "../../i18n/types";
+import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook
 
-type AttackResultCardProps = {
+type ResultCardProps = {
   cardRef: React.RefObject<HTMLDivElement | null>;
   isWin: boolean;
-  selectedAttack: SelectedAttack | null;
+  selectedCharacter: Character | null;
   attemptsCount: number;
   timeRemaining: string;
   onShowStats: () => void;
 };
 
-const AttackResultCard: React.FC<AttackResultCardProps> = ({
+const ResultCard: React.FC<ResultCardProps> = ({
   cardRef,
   isWin,
-  selectedAttack,
+  selectedCharacter,
   attemptsCount,
   timeRemaining,
   onShowStats,
 }) => {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t } = useTranslation(); // Instancia a tradução
 
   // Handler para garantir que o push de rota é limpo
   const navigateToMode = (path: string) => {
+    // Usa um path absoluto limpo para garantir a navegação correta
     router.push(path);
   }
-
-  // Desestruturação segura para exibir os dados
-  const attackName = selectedAttack?.attack?.name || t('form_default_name');
-  // NOVO: Pega o gifSrc
-  const gifSrc = selectedAttack?.attack?.gifSrc;
-  const character = selectedAttack?.character;
 
   return (
     <div
@@ -49,62 +43,30 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
           isWin ? "text-green-400" : "text-red-400"
         }`}
       >
-        {t(isWin ? 'result_win_title' : 'result_lose_title')}
+        {/* I18N: Traduzido título de vitória/derrota */}
+        {isWin ? t('result_win_title') : t('result_lose_title')}
       </h2>
 
       <p className="text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4 text-gray-200">
-        {/* Usamos 'O golpe era:' ou similar */}
-        {t('attack_result_was')}
+        {/* I18N: Traduzido texto do personagem */}
+        {t('result_character_was')}
       </p>
 
       <div className="flex flex-col items-center">
-        {/* NOME DO GOLPE (DESTAQUE) */}
-        <p className="text-2xl sm:text-3xl mb-2 font-bold text-yellow-400">
-          {attackName}!
+        <img
+          src={selectedCharacter?.imgSrc}
+          // Alt text virá do nome localizado do personagem
+          alt={selectedCharacter?.nome || t('form_default_name')} 
+          className={`w-auto h-32 sm:h-36 md:h-40 rounded-xl mb-2 border-2 shadow-lg ${
+            isWin ? "correct-indicator-enhanced border-green-500" : "border-gray-600/50"
+          }`}
+        />
+        <p className="text-xl sm:text-2xl mb-3 sm:mb-4 font-bold text-yellow-400">
+          {selectedCharacter?.nome}!
         </p>
-        
-        {/* ======================================= */}
-        {/* NOVO: GIF DO GOLPE (REVELADO)          */}
-        {/* ======================================= */}
-        {gifSrc && (
-          <div className="relative w-full aspect-video rounded-xl bg-gray-900 overflow-hidden border-2 border-yellow-500/50 shadow-lg mb-4">
-            <img
-              src={gifSrc}
-              alt={attackName}
-              className={`w-full h-full object-contain`}
-              loading="lazy"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.onerror = null; 
-                target.src = "/dle_feed/placeholder.png";
-              }}
-            />
-          </div>
-        )}
-        {/* ======================================= */}
-        {/* FIM DO NOVO BLOCO                      */}
-        {/* ======================================= */}
-
-        {/* Personagem que deu o golpe */}
-        <div className="flex items-center justify-center w-full gap-4 p-3 bg-gray-900/50 border border-gray-700/50 rounded-lg mb-4">
-            <img
-                src={character?.imgSrc}
-                alt={character?.nome || t('form_default_name')} 
-                className={`w-16 h-16 rounded-xl object-cover border-2 shadow-lg ${
-                    isWin ? "correct-indicator-enhanced border-green-500" : "border-gray-600/50"
-                }`}
-            />
-            <div className="flex flex-col text-left">
-                <p className="text-base font-semibold text-white truncate">
-                    {character?.nome || t('form_default_name')}
-                </p>
-                <p className="text-xs text-gray-400 italic">
-                    {character?.patente || t('form_default_title')}
-                </p>
-            </div>
-        </div>
 
         <p className="text-base sm:text-lg text-gray-200 mb-3 sm:mb-4">
+          {/* I18N: Traduzido label de tentativas */}
           {t('result_attempts_count')}{" "}
           <span className="font-bold text-yellow-400">{attemptsCount}</span>
         </p>
@@ -116,6 +78,7 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
           }`}
         >
           <p className="text-xs sm:text-sm text-gray-300 mb-2">
+            {/* I18N: Traduzido label do próximo personagem */}
             {t('result_next_in')}
           </p>
           <p className="text-lg sm:text-xl font-bold text-yellow-400">
@@ -128,34 +91,36 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
           className="bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-900 px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg font-bold text-base sm:text-lg hover:from-yellow-600 hover:to-orange-600 transition duration-300 mb-4 w-full sm:w-auto hover-lift button-press hover:shadow-glow-yellow"
           onClick={onShowStats}
         >
+          {/* I18N: Traduzido texto do botão */}
           {t('result_button_stats')}
         </button>
 
         {/* Seção "Próximo modo" */}
         <div className="mt-4 sm:mt-6 w-full">
           <h3 className="text-base sm:text-lg font-bold mb-2 text-yellow-400">
+            {/* I18N: Traduzido título do próximo modo */}
             {t('legend_next_mode')}
           </h3>
           <div className="flex flex-col items-center space-y-4">
             
-            {/* Link Modo Fala (Próximo visual) */}
+            {/* NOVO LINK: MODO ATAQUE */}
             <div
               className="rounded-full flex items-center space-x-3 sm:space-x-4 cursor-pointer group w-full max-w-[380px] hover-lift-rotate transition-ultra-smooth"
-              onClick={() => navigateToMode("/quote")}
+              onClick={() => navigateToMode("/attack")}
             >
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center border-4 border-gray-700 shadow-lg group-hover:border-yellow-500 transition-ultra-smooth flex-shrink-0">
                 <img
-                  src="/dle_feed/quote_icon.png"
-                  alt={t('mode_quote_name')}
+                  src="/dle_feed/attack_icon.png" // Ícone do Modo Ataque
+                  alt={t('mode_attack_name')}
                   className="w-14 h-14 sm:w-16 sm:h-16 object-contain"
                 />
               </div>
               <div className="bg-gray-800/50 border-2 border-gray-700 p-3 sm:p-4 rounded-lg shadow-lg flex-1 group-hover:border-yellow-500 transition-ultra-smooth h-16 sm:h-20 flex flex-col justify-center">
                 <h3 className="text-base sm:text-xl font-bold text-yellow-400 group-hover:text-yellow-300">
-                  {t('mode_quote_name')}
+                  {t('mode_attack_name')}
                 </h3>
                 <p className="text-gray-300 text-xs sm:text-sm">
-                  {t('mode_quote_desc')}
+                  {t('mode_attack_desc')}
                 </p>
               </div>
             </div>
@@ -171,4 +136,4 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
   );
 };
 
-export default memo(AttackResultCard);
+export default memo(ResultCard);

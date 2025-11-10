@@ -80,35 +80,6 @@ const GameLegendComponent = () => {
             <span className="text-sm text-white mt-2">{t('legend_lower')}</span>
           </div>
         </div>
-
-        {/* TÍTULO: Próximo modo: */}
-        <h3 className="text-lg font-bold mb-2 text-yellow-400 pt-4">
-          {t('legend_next_mode')}
-        </h3>
-
-        {/* LINK 2: Silhueta (Movido para baixo, usando o path limpo) */}
-        <div
-          className="rounded-full flex items-center space-x-3 sm:space-x-4 cursor-pointer group w-full max-w-[380px] hover-lift-rotate transition-ultra-smooth"
-          onClick={() => navigateToMode("/silhouette")}
-        >
-          {/* ÍCONE LINK 2 */}
-          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-800/50 rounded-full flex items-center justify-center border-4 border-gray-700 shadow-lg group-hover:border-yellow-500 transition-ultra-smooth flex-shrink-0">
-            <img
-              src="/dle_feed/silhouette_icon.png"
-              alt={t('mode_silhouette_name')} 
-              className="w-14 h-14 sm:w-16 sm:h-16 object-contain"
-            />
-          </div>
-          {/* TEXTO LINK 2 */}
-          <div className="bg-gray-800/50 border-2 border-gray-700 p-3 sm:p-4 rounded-lg shadow-lg flex-1 group-hover:border-yellow-500 transition-ultra-smooth h-16 sm:h-20 flex flex-col justify-center">
-            <h3 className="text-base sm:text-xl font-bold text-yellow-400 group-hover:text-yellow-300">
-              {t('mode_silhouette_name')}
-            </h3>
-            <p className="text-gray-300 text-xs sm:text-sm">
-              {t('mode_silhouette_desc')}
-            </p>
-          </div>
-        </div>
         
         <YesterdayClassic />
 

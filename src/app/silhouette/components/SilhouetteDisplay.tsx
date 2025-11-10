@@ -51,6 +51,10 @@ const SilhouetteDisplayComponent: React.FC<SilhouetteDisplayProps> = ({
             style={{
               transform: 'translate3d(0, 0, 0)', // Otimização de hardware
             }}
+            //
+            // ⬇️⬇️⬇️ PROTEÇÃO 1: Bloqueia o clique direito no contêiner ⬇️⬇️⬇️
+            //
+            onContextMenu={(e) => e.preventDefault()}
           >
             {/* Imagem da Silhueta */}
             <img
@@ -61,6 +65,10 @@ const SilhouetteDisplayComponent: React.FC<SilhouetteDisplayProps> = ({
                 transition-transform duration-1000 ease-out 
                 will-change-transform
                 object-cover
+                
+                /* ⬇️⬇️⬇️ PROTEÇÃO 2: Impede o clique/arraste na imagem ⬇️⬇️⬇️ */
+                pointer-events-none
+                user-select-none
               "
               style={{
                 transform: `scale(${currentZoomLevel})`,
@@ -68,6 +76,10 @@ const SilhouetteDisplayComponent: React.FC<SilhouetteDisplayProps> = ({
               }}
               loading="eager"
               fetchPriority="high"
+              
+              // ⬇️⬇️⬇️ PROTEÇÃO 3: Fallback HTML para desativar o arrastar ⬇️⬇️⬇️
+              draggable="false"
+              onDragStart={(e) => e.preventDefault()}
             />
           </div>
           
@@ -76,6 +88,9 @@ const SilhouetteDisplayComponent: React.FC<SilhouetteDisplayProps> = ({
             
             {/* --- BOTÃO SVG --- */}
             <div className="flex items-center gap-3">
+              <label htmlFor="autoZoomToggle" className="font-semibold text-gray-300">
+                {t('silhouette_toggle_zoom')} {/* "Auto-Zoom" */}
+              </label>
               <button
                 id="autoZoomToggle"
                 role="switch"
@@ -105,9 +120,6 @@ const SilhouetteDisplayComponent: React.FC<SilhouetteDisplayProps> = ({
             </div>
             {/* --- FIM DO BOTÃO SVG --- */}
 
-            {/* // ⬇️⬇️⬇️ CORREÇÃO APLICADA AQUI ⬇️⬇️⬇️
-            // O texto agora está envolvido por um condicional
-            */}
             {autoDecreaseActive && (
               <p className="text-sm text-center text-gray-300">
                 {t('silhouette_zoom_info')} {/* "Cada tentativa diminui um pouco o zoom." */}
