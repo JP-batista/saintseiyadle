@@ -1,21 +1,15 @@
 "use client";
 
-import React, { useMemo, memo } from "react";
+import { useMemo, memo } from "react";
 import { useTranslation } from "../../i18n/useTranslation";
-import { getAttackData } from "../../i18n/config"; // Importa a função para dados de ATAQUES
-import { getCurrentDateInBrazil, getDailyAttack } from "../../utils/dailyGame"; // Importa a função de ATAQUES
+import { getAttackData } from "../../i18n/config"; 
+import { getCurrentDateInBrazil, getDailyAttack } from "../../utils/dailyGame";
 import { Loader2 } from "lucide-react";
-// Importa os tipos de dados necessários para o Modo Ataque
-import { CharacterWithAttacks, SelectedAttack, Attack } from "../../i18n/types";
-import { useLocaleStore } from "../../stores/useLocaleStore";
+import { CharacterWithAttacks, SelectedAttack } from "../../i18n/types";
 
-/**
- * Retorna a string da data de "ontem" no formato YYYY-MM-DD.
- */
 function getYesterdayDateString(): string {
   const todayString = getCurrentDateInBrazil();
   const todayParts = todayString.split('-').map(Number);
-  // Nota: Mês é 0-indexado, por isso subtraímos 1
   const todayGameDate = new Date(todayParts[0], todayParts[1] - 1, todayParts[2]);
   const yesterdayGameDate = new Date(todayGameDate);
   yesterdayGameDate.setDate(yesterdayGameDate.getDate() - 1);
@@ -27,10 +21,6 @@ function getYesterdayDateString(): string {
   return `${year}-${month}-${day}`;
 }
 
-/**
- * "Achata" (flattens) a estrutura de dados dos ataques.
- * Copiado de 'useDailyAttack.ts' para tornar este componente autônomo.
- */
 const flattenAttackData = (dataModule: any): SelectedAttack[] => {
     const charactersWithAttacks = (dataModule as any).default as CharacterWithAttacks[] || [];
     const allAttacks: SelectedAttack[] = [];
@@ -57,36 +47,26 @@ const flattenAttackData = (dataModule: any): SelectedAttack[] => {
     return allAttacks;
 };
 
-/**
- * Um componente que calcula e exibe o ATAQUE do dia anterior.
- */
 const YesterdayAttackComponent = () => {
   const { t, locale } = useTranslation();
 
-  // 1. Carrega a lista completa de ataques (ainda aninhada)
   const allAttackData = useMemo(() => {
-    // Obtém o módulo de dados para o locale atual
     const dataModule = getAttackData(locale);
     return dataModule;
   }, [locale]);
 
-  // 2. Calcula o ataque de ontem
   const yesterdayAttack = useMemo(() => {
     if (!allAttackData) return null;
 
-    // "Achata" os dados para criar a lista de sorteio
     const allFlattenedAttacks = flattenAttackData(allAttackData);
     if (allFlattenedAttacks.length === 0) return null;
 
-    // Pega a data formatada de ontem
     const yesterdayString = getYesterdayDateString();
 
-    // Encontra o ataque para aquela data
     const { attack } = getDailyAttack(yesterdayString, allFlattenedAttacks);
-    return attack as SelectedAttack; // Faz o cast para o tipo correto
-  }, [allAttackData]); // Recalcula se o idioma (e os dados) mudarem
+    return attack as SelectedAttack; 
+  }, [allAttackData]); 
 
-  // Estado de carregamento
   if (!yesterdayAttack) {
     return (
       <div className="backdrop-gradient backdrop-blur-custom border border-gray-700/50 rounded-2xl shadow-xl p-4 w-full max-w-md">
@@ -100,19 +80,16 @@ const YesterdayAttackComponent = () => {
     );
   }
 
-  // Renderização do ataque e personagem encontrados
   return (
     <div className="backdrop-gradient backdrop-blur-custom border border-gray-700/50 rounded-2xl shadow-xl p-4 w-full max-w-md animate-fadeInUp">
       <h4 className="text-sm font-bold text-center text-yellow-400 mb-4 uppercase tracking-wider">
         {t('yesterday_attack_title')}
       </h4>
       
-      {/* O Golpe (Resposta) */}
       <div className="mb-4 p-3 bg-gray-900/50 border border-gray-700/50 rounded-lg">
         <h5 className="text-base text-gray-200 text-center font-bold">
            {yesterdayAttack.attack.name}
         </h5>
-        {/* GIF do Golpe (Exibição sem filtros) */}
         <div className="relative w-full aspect-video rounded-lg bg-gray-900 overflow-hidden border border-gray-700 mt-2">
             <img
                 src={yesterdayAttack.attack.gifSrc}
@@ -128,7 +105,6 @@ const YesterdayAttackComponent = () => {
         </div>
       </div>
 
-      {/* O Personagem (Autor do Golpe) */}
       <div className="flex items-center gap-4">
         <img
           src={yesterdayAttack.character.imgSrc}

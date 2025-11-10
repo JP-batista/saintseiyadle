@@ -1,10 +1,10 @@
 // src/app/attack/components/AttackResultCard.tsx
 "use client";
+
 import React, { memo } from "react";
 import { useRouter } from "next/navigation";
 import GameModeButtons from "../../components/GameModeButtons";
 import { useTranslation } from "../../i18n/useTranslation";
-// Importa o tipo do ataque do dia
 import { SelectedAttack } from "../../i18n/types";
 
 type AttackResultCardProps = {
@@ -27,14 +27,11 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
   const router = useRouter();
   const { t } = useTranslation();
 
-  // Handler para garantir que o push de rota é limpo
   const navigateToMode = (path: string) => {
     router.push(path);
   }
 
-  // Desestruturação segura para exibir os dados
   const attackName = selectedAttack?.attack?.name || t('form_default_name');
-  // NOVO: Pega o gifSrc
   const gifSrc = selectedAttack?.attack?.gifSrc;
   const character = selectedAttack?.character;
 
@@ -43,7 +40,6 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
       ref={cardRef}
       className={`mt-6 sm:mt-8 backdrop-gradient backdrop-blur-custom border border-gray-700/50 text-gray-100 p-4 sm:p-6 rounded-2xl shadow-2xl text-center w-full max-w-md mx-auto animate-fadeInUp`}
     >
-      {/* TÍTULO */}
       <h2
         className={`text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 font-bold ${
           isWin ? "text-green-400" : "text-red-400"
@@ -53,19 +49,14 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
       </h2>
 
       <p className="text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4 text-gray-200">
-        {/* Usamos 'O golpe era:' ou similar */}
         {t('attack_result_was')}
       </p>
 
       <div className="flex flex-col items-center">
-        {/* NOME DO GOLPE (DESTAQUE) */}
         <p className="text-2xl sm:text-3xl mb-2 font-bold text-yellow-400">
           {attackName}!
         </p>
         
-        {/* ======================================= */}
-        {/* NOVO: GIF DO GOLPE (REVELADO)          */}
-        {/* ======================================= */}
         {gifSrc && (
           <div className="relative w-full aspect-video rounded-xl bg-gray-900 overflow-hidden border-2 border-yellow-500/50 shadow-lg mb-4">
             <img
@@ -81,11 +72,7 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
             />
           </div>
         )}
-        {/* ======================================= */}
-        {/* FIM DO NOVO BLOCO                      */}
-        {/* ======================================= */}
 
-        {/* Personagem que deu o golpe */}
         <div className="flex items-center justify-center w-full gap-4 p-3 bg-gray-900/50 border border-gray-700/50 rounded-lg mb-4">
             <img
                 src={character?.imgSrc}
@@ -109,7 +96,6 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
           <span className="font-bold text-yellow-400">{attemptsCount}</span>
         </p>
 
-        {/* Contador de tempo */}
         <div
           className={`bg-gray-900/50 border border-gray-700/50 p-3 sm:p-4 rounded-xl mb-3 sm:mb-4 w-full ${
             timeRemaining.startsWith("00:00:") ? "countdown-pulse" : ""
@@ -123,7 +109,6 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
           </p>
         </div>
 
-        {/* Botão de estatísticas */}
         <button
           className="bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-900 px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg font-bold text-base sm:text-lg hover:from-yellow-600 hover:to-orange-600 transition duration-300 mb-4 w-full sm:w-auto hover-lift button-press hover:shadow-glow-yellow"
           onClick={onShowStats}
@@ -131,14 +116,11 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
           {t('result_button_stats')}
         </button>
 
-        {/* Seção "Próximo modo" */}
         <div className="mt-4 sm:mt-6 w-full">
           <h3 className="text-base sm:text-lg font-bold mb-2 text-yellow-400">
             {t('legend_next_mode')}
           </h3>
           <div className="flex flex-col items-center space-y-4">
-            
-            {/* Link Modo Fala (Próximo visual) */}
             <div
               className="rounded-full flex items-center space-x-3 sm:space-x-4 cursor-pointer group w-full max-w-[380px] hover-lift-rotate transition-ultra-smooth"
               onClick={() => navigateToMode("/quote")}
@@ -159,8 +141,6 @@ const AttackResultCard: React.FC<AttackResultCardProps> = ({
                 </p>
               </div>
             </div>
-
-            {/* Botões de modos (GameModeButtons) */}
             <div>
               <GameModeButtons />
             </div>

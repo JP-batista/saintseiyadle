@@ -1,12 +1,8 @@
 // src/app/attack/components/AttackGuessForm.tsx
 import React, { memo, useId, useRef, useState, useEffect } from "react";
 import { useTranslation } from "../../i18n/useTranslation";
-// Importa o tipo do Ataque (o objeto de sugestão)
 import { Attack } from "../../i18n/types"; 
 
-// ====================================================================
-// Componente do Item da Sugestão (Simplificado)
-// ====================================================================
 type SuggestionItemProps = {
   suggestion: Attack;
   onSelect: (idAttack: string) => void;
@@ -18,7 +14,6 @@ const SuggestionItem: React.FC<SuggestionItemProps> = ({
   onSelect,
   t,
 }) => {
-  // A sugestão do Modo Ataque é o NOME do ataque
   const handleClick = () => {
     onSelect(suggestion.idAttack);
   };
@@ -33,7 +28,6 @@ const SuggestionItem: React.FC<SuggestionItemProps> = ({
       }}
       tabIndex={0}
     >
-      {/* O Modo Ataque só exibe o nome do golpe na sugestão */}
       <span className="font-semibold text-gray-100 truncate p-1">
         {suggestion.name || t("form_default_name")}
       </span>
@@ -41,15 +35,10 @@ const SuggestionItem: React.FC<SuggestionItemProps> = ({
   );
 };
 
-// ====================================================================
-// Componente Principal do Formulário
-// ====================================================================
-
 type AttackGuessFormProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   input: string;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  // O array de sugestões é um array de objetos Attack
   suggestions: Attack[]; 
   showDropdown: boolean;
   onSuggestionClick: (idAttack: string) => void;
@@ -70,7 +59,6 @@ const AttackGuessForm: React.FC<AttackGuessFormProps> = ({
   const formRef = useRef<HTMLFormElement>(null);
   const [shouldSubmit, setShouldSubmit] = useState(false);
 
-  // Este useEffect garante que a submissão ocorra APÓS a sugestão ter sido selecionada
   useEffect(() => {
     if (shouldSubmit && formRef.current) {
       formRef.current.requestSubmit();
@@ -95,7 +83,6 @@ const AttackGuessForm: React.FC<AttackGuessFormProps> = ({
           value={input}
           onChange={onInputChange}
           onKeyDown={onKeyDown}
-          // I18N: Usamos uma chave de tradução para o Modo Ataque/Golpe
           placeholder={t("attack_form_placeholder")} 
           className="p-3.5 sm:p-4 w-full text-lg text-center text-gray-100 bg-gray-900/50 backdrop-blur-sm border-2 border-gray-700/50 rounded-xl placeholder:text-gray-400 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/50 focus:outline-none"
           role="combobox"
@@ -103,7 +90,6 @@ const AttackGuessForm: React.FC<AttackGuessFormProps> = ({
           aria-controls={listboxId}
           autoComplete="off"
         />
-
         {showDropdown && suggestions.length > 0 && (
           <ul
             id={listboxId}
