@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useEffect, useState, memo, useMemo } from "react"; // Adicionado useMemo
-import Logo from "./classic/components/Logo"; 
+import Logo from "./components/Logo"; 
 import GameCard from "./components/GameCard"; 
 import { useTranslation } from "./i18n/useTranslation"; // I18N: Importa o hook
 
