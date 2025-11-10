@@ -1,10 +1,11 @@
 // src/app/classic/components/ResultCard.tsx
 "use client";
+
 import React, { memo } from "react";
 import { Character } from "../types";
 import { useRouter } from "next/navigation";
 import GameModeButtons from "../../components/GameModeButtons";
-import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook
+import { useTranslation } from "../../i18n/useTranslation";
 
 type ResultCardProps = {
   cardRef: React.RefObject<HTMLDivElement | null>;
@@ -24,11 +25,9 @@ const ResultCard: React.FC<ResultCardProps> = ({
   onShowStats,
 }) => {
   const router = useRouter();
-  const { t } = useTranslation(); // Instancia a tradução
+  const { t } = useTranslation();
 
-  // Handler para garantir que o push de rota é limpo
   const navigateToMode = (path: string) => {
-    // Usa um path absoluto limpo para garantir a navegação correta
     router.push(path);
   }
 
@@ -37,25 +36,21 @@ const ResultCard: React.FC<ResultCardProps> = ({
       ref={cardRef}
       className={`mt-6 sm:mt-8 backdrop-gradient backdrop-blur-custom border border-gray-700/50 text-gray-100 p-4 sm:p-6 rounded-2xl shadow-2xl text-center w-full max-w-md mx-auto animate-fadeInUp`}
     >
-      {/* TÍTULO */}
       <h2
         className={`text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 font-bold ${
           isWin ? "text-green-400" : "text-red-400"
         }`}
       >
-        {/* I18N: Traduzido título de vitória/derrota */}
         {isWin ? t('result_win_title') : t('result_lose_title')}
       </h2>
 
       <p className="text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4 text-gray-200">
-        {/* I18N: Traduzido texto do personagem */}
         {t('result_character_was')}
       </p>
 
       <div className="flex flex-col items-center">
         <img
           src={selectedCharacter?.imgSrc}
-          // Alt text virá do nome localizado do personagem
           alt={selectedCharacter?.nome || t('form_default_name')} 
           className={`w-auto h-32 sm:h-36 md:h-40 rounded-xl mb-2 border-2 shadow-lg ${
             isWin ? "correct-indicator-enhanced border-green-500" : "border-gray-600/50"
@@ -66,19 +61,16 @@ const ResultCard: React.FC<ResultCardProps> = ({
         </p>
 
         <p className="text-base sm:text-lg text-gray-200 mb-3 sm:mb-4">
-          {/* I18N: Traduzido label de tentativas */}
           {t('result_attempts_count')}{" "}
           <span className="font-bold text-yellow-400">{attemptsCount}</span>
         </p>
 
-        {/* Contador de tempo */}
         <div
           className={`bg-gray-900/50 border border-gray-700/50 p-3 sm:p-4 rounded-xl mb-3 sm:mb-4 w-full ${
             timeRemaining.startsWith("00:00:") ? "countdown-pulse" : ""
           }`}
         >
           <p className="text-xs sm:text-sm text-gray-300 mb-2">
-            {/* I18N: Traduzido label do próximo personagem */}
             {t('result_next_in')}
           </p>
           <p className="text-lg sm:text-xl font-bold text-yellow-400">
@@ -86,23 +78,19 @@ const ResultCard: React.FC<ResultCardProps> = ({
           </p>
         </div>
 
-        {/* Botão de estatísticas */}
         <button
           className="bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-900 px-5 py-2.5 sm:px-6 sm:py-3 rounded-lg font-bold text-base sm:text-lg hover:from-yellow-600 hover:to-orange-600 transition duration-300 mb-4 w-full sm:w-auto hover-lift button-press hover:shadow-glow-yellow"
           onClick={onShowStats}
         >
-          {/* I18N: Traduzido texto do botão */}
           {t('result_button_stats')}
         </button>
 
-        {/* Seção "Próximo modo" */}
         <div className="mt-4 sm:mt-6 w-full">
           <h3 className="text-base sm:text-lg font-bold mb-2 text-yellow-400">
             {t('legend_next_mode')}
           </h3>
           <div className="flex flex-col items-center space-y-4">
             
-            {/* Link Silhueta (Próximo visual) */}
             <div
               className="rounded-full flex items-center space-x-3 sm:space-x-4 cursor-pointer group w-full max-w-[380px] hover-lift-rotate transition-ultra-smooth"
               onClick={() => navigateToMode("/silhouette")}
@@ -124,7 +112,6 @@ const ResultCard: React.FC<ResultCardProps> = ({
               </div>
             </div>
 
-            {/* Botões de modos (GameModeButtons) */}
             <div>
               <GameModeButtons />
             </div>

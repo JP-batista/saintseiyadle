@@ -1,7 +1,7 @@
 // srcapp/classicc/components/HintBlock.tsx
 "use client";
 import React, { useState } from "react";
-import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook
+import { useTranslation } from "../../i18n/useTranslation"; 
 
 type HintBlockProps = {
   attemptsCount: number;
@@ -14,28 +14,24 @@ const HintBlock: React.FC<HintBlockProps> = ({
   dica1,
   dica2,
 }) => {
-  const { t } = useTranslation(); // Instancia a tradução
+  const { t } = useTranslation(); 
   const [showHint1, setShowHint1] = useState(false);
   const [showHint2, setShowHint2] = useState(false);
 
   const canShowHint1 = attemptsCount >= 5;
   const canShowHint2 = attemptsCount >= 10;
 
-  // Cálculos de tentativas restantes
   const attemptsToHint1 = 5 - attemptsCount;
   const attemptsToHint2 = 10 - attemptsCount;
 
   return (
     <div className="w-full max-w-md backdrop-gradient backdrop-blur-custom border border-gray-700/50 text-white rounded-2xl shadow-2xl p-5 sm:p-6 mb-6 animate-fadeInUp">
       
-      {/* TÍTULO */}
       <h3 className="text-xl sm:text-2xl font-bold text-center mb-4 text-yellow-400 tracking-wide">
         {t('hint_block_title')}
       </h3>
 
-      {/* Botões de Dica */}
       <div className="flex justify-between gap-4">
-        {/* Dica 1 */}
         <button
           onClick={() => setShowHint1(!showHint1)}
           disabled={!canShowHint1}
@@ -53,7 +49,6 @@ const HintBlock: React.FC<HintBlockProps> = ({
           {t('hint_button_1')}
         </button>
         
-        {/* Dica 2 */}
         <button
           onClick={() => setShowHint2(!showHint2)}
           disabled={!canShowHint2}
@@ -72,14 +67,12 @@ const HintBlock: React.FC<HintBlockProps> = ({
         </button>
       </div>
 
-      {/* Container para as dicas e contador de tentativas */}
       <div className="mt-4 space-y-3">
         {showHint1 && canShowHint1 && (
           <div
             className="p-3 bg-gray-900/50 backdrop-blur-sm border border-yellow-500/50 rounded-lg text-center text-sm font-semibold text-yellow-300 shadow-lg hint-appear"
             key={`hint1-${dica1}`}
           >
-            {/* Mensagem de dica, com fallback traduzido */}
             {dica1 || t('hint_default_msg')}
           </div>
         )}
@@ -88,22 +81,18 @@ const HintBlock: React.FC<HintBlockProps> = ({
             className="p-3 bg-gray-900/50 backdrop-blur-sm border border-yellow-500/50 rounded-lg text-center text-sm font-semibold text-yellow-300 shadow-lg hint-appear"
             key={`hint2-${dica2}`}
           >
-            {/* Mensagem de dica, com fallback traduzido */}
             {dica2 || t('hint_default_msg')}
           </div>
         )}
 
-        {/* Contador de Tentativas Faltantes */}
         <div className="p-3 bg-gray-900/50 border border-gray-700/50 rounded-lg text-center text-sm">
           {attemptsCount < 5 && (
             <p className="text-gray-300">
-              {/* I18N: Mensagem com Placeholder */}
               {t('hint_attempts_missing_1', { count: attemptsToHint1 })}
             </p>
           )}
           {attemptsCount >= 5 && attemptsCount < 10 && (
             <p className="text-gray-300">
-              {/* I18N: Mensagem com Placeholder */}
               {t('hint_attempts_missing_2', { count: attemptsToHint2 })}
             </p>
           )}

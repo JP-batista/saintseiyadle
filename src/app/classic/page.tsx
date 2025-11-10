@@ -1,5 +1,6 @@
 // src/app/classic/page.tsx
 "use client";
+
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import React from "react";
 import { useGameStore } from "../stores/useGameStore";
@@ -15,13 +16,10 @@ import {
 } from "../utils/dailyGame";
 import VictoryEffects from "../components/VictoryEffects";
 
-// Importe os tipos e componentes
 import { Character, AttemptComparison } from "./types";
-import LoadingSpinner from "./components/LoadingSpinner";
-import Logo from "./components/Logo";
-// REMOVIDO: GameModeButtons será renderizado por GameLegend/ResultCard
-// import GameModeButtons from "./components/GameModeButtons"; 
-import StatsBar from "../components/StatsBar"; // ATUALIZADO: Path corrigido
+import LoadingSpinner from "../components/LoadingSpinner";
+import Logo from "../components/Logo";
+import StatsBar from "../components/StatsBar"; 
 import HintBlock from "./components/HintBlock";
 import GuessForm from "./components/GuessForm";
 import AttemptsGrid from "./components/AttemptsGrid";
@@ -29,7 +27,6 @@ import ResultCard from "./components/ResultCard";
 import GameLegend from "./components/GameLegend";
 import { useRouter } from "next/navigation";
 
-// ATUALIZADO: Importar os modais que a StatsBar agora controla
 import NewsModal from "../components/NewsModal";
 import HelpModal from "./components/HelpModal";
 import GameModeButtons from "../components/GameModeButtons";
@@ -38,13 +35,11 @@ import GameModeButtons from "../components/GameModeButtons";
 export default function GamePage() {
   const { t, locale } = useTranslation();
 
-  // 1. DADOS LOCALIZADOS
   const characters = useMemo(() => {
     const dataModule = characterDataMap[locale] || characterDataMap["pt"];
     return ((dataModule as any).default as Character[]) || [];
   }, [locale]);
 
-  // 2. STORES E ESTADOS
   const {
     selectedCharacter,
     attempts,
@@ -62,7 +57,6 @@ export default function GamePage() {
   const characteristicsRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
 
-  // Estados da UI
   const [selectedSuggestion, setSelectedSuggestion] =
     useState<Character | null>(null);
   const [input, setInput] = useState<string>("");
@@ -73,7 +67,6 @@ export default function GamePage() {
   const [isClient, setIsClient] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // ATUALIZADO: Estados dos Modais
   const [showStatsModal, setShowStatsModal] = useState<boolean>(false);
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
@@ -90,7 +83,6 @@ export default function GamePage() {
     setIsClient(true);
   }, []);
 
-  // 3. EFEITO DE INICIALIZAÇÃO E DETERMINISMO
   useEffect(() => {
     if (!isClient || !characters.length) return;
 
@@ -118,7 +110,6 @@ export default function GamePage() {
     characters,
   ]);
 
-  // ... (Outros useEffects de Contagem, Mudança de Dia e Efeitos de Vitória) ...
   useEffect(() => {
     if (!isClient) return;
     const updateCountdown = () => {
@@ -155,7 +146,6 @@ export default function GamePage() {
     }
   }, [won, gaveUp, attempts.length, isClient]);
 
-  // 4. EFEITO DE SALVAR O RESULTADO
   useEffect(() => {
     if (
       (won || gaveUp) &&
@@ -185,7 +175,6 @@ export default function GamePage() {
     selectedCharacter,
   ]);
 
-  // ... (Funções de Comparação e Normalização) ...
   const parseHeight = useCallback((height: string): number => {
     if (height.toLowerCase() === "desconhecido") return NaN;
     return parseFloat(height.replace(",", ".").replace(" m", "").trim());
@@ -239,7 +228,6 @@ export default function GamePage() {
     [parseHeight]
   );
 
-  // 5. LÓGICA DE SUBMISSÃO
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -312,8 +300,6 @@ export default function GamePage() {
       characters,
     ]
   );
-
-  // ... (Funções de input e sugestões) ...
 
   const normalizeText = useCallback((text: string) => {
     return text
@@ -415,7 +401,6 @@ export default function GamePage() {
     [suggestions, selectedSuggestion]
   );
 
-  // Renderização
   if (!isClient || !selectedCharacter || !characters.length) {
     return <LoadingSpinner />;
   }
@@ -429,14 +414,12 @@ export default function GamePage() {
         />
       )}
 
-      {/* ATUALIZADO: Passa a prop 'mode' */}
       <StatsModal
         isOpen={showStatsModal}
         onClose={() => setShowStatsModal(false)}
         mode="classic"
       />
       
-      {/* ATUALIZADO: Renderiza os modais de News e Help */}
       <NewsModal
         isOpen={isNewsModalOpen}
         onClose={() => setIsNewsModalOpen(false)}
@@ -448,14 +431,10 @@ export default function GamePage() {
 
       <Logo />
 
-      {/* Botões de modos */}
       <div>
         <GameModeButtons />
       </div>
-      {/* REMOVIDO: Chamada duplicada do GameModeButtons */}
-      {/* <GameModeButtons /> */}
 
-      {/* ATUALIZADO: Passa as props corretas para o StatsBar */}
       <StatsBar
         currentStreak={currentStreak}
         onShowStats={() => setShowStatsModal(true)}
@@ -471,7 +450,6 @@ export default function GamePage() {
 
       {!won && !gaveUp ? (
         <>
-          {/* Jogo em andamento */}
           <GuessForm
             onSubmit={handleSubmit}
             input={input}
@@ -493,7 +471,6 @@ export default function GamePage() {
         </>
       ) : (
         <>
-          {/* Jogo finalizado */}
           <AttemptsGrid attempts={attempts} gridRef={null} />
           <ResultCard
             cardRef={characteristicsRef}

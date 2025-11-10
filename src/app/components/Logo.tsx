@@ -2,11 +2,11 @@
 "use client";
 import Link from "next/link";
 import React, { useState, useEffect, memo } from "react";
-import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook
+import { useTranslation } from "../i18n/useTranslation"; 
 
 const LogoComponent = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const { t } = useTranslation(); // Instancia a tradução
+  const { t } = useTranslation(); 
 
   useEffect(() => {
     setIsLoaded(true);
@@ -17,7 +17,6 @@ const LogoComponent = () => {
       <Link href="/" passHref>
         <img
           src="/dle_feed/logo_dle.png"
-          // I18N: Traduzido o alt text
           alt={t('app_logo_alt')}
           loading="eager"
           fetchPriority="high"

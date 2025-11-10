@@ -18,8 +18,8 @@ import { getCurrentDateInBrazil, formatTimeRemaining, getNextMidnightInBrazil } 
 // --- Imports de Componentes Reutilizados ---
 import { Character } from '../classic/types'; 
 import { CharacterWithQuotes } from '../i18n/types';
-import LoadingSpinner from '../classic/components/LoadingSpinner';
-import Logo from '../classic/components/Logo';
+import LoadingSpinner from '../components/LoadingSpinner';
+import Logo from '../components/Logo';
 // 2. ATUALIZAÇÃO: Corrigir path do StatsBar
 import StatsBar from '../components/StatsBar';
 import HintBlock from '../classic/components/HintBlock';

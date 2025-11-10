@@ -9,7 +9,6 @@ type AttemptsGridProps = {
   gridRef?: React.RefObject<HTMLDivElement> | null;
 };
 
-// Array de CHAVES de tradução (mantém a ordem)
 const headerKeys = [
   "grid_header_name",
   "grid_header_gender",
@@ -26,7 +25,6 @@ const headerKeys = [
 const AttemptsGrid: React.FC<AttemptsGridProps> = ({ attempts, gridRef }) => {
   const { t } = useTranslation();
 
-  // Usa useMemo para recalcular os cabeçalhos APENAS quando o idioma muda
   const translatedHeaders = useMemo(() => {
     return headerKeys.map((key) => t(key as any));
   }, [t]);
@@ -36,7 +34,6 @@ const AttemptsGrid: React.FC<AttemptsGridProps> = ({ attempts, gridRef }) => {
       <div className="overflow-x-auto custom-scrollbar">
         <div className="min-w-[900px] lg:min-w-0 w-full max-w-6xl mx-auto grid grid-cols-10 gap-2 sm:gap-3 bg-gray-900/20 backdrop-blur-sm border border-gray-700/50 p-3 sm:p-5 rounded-2xl shadow-2xl">
 
-          {/* Cabeçalhos: usar a chave de tradução (headerKeys[i]) como key em vez do index */}
           {translatedHeaders.map((header, headerIndex) => (
             <div
               key={headerKeys[headerIndex]}
@@ -47,9 +44,7 @@ const AttemptsGrid: React.FC<AttemptsGridProps> = ({ attempts, gridRef }) => {
             </div>
           ))}
 
-          {/* Linhas de tentativas: garantir key única com fallback */}
           {attempts.map((attempt, index) => {
-            // Garante uma key sempre única: usa idKey quando presente, senão combina nome+index
             const rowKey =
               attempt.idKey && attempt.idKey.trim() !== ""
                 ? attempt.idKey

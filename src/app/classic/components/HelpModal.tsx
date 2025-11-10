@@ -27,7 +27,6 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
         "
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="p-4 sm:p-6 border-b border-yellow-500/50 flex justify-between items-center sticky top-0 bg-gray-900/90 z-10">
           <h3 className="text-2xl font-bold text-yellow-400">
             {t("help_modal_title")}
@@ -41,11 +40,9 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Content */}
         <div className="p-4 sm:p-6 text-left space-y-4 text-gray-300">
           <p>{t("help_rule_1")}</p>
 
-          {/* Indicadores de Cor */}
           <h4 className="font-bold text-lg text-yellow-400 pt-2">
             {t("help_indicators_title")}
           </h4>
@@ -139,7 +136,6 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
           <p className="pt-2 text-sm italic text-gray-400">{t("help_footer_tip")}</p>
         </div>
 
-        {/* Footer */}
         <div className="p-4 sm:p-6 border-t border-gray-700/50">
           <button
             onClick={onClose}

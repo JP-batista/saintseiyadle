@@ -7,14 +7,12 @@ type CharacterCellProps = {
   animationDelay: number;
 };
 
-// Renomeado para component base
 const CharacterCellComponent: React.FC<CharacterCellProps> = ({
   imgSrc,
   nome,
   isLatest,
   animationDelay,
 }) => {
-  // A classe 'transform-gpu' e o estilo 'contain' são mantidos para otimização de renderização.
   return (
     <div
       className="flex flex-col items-center gap-2 attempt-row-enhanced transform-gpu will-change-transform"
@@ -28,7 +26,6 @@ const CharacterCellComponent: React.FC<CharacterCellProps> = ({
           <div className="absolute inset-0 rounded-xl blur-xl animate-pulse-glow" />
         )}
         <img
-          // O nome e a imagem são passados já localizados pelo AttemptRow
           src={imgSrc}
           alt={nome}
           loading="eager"
@@ -43,5 +40,4 @@ const CharacterCellComponent: React.FC<CharacterCellProps> = ({
   );
 };
 
-// Exporta o componente memoizado
 export default memo(CharacterCellComponent);

@@ -1,8 +1,7 @@
 // srcapp/classicc/types.ts
 
-// O tipo do personagem, como definido na sua página
 export type Character = {
-  idKey: string; // ADICIONADO
+  idKey: string; 
   nome: string;
   titulo?: string;
   idade: string;
@@ -19,9 +18,8 @@ export type Character = {
   dica2?: string;
 };
 
-// O tipo do objeto de comparação de tentativa
 export type AttemptComparison = {
-  idKey: string; // ADICIONADO
+  idKey: string; 
   nome: string;
   idade: string;
   altura: string;
@@ -33,5 +31,5 @@ export type AttemptComparison = {
   exercito: string;
   saga: string;
   imgSrc: string;
-  guessCharacter: Character; // O personagem completo que foi adivinhado
+  guessCharacter: Character; 
 };

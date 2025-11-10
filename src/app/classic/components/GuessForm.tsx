@@ -3,9 +3,6 @@ import React, { memo, useId, useRef, useState, useEffect } from "react";
 import { Character } from "../types";
 import { useTranslation } from "../../i18n/useTranslation";
 
-// ====================================================================
-// Componente do Item da Sugestão
-// ====================================================================
 type SuggestionItemProps = {
   suggestion: Character;
   onSelect: (idKey: string) => void;
@@ -50,10 +47,6 @@ const SuggestionItem: React.FC<SuggestionItemProps> = ({
   );
 };
 
-// ====================================================================
-// Componente Principal do Formulário
-// ====================================================================
-
 type GuessFormProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   input: string;
@@ -83,7 +76,6 @@ const GuessForm: React.FC<GuessFormProps> = ({
       formRef.current.requestSubmit();
       setShouldSubmit(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input, shouldSubmit]);
 
   const handleSuggestionSelect = (idKey: string) => {

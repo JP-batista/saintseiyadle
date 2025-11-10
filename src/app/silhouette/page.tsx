@@ -21,13 +21,13 @@ import {
 import { Armor, Attempt } from "./types"; 
 
 // Componentes Globais
-import Logo from "../classic/components/Logo";
+import Logo from "../components/Logo";
 import GameModeButtons from "../components/GameModeButtons";
 import StatsBar from "../components/StatsBar";
 import VictoryEffects from "../components/VictoryEffects";
 import StatsModal from "../components/StatsModal";
 import NewsModal from "../components/NewsModal";
-import LoadingSpinner from "../classic/components/LoadingSpinner";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 // Componentes Específicos do Modo
 import SilhouetteDisplay from "./components/SilhouetteDisplay";

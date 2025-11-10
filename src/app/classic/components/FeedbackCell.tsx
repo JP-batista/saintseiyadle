@@ -1,6 +1,6 @@
 // srcapp/classicc/components/FeedbackCell.tsx
 import React, { memo, useMemo } from "react";
-import { useTranslation } from "../../i18n/useTranslation"; // Importa o hook
+import { useTranslation } from "../../i18n/useTranslation"; 
 
 type FeedbackCellProps = {
   status: string;
@@ -15,10 +15,9 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
   isLatest,
   animationDelay,
 }) => {
-  const { t } = useTranslation(); // Instancia a tradução
+  const { t } = useTranslation(); 
   const isCorrect = status === "green";
 
-  // OTIMIZAÇÃO: Memoização do valor de 'iconSrc'.
   const iconSrc = useMemo(() => {
     switch (status) {
       case "green":
@@ -48,7 +47,6 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
         )}
         <img
           src={iconSrc}
-          // I18N: Traduzido o texto alternativo
           alt={t('feedback_icon_alt')} 
           loading="eager"
           decoding="async"
@@ -62,7 +60,7 @@ const FeedbackCell: React.FC<FeedbackCellProps> = ({
         />
       </div>
       <span className="text-[10px] sm:text-xs md:text-sm text-gray-300 text-center break-words leading-tight">
-        {value} {/* O valor já vem traduzido do array de dados */}
+        {value} 
       </span>
     </div>
   );
