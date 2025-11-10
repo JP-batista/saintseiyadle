@@ -2,21 +2,14 @@
 "use client";
 
 import React, { memo } from 'react';
-import { Character } from '../../classic/types'; // Importa o tipo Character
-// REMOVIDO: Não usaremos mais o CharacterCell aqui
-// import CharacterCell from '../../classic/components/CharacterCell'; 
-import { useTranslation } from '../../i18n/useTranslation'; // Importa o hook de tradução
+import { Character } from '../../classic/types'; 
+import { useTranslation } from '../../i18n/useTranslation'; 
 
-// --- NOVO SUB-COMPONENTE DE LINHA ---
 type QuoteAttemptRowProps = {
   attempt: Character;
   isLatest: boolean;
 };
 
-/**
- * Um sub-componente para renderizar uma única linha de tentativa
- * (Imagem ao lado do Nome)
- */
 const QuoteAttemptRow: React.FC<QuoteAttemptRowProps> = memo(({ attempt, isLatest }) => {
   return (
     <div 
@@ -26,9 +19,8 @@ const QuoteAttemptRow: React.FC<QuoteAttemptRowProps> = memo(({ attempt, isLates
         ${isLatest ? 'border-yellow-500/50 scale-105' : 'border-gray-700/50'}
       `}
       style={{
-        // Reutiliza a animação de entrada do CSS global para a última tentativa
         animation: isLatest ? 'slideInTopEnhanced 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards' : 'none',
-        opacity: isLatest ? 0 : 1 // Garante que apenas o último item anime
+        opacity: isLatest ? 0 : 1 
       }}
     >
       <img
@@ -42,7 +34,6 @@ const QuoteAttemptRow: React.FC<QuoteAttemptRowProps> = memo(({ attempt, isLates
           {attempt.nome}
         </span>
         <span className="text-xs text-gray-400 truncate">
-          {/* Mostra o título ou a patente como subtexto, se disponível */}
           {attempt.titulo || attempt.patente}
         </span>
       </div>
@@ -50,21 +41,15 @@ const QuoteAttemptRow: React.FC<QuoteAttemptRowProps> = memo(({ attempt, isLates
   );
 });
 QuoteAttemptRow.displayName = 'QuoteAttemptRow';
-// --- FIM DO SUB-COMPONENTE ---
 
 
 type QuoteAttemptsProps = {
-  attempts: Character[]; // Recebe a lista de personagens tentados
+  attempts: Character[]; 
 };
 
-/**
- * Componente para exibir os palpites (tentativas) do usuário no Modo Fala.
- * Mostra uma LISTA VERTICAL com os personagens que já foram tentados.
- */
 const QuoteAttemptsComponent: React.FC<QuoteAttemptsProps> = ({ attempts }) => {
   const { t } = useTranslation();
 
-  // Não renderiza nada se não houver tentativas
   if (attempts.length === 0) {
     return null;
   }
@@ -74,17 +59,13 @@ const QuoteAttemptsComponent: React.FC<QuoteAttemptsProps> = ({ attempts }) => {
       <h3 className="text-xl font-bold text-center mb-4 text-yellow-400">
         {t('quote_attempts_title')}
       </h3>
-      {/* Card de vidro */}
       <div className="backdrop-gradient backdrop-blur-custom border border-gray-700/50 rounded-2xl shadow-2xl p-4
-        flex flex-col space-y-3">
-        {/* ^^^ ALTERADO para flex-col e space-y-3 */}
-        
+        flex flex-col space-y-3">        
         {attempts.map((attempt, index) => (
-          // USA O NOVO COMPONENTE DE LINHA
           <QuoteAttemptRow
             key={`${attempt.idKey}-${index}`}
             attempt={attempt}
-            isLatest={index === 0} // Destaca o último palpite
+            isLatest={index === 0} 
           />
         ))}
       </div>

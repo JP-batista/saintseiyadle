@@ -3,10 +3,8 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import React from 'react';
 
-// --- Imports dos Hooks e Stores Específicos do Modo Fala ---
 import { useQuoteGameStore } from '../stores/useQuoteGameStore';
 import { useDailyQuote } from '../hooks/useDailyQuote';
-// 1. ATUALIZAÇÃO: Importar o store de ESTATÍSTICAS do Modo Fala
 import { useQuoteStatsStore } from '../stores/useQuoteStatsStore'; 
 
 // --- Imports de Hooks e Stores Globais ---

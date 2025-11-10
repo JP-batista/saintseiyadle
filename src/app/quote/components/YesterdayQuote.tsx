@@ -2,16 +2,11 @@
 
 import React, { useMemo, memo } from "react";
 import { useTranslation } from "../../i18n/useTranslation";
-import { useLocaleStore } from "../../stores/useLocaleStore";
-import { quoteDataMap } from "../../i18n/config"; // 1. Importa o mapa de dados de FALAS
-import { getCurrentDateInBrazil, getDailyQuote } from "../../utils/dailyGame"; // 2. Importa a função de FALAS
+import { quoteDataMap } from "../../i18n/config"; 
+import { getCurrentDateInBrazil, getDailyQuote } from "../../utils/dailyGame"; 
 import { Loader2 } from "lucide-react";
-// 3. Importa os tipos de dados necessários para o Modo Fala
 import { CharacterWithQuotes, SelectedQuote } from "../../i18n/types";
 
-/**
- * Retorna a string da data de "ontem" (idêntico ao YesterdayClassic)
- */
 function getYesterdayDateString(): string {
   const todayString = getCurrentDateInBrazil();
   const todayParts = todayString.split('-').map(Number);
@@ -26,10 +21,6 @@ function getYesterdayDateString(): string {
   return `${year}-${month}-${day}`;
 }
 
-/**
- * "Achata" (flattens) a estrutura de dados das falas.
- * Copiado de 'useDailyQuote.ts' para tornar este componente autônomo.
- */
 const flattenQuoteData = (dataModule: any): SelectedQuote[] => {
     const charactersWithQuotes = (dataModule as any).default as CharacterWithQuotes[] || [];
     const allQuotes: SelectedQuote[] = [];
@@ -59,36 +50,26 @@ const flattenQuoteData = (dataModule: any): SelectedQuote[] => {
     return allQuotes;
 };
 
-/**
- * Um componente que calcula e exibe a FALA do dia anterior.
- */
 const YesterdayQuoteComponent = () => {
   const { t, locale } = useTranslation();
 
-  // 1. Carrega a lista completa de falas (ainda aninhada)
   const allQuoteData = useMemo(() => {
-    // @ts-ignore
     const dataModule = quoteDataMap[locale] || quoteDataMap['pt'];
     return dataModule;
   }, [locale]);
 
-  // 2. Calcula a fala de ontem
   const yesterdayQuote = useMemo(() => {
     if (!allQuoteData) return null;
 
-    // "Achata" os dados para criar a lista de sorteio
     const allFlattenedQuotes = flattenQuoteData(allQuoteData);
     if (allFlattenedQuotes.length === 0) return null;
 
-    // Pega a data formatada de ontem
     const yesterdayString = getYesterdayDateString();
 
-    // Encontra a fala para aquela data
     const { quote } = getDailyQuote(yesterdayString, allFlattenedQuotes);
-    return quote as SelectedQuote; // Faz o cast para o tipo correto
-  }, [allQuoteData]); // Recalcula se o idioma (e os dados) mudarem
+    return quote as SelectedQuote; 
+  }, [allQuoteData]); 
 
-  // Estado de carregamento
   if (!yesterdayQuote) {
     return (
       <div className="backdrop-gradient backdrop-blur-custom border border-gray-700/50 rounded-2xl shadow-xl p-4 w-full max-w-md">
@@ -102,21 +83,18 @@ const YesterdayQuoteComponent = () => {
     );
   }
 
-  // Renderização da fala e personagem encontrados
   return (
     <div className="backdrop-gradient backdrop-blur-custom border border-gray-700/50 rounded-2xl shadow-xl p-4 w-full max-w-md animate-fadeInUp">
       <h4 className="text-sm font-bold text-center text-yellow-400 mb-4 uppercase tracking-wider">
         {t('yesterday_quote_title')}
       </h4>
       
-      {/* A Fala */}
       <div className="mb-4 p-3 bg-gray-900/50 border border-gray-700/50 rounded-lg">
         <p className="text-sm text-gray-200 italic text-center">
            &ldquo;{yesterdayQuote.quote.texts}&rdquo;
         </p>
       </div>
 
-      {/* O Personagem (Resposta) */}
       <div className="flex items-center gap-4">
         <img
           src={yesterdayQuote.character.imgSrc}
