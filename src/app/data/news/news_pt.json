@@ -1,5 +1,21 @@
 [
   {
+    "id": "silhouette_mode_release",
+    "icon": "Image",
+    "title": "🛡️ Novo Modo: Adivinhe a Silhueta",
+    "date": "09 de Novembro de 2025",
+    "description": "Prove seu conhecimento sobre as Armaduras! O Modo Silhueta começa com um zoom extremo e revela a forma da armadura a cada tentativa. Será que você reconhece a Armadura de Gêmeos por apenas um detalhe?",
+    "glow": "border-purple-500/50 shadow-lg shadow-purple-500/20"
+  },
+  {
+    "id": "attack_mode_release",
+    "icon": "Rocket",
+    "title": "💥 Novo Modo: Adivinhe o Golpe",
+    "date": "08 de Novembro de 2025",
+    "description": "Desafie sua memória visual! O Modo Golpe testa sua habilidade de reconhecer as técnicas dos Cavaleiros através de GIFs borrados e em preto e branco. Você consegue identificar o 'Meteoro de Pégaso' apenas pelo movimento?",
+    "glow": "border-blue-500/50 shadow-lg shadow-blue-500/20"
+  },
+  {
     "id": "quote_mode_release",
     "icon": "MessageSquare",
     "title": "💬 Novo Modo: Adivinhe a Fala",

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "silhouette_mode_release",
+    "icon": "Image",
+    "title": "🛡️ 新モード：シルエット当て",
+    "date": "2025年11月09日",
+    "description": "聖衣への知識を試そう！シルエットモードは極端なズームから始まり、試行ごとに聖衣の形を少しずつ明らかにします。僅かな手がかりだけでジェミニの聖衣を見分けられますか？",
+    "glow": "border-purple-500/50 shadow-lg shadow-purple-500/20"
+  },
+  {
+    "id": "attack_mode_release",
+    "icon": "Rocket",
+    "title": "💥 新モード：必殺技当て",
+    "date": "2025年11月08日",
+    "description": "視覚記憶に挑戦！必殺技モードでは、ぼかしと白黒のGIFを使って聖闘士の技を識別する能力を試します。動きだけで『ペガサス流星拳』が分かりますか？",
+    "glow": "border-blue-500/50 shadow-lg shadow-blue-500/20"
+  },
+  {
+    "id": "quote_mode_release",
+    "icon": "MessageSquare",
+    "title": "💬 新モード：セリフ当て",
+    "date": "2025年11月07日",
+    "description": "待望のセリフ当てモードが登場！あなたの知識を試し、聖闘士星矢の世界の名言が誰によって語られたか当ててみましょう。真の聖闘士に贈る日替わりチャレンジです！",
+    "glow": "border-pink-500/50 shadow-lg shadow-pink-500/20"
+  },
+  {
+    "id": "data_import_export",
+    "icon": "Database",
+    "title": "💾 データのインポートとエクスポート",
+    "date": "2025年11月06日",
+    "description": "進捗、統計、クラシックモードの履歴を簡単にエクスポート／インポートできるようになりました — バックアップや別端末への移行に最適です。",
+    "glow": "border-purple-500/50 shadow-lg shadow-purple-500/20"
+  },
+  {
+    "id": "news_system",
+    "icon": "Info",
+    "title": "📰 ニュース機能を実装",
+    "date": "2025年11月06日",
+    "description": "内部の変更ログやビジュアルアップデート（例：翻訳サポート、デイリーアルゴリズムの改善、連勝の調整、バグ修正）を表示するニュースセクションを作成しました。",
+    "glow": "border-neutral-500/50 shadow-lg shadow-neutral-500/20"
+  },
+  {
+    "id": "i18n_support",
+    "icon": "Flag",
+    "title": "🌐 多言語対応サポート",
+    "date": "2025年11月01日",
+    "description": "翻訳フレームワーク全体を改善し、将来的な新言語追加が容易になりました。ゲームはグローバル展開の準備が整っています！",
+    "glow": "border-green-500/50 shadow-lg shadow-green-500/20"
+  },
+  {
+    "id": "accessibility_and_perf",
+    "icon": "Activity",
+    "title": "♿ アクセシビリティとパフォーマンス",
+    "date": "2025年11月05日",
+    "description": "パフォーマンス改善：関数のメモ化、レンダリング最適化、ドロップダウンの候補上限、ariaラベル・フォーカス・コントラストなどの小さなアクセシビリティ調整を実施しました。",
+    "glow": "border-violet-500/50 shadow-lg shadow-violet-500/20"
+  },
+  {
+    "id": "header_component",
+    "icon": "Menu",
+    "title": "🧭 新しい Header コンポーネント",
+    "date": "2025年11月04日",
+    "description": "モジュラーなヘッダーを作成しました（ロゴ、モード、統計、連勝表示、ツールチップ）。`GamePage` がよりクリーンになり、他のルートでの再利用が容易になります。",
+    "glow": "border-sky-500/50 shadow-lg shadow-sky-500/20"
+  },
+  {
+    "id": "ui_responsiveness",
+    "icon": "Smartphone",
+    "title": "📱 UI とレスポンシブの改善",
+    "date": "2025年11月03日",
+    "description": "ホーム画面のカードとグリッドを `w-full` と `max-w-*` にリファクタリングし、1/2/3 カードに適応するレイアウト、エントリーアニメーション、ホバーのマイクロインタラクションを追加して、モバイルとデスクトップで一貫した体験を提供します。",
+    "glow": "border-emerald-500/50 shadow-lg shadow-emerald-500/20"
+  },
+  {
+    "id": "victory_effects",
+    "icon": "Sparkles",
+    "title": "🎉 勝利アニメーションを実装",
+    "date": "2025年11月02日",
+    "description": "勝利時の視覚効果（発光、紙吹雪／パーティクル、属性のハイライト）を追加しました。`won` ステートが true のときに発動し、Zustand 経由でリロード後も持続されます。",
+    "glow": "border-pink-500/50 shadow-lg shadow-pink-500/20"
+  },
+  {
+    "id": "stats_store_and_modal",
+    "icon": "BarChart2",
+    "title": "📊 統計ストアと表示モーダル",
+    "date": "2025年11月01日",
+    "description": "ゲーム履歴、試行平均、総勝利数、初回成功率、連勝などを管理する統計ストアを作成し、履歴とグラフを表示するレスポンシブなモーダルを追加しました。",
+    "glow": "border-yellow-500/50 shadow-lg shadow-yellow-500/20"
+  },
+  {
+    "id": "persistence_win_fix",
+    "icon": "Save",
+    "title": "✅ 勝利状態の永続化を修正",
+    "date": "2025年10月31日",
+    "description": "正解後にページを更新するとキャラクターが変わるが勝利状態が不整合に残るバグを修正しました。`won` ステートとゲーム日付が正しく永続化されます。",
+    "glow": "border-green-500/50 shadow-lg shadow-green-500/20"
+  },
+  {
+    "id": "daily_selection_random",
+    "icon": "Shuffle",
+    "title": "🎲 重複しないランダムな日替わり選択",
+    "date": "2025年10月30日",
+    "description": "予測可能な連番を排除し、日替わりキャラクターをランダムに選び、全キャラクターが使われるまで重複を避けるアルゴリズムに置き換えました。",
+    "glow": "border-blue-500/50 shadow-lg shadow-blue-500/20"
+  },
+  {
+    "id": "zustand_store",
+    "icon": "Database",
+    "title": "🔧 Zustand によるグローバルステート",
+    "date": "2025年10月29日",
+    "description": "クラシックモード（キャラクターステート、試行、勝利、履歴）用に Zustand ストアを実装し、従来のローカルストレージ用ユーティリティに代替しました。",
+    "glow": "border-cyan-500/50 shadow-lg shadow-cyan-500/20"
+  },
+  {
+    "id": "background_fixed",
+    "icon": "Image",
+    "title": "🖼️ 全ページに固定背景を適用",
+    "date": "2025年10月27日",
+    "description": "レイアウトにグローバルな背景画像を追加し、`background-attachment: fixed` と調整可能なオーバーレイでコントラストと可読性を改善しました。",
+    "glow": "border-purple-500/50 shadow-lg shadow-purple-500/20"
+  },
+  {
+    "id": "project_launch",
+    "icon": "Rocket",
+    "title": "🚀 SaintSeiyaDLE プロジェクト公開",
+    "date": "2025年10月25日",
+    "description": "Next.js（App Router + TypeScript）と Tailwind で初期リポジトリを作成しました — ゲームモード開発を開始するための基盤が整っています。",
+    "glow": "border-indigo-500/50 shadow-lg shadow-indigo-500/20"
+  }
+]

@@ -1,0 +1,130 @@
+[
+  {
+    "id": "silhouette_mode_release",
+    "icon": "Image",
+    "title": "🛡️ New Mode: Guess the Silhouette",
+    "date": "November 9, 2025",
+    "description": "Prove your knowledge of the Armors! The Silhouette Mode starts with an extreme zoom and gradually reveals the armor’s shape with each attempt. Can you recognize Gemini’s Armor from just a single detail?",
+    "glow": "border-purple-500/50 shadow-lg shadow-purple-500/20"
+  },
+  {
+    "id": "attack_mode_release",
+    "icon": "Rocket",
+    "title": "💥 New Mode: Guess the Attack",
+    "date": "November 8, 2025",
+    "description": "Challenge your visual memory! The Attack Mode tests your ability to recognize the Knights’ techniques through blurred and black-and-white GIFs. Can you identify Pegasus Meteor Fist just by the motion?",
+    "glow": "border-blue-500/50 shadow-lg shadow-blue-500/20"
+  },
+  {
+    "id": "quote_mode_release",
+    "icon": "MessageSquare",
+    "title": "💬 New Mode: Guess the Quote",
+    "date": "November 7, 2025",
+    "description": "The long-awaited Quote Mode has arrived! Test your knowledge and discover which character said each iconic line from the Saint Seiya universe. A new daily challenge for true Knights!",
+    "glow": "border-pink-500/50 shadow-lg shadow-pink-500/20"
+  },
+  {
+    "id": "data_import_export",
+    "icon": "Database",
+    "title": "💾 Data Import and Export",
+    "date": "November 6, 2025",
+    "description": "You can now export and import your progress, stats, and classic mode history with ease — perfect for those who want to back up or transfer their data between devices.",
+    "glow": "border-purple-500/50 shadow-lg shadow-purple-500/20"
+  },
+  {
+    "id": "news_system",
+    "icon": "Info",
+    "title": "📰 News System Implemented",
+    "date": "November 6, 2025",
+    "description": "A news section was created to display internal changelogs and visual updates (e.g., translation support, daily algorithm improvements, streak adjustments, and bug fixes).",
+    "glow": "border-neutral-500/50 shadow-lg shadow-neutral-500/20"
+  },
+  {
+    "id": "i18n_support",
+    "icon": "Flag",
+    "title": "🌐 Support for New Translations",
+    "date": "November 1, 2025",
+    "description": "The entire translation framework was improved, making it easier to add new languages in the future. The game is ready to expand globally!",
+    "glow": "border-green-500/50 shadow-lg shadow-green-500/20"
+  },
+  {
+    "id": "accessibility_and_perf",
+    "icon": "Activity",
+    "title": "♿ Accessibility and Performance",
+    "date": "November 5, 2025",
+    "description": "Performance enhancements: function memoization, render optimizations, dropdown suggestion limits, and small accessibility tweaks (ARIA labels, focus, and contrast).",
+    "glow": "border-violet-500/50 shadow-lg shadow-violet-500/20"
+  },
+  {
+    "id": "header_component",
+    "icon": "Menu",
+    "title": "🧭 New Header Component",
+    "date": "November 4, 2025",
+    "description": "A modular header was created (logo, modes, stats, streaks, and tooltips), making `GamePage` cleaner and enabling easy reuse across routes.",
+    "glow": "border-sky-500/50 shadow-lg shadow-sky-500/20"
+  },
+  {
+    "id": "ui_responsiveness",
+    "icon": "Smartphone",
+    "title": "📱 UI and Responsiveness Improvements",
+    "date": "November 3, 2025",
+    "description": "Refactored cards and grid on the home screen using `w-full` with `max-w-*`, adaptive layout for 1/2/3 cards, entrance animations, and hover microinteractions for a consistent experience on mobile and desktop.",
+    "glow": "border-emerald-500/50 shadow-lg shadow-emerald-500/20"
+  },
+  {
+    "id": "victory_effects",
+    "icon": "Sparkles",
+    "title": "🎉 Victory Animation Implemented",
+    "date": "November 2, 2025",
+    "description": "Added visual victory effects (glow, confetti/particles, and attribute highlights), triggered when the `won` state is true and persisted after reload via Zustand.",
+    "glow": "border-pink-500/50 shadow-lg shadow-pink-500/20"
+  },
+  {
+    "id": "stats_store_and_modal",
+    "icon": "BarChart2",
+    "title": "📊 Saved Stats and Stats Modal",
+    "date": "November 1, 2025",
+    "description": "Created a statistics store with game history, average attempts, total wins, first-try success rate, and streaks; responsive modal added to display the history and chart.",
+    "glow": "border-yellow-500/50 shadow-lg shadow-yellow-500/20"
+  },
+  {
+    "id": "persistence_win_fix",
+    "icon": "Save",
+    "title": "✅ Victory Persistence Fixed",
+    "date": "October 31, 2025",
+    "description": "Fixed a bug where reloading after winning caused the character to change but kept an inconsistent win state. Now the `won` state and game date persist correctly.",
+    "glow": "border-green-500/50 shadow-lg shadow-green-500/20"
+  },
+  {
+    "id": "daily_selection_random",
+    "icon": "Shuffle",
+    "title": "🎲 Non-Repeating Random Daily Selection",
+    "date": "October 30, 2025",
+    "description": "Replaced the predictable sequence with an algorithm that randomly selects the character of the day while preventing repeats until all characters have been used.",
+    "glow": "border-blue-500/50 shadow-lg shadow-blue-500/20"
+  },
+  {
+    "id": "zustand_store",
+    "icon": "Database",
+    "title": "🔧 Global State with Zustand",
+    "date": "October 29, 2025",
+    "description": "Implemented a Zustand store for the classic game mode (character state, attempts, victory, and history), replacing ad-hoc localStorage utilities.",
+    "glow": "border-cyan-500/50 shadow-lg shadow-cyan-500/20"
+  },
+  {
+    "id": "background_fixed",
+    "icon": "Image",
+    "title": "🖼️ Fixed Background Applied to All Pages",
+    "date": "October 27, 2025",
+    "description": "Global background image added to the layout with `background-attachment: fixed` and adjustable overlay for improved contrast and readability.",
+    "glow": "border-purple-500/50 shadow-lg shadow-purple-500/20"
+  },
+  {
+    "id": "project_launch",
+    "icon": "Rocket",
+    "title": "🚀 SaintSeiyaDLE Project Launch",
+    "date": "October 25, 2025",
+    "description": "Initial repository created with Next.js (App Router + TypeScript) and Tailwind — base structure ready to start building the game modes.",
+    "glow": "border-indigo-500/50 shadow-lg shadow-indigo-500/20"
+  }
+]

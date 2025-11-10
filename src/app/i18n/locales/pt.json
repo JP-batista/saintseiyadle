@@ -116,36 +116,27 @@
   "prop_saga_title": "Saga",
   "prop_saga_type": "Categórico",
   "prop_saga_desc": "Ex.: Clássica, Asgard, Poseidon, Hades, Lost Canvas, Omega. Personagens podem aparecer em múltiplas sagas (sobreposição).",
-  
   "news_modal_title": "Novidades e Atualizações",
   "news_intro_message": "Fique por dentro das últimas melhorias e novos recursos do Saint Seiya DLE:",
-  
   "news_title_streak": "🏆 Melhoria na Sequência de Vitórias",
   "news_date_streak": "30 de Outubro de 2025",
   "news_desc_streak": "O cálculo da sua sequência de vitórias (Streak) foi revisado para maior precisão e confiabilidade. Tente alcançar o recorde!",
-  
   "news_title_determinism": "🔄 Personagem Diário Universal",
   "news_date_determinism": "31 de Outubro de 2025",
   "news_desc_determinism": "Garantimos que o Personagem Diário agora é o mesmo para todos os jogadores do mundo, independentemente do cache ou do dispositivo.",
-  
   "news_title_i18n": "🌐 Suporte para Novas Traduções",
   "news_date_i18n": "01 de Novembro de 2025",
   "news_desc_i18n": "Toda a estrutura de tradução foi aprimorada, facilitando a adição de novos idiomas no futuro. O jogo está pronto para se expandir!",
-  
   "prop_gender_default": "Desconhecido",
-
   "data_modal_title": "Importar / Exportar Dados",
-  
   "export_title": "Exportar Dados",
   "export_desc": "Baixe um backup do seu progresso (estatísticas e jogo atual) para salvar ou transferir para outro dispositivo.",
   "export_button": "Baixar Arquivo de Backup (.json)",
   "export_success": "Backup gerado com sucesso!",
-  
   "import_title": "Importar Dados",
   "import_desc": "Carregue um arquivo de backup (.json) para restaurar suas estatísticas e seu jogo salvo.",
   "import_button": "Carregar Arquivo",
   "import_loading": "Importando e Recarregando...",
-  
   "import_success_reload": "Dados importados com sucesso! A página será recarregada.",
   "import_export_error_no_data": "Nenhum dado encontrado para exportação.",
   "import_export_error_invalid_format": "Formato de arquivo inválido. Por favor, carregue um arquivo JSON.",
@@ -154,42 +145,32 @@
   "import_export_error_parse": "Falha ao ler ou analisar o conteúdo do arquivo.",
   "import_export_error_generic": "Ocorreu um erro desconhecido durante a operação.",
   "import_export_success_reload": "Dados importados com sucesso! A página será recarregada.",
-
   "mode_quote_name": "Fala",
   "mode_quote_desc": "Adivinhe quem disse a citação",
   "quote_attempts_title": "Suas Tentativas",
-
   "quote_help_objective_title": "Objetivo do Jogo",
   "quote_help_objective_desc": "Adivinhe qual personagem de Saint Seiya disse a citação do dia com o menor número possível de tentativas.",
   "quote_help_how_title": "Como Jogar",
   "quote_help_how_desc": "Leia a citação e use as dicas para adivinhar qual personagem de Saint Seiya a disse. Digite o nome do cavaleiro e envie seu palpite.",
-
   "yesterday_character_title": "Personagem de Ontem",
   "yesterday_character_desc": "Veja o personagem que foi destaque no jogo de ontem.",
-
   "yesterday_quote_title": "Fala de Ontem",
   "yesterday_correct_answer": "Resposta Correta:",
-
   "mode_attack_name": "Golpe",
   "mode_attack_desc": "Adivinhe qual o Golpe",
-
   "attack_attempts_title": "Golpes Tentados",
   "attack_form_placeholder": "Digite o nome do golpe",
   "attack_decrease_blur": "Diminuir Borrão",
   "attack_blur_info": "O borrado diminui automaticamente após {attempts} tentativas.",
-
   "attack_toggle_blur": "Auto-Desfoque",
   "attack_blur_on": "Ligado",
   "attack_blur_off": "Desligado",
   "attack_blur_info_on": "O borrado diminuirá automaticamente após {attempts} tentativas.",
   "attack_blur_info_off": "O borrado não diminuirá automaticamente.",
-
   "attack_toggle_color": "Cores",
   "attack_color_label": "Cores",
-  
   "attack_result_was": "O golpe era:",
   "yesterday_attack_title": "Golpe de Ontem",
-  
   "attack_help_objective_title": "Objetivo do Jogo",
   "attack_help_objective_desc": "Adivinhe qual o golpe (ataque) do dia com o menor número de tentativas, testando seu conhecimento dinâmico das sequências de luta.",
   "attack_help_how_title": "Como Jogar",
@@ -200,17 +181,13 @@
   "attack_help_toggle_color_desc": "Controla se o GIF é exibido em preto e branco (LIGADO) ou se revela as cores (DESLIGADO).",
   "attack_help_no_hints_title": "Sem Dicas",
   "attack_help_no_hints_desc": "Este modo é um 'desafio de reconhecimento puro'. Não há dicas textuais disponíveis; a revelação progressiva da imagem funciona como a única ajuda.",
-
   "silhouette_alt_text": "Silhueta da armadura do dia",
   "silhouette_toggle_zoom": "Auto-Zoom",
   "silhouette_form_placeholder": "Digite o nome da armadura",
   "silhouette_attempts_title": "Armaduras Tentadas",
-
   "result_armor_was": "A armadura era:",
   "result_next_armor_in": "Próxima silhueta em:",
-  
   "yesterday_silhouette_title": "Silhueta de Ontem",
-
   "silhouette_help_objective_title": "Objetivo do Jogo",
   "silhouette_help_objective_desc": "Adivinhe qual armadura de Saint Seiya é a do dia com o menor número possível de tentativas.",
   "silhouette_help_how_title": "Como Jogar (Zoom Progressivo)",
@@ -219,10 +196,8 @@
   "silhouette_help_toggle_zoom_desc": "Controla se o zoom diminui automaticamente a cada tentativa (LIGADO) ou se permanece no nível máximo (DESLIGADO).",
   "silhouette_help_no_hints_title": "Sem Dicas",
   "silhouette_help_no_hints_desc": "Este modo é um desafio de reconhecimento visual puro. Não há dicas textuais; a revelação progressiva é a única ajuda.",
-
   "silhouette_question_title": "De que Armadura é esta silhueta?",
   "silhouette_zoom_info": "Cada tentativa diminui um pouco o zoom.",
-
   "silhouette_zoom_info_on": "Ligado: Cada tentativa diminui o zoom.",
   "silhouette_zoom_info_off": "Desligado: O zoom ficará no máximo."
 }
