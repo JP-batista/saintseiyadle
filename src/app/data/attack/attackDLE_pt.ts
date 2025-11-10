@@ -33,6 +33,19 @@ const attacks = [
             },
         ]
     },
+    {
+        idKey: "hyoga",
+        nome: "Hyoga de Cisne",
+        patente: "Cavaleiro de Bronze",
+        imgSrc: "/dle/characters/hyoga.jpg",
+        attacks: [
+            {
+                idAttack: "po_de_diamante", 
+                name: "Pó de Diamante",
+                gifSrc: "/dle/attacks/po_de_diamante.gif",
+            },
+        ]  
+      },
 ];
 
 export default attacks;

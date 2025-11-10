@@ -3,8 +3,9 @@
 // 1. IMPORTAR TODOS OS STORES DE ESTATÍSTICAS
 import { useStatsStore } from "../stores/useStatsStore";
 import { useQuoteStatsStore } from "../stores/useQuoteStatsStore";
-// NOVO: Importa o store de estatísticas do Modo Ataque
 import { useAttackStatsStore } from "../stores/useAttackStatsStore"; 
+// NOVO: Importa o store de estatísticas do Modo Silhueta
+import { useSilhouetteStatsStore } from "../stores/useSilhouetteStatsStore";
 
 import { X } from "lucide-react";
 import { useState, useMemo, memo } from "react";
@@ -21,8 +22,8 @@ import { useTranslation } from "../i18n/useTranslation";
 type StatsModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  // ATUALIZADO: Inclui 'attack' no tipo 'mode'
-  mode: 'classic' | 'quote' | 'attack'; 
+  // ATUALIZADO: Inclui 'silhouette' no tipo 'mode'
+  mode: 'classic' | 'quote' | 'attack' | 'silhouette'; 
 };
 
 // ====================================================================
@@ -106,7 +107,7 @@ const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
 const MemoizedStatsChart = memo(StatsChartComponent);
 
 // ====================================================================
-// GameHistoryRowComponent (ATUALIZADO para Modo Ataque)
+// GameHistoryRowComponent (ATUALIZADO para Modo Silhueta)
 // ====================================================================
 const GameHistoryRowComponent = ({ game }: { game: any }) => {
   const { t } = useTranslation();
@@ -122,12 +123,19 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
   const attemptText =
     game.attempts === 1 ? t("stats_attempt_singular") : t("stats_attempt_plural");
 
-  // NOVO: Determina o sub-texto a ser exibido (Fala ou Nome do Ataque)
+  // ATUALIZADO: Determina o sub-texto a ser exibido
   const subText = game.quoteText
     ? `"${game.quoteText}"` // Modo Fala
     : game.attackName
     ? `Golpe: ${game.attackName}` // Modo Ataque
-    : null; // Modo Clássico (sem sub-texto extra)
+    : game.knight
+    ? `Cavaleiro: ${game.knight}` // Modo Silhueta
+    : null; // Modo Clássico
+
+  // ATUALIZADO: Determina a imagem e o nome principal
+  // (Modo Silhueta usa 'revealedImg' e 'name')
+  const mainImage = game.revealedImg || game.characterImage;
+  const mainName = game.name || game.characterName;
 
 
   return (
@@ -142,15 +150,15 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
     >
       <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
         <img
-          src={game.characterImage}
-          alt={game.characterName}
+          src={mainImage} // ATUALIZADO
+          alt={mainName} // ATUALIZADO
           className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg object-cover border-2 border-gray-600/50 flex-shrink-0 shadow-lg"
         />
         <div className="flex flex-col min-w-0 flex-1">
           <span className="font-bold text-yellow-400 text-sm sm:text-base truncate">
-            {game.characterName}
+            {mainName} {/* ATUALIZADO */}
           </span>
-          {/* Exibe o sub-texto (Fala ou Golpe) */}
+          {/* Exibe o sub-texto (Fala, Golpe ou Cavaleiro) */}
           {subText && (
             <span className="text-xs text-gray-400 italic truncate">
               {subText}
@@ -186,7 +194,7 @@ const GameHistoryRow = memo(GameHistoryRowComponent);
 // Componente Principal StatsModal (ATUALIZADO)
 // ====================================================================
 export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
-  // 5. ATUALIZAÇÃO: Hook condicional para buscar dados do store correto
+  // ATUALIZAÇÃO: Hook condicional para buscar dados do store correto
   const {
     totalWins,
     averageAttempts,
@@ -198,9 +206,10 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
       ? useStatsStore() // Modo Clássico
       : mode === 'quote' 
       ? useQuoteStatsStore() // Modo Fala
-      // NOVO: Modo Ataque
-      // @ts-ignore // Ignora o mismatch de tipo (AttackGameHistory vs GameHistory)
-      : useAttackStatsStore(); 
+      : mode === 'attack'
+      ? useAttackStatsStore() // Modo Ataque
+      // @ts-ignore // Ignora o mismatch de tipo (SilhouetteGameHistory vs GameHistory)
+      : useSilhouetteStatsStore(); // Modo Silhueta
 
   const [showAllHistory, setShowAllHistory] = useState(false);
   const { t } = useTranslation();

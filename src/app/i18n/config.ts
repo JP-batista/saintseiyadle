@@ -1,26 +1,33 @@
+// src/i18n/config.ts
 import { Dictionary, NewsItem } from './types'; 
 
 import pt_strings from './locales/pt.json';
 // import en_strings from './locales/en.json';
 // import jp_strings from './locales/jp.json';
 
-import pt_news from '../data/news/news_pt.json'; // 💥 NOVO: Importa o array de notícias
+import pt_news from '../data/news/news_pt.json';
 // import en_news from './locales/news_en.json';
 // import jp_news from './locales/news_jp.json';
 
+// --- Dados Modo Clássico ---
 import * as pt_data from '../data/characters/charactersDLE_pt'; 
 // import * as en_data from '../data/characters/charactersDLE_en'; 
 // import * as jp_data from '../data/characters/charactersDLE_jp'; 
 
-// --- 1. Importar os dados de Falas ---
+// --- Dados Modo Fala ---
 import * as pt_quotes from '../data/quotes/quotesDLE_pt'; 
 // import * as en_quotes from '../data/quotes/quotesDLE_en'; 
 // import * as jp_quotes from '../data/quotes/quotesDLE_jp'; 
 
-// --- NOVO: Importar os dados de Ataques ---
+// --- Dados Modo Ataque ---
 import * as pt_attacks from '../data/attack/attackDLE_pt'; 
 // import * as en_attacks from '../data/attack/attackDLE_en'; 
 // import * as jp_attacks from '../data/attack/attackDLE_jp'; 
+
+// --- NOVO: Importar os dados de Armaduras (Modo Silhueta) ---
+import * as pt_armors from '../data/armors/armorsDLE_pt';
+// import * as en_armors from '../data/armors/armorsDLE_en';
+// import * as jp_armors from '../data/armors/armorsDLE_jp';
 
 
 export const locales = ['pt'] as const; 
@@ -46,6 +53,7 @@ export const newsDataMap: Record<Locale, NewsItem[]> = {
     // 'jp': jp_news as NewsItem[],
 }
 
+// Mapeamento Modo Clássico
 export const characterDataMap: Record<Locale, any> = {
     'pt': pt_data,
     // 'en': en_data,
@@ -59,11 +67,18 @@ export const quoteDataMap: Record<Locale, any> = {
     // 'jp': jp_quotes,
 };
 
-// --- NOVO: Mapeamento de Ataques (Modo Ataque) ---
+// Mapeamento de Ataques (Modo Ataque)
 export const attackDataMap: Record<Locale, any> = {
     'pt': pt_attacks,
     // 'en': en_attacks,
     // 'jp': jp_attacks,
+};
+
+// --- NOVO: Mapeamento de Armaduras (Modo Silhueta) ---
+export const armorDataMap: Record<Locale, any> = {
+    'pt': pt_armors,
+    // 'en': en_armors,
+    // 'jp': jp_armors,
 };
 
 
@@ -80,7 +95,12 @@ export const getQuoteData = (locale: Locale): any => {
     return quoteDataMap[locale] ?? quoteDataMap[defaultLocale];
 }
 
-// --- NOVO: Função para obter dados de Ataques ---
+// Função para obter dados de Ataques
 export const getAttackData = (locale: Locale): any => {
     return attackDataMap[locale] ?? attackDataMap[defaultLocale];
+}
+
+// --- NOVO: Função para obter dados de Armaduras ---
+export const getArmorData = (locale: Locale): any => {
+    return armorDataMap[locale] ?? armorDataMap[defaultLocale];
 }

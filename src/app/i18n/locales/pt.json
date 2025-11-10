@@ -199,5 +199,30 @@
   "attack_help_toggle_blur_desc": "Controla se o borrão diminui automaticamente a cada tentativa (LIGADO) ou se permanece no nível máximo (DESLIGADO).",
   "attack_help_toggle_color_desc": "Controla se o GIF é exibido em preto e branco (LIGADO) ou em cores (DESLIGADO).",
   "attack_help_no_hints_title": "Sem Dicas",
-  "attack_help_no_hints_desc": "Este modo é um desafio de reconhecimento visual puro. Não há dicas textuais disponíveis; a revelação progressiva é a única ajuda."
+  "attack_help_no_hints_desc": "Este modo é um desafio de reconhecimento visual puro. Não há dicas textuais disponíveis; a revelação progressiva é a única ajuda.",
+
+  "silhouette_alt_text": "Silhueta da armadura do dia",
+  "silhouette_toggle_zoom": "Auto-Zoom",
+  "silhouette_form_placeholder": "Digite o nome da armadura",
+  "silhouette_attempts_title": "Armaduras Tentadas",
+
+  "result_armor_was": "A armadura era:",
+  "result_next_armor_in": "Próxima silhueta em:",
+  
+  "yesterday_silhouette_title": "Silhueta de Ontem",
+
+  "silhouette_help_objective_title": "Objetivo do Jogo",
+  "silhouette_help_objective_desc": "Adivinhe qual armadura de Saint Seiya é a do dia com o menor número possível de tentativas.",
+  "silhouette_help_how_title": "Como Jogar (Zoom Progressivo)",
+  "silhouette_help_how_desc": "A imagem da silhueta começa com um zoom muito alto. A cada palpite incorreto, o zoom diminui, revelando mais da armadura.",
+  "silhouette_help_controls_title": "Controles de Zoom",
+  "silhouette_help_toggle_zoom_desc": "Controla se o zoom diminui automaticamente a cada tentativa (LIGADO) ou se permanece no nível máximo (DESLIGADO).",
+  "silhouette_help_no_hints_title": "Sem Dicas",
+  "silhouette_help_no_hints_desc": "Este modo é um desafio de reconhecimento visual puro. Não há dicas textuais; a revelação progressiva é a única ajuda.",
+
+  "silhouette_question_title": "De que Armadura é esta silhueta?",
+  "silhouette_zoom_info": "Cada tentativa diminui um pouco o zoom.",
+
+  "silhouette_zoom_info_on": "Ligado: Cada tentativa diminui o zoom.",
+  "silhouette_zoom_info_off": "Desligado: O zoom ficará no máximo."
 }

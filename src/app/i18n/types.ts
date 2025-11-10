@@ -27,7 +27,7 @@ export type CharacterBaseInfo = {
     imgSrc: string;
 };
 
-// --- NOVOS TIPOS PARA O MODO ATAQUE (ATTACK MODE) ---
+// --- TIPOS PARA O MODO ATAQUE (ATTACK MODE) ---
 
 /**
  * A estrutura de um ataque individual (aninhada no arquivo de dados).
@@ -130,4 +130,40 @@ export type QuoteGameHistory = {
     characteridKey: string;
     quoteText: string; 
     quoteId: string; 
+};
+
+// --- NOVO: TIPOS PARA O MODO SILHUETA (SILHOUETTE MODE) ---
+
+/**
+ * Define a estrutura de uma Armadura individual, 
+ * conforme os dados em /data/armors/armorsDLE_pt.ts
+ */
+export type Armor = {
+  name: string; // Nome da armadura (a resposta)
+  category: string;
+  description: string;
+  knight: string; // Nome do cavaleiro (para contexto)
+  saga: string;
+  silhouetteImg: string; // Caminho para a imagem da silhueta (com zoom)
+  revealedImg: string;  // Caminho para a imagem revelada (para o ResultCard)
+};
+
+/**
+ * A Armadura selecionada para o desafio do dia.
+ */
+export type SelectedArmor = Armor;
+
+/**
+ * Tipo para o histórico de jogos do MODO SILHUETA (usado no useSilhouetteStatsStore).
+ */
+export type SilhouetteGameHistory = {
+  date: string; // YYYY-MM-DD
+  attempts: number;
+  won: boolean;
+  firstTry: boolean;
+  
+  // Dados específicos do Modo Silhueta
+  name: string; // O nome da armadura (a resposta)
+  revealedImg: string; // A imagem revelada (para o modal)
+  knight: string; // O cavaleiro (para contexto)
 };

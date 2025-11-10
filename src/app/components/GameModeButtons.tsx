@@ -18,20 +18,19 @@ const gameModes = [
     iconSrc: "/dle_feed/quote_icon.png",
     translationKey: "mode_quote_name" as const, // Garante o tipo
   },
-  // NOVO MODO: ATAQUE (GOLPE)
   {
     key: "attack",
     path: "/attack",
     iconSrc: "/dle_feed/attack_icon.png", // Ícone que representa um ataque/golpe
     translationKey: "mode_attack_name" as const, // Chave de tradução
   },
-  // MODO FUTURO (Exemplo de inclusão)
-  // {
-  //   key: "silhouette",
-  //   path: "/silhouette",
-  //   iconSrc: "/dle_feed/silhouette_icon.png",
-  //   translationKey: "mode_silhouette_name" as const,
-  // },
+  // NOVO MODO: SILHUETA (Descomentado e ativado)
+  {
+    key: "silhouette",
+    path: "/silhouette",
+    iconSrc: "/dle_feed/silhouette_icon.png",
+    translationKey: "mode_silhouette_name" as const,
+  },
 ];
 
 const GameModeButtonsComponent = () => {
@@ -60,7 +59,7 @@ const GameModeButtonsComponent = () => {
           : "w-14 h-14 sm:w-16 sm:h-16";
 
         // O modo ativo tem borda amarela, brilho e está 100% opaco
-        // O modo inativo tem borda cinza, 70% opaco (mas 100% no hover)
+        // O modo inativo tem borda cinza (100% opaco no hover)
         const imageStyles = isActive
           ? "border-yellow-500 scale-105 shadow-glow-yellow" // Estilo Ativo
           : "border-gray-700/50 opacity-100 group-hover:opacity-100"; // Estilo Inativo

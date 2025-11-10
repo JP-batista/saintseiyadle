@@ -166,6 +166,33 @@ export function getDailyAttack<T>(
 }
 
 /**
+ * (NOVO - Modo Silhueta)
+ * Seleciona a armadura do dia de forma determinística (depende SÓ da data)
+ * @param date Data no formato YYYY-MM-DD
+ * @param allArmors Lista completa de *todas* as armaduras (array "achatado")
+ * @returns Objeto com a armadura e seu índice
+ */
+export function getDailyArmor<T>(
+  date: string,
+  allArmors: T[]
+): { armor: T; index: number } {
+  // 1. Gera um seed único baseado na data + "SAL"
+  const seed = simpleHash(date + "SILHOUETTE_OF_THE_DAY");
+
+  // 2. Cria um gerador de aleatoriedade baseado no seed
+  const random = seededRandom(seed);
+
+  // 3. Pega um índice aleatório (mas determinístico) do TOTAL de armaduras
+  const selectedIndex = Math.floor(random() * allArmors.length);
+
+  return {
+    armor: allArmors[selectedIndex],
+    index: selectedIndex,
+  };
+}
+
+
+/**
  * Formata o tempo restante para o próximo personagem
  */
 export function formatTimeRemaining(targetDate: Date): string {
