@@ -2,7 +2,6 @@
 import React, { memo, useState, useRef } from "react";
 import { X, Upload, Download, Check, AlertTriangle, Disc } from "lucide-react";
 import { useTranslation } from "../i18n/useTranslation";
-// Certifique-se de que o caminho abaixo esteja correto no seu projeto!
 import { useDataImportExport } from "../hooks/useDataImportExport"; 
 
 interface ImportExportModalProps {
@@ -10,7 +9,6 @@ interface ImportExportModalProps {
   onClose: () => void;
 }
 
-// Tipo para mensagens de feedback
 type Feedback = {
   success: boolean;
   message: string;
@@ -26,9 +24,6 @@ const ImportExportModalComponent: React.FC<ImportExportModalProps> = ({ isOpen, 
 
   if (!isOpen) return null;
 
-  // ======================================
-  // 1. Lógica de Exportação (Download)
-  // ======================================
   const handleExport = () => {
     setFeedback(null);
     const result = exportData();
@@ -39,10 +34,7 @@ const ImportExportModalComponent: React.FC<ImportExportModalProps> = ({ isOpen, 
       setFeedback({ success: false, message: result.message || t('import_export_error_generic') });
     }
   };
-  
-  // ======================================
-  // 2. Lógica de Importação (Upload)
-  // ======================================
+
   const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -52,12 +44,8 @@ const ImportExportModalComponent: React.FC<ImportExportModalProps> = ({ isOpen, 
 
     try {
       const result = await importData(file);
-      
-      // A importação bem-sucedida recarrega a página (via router.refresh ou window.reload),
-      // então este bloco só é atingido em caso de falha de validação/parse.
+
       if (result.success) {
-          // Se for sucesso, a página já recarregou, o código aqui não deve ser atingido.
-          // Colocamos um feedback de precaução caso o refresh seja bloqueado.
           setFeedback({ success: true, message: t('import_success_reload') });
       } else {
           setFeedback({ success: false, message: result.message || t('import_export_error_generic') });
@@ -66,7 +54,6 @@ const ImportExportModalComponent: React.FC<ImportExportModalProps> = ({ isOpen, 
         setFeedback({ success: false, message: t('import_export_error_parse') });
     } finally {
         setIsLoading(false);
-        // Limpa o input file para permitir importações subsequentes do mesmo arquivo
         if (fileInputRef.current) {
              fileInputRef.current.value = '';
         }
@@ -76,10 +63,6 @@ const ImportExportModalComponent: React.FC<ImportExportModalProps> = ({ isOpen, 
   const handleImportClick = () => {
     fileInputRef.current?.click();
   };
-
-  // ======================================
-  // Renderização
-  // ======================================
 
   const renderFeedback = () => {
     if (!feedback) return null;
@@ -111,7 +94,6 @@ const ImportExportModalComponent: React.FC<ImportExportModalProps> = ({ isOpen, 
         "
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="p-4 sm:p-6 border-b border-yellow-500/50 flex justify-between items-center sticky top-0 bg-gray-900/90 z-10">
           <h3 className="text-xl font-bold text-yellow-400">
             {t("data_modal_title")}
@@ -125,11 +107,9 @@ const ImportExportModalComponent: React.FC<ImportExportModalProps> = ({ isOpen, 
           </button>
         </div>
 
-        {/* Content */}
         <div className="p-4 sm:p-6 text-left space-y-5 text-gray-300">
           {renderFeedback()}
-          
-          {/* Exportar Dados */}
+
           <div className="space-y-3">
             <h4 className="text-lg font-bold text-white flex items-center">
               <Download className="w-5 h-5 mr-2 text-yellow-400" />
@@ -146,7 +126,6 @@ const ImportExportModalComponent: React.FC<ImportExportModalProps> = ({ isOpen, 
           </div>
 
           <div className="border-t border-gray-700/50 pt-5 space-y-3">
-            {/* Importar Dados */}
             <h4 className="text-lg font-bold text-white flex items-center">
               <Upload className="w-5 h-5 mr-2 text-yellow-400" />
               {t("import_title")}
@@ -179,7 +158,6 @@ const ImportExportModalComponent: React.FC<ImportExportModalProps> = ({ isOpen, 
           </div>
         </div>
 
-        {/* Footer */}
         <div className="p-4 sm:p-6 border-t border-gray-700/50 sticky bottom-0 bg-gray-900/90 z-10">
           <button
             onClick={onClose}

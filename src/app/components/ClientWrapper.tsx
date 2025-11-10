@@ -1,4 +1,4 @@
-"use client"; // 1. Este é o Client Component
+"use client"; 
 
 import { useState } from "react";
 import { Settings } from "lucide-react";
@@ -6,7 +6,6 @@ import Footer from "./Footer";
 import LocaleSwitcher from "./LocaleSwitcher";
 import SettingsModalComponent from "./SettingsButton";
 
-// 2. Movemos todo o conteúdo interativo para cá
 export default function ClientWrapper({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -14,9 +13,7 @@ export default function ClientWrapper({
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   return (
-    <> {/* 3. Usamos Fragments, pois <html> e <body> já estão no layout.tsx */}
-      
-      {/* 🔧 BOTÃO DO MODAL NO CANTO SUPERIOR ESQUERDO */}
+    <> 
       <div className="absolute top-4 left-4 z-50">
         <button
           onClick={() => setIsSettingsOpen(true)}
@@ -32,18 +29,14 @@ export default function ClientWrapper({
         </button>
       </div>
 
-      {/* 🌐 LocaleSwitcher no canto superior direito */}
       <div className="absolute top-4 right-4 z-50">
         <LocaleSwitcher />
       </div>
 
-      {/* Conteúdo principal (filho) */}
       <main className="flex-grow">{children}</main>
 
-      {/* Rodapé */}
       <Footer />
 
-      {/* 🪟 Modal de Configurações */}
       <SettingsModalComponent
         isOpen={isSettingsOpen}
         onClose={() => setIsSettingsOpen(false)}

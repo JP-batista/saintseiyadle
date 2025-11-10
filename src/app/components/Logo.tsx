@@ -1,4 +1,4 @@
-// srcapp/classicc/components/Logo.tsx
+// src/app/components/Logo.tsx
 "use client";
 import Link from "next/link";
 import React, { useState, useEffect, memo } from "react";

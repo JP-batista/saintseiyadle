@@ -4,12 +4,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { X } from 'lucide-react';
-// IMPORTAÇÃO CORRIGIDA: Importa localeMap, locales e Locale do config.ts
 import { locales, Locale, localeMap } from '../i18n/config'; 
 import { useLocaleStore } from '../stores/useLocaleStore';
 import { useTranslation } from '../i18n/useTranslation';
-
-// Mapeamento das bandeiras para os códigos de idioma (REMOVIDO DAQUI)
 
 const LocaleSwitcher: React.FC = () => {
   const { locale, setLocale } = useLocaleStore();
@@ -17,19 +14,16 @@ const LocaleSwitcher: React.FC = () => {
   
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Informações do idioma atual
-  const currentLocaleInfo = localeMap[locale]; // Obtém o mapeamento do config.ts
+  const currentLocaleInfo = localeMap[locale]; 
 
   const handleChangeLocale = (newLocale: Locale) => {
     setLocale(newLocale);
-    setIsModalOpen(false); // Fecha o modal após a seleção
+    setIsModalOpen(false); 
   };
 
   return (
-    // CONTAINER PRINCIPAL
     <div className="relative z-50">
       
-      {/* 1. BOTÃO DE ABERTURA (Exibe a bandeira atual) */}
       <button
         onClick={() => setIsModalOpen(true)}
         className="
@@ -37,7 +31,6 @@ const LocaleSwitcher: React.FC = () => {
           transition-all duration-300 hover:scale-105 hover:bg-gray-800/80
           shadow-md focus:outline-none focus:ring-2 focus:ring-yellow-400
         "
-        // Usa t() para traduzir o label de acessibilidade
         aria-label={t('switch_language_open', { lang: currentLocaleInfo.name })}
       >
         <Image 
@@ -49,20 +42,18 @@ const LocaleSwitcher: React.FC = () => {
         />
       </button>
 
-      {/* 2. MODAL DE SELEÇÃO */}
       {isModalOpen && (
         <div 
           className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setIsModalOpen(false)} // Fecha ao clicar fora
+          onClick={() => setIsModalOpen(false)} 
         >
           <div 
             className="
               bg-gray-900/90 border border-gray-700/50 rounded-2xl shadow-2xl 
               p-6 w-full max-w-sm relative transform scale-100 animate-fadeInUp
             "
-            onClick={(e) => e.stopPropagation()} // Impede o fechamento interno
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Cabeçalho do Modal */}
             <div className="flex justify-between items-center border-b border-gray-700/50 pb-3 mb-4">
               <h3 className="text-xl font-bold text-yellow-400">
                 {t('switch_language_modal_title')}
@@ -72,7 +63,6 @@ const LocaleSwitcher: React.FC = () => {
               </button>
             </div>
 
-            {/* Opções de Idioma */}
             <div className="space-y-3">
               {locales.map((localeOption) => (
                 <button

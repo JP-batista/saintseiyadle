@@ -1,6 +1,5 @@
 "use client";
 import React, { memo, useMemo } from "react";
-// Importa ícones Lucide (incluindo Component como fallback seguro)
 import { 
   X,
   Trophy, 
@@ -21,15 +20,14 @@ import {
   MessageSquare
 } from "lucide-react"; 
 import { useTranslation } from "../i18n/useTranslation";
-import { getNewsData } from "../i18n/config"; // Importa a função para pegar o array de notícias
-import { NewsItem } from "../i18n/types"; // Importa o tipo NewsItem
+import { getNewsData } from "../i18n/config"; 
+import { NewsItem } from "../i18n/types";
 
 interface NewsModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-// Mapeamento de strings (do JSON) para componentes Lucide
 const IconMap: Record<string, React.FC<any>> = {
     Trophy: Trophy,
     RefreshCw: RefreshCw,
@@ -52,8 +50,6 @@ const IconMap: Record<string, React.FC<any>> = {
 const NewsModalComponent: React.FC<NewsModalProps> = ({ isOpen, onClose }) => {
   const { t, locale } = useTranslation();
 
-  // 💥 CORREÇÃO PRINCIPAL: OBTÉM AS NOTÍCIAS LOCALIZADAS DIRETAMENTE DO MAPA/CONFIG.TS
-  // Isso garante que a lista de notícias mude ao trocar o 'locale'.
   const newsItems: NewsItem[] = useMemo(() => getNewsData(locale), [locale]);
 
   if (!isOpen) return null;
@@ -72,7 +68,6 @@ const NewsModalComponent: React.FC<NewsModalProps> = ({ isOpen, onClose }) => {
         "
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="p-4 sm:p-6 border-b border-yellow-500/50 flex justify-between items-center sticky top-0 bg-gray-900/90 z-10">
           <h3 className="text-2xl font-bold text-yellow-400">
             {t("news_modal_title")} 
@@ -86,49 +81,39 @@ const NewsModalComponent: React.FC<NewsModalProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Content */}
         <div className="p-4 sm:p-6 text-left space-y-4 sm:space-y-6 text-gray-300">
           <p className="text-sm italic text-gray-400">
             {t("news_intro_message")}
           </p>
 
-          {/* Lista de Novidades */}
           <div className="space-y-4">
             {newsItems.map((item) => {
-                // Seleciona o componente de ícone com fallback seguro
-                const IconComponent = IconMap[item.icon] || IconMap.Component;
-                
-               
-                                  
-                return (
-                    <div
-                        key={item.id}
-                        className={`
-                            flex items-start p-4 bg-gray-900/60 rounded-xl border-l-4 
-                            transition-all duration-300 hover:bg-gray-800/80 ${item.glow}
-                        `}
-                    >
-                        <div className="flex-shrink-0 mr-4 mt-1">
-                            <IconComponent />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                            <h4 className="font-bold text-base text-white truncate">
-                                {item.title} {/* Consome o texto do JSON de notícias */}
-                            </h4>
-                            <p className="text-xs text-gray-400 italic mb-1">
-                                {item.date} {/* Consome o texto do JSON de notícias */}
-                            </p>
-                            <p className="text-sm text-gray-300">
-                                {item.description} {/* Consome o texto do JSON de notícias */}
-                            </p>
-                        </div>
-                    </div>
-                );
+              const IconComponent = IconMap[item.icon] || IconMap.Component;        
+              return (
+                <div key={item.id} className={
+                  `flex items-start p-4 bg-gray-900/60 rounded-xl border-l-4 
+                  transition-all duration-300 hover:bg-gray-800/80 ${item.glow}`}
+                >
+                  <div className="flex-shrink-0 mr-4 mt-1">
+                      <IconComponent />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-bold text-base text-white truncate">
+                        {item.title} 
+                    </h4>
+                    <p className="text-xs text-gray-400 italic mb-1">
+                        {item.date} 
+                    </p>
+                    <p className="text-sm text-gray-300">
+                        {item.description} 
+                    </p>
+                  </div>
+                </div>
+              );
             })}
           </div>
         </div>
 
-        {/* Footer */}
         <div className="p-4 sm:p-6 border-t border-gray-700/50 sticky bottom-0 bg-gray-900/90 z-10">
           <button
             onClick={onClose}

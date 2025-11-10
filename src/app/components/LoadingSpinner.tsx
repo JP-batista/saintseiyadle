@@ -1,4 +1,4 @@
-// srcapp/classicc/components/LoadingSpinner.tsx
+// src/app/components/LoadingSpinner.tsx
 "use client"; 
 import { useTranslation } from "../i18n/useTranslation";
 

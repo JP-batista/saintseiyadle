@@ -3,16 +3,14 @@
 import React, { memo } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useTranslation } from "../i18n/useTranslation";
-import { Check } from "lucide-react"; // 1. Importa o ícone de check
+import { Check } from "lucide-react";
 
-// 2. Importa todos os stores de jogo
 import { useGameStore } from "../stores/useGameStore";
 import { useQuoteGameStore } from "../stores/useQuoteGameStore";
 import { useAttackGameStore } from "../stores/useAttackGameStore";
 import { useSilhouetteGameStore } from "../stores/useSilhouetteGameStore";
-import { getCurrentDateInBrazil } from "../utils/dailyGame"; // Importa o hook de data
+import { getCurrentDateInBrazil } from "../utils/dailyGame"; 
 
-// 3. Definição dos modos (como estava antes)
 const gameModes = [
   {
     key: "classic",
@@ -45,8 +43,6 @@ const GameModeButtonsComponent = () => {
   const { t } = useTranslation();
   const pathname = usePathname(); 
 
-  // 4. Busca o estado de vitória de TODOS os stores
-  // Nós também checamos se a vitória é de "hoje"
   const todayDate = getCurrentDateInBrazil();
   
   const classicWon = useGameStore((state) => state.won && state.currentGameDate === todayDate);
@@ -54,7 +50,6 @@ const GameModeButtonsComponent = () => {
   const attackWon = useAttackGameStore((state) => state.won && state.currentGameDate === todayDate);
   const silhouetteWon = useSilhouetteGameStore((state) => state.won && state.currentGameDate === todayDate);
 
-  // 5. Cria um mapa para fácil acesso dentro do loop
   const winStatusMap = {
     classic: classicWon,
     quote: quoteWon,
@@ -68,20 +63,18 @@ const GameModeButtonsComponent = () => {
       {gameModes.map((mode) => {
         const isActive = pathname.startsWith(mode.path);
         const label = t(mode.translationKey);
-        
-        // 6. Verifica se este modo específico foi vencido hoje
+
         const isWonToday = winStatusMap[mode.key as keyof typeof winStatusMap] || false;
 
         const buttonSize = isActive
           ? "w-16 h-16"
           : "w-14 h-14 sm:w-16 sm:h-16";
 
-        // 7. Lógica de Estilo ATUALIZADA
         const imageStyles = isActive
-          ? "border-yellow-500 scale-105 shadow-glow-yellow" // 1. Ativo
+          ? "border-yellow-500 scale-105 shadow-glow-yellow" 
           : isWonToday
-          ? "border-green-500/80" // 2. Vencido (mas não ativo)
-          : "border-gray-700/50 grayscale opacity-70 group-hover:opacity-100 group-hover:grayscale-0"; // 3. Padrão (não vencido)
+          ? "border-green-500/80" 
+          : "border-gray-700/50 grayscale opacity-70 group-hover:opacity-100 group-hover:grayscale-0";
 
         return (
           <div key={mode.key} className="relative group">
@@ -106,7 +99,6 @@ const GameModeButtonsComponent = () => {
                 `}
               />
 
-              {/* 8. ADICIONA O CHECKMARK DE VITÓRIA */}
               {isWonToday && (
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center border-2 border-gray-900">
                   <Check className="w-3 h-3 text-white" />

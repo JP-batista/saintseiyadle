@@ -1,7 +1,7 @@
 // src/app/components/GameCard.tsx
 import React, { memo, useState } from "react";
 import Link from "next/link";
-import { useTranslation } from "../i18n/useTranslation"; // I18N: Importa o hook
+import { useTranslation } from "../i18n/useTranslation";
 
 interface GameCardProps {
   game: {
@@ -17,7 +17,7 @@ interface GameCardProps {
 }
 
 const GameCardComponent: React.FC<GameCardProps> = ({ game, index, isLoaded }) => {
-  const { t } = useTranslation(); // Instancia a tradução
+  const { t } = useTranslation();
   const [isCardHovered, setIsCardHovered] = useState(false);
 
   return (
@@ -30,16 +30,12 @@ const GameCardComponent: React.FC<GameCardProps> = ({ game, index, isLoaded }) =
         onMouseEnter={() => setIsCardHovered(true)}
         onMouseLeave={() => setIsCardHovered(false)}
       >
-        {/* Glow effect de fundo */}
         <div
           className={`absolute -inset-1 bg-gradient-to-r ${game.gradient} rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
         />
 
-        {/* Card principal */}
         <div className="relative flex items-center space-x-4 cursor-pointer w-full ">
-          {/* Ícone do Jogo */}
           <div className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full flex items-center justify-center border-4 border-gray-700 shadow-2xl group-hover:border-yellow-500 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 relative overflow-hidden">
-            {/* Partículas ao redor do ícone (mantidas, mas só ativadas no hover) */}
             {isCardHovered && (
               <>
                 {[...Array(8)].map((_, i) => (
@@ -59,13 +55,12 @@ const GameCardComponent: React.FC<GameCardProps> = ({ game, index, isLoaded }) =
             
             <img
               src={game.icon}
-              alt={game.name} // game.name já é localizado pelo pai
+              alt={game.name} 
               loading="lazy"
               className="w-16 h-16 sm:w-20 sm:h-20 object-contain transition-transform duration-300 group-hover:scale-110"
             />
           </div>
 
-          {/* Detalhes do Jogo */}
           <div className="
             flex-1 bg-gradient-to-br from-gray-800 to-gray-900 
             border-2 border-gray-700 p-4 sm:p-5 rounded-xl shadow-2xl 
@@ -76,16 +71,9 @@ const GameCardComponent: React.FC<GameCardProps> = ({ game, index, isLoaded }) =
             w-64 h-24 sm:h-24 /* Altura fixa */
             flex flex-col justify-center /* Centraliza o conteúdo verticalmente */
           ">
-            {/* Brilho deslizante no hover */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-            
-            {/* // ⬇️⬇️⬇️ CORREÇÃO DE ALINHAMENTO APLICADA AQUI ⬇️⬇️⬇️ 
-            */}
+
             <div className="relative z-10 break-words"> 
-            {/* // 'break-words' (ou overflow-wrap: break-word) 
-            // é a chave. Ele força palavras longas (como "aaaaaaaaaa") 
-            // a quebrar para a próxima linha, impedindo que estiquem o card.
-            */}
               <h3 className="text-lg sm:text-xl font-bold text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300 mb-1 truncate">
                 {game.name}
               </h3>
@@ -94,7 +82,6 @@ const GameCardComponent: React.FC<GameCardProps> = ({ game, index, isLoaded }) =
               </p>
             </div>
 
-            {/* Indicador de "clique aqui" */}
             <div className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <svg
                 className="w-5 h-5 text-yellow-400 animate-bounce-horizontal"
@@ -113,7 +100,6 @@ const GameCardComponent: React.FC<GameCardProps> = ({ game, index, isLoaded }) =
           </div>
         </div>
 
-        {/* Tooltip flutuante */}
         <div className="absolute -top-12 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
           <div className="bg-gray-900 text-yellow-400 text-xs font-semibold px-3 py-1 rounded-lg shadow-lg border border-yellow-500/50 whitespace-nowrap">
             {t('legend_click_to_play')}

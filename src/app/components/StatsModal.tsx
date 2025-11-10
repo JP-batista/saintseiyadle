@@ -1,10 +1,9 @@
 // src/components/StatsModal.tsx
 "use client";
-// 1. IMPORTAR TODOS OS STORES DE ESTATÍSTICAS
+
 import { useStatsStore } from "../stores/useStatsStore";
 import { useQuoteStatsStore } from "../stores/useQuoteStatsStore";
 import { useAttackStatsStore } from "../stores/useAttackStatsStore"; 
-// NOVO: Importa o store de estatísticas do Modo Silhueta
 import { useSilhouetteStatsStore } from "../stores/useSilhouetteStatsStore";
 
 import { X } from "lucide-react";
@@ -22,13 +21,9 @@ import { useTranslation } from "../i18n/useTranslation";
 type StatsModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  // ATUALIZADO: Inclui 'silhouette' no tipo 'mode'
   mode: 'classic' | 'quote' | 'attack' | 'silhouette'; 
 };
 
-// ====================================================================
-// Helper: CustomActiveDot (Sem alteração)
-// ====================================================================
 const CustomActiveDot = (props: any) => {
   const { cx, cy, payload } = props;
   if (!payload) return null;
@@ -57,9 +52,6 @@ const CustomActiveDot = (props: any) => {
   );
 };
 
-// ====================================================================
-// StatsChartComponent (Sem alteração)
-// ====================================================================
 const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
   const { t } = useTranslation();
   return (
@@ -106,9 +98,6 @@ const StatsChartComponent = ({ chartData }: { chartData: any[] }) => {
 };
 const MemoizedStatsChart = memo(StatsChartComponent);
 
-// ====================================================================
-// GameHistoryRowComponent (ATUALIZADO para Modo Silhueta)
-// ====================================================================
 const GameHistoryRowComponent = ({ game }: { game: any }) => {
   const { t } = useTranslation();
 
@@ -123,17 +112,14 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
   const attemptText =
     game.attempts === 1 ? t("stats_attempt_singular") : t("stats_attempt_plural");
 
-  // ATUALIZADO: Determina o sub-texto a ser exibido
   const subText = game.quoteText
-    ? `"${game.quoteText}"` // Modo Fala
+    ? `"${game.quoteText}"` 
     : game.attackName
-    ? `Golpe: ${game.attackName}` // Modo Ataque
+    ? `Golpe: ${game.attackName}` 
     : game.knight
-    ? `Cavaleiro: ${game.knight}` // Modo Silhueta
-    : null; // Modo Clássico
+    ? `Cavaleiro: ${game.knight}` 
+    : null; 
 
-  // ATUALIZADO: Determina a imagem e o nome principal
-  // (Modo Silhueta usa 'revealedImg' e 'name')
   const mainImage = game.revealedImg || game.characterImage;
   const mainName = game.name || game.characterName;
 
@@ -150,15 +136,14 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
     >
       <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
         <img
-          src={mainImage} // ATUALIZADO
-          alt={mainName} // ATUALIZADO
+          src={mainImage}
+          alt={mainName}
           className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-lg object-cover border-2 border-gray-600/50 flex-shrink-0 shadow-lg"
         />
         <div className="flex flex-col min-w-0 flex-1">
           <span className="font-bold text-yellow-400 text-sm sm:text-base truncate">
-            {mainName} {/* ATUALIZADO */}
+            {mainName}
           </span>
-          {/* Exibe o sub-texto (Fala, Golpe ou Cavaleiro) */}
           {subText && (
             <span className="text-xs text-gray-400 italic truncate">
               {subText}
@@ -190,11 +175,7 @@ const GameHistoryRowComponent = ({ game }: { game: any }) => {
 };
 const GameHistoryRow = memo(GameHistoryRowComponent);
 
-// ====================================================================
-// Componente Principal StatsModal (ATUALIZADO)
-// ====================================================================
 export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
-  // ATUALIZAÇÃO: Hook condicional para buscar dados do store correto
   const {
     totalWins,
     averageAttempts,
@@ -203,13 +184,12 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
     maxStreak,
     gamesHistory,
   } = mode === 'classic' 
-      ? useStatsStore() // Modo Clássico
+      ? useStatsStore() 
       : mode === 'quote' 
-      ? useQuoteStatsStore() // Modo Fala
+      ? useQuoteStatsStore() 
       : mode === 'attack'
-      ? useAttackStatsStore() // Modo Ataque
-      // @ts-ignore // Ignora o mismatch de tipo (SilhouetteGameHistory vs GameHistory)
-      : useSilhouetteStatsStore(); // Modo Silhueta
+      ? useAttackStatsStore() 
+      : useSilhouetteStatsStore();
 
   const [showAllHistory, setShowAllHistory] = useState(false);
   const { t } = useTranslation();
@@ -260,7 +240,6 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
         "
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header - Sticky */}
         <div
           className="
           sticky top-0 
@@ -280,11 +259,8 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
           </button>
         </div>
 
-        {/* Content - flex-grow */}
         <div className="p-3 sm:p-4 md:p-6 space-y-4 sm:space-y-6 flex-grow">
-          {/* Stats Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
-            {/* Vitórias */}
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-green-400">
                 {totalWins}
@@ -294,7 +270,6 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
               </div>
             </div>
 
-            {/* Média */}
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-blue-400">
                 {averageAttempts}
@@ -304,7 +279,6 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
               </div>
             </div>
 
-            {/* 1ª Tentativa */}
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-purple-400">
                 {firstTryWins}
@@ -314,7 +288,6 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
               </div>
             </div>
 
-            {/* Sequência */}
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105">
               <div className="text-3xl sm:text-4xl font-bold text-orange-400">
                 {currentStreak}
@@ -324,7 +297,6 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
               </div>
             </div>
 
-            {/* Recorde */}
             <div className="bg-gray-900/5D backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4 text-center transition-all duration-300 hover:bg-gray-900/70 hover:border-gray-600/50 hover:scale-105 col-span-2 sm:col-span-1">
               <div className="text-3xl sm:text-4xl font-bold text-yellow-400">
                 {maxStreak}
@@ -335,10 +307,8 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
             </div>
           </div>
 
-          {/* Chart */}
           {chartData.length > 0 && <MemoizedStatsChart chartData={chartData} />}
 
-          {/* History */}
           {displayedHistory.length > 0 && (
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-3 sm:p-4">
               <h3 className="text-base sm:text-lg md:text-xl font-bold text-yellow-400 mb-3 sm:mb-4 text-center">
@@ -350,7 +320,6 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
                 ))}
               </div>
 
-              {/* Botões "Ver Mais" / "Ver Menos" */}
               {hasMoreGames && !showAllHistory && (
                 <button
                   onClick={() => setShowAllHistory(true)}
@@ -370,7 +339,6 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
             </div>
           )}
 
-          {/* Empty State */}
           {gamesHistory.length === 0 && (
             <div className="text-center py-6 sm:py-8 text-gray-400 bg-gray-900/50 backdrop-blur-sm border-2 border-gray-700/50 border-dashed rounded-xl">
               <p className="text-base sm:text-lg">{t("stats_history_empty")}</p>
@@ -379,7 +347,6 @@ export default function StatsModal({ isOpen, onClose, mode }: StatsModalProps) {
           )}
         </div>
 
-        {/* Footer - Sticky */}
         <div
           className="
           sticky bottom-0 

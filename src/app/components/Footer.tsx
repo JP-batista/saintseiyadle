@@ -1,11 +1,9 @@
-// Footer.tsx
 "use client";
 
 import { Twitter, Facebook, Instagram, Linkedin } from "lucide-react";
 import React, { memo } from "react";
-import { useTranslation } from "../i18n/useTranslation"; // I18N: Importa o hook
+import { useTranslation } from "../i18n/useTranslation"; 
 
-// Dados dos links sociais (Mantemos as chaves em inglês, que é o padrão de acessibilidade)
 const socialLinks = [
   { 
     href: "https://x.com/jotape_rba", 
@@ -30,7 +28,7 @@ const socialLinks = [
 ];
 
 const FooterComponent = () => {
-  const { t } = useTranslation(); // Esta linha agora é executada no cliente
+  const { t } = useTranslation(); 
 
   return (
     <footer
@@ -41,7 +39,6 @@ const FooterComponent = () => {
     "
     >
       <div className="container mx-auto text-center flex flex-col items-center gap-4 px-4">
-        {/* Links de Mídia Social com Ícones */}
         <div className="flex items-center gap-4">
           {socialLinks.map((link) => (
             <a
@@ -49,7 +46,6 @@ const FooterComponent = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              // I18N: Usamos uma chave para o label de acessibilidade
               aria-label={t('footer_social_link', { network: link.label })} 
               className="
                 w-10 h-10 rounded-full 
@@ -70,20 +66,16 @@ const FooterComponent = () => {
           ))}
         </div>
 
-        {/* Informações do Desenvolvedor */}
         <p className="text-sm text-gray-300">
-          {/* I18N: Traduzido "Desenvolvido por" */}
           {t('footer_developed_by')}{" "}
           <span className="font-semibold text-white">João Pedro Batista</span>
         </p>
 
-        {/* Textos Legais Agrupados */}
         <div className="flex flex-col gap-1">
           <p className="text-sm text-gray-300">
             &copy; {new Date().getFullYear()} saintseiyadle.
           </p>
           <p className="mt-2 text-xs text-gray-400 max-w-2xl">
-            {/* I18N: Traduzido o aviso legal */}
             {t('footer_legal_disclaimer')}
           </p>
         </div>
