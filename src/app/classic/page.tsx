@@ -31,6 +31,9 @@ import NewsModal from "../components/NewsModal";
 import HelpModal from "./components/HelpModal";
 import GameModeButtons from "../components/GameModeButtons";
 
+import ShareSection from "./components/ShareSection"; 
+import YesterdayClassic from "./components/YesterdayClassic";
+
 
 export default function GamePage() {
   const { t, locale } = useTranslation();
@@ -468,6 +471,10 @@ export default function GamePage() {
           )}
           <AttemptsGrid attempts={attempts} gridRef={null} />
           <GameLegend />
+
+          <div className="mt-8 w-full max-w-md">
+            <YesterdayClassic />
+          </div>
         </>
       ) : (
         <>
@@ -480,6 +487,17 @@ export default function GamePage() {
             timeRemaining={timeRemaining}
             onShowStats={() => setShowStatsModal(true)}
           />
+
+          
+
+          <ShareSection 
+            attempts={attempts} 
+            isWin={won && !gaveUp} 
+          />
+          
+          <div className="mt-8 w-full max-w-md">
+            <YesterdayClassic />
+          </div>
         </>
       )}
     </div>

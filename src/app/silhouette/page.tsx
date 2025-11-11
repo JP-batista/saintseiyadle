@@ -26,6 +26,7 @@ import ResultCard from "./components/ResultCard";
 import HelpModal from "./components/HelpModal";
 import YesterdaySilhouette from "./components/YesterdaySilhouette";
 import SilhouetteGuessForm from "./components/SilhouetteGuessForm";
+import ShareSection from "./components/ShareSection";
 
 const INITIAL_ZOOM_LEVEL = 3;
 
@@ -287,6 +288,14 @@ export default function SilhouettePage() {
             onShowStats={() => setShowStatsModal(true)}
           />
           
+          {/* // ⬇️⬇️ ADICIONE ESTE COMPONENTE AQUI ⬇️⬇️ */}
+          <ShareSection
+            attemptsCount={attempts.length}
+          />
+
+          <div className="mt-8 w-full max-w-md">
+            <YesterdaySilhouette />
+          </div>
         </>
       )}
     </div>

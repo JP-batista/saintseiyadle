@@ -65,10 +65,6 @@ const GameLegendComponent = () => {
             <span className="text-sm text-white mt-2">{t('legend_lower')}</span>
           </div>
         </div>
-        
-        <YesterdayClassic />
-
-        <GameModeButtons />
       </div>
     </div>
   );

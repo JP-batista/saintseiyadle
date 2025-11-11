@@ -1,3 +1,4 @@
+// src/app/quote/page.tsx
 "use client";
 
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
@@ -28,6 +29,7 @@ import QuoteAttemptsList from './components/QuoteAttempts';
 import GameModeButtons from '../components/GameModeButtons';
 import YesterdayQuote from './components/YesterdayQuote';
 
+import ShareSection from "./components/ShareSection";
 
 const QuoteDisplay = React.memo(({ text }: { text: string }) => {
   return (
@@ -60,14 +62,16 @@ export default function QuoteGamePage() {
     setWon,
   } = useQuoteGameStore();
 
-  const { currentStreak, addGameResult } = useQuoteStatsStore();
+  const { currentStreak, addGameResult, getGameByDate } = useQuoteStatsStore(); // Adicionado getGameByDate
 
   const [input, setInput] = useState('');
   const [suggestions, setSuggestions] = useState<Character[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
-  const characteristicsRef = useRef(null);
+  
+  // 1. A 'characteristicsRef' foi renomeada para 'resultCardRef' para clareza
+  const resultCardRef = useRef<HTMLDivElement | null>(null);
 
   const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
@@ -85,27 +89,66 @@ export default function QuoteGamePage() {
     return () => clearInterval(interval);
   }, []);
 
+  //
+  // ⬇️⬇️⬇️ CORREÇÃO APLICADA AQUI ⬇️⬇️⬇️
+  //
+  // 2. Efeito para rolar a tela para o ResultCard ao vencer
+  useEffect(() => {
+    if (won && !gaveUp && attempts.length > 0) {
+      const scrollTimer = setTimeout(() => {
+        resultCardRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }, 500); // Atraso de 500ms para a animação de vitória começar
+      return () => clearTimeout(scrollTimer);
+    }
+  }, [won, gaveUp, attempts.length]);
+  // ⬆️⬆️⬆️ FIM DA CORREÇÃO ⬆️⬆️⬆️
+
+  // Efeito para salvar o resultado (corrigido para não salvar repetidamente)
+  useEffect(() => {
+    if ((won || gaveUp) && selectedQuote && attempts.length > 0) {
+      const today = getCurrentDateInBrazil();
+      const existingGame = getGameByDate(today);
+
+      if (!existingGame) {
+        addGameResult(
+          today,
+          attempts.length, // Usamos o tamanho atual
+          won && !gaveUp,
+          selectedQuote.character.nome,
+          selectedQuote.character.imgSrc,
+          selectedQuote.character.idKey,
+          selectedQuote.quote.texts,
+          selectedQuote.quote.idQuote
+        );
+      }
+    }
+  }, [won, gaveUp, selectedQuote, attempts.length, addGameResult, getGameByDate]);
+  
+
   const attemptedIdKeys = useMemo(() => {
     return new Set(attempts.map(a => a.idKey));
   }, [attempts]); 
   
-  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setInput(value);
-    setError(null);
-    setActiveSuggestionIndex(-1);
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInput(value);
+    setError(null);
+    setActiveSuggestionIndex(-1);
 
-    if (value.length > 0) {
-      const filtered = allCharacters
-        .filter((c) => c.nome.toLowerCase().includes(value.toLowerCase()))
-          .filter((c) => !attemptedIdKeys.has(c.idKey))
-        .slice(0, 5); 
-      setSuggestions(filtered as Character[]);
-      setShowDropdown(true);
-    } else {
-      setShowDropdown(false);
-    }
-  }, [allCharacters, attemptedIdKeys]);
+    if (value.length > 0) {
+      const filtered = allCharacters
+        .filter((c) => c.nome.toLowerCase().includes(value.toLowerCase()))
+         .filter((c) => !attemptedIdKeys.has(c.idKey))
+        .slice(0, 5); 
+      setSuggestions(filtered as Character[]);
+      setShowDropdown(true);
+    } else {
+      setShowDropdown(false);
+    }
+  }, [allCharacters, attemptedIdKeys]);
 
   const processGuess = (guessName: string) => {
     if (!selectedQuote) return; 
@@ -130,18 +173,7 @@ export default function QuoteGamePage() {
 
     if (guessedCharacter.idKey === selectedQuote.character.idKey) {
       setWon(true);
-      
-      const today = getCurrentDateInBrazil();
-      addGameResult(
-        today,
-        attempts.length + 1, 
-        true,
-        selectedQuote.character.nome,
-        selectedQuote.character.imgSrc,
-        selectedQuote.character.idKey,
-        selectedQuote.quote.texts,
-        selectedQuote.quote.idQuote
-      );
+      // A lógica de salvar o resultado foi movida para o useEffect
     } 
     setInput('');
     setShowDropdown(false);
@@ -286,13 +318,22 @@ export default function QuoteGamePage() {
             <QuoteAttemptsList attempts={attempts} />
 
             <ResultCard
-              cardRef={characteristicsRef}
+              cardRef={resultCardRef} // 3. Passa a ref para o ResultCard
               isWin={won && !gaveUp}
               selectedCharacter={selectedQuote.character as Character}
               attemptsCount={attempts.length}
               timeRemaining={timeRemaining}
               onShowStats={() => setIsStatsModalOpen(true)}
             />
+            
+            <ShareSection
+              attemptsCount={attempts.length}
+              isWin={won && !gaveUp}
+            />
+
+            <div className="mt-6">
+              <YesterdayQuote />
+            </div>
           </div>
         )}
       </div>

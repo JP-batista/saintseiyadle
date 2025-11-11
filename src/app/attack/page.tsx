@@ -25,7 +25,7 @@ import AttackResultCard from './components/AttackResultCard';
 import AttackGuessForm from './components/AttackGuessForm'; 
 import AttackAttemptsList from './components/AttackAttemptsList';
 import YesterdayAttack from './components/YesterdayAttack';
-
+import ShareSection from "./components/ShareSection";
 
 export default function AttackGamePage() {
   const { t, locale } = useTranslation();
@@ -379,7 +379,7 @@ export default function AttackGamePage() {
             correctCharacterIdKey={selectedAttack.character.idKey}
           />
 
-          <div className="mt-6">
+          <div className="mt-8 w-full max-w-md">
             <YesterdayAttack />
           </div>
           
@@ -401,7 +401,13 @@ export default function AttackGamePage() {
             timeRemaining={timeRemaining}
             onShowStats={() => setIsStatsModalOpen(true)}
           />
+          <ShareSection
+            attemptsCount={attempts.length}
+          />
 
+          <div className="mt-8 w-full max-w-md">
+            <YesterdayAttack />
+          </div>
         </div>
       )}
     </div>

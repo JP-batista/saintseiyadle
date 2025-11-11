@@ -200,14 +200,26 @@
   "silhouette_zoom_info_off": "Desligado: O zoom ficará no máximo.",
   "attack_form_placeholder_character": "Digite o nome do personagem...",
   "form_error_already_tried_character": "Personagem já tentado! Tente outro.",
-  
   "attack_attempts_title_character": "Personagens Tentados",
-
   "attack_help_objective_desc": "Adivinhe qual personagem executa o golpe mostrado no GIF.",
   "attack_help_how_desc": "Digite o nome de um personagem no campo de palpite. Você receberá um feedback instantâneo se acertou ou errou.",
-  
   "attack_help_feedback_title": "Feedback da Tentativa",
   "attack_help_feedback_desc": "A cada palpite, você verá imediatamente se o personagem estava correto ou incorreto:",
   "attack_feedback_correct": "Correto",
-  "attack_feedback_incorrect": "Incorreto"
+  "attack_feedback_incorrect": "Incorreto",
+  "share_button_text": "Compartilhar 🔗",
+  "share_copied": "Copiado! ✅",
+  "share_title_classic_win": "Acertei o personagem #SaintSeiyaDLE na {count}ª tentativa! 🏛️",
+  "share_title_classic_lose": "Não acertei o personagem #SaintSeiyaDLE hoje... 💔",
+  "share_more": "➕ {count} mais",
+  "share_button_twitter_text": "Compartilhar",
+  "share_modal_title": "Compartilhe seu Resultado",
+  "share_button_copy": "Copiar 📋",
+  "share_button_copied": "Copiado! ✅",
+  "share_button_twitter": "Compartilhar",
+  "share_title_silhouette_win": "Acertei a silhueta #SaintSeiyaDLE na {count}ª tentativa! 🛡️",
+  "share_title_silhouette_lose": "Não acertei a silhueta #SaintSeiyaDLE hoje... 💔",
+  "share_title_attack_win": "Acertei o golpe #SaintSeiyaDLE na {count}ª tentativa! 💥",
+  "share_title_quote_win": "Acertei a fala #SaintSeiyaDLE na {count}ª tentativa! 💬",
+  "share_title_quote_lose": "Não acertei a fala #SaintSeiyaDLE hoje... 💔"
 }
