@@ -172,9 +172,7 @@
   "attack_result_was": "O golpe era:",
   "yesterday_attack_title": "Golpe de Ontem",
   "attack_help_objective_title": "Objetivo do Jogo",
-  "attack_help_objective_desc": "Adivinhe qual o golpe (ataque) do dia com o menor número de tentativas, testando seu conhecimento dinâmico das sequências de luta.",
   "attack_help_how_title": "Como Jogar",
-  "attack_help_how_desc": "Observe o GIF que começa 'borrado' e em 'preto e branco'. Digite o nome do golpe que você acha que é e envie. A cada tentativa incorreta, 'o blur vai diminuindo e revelando o golpe'.",
   "attack_help_controls_title": "Controles de Filtro",
   "attack_help_controls_desc": "Você pode usar os interruptores para ajustar a dificuldade:",
   "attack_help_toggle_blur_desc": "Controla se o borrão diminui automaticamente a cada tentativa (LIGADO) ou se permanece no nível máximo (DESLIGADO).",
@@ -199,5 +197,17 @@
   "silhouette_question_title": "De que Armadura é esta silhueta?",
   "silhouette_zoom_info": "Cada tentativa diminui um pouco o zoom.",
   "silhouette_zoom_info_on": "Ligado: Cada tentativa diminui o zoom.",
-  "silhouette_zoom_info_off": "Desligado: O zoom ficará no máximo."
+  "silhouette_zoom_info_off": "Desligado: O zoom ficará no máximo.",
+  "attack_form_placeholder_character": "Digite o nome do personagem...",
+  "form_error_already_tried_character": "Personagem já tentado! Tente outro.",
+  
+  "attack_attempts_title_character": "Personagens Tentados",
+
+  "attack_help_objective_desc": "Adivinhe qual personagem executa o golpe mostrado no GIF.",
+  "attack_help_how_desc": "Digite o nome de um personagem no campo de palpite. Você receberá um feedback instantâneo se acertou ou errou.",
+  
+  "attack_help_feedback_title": "Feedback da Tentativa",
+  "attack_help_feedback_desc": "A cada palpite, você verá imediatamente se o personagem estava correto ou incorreto:",
+  "attack_feedback_correct": "Correto",
+  "attack_feedback_incorrect": "Incorreto"
 }

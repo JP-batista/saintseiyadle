@@ -1,7 +1,8 @@
 "use client";
 
 import React, { memo } from "react";
-import { X, Brain, Target, SlidersHorizontal, Info } from "lucide-react";
+// MODIFICADO: Importado 'Check' para a nova seção de ajuda
+import { X, Brain, Target, SlidersHorizontal, Info, Check } from "lucide-react";
 import { useTranslation } from "../../i18n/useTranslation";
 
 interface HelpModalProps {
@@ -45,6 +46,7 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             <Target className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
             <div>
               <h4 className="font-bold text-lg text-yellow-400">
+                {/* O texto desta chave (no .json) deve ser: "Adivinhe o PERSONAGEM" */}
                 {t('attack_help_objective_title')}
               </h4>
               <p>{t('attack_help_objective_desc')}</p>
@@ -55,6 +57,7 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             <Brain className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
             <div>
               <h4 className="font-bold text-lg text-yellow-400">
+                 {/* O texto desta chave (no .json) deve ser: "Digite o nome do PERSONAGEM" */}
                 {t('attack_help_how_title')}
               </h4>
               <p>{t('attack_help_how_desc')}</p>
@@ -79,13 +82,24 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
+          {/* MODIFICADO: A seção "Sem Dicas" foi substituída por "Feedback da Tentativa" */}
           <div className="flex items-start gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
             <Info className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
             <div>
               <h4 className="font-bold text-lg text-yellow-400">
-                 {t("attack_help_no_hints_title")}
+                 {/* (Nova chave de tradução) */}
+                 {t("attack_help_feedback_title")}
               </h4>
-              <p>{t("attack_help_no_hints_desc")}</p>
+              <p>{t("attack_help_feedback_desc")}</p>
+              {/* Adicionado exemplo visual do feedback */}
+              <div className="mt-2 flex flex-col sm:flex-row gap-2 text-sm">
+                  <span className="flex items-center gap-1.5 p-1.5 rounded-md bg-green-500/20 text-green-400">
+                      <Check size={16} /> {t("attack_feedback_correct")}
+                  </span>
+                  <span className="flex items-center gap-1.5 p-1.5 rounded-md bg-red-500/20 text-red-400">
+                      <X size={16} /> {t("attack_feedback_incorrect")}
+                  </span>
+              </div>
             </div>
           </div>
           

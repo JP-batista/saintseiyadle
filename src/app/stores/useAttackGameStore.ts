@@ -1,15 +1,14 @@
 // src/stores/useAttackGameStore.ts
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { SelectedAttack } from '../i18n/types';
+import { SelectedAttack, CharacterBaseInfo } from '../i18n/types';
 
-type Attempt = {
-  attackName: string; 
-};
+// MODIFICADO: 'Attempt' agora é um 'CharacterBaseInfo'
+type Attempt = CharacterBaseInfo;
 
 interface AttackGameState {
   selectedAttack: SelectedAttack | null;
-  attempts: Attempt[];
+  attempts: Attempt[]; // Esta lista agora conterá objetos CharacterBaseInfo
   won: boolean;
   gaveUp: boolean;
   currentGameDate: string | null;
@@ -18,7 +17,7 @@ interface AttackGameState {
   autoDecreaseActive: boolean; 
   
   setSelectedAttack: (attack: SelectedAttack) => void;
-  addAttempt: (attempt: Attempt) => void;
+  addAttempt: (attempt: Attempt) => void; // A assinatura do método permanece a mesma
   setWon: (won: boolean) => void;
   setGaveUp: (gaveUp: boolean) => void;
   setCurrentGameDate: (date: string) => void;
@@ -50,7 +49,7 @@ export const useAttackGameStore = create<AttackGameState>()(
           const newBlur = Math.max(0, state.attemptBlurLevel - 0.25); 
             
           return { 
-            attempts: [attempt, ...state.attempts],
+            attempts: [attempt, ...state.attempts], // Adiciona o objeto 'CharacterBaseInfo' à lista
             attemptBlurLevel: newBlur,
           }
         }),
@@ -83,7 +82,7 @@ export const useAttackGameStore = create<AttackGameState>()(
 
           return {
             selectedAttack: attack,
-            attempts: isSameDay ? state.attempts : [],
+            attempts: isSameDay ? state.attempts : [], // Mantém as tentativas (CharacterBaseInfo)
             won: keepWonState,
             gaveUp: keepGaveUpState,
             currentGameDate: date,

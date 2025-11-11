@@ -1,11 +1,13 @@
 // src/app/attack/components/AttackGuessForm.tsx
 import React, { memo, useId, useRef, useState, useEffect } from "react";
+// MODIFICADO: Importa CharacterBaseInfo
+import { CharacterBaseInfo } from "../../i18n/types"; 
 import { useTranslation } from "../../i18n/useTranslation";
-import { Attack } from "../../i18n/types"; 
 
 type SuggestionItemProps = {
-  suggestion: Attack;
-  onSelect: (idAttack: string) => void;
+  // MODIFICADO: Usa CharacterBaseInfo
+  suggestion: CharacterBaseInfo; 
+  onSelect: (idKey: string) => void;
   t: ReturnType<typeof useTranslation>['t'];
 };
 
@@ -15,12 +17,13 @@ const SuggestionItem: React.FC<SuggestionItemProps> = ({
   t,
 }) => {
   const handleClick = () => {
-    onSelect(suggestion.idAttack);
+    onSelect(suggestion.idKey);
   };
 
   return (
     <li
       role="option"
+      // MODIFICADO: Estilização do Clássico
       className="flex items-center p-2.5 m-1 hover:bg-yellow-500/10 hover:border-yellow-500/30 border border-transparent rounded-lg cursor-pointer suggestion-item smooth-transition"
       onClick={handleClick}
       onKeyDown={(e) => {
@@ -28,24 +31,39 @@ const SuggestionItem: React.FC<SuggestionItemProps> = ({
       }}
       tabIndex={0}
     >
-      <span className="font-semibold text-gray-100 truncate p-1">
-        {suggestion.name || t("form_default_name")}
-      </span>
+      <img
+        // MODIFICADO: Imagem do CharacterBaseInfo
+        src={suggestion.imgSrc || "/default-image.png"}
+        alt={suggestion.nome || t("form_default_name")}
+        className="w-10 h-10 rounded-lg mr-3 shadow-lg flex-shrink-0"
+        loading="eager"
+        decoding="async"
+      />
+      <div className="flex flex-col min-w-0">
+        <span className="font-semibold text-gray-100 truncate">
+          {suggestion.nome || t("form_default_name")}
+        </span>
+        <span className="text-xs text-gray-400 italic truncate">
+          {/* MODIFICADO: Patente do CharacterBaseInfo */}
+          {suggestion.patente || t("form_default_title")}
+        </span>
+      </div>
     </li>
   );
 };
 
-type AttackGuessFormProps = {
+type GuessFormProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   input: string;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  suggestions: Attack[]; 
+  // MODIFICADO: Usa CharacterBaseInfo
+  suggestions: CharacterBaseInfo[];
   showDropdown: boolean;
-  onSuggestionClick: (idAttack: string) => void;
+  onSuggestionClick: (idKey: string) => void;
   onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 };
 
-const AttackGuessForm: React.FC<AttackGuessFormProps> = ({
+const AttackGuessForm: React.FC<GuessFormProps> = ({
   onSubmit,
   input,
   onInputChange,
@@ -57,18 +75,21 @@ const AttackGuessForm: React.FC<AttackGuessFormProps> = ({
   const { t } = useTranslation();
   const listboxId = useId();
   const formRef = useRef<HTMLFormElement>(null);
+  // LÓGICA REVERTIDA: Usa 'shouldSubmit'
   const [shouldSubmit, setShouldSubmit] = useState(false);
 
+  // LÓGICA REVERTIDA: Usa 'useEffect' para submeter
   useEffect(() => {
     if (shouldSubmit && formRef.current) {
       formRef.current.requestSubmit();
       setShouldSubmit(false);
     }
-  }, [shouldSubmit]);
+  }, [input, shouldSubmit]); // Depende do 'input' ser atualizado
 
-  const handleSuggestionSelect = (idAttack: string) => {
-    onSuggestionClick(idAttack);
-    setShouldSubmit(true);
+  // LÓGICA REVERTIDA: 'handleSuggestionSelect' apenas define o estado
+  const handleSuggestionSelect = (idKey: string) => {
+    onSuggestionClick(idKey); // Informa o 'page.tsx' (que vai atualizar o 'input')
+    setShouldSubmit(true); // Prepara para submeter no próximo render
   };
 
   return (
@@ -82,14 +103,16 @@ const AttackGuessForm: React.FC<AttackGuessFormProps> = ({
           type="text"
           value={input}
           onChange={onInputChange}
-          onKeyDown={onKeyDown}
-          placeholder={t("attack_form_placeholder")} 
+          onKeyDown={onKeyDown} // O 'page.tsx' vai lidar com as setas
+          // MODIFICADO: Placeholder para o modo Ataque
+          placeholder={t("attack_form_placeholder_character")}
           className="p-3.5 sm:p-4 w-full text-lg text-center text-gray-100 bg-gray-900/50 backdrop-blur-sm border-2 border-gray-700/50 rounded-xl placeholder:text-gray-400 transition-all duration-300 focus:border-yellow-500 focus:ring-2 focus:ring-yellow-500/50 focus:outline-none"
           role="combobox"
           aria-expanded={showDropdown}
           aria-controls={listboxId}
           autoComplete="off"
         />
+
         {showDropdown && suggestions.length > 0 && (
           <ul
             id={listboxId}
@@ -98,7 +121,7 @@ const AttackGuessForm: React.FC<AttackGuessFormProps> = ({
           >
             {suggestions.map((suggestion, index) => (
               <SuggestionItem
-                key={suggestion.idAttack || `${suggestion.name}-${index}`}
+                key={suggestion.idKey || `${suggestion.nome}-${index}`}
                 suggestion={suggestion}
                 onSelect={handleSuggestionSelect}
                 t={t}
@@ -118,6 +141,7 @@ const AttackGuessForm: React.FC<AttackGuessFormProps> = ({
   );
 };
 
+// MODIFICADO: 'memo' não inclui 'activeIndex'
 export default memo(
   AttackGuessForm,
   (prevProps, nextProps) =>

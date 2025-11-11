@@ -9,7 +9,8 @@ import { useDailyAttack } from '../hooks/useDailyAttack';
 import { useTranslation } from '../i18n/useTranslation';
 import { getAttackData } from '../i18n/config'; 
 import { getCurrentDateInBrazil, formatTimeRemaining, getNextMidnightInBrazil } from '../utils/dailyGame';
-import { Attack, SelectedAttack, CharacterWithAttacks } from '../i18n/types';
+// MODIFICADO: Importa CharacterBaseInfo
+import { SelectedAttack, CharacterWithAttacks, CharacterBaseInfo } from '../i18n/types';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Logo from '../components/Logo';
 import StatsBar from '../components/StatsBar';
@@ -23,12 +24,14 @@ import AttackResultCard from './components/AttackResultCard';
 import AttackGuessForm from './components/AttackGuessForm';
 import AttackAttemptsList from './components/AttackAttemptsList';
 import YesterdayAttack from './components/YesterdayAttack';
+import GuessForm from "../classic/components/GuessForm";
 
 
 export default function AttackGamePage() {
   const { t, locale } = useTranslation();
   const router = useRouter();
 
+  // MODIFICADO: 'allAttacks' (fonte da verdade) e 'allCharacters' (para sugestões)
   const allAttacks = useMemo(() => {
     const dataModule = getAttackData(locale);
     
@@ -37,7 +40,7 @@ export default function AttackGamePage() {
       const allAttacks: SelectedAttack[] = [];
 
       for (const character of charactersWithAttacks) {
-          const characterInfo = {
+          const characterInfo: CharacterBaseInfo = { // Garante que o tipo CharacterBaseInfo está correto
               idKey: character.idKey,
               nome: character.nome,
               patente: character.patente,
@@ -61,10 +64,21 @@ export default function AttackGamePage() {
     return flattenAttackData(dataModule);
   }, [locale]);
 
+  // MODIFICADO: Cria uma lista de personagens únicos para as sugestões
+  const allCharacters = useMemo(() => {
+    const charMap = new Map<string, CharacterBaseInfo>();
+    allAttacks.forEach((item) => {
+      if (!charMap.has(item.character.idKey)) {
+        charMap.set(item.character.idKey, item.character);
+      }
+    });
+    return Array.from(charMap.values());
+  }, [allAttacks]);
+
 
   const {
     selectedAttack,
-    attempts,
+    attempts, // Agora é CharacterBaseInfo[]
     won,
     gaveUp,
     currentGameDate,
@@ -75,9 +89,13 @@ export default function AttackGamePage() {
   const { addGameResult, getGameByDate, currentStreak } = useAttackStatsStore();
   const { isInitialized } = useDailyAttack();
   const characteristicsRef = useRef<HTMLDivElement | null>(null);
-  const [selectedSuggestion, setSelectedSuggestion] = useState<Attack | null>(null);
+  
+  // MODIFICADO: Estado para sugestões de Personagem
+  const [selectedSuggestion, setSelectedSuggestion] = useState<CharacterBaseInfo | null>(null);
   const [input, setInput] = useState<string>("");
-  const [suggestions, setSuggestions] = useState<Attack[]>([]);
+  const [suggestions, setSuggestions] = useState<CharacterBaseInfo[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0); // Para navegação por teclado
+  
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [timeRemaining, setTimeRemaining] = useState<string>("00:00:00");
   const [showVictoryEffects, setShowVictoryEffects] = useState<boolean>(false);
@@ -122,6 +140,7 @@ export default function AttackGamePage() {
     }
   }, [won, gaveUp, attempts.length, isInitialized]);
 
+  // Lógica de salvar o jogo (permanece a mesma, pois o stats store já salva o personagem)
   useEffect(() => {
     if (
       (won || gaveUp) &&
@@ -153,30 +172,33 @@ export default function AttackGamePage() {
     selectedAttack,
   ]);
   
+  // MODIFICADO: Lógica do handleSubmit para checar o PERSONAGEM
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       
       if (!input.trim() || !selectedSuggestion || !selectedAttack) return;
       
-      const correct = selectedSuggestion.name.toLowerCase() === selectedAttack.attack.name.toLowerCase();
+      // MODIFICADO: Compara o ID do personagem sugerido com o ID do personagem correto
+      const correct = selectedSuggestion.idKey === selectedAttack.character.idKey;
       
-      if (attempts.some((attempt) => attempt.attackName.toLowerCase() === input.trim().toLowerCase())) {
-        setError(t("form_error_already_tried"));
+      // MODIFICADO: Verifica se o PERSONAGEM já foi tentado
+      if (attempts.some((attempt) => attempt.idKey === selectedSuggestion.idKey)) {
+        // (Use uma nova chave de tradução para "Personagem já tentado")
+        setError(t("form_error_already_tried_character")); 
         setInput("");
         setShowDropdown(false);
         return;
       }
       
-      const attempt: { attackName: string } = {
-        attackName: selectedSuggestion.name,
-      };
+      // MODIFICADO: 'attempt' agora é o objeto CharacterBaseInfo
+      const attempt: CharacterBaseInfo = selectedSuggestion;
 
       if (correct) {
         setWon(true);
       }
 
-      addAttempt(attempt);
+      addAttempt(attempt); // Adiciona o personagem à lista de tentativas
       setInput("");
       setSuggestions([]);
       setShowDropdown(false);
@@ -202,24 +224,26 @@ export default function AttackGamePage() {
       .toLowerCase();
   }, []);
 
+  // MODIFICADO: getFilteredSuggestions para retornar PERSONAGENS
   const getFilteredSuggestions = useCallback(
-    (value: string): Attack[] => {
+    (value: string): CharacterBaseInfo[] => {
       const normalizedValue = normalizeText(value);
-      const alreadyTried = new Set(attempts.map((a) => normalizeText(a.attackName)));
+      // MODIFICADO: 'alreadyTried' agora é um Set de ID-chaves de personagens
+      const alreadyTried = new Set(attempts.map((a) => a.idKey));
       
-      const allPossibleAttacks = allAttacks.map(a => a.attack);
-
-      return allPossibleAttacks
+      // MODIFICADO: Filtra a lista 'allCharacters'
+      return allCharacters
         .filter(
-          (attack) =>
-            !alreadyTried.has(normalizeText(attack.name)) && 
-            normalizeText(attack.name).includes(normalizedValue)
+          (character) =>
+            !alreadyTried.has(character.idKey) && // Verifica se já foi tentado
+            normalizeText(character.nome).includes(normalizedValue) // Verifica o nome
         )
-        .slice(0, 5);
+        .slice(0, 5); // Limita a 5 sugestões
     },
-    [attempts, normalizeText, allAttacks]
+    [attempts, normalizeText, allCharacters] // Usa allCharacters
   );
   
+  // MODIFICADO: handleInputChange para lidar com sugestões de Personagem
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
@@ -231,7 +255,9 @@ export default function AttackGamePage() {
         setSuggestions(filteredSuggestions);
         setShowDropdown(filteredSuggestions.length > 0);
         
-        setSelectedSuggestion(filteredSuggestions[0] || null); 
+        // MODIFICADO: Define o primeiro personagem como sugestão ativa
+        setSelectedSuggestion(filteredSuggestions[0] || null);
+        setActiveIndex(0); // Reseta o índice do teclado
       } else {
         setSuggestions([]);
         setShowDropdown(false);
@@ -241,46 +267,55 @@ export default function AttackGamePage() {
     [getFilteredSuggestions]
   );
 
+  // MODIFICADO: handleSuggestionClick para lidar com ID de Personagem
   const handleSuggestionClick = useCallback(
-    (idAttack: string) => {
-      const attack = allAttacks.map(a => a.attack).find((a) => a.idAttack === idAttack);
+    (idKey: string) => { // Recebe idKey
+      // MODIFICADO: Procura em 'allCharacters'
+      const character = allCharacters.find((c) => c.idKey === idKey);
 
-      if (attack) {
-        setInput(attack.name);
-        setSelectedSuggestion(attack);
+      if (character) {
+        setInput(character.nome);
+        setSelectedSuggestion(character); // Define o personagem
         setShowDropdown(false);
         setError(null);
       }
     },
-    [allAttacks]
+    [allCharacters] // Usa allCharacters
   );
 
+  // MODIFICADO: handleKeyDown para navegação por teclado
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (!suggestions.length) return;
-      let newIndex: number;
-      const currentIndex = suggestions.findIndex(
-        (s) => s === selectedSuggestion
-      );
+      if (!showDropdown || !suggestions.length) return;
+      
+      let newIndex = activeIndex;
 
       if (e.key === "ArrowDown") {
         e.preventDefault();
-        newIndex = (currentIndex + 1) % suggestions.length;
+        newIndex = (activeIndex + 1) % suggestions.length;
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
-        newIndex =
-          (currentIndex - 1 + suggestions.length) % suggestions.length;
+        newIndex = (activeIndex - 1 + suggestions.length) % suggestions.length;
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+         if (selectedSuggestion) {
+           // Simula o clique na sugestão ativa para submeter
+           handleSuggestionClick(selectedSuggestion.idKey);
+           // O formulário será submetido pelo 'useEffect' em AttackGuessForm
+         }
+        return;
       } else {
         return;
       }
 
+      setActiveIndex(newIndex);
       setSelectedSuggestion(suggestions[newIndex]);
     },
-    [suggestions, selectedSuggestion]
+    [suggestions, activeIndex, selectedSuggestion, showDropdown, handleSuggestionClick]
   );
 
 
-  if (!isInitialized || !selectedAttack || allAttacks.length === 0) {
+  if (!isInitialized || !selectedAttack || allCharacters.length === 0) {
     return <LoadingSpinner />;
   }
 
@@ -296,7 +331,7 @@ export default function AttackGamePage() {
       <StatsModal
         isOpen={isStatsModalOpen}
         onClose={() => setIsStatsModalOpen(false)}
-        mode="attack" // MODO ATAQUE
+        mode="attack"
       />
       <NewsModal
         isOpen={isNewsModalOpen}
@@ -330,10 +365,11 @@ export default function AttackGamePage() {
             onSubmit={handleSubmit}
             input={input}
             onInputChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-            suggestions={suggestions}
+            onKeyDown={handleKeyDown} // Passa o handler de setas
+            suggestions={suggestions} 
             showDropdown={showDropdown && !error}
-            onSuggestionClick={handleSuggestionClick}
+            onSuggestionClick={handleSuggestionClick} // Passa o handler de clique
+            // REVERTIDO: Não passa mais 'activeIndex'
           />
           {error && !showDropdown && (
             <div className="relative w-full max-w-md -mt-4 mb-8">
@@ -343,7 +379,11 @@ export default function AttackGamePage() {
             </div>
           )}
           
-          <AttackAttemptsList attempts={attempts} />
+          {/* MODIFICADO: Passa o ID do personagem correto para a lista de tentativas */}
+          <AttackAttemptsList 
+            attempts={attempts} 
+            correctCharacterIdKey={selectedAttack.character.idKey}
+          />
 
           <div className="mt-6">
             <YesterdayAttack />
@@ -354,7 +394,11 @@ export default function AttackGamePage() {
       ) : (
         <div className="w-full flex flex-col items-center">
           
-          <AttackAttemptsList attempts={attempts} />
+          {/* MODIFICADO: Passa o ID do personagem correto para a lista de tentativas */}
+          <AttackAttemptsList 
+            attempts={attempts} 
+            correctCharacterIdKey={selectedAttack.character.idKey}
+          />
 
           <AttackResultCard
             cardRef={characteristicsRef}
