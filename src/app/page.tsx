@@ -111,23 +111,6 @@ const GameSelectionPage = () => {
                     />
                 ))}
             </div>
-
-            <div
-                className={`mt-12 text-center transition-all duration-700 delay-1000 ${
-                    isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-            >
-                <p className="text-gray-400 text-sm mb-2">{t('game_selection_subtitle')}</p>
-                <div className="flex justify-center space-x-2">
-                    {[...Array(3)].map((_, i) => (
-                        <div
-                            key={i}
-                            className="w-2 h-2 bg-yellow-400/50 rounded-full animate-pulse"
-                            style={{ animationDelay: `${i * 0.2}s` }}
-                        />
-                    ))}
-                </div>
-            </div>
         </div>
     );
 };
