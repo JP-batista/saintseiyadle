@@ -3,12 +3,8 @@
 
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
-
-// Stores
 import { useSilhouetteGameStore } from "../stores/useSilhouetteGameStore";
 import { useSilhouetteStatsStore } from "../stores/useSilhouetteStatsStore";
-
-// Hooks
 import { useDailySilhouette } from "../hooks/useDailySilhouette";
 import { useTranslation } from "../i18n/useTranslation";
 import { getArmorData } from "../i18n/config";
@@ -16,11 +12,7 @@ import {
   getNextMidnightInBrazil,
   formatTimeRemaining,
 } from "../utils/dailyGame";
-
-// Tipos
 import { Armor, Attempt } from "./types"; 
-
-// Componentes Globais
 import Logo from "../components/Logo";
 import GameModeButtons from "../components/GameModeButtons";
 import StatsBar from "../components/StatsBar";
@@ -28,16 +20,11 @@ import VictoryEffects from "../components/VictoryEffects";
 import StatsModal from "../components/StatsModal";
 import NewsModal from "../components/NewsModal";
 import LoadingSpinner from "../components/LoadingSpinner";
-
-// Componentes Específicos do Modo
 import SilhouetteDisplay from "./components/SilhouetteDisplay";
 import SilhouetteAttempts from "./components/SilhouetteAttempts";
 import ResultCard from "./components/ResultCard";
 import HelpModal from "./components/HelpModal";
 import YesterdaySilhouette from "./components/YesterdaySilhouette";
-//
-// ⬇️⬇️⬇️ 1. IMPORTAR O NOVO FORMULÁRIO ⬇️⬇️⬇️
-//
 import SilhouetteGuessForm from "./components/SilhouetteGuessForm";
 
 const INITIAL_ZOOM_LEVEL = 3;
@@ -46,15 +33,11 @@ export default function SilhouettePage() {
   const { t, locale } = useTranslation();
   const router = useRouter();
 
-  // 1. DADOS E STORES
   const allArmors = useMemo(() => {
     const dataModule = getArmorData(locale);
     return ((dataModule as any).default as Armor[]) || [];
   }, [locale]);
 
-  // (allArmorNames não é mais necessário aqui, pois o filtro usa allArmors)
-
-  // Store do Jogo Diário
   const {
     selectedArmor,
     attempts,
@@ -69,28 +52,21 @@ export default function SilhouettePage() {
     toggleAutoDecrease,
   } = useSilhouetteGameStore();
 
-  // Store de Estatísticas
   const { addGameResult, getGameByDate, currentStreak } = useSilhouetteStatsStore();
 
-  // Hook de Inicialização
   const { isInitialized } = useDailySilhouette();
 
-  // 2. ESTADOS DA UI
   const [timeRemaining, setTimeRemaining] = useState<string>("00:00:00");
   const [showVictoryEffects, setShowVictoryEffects] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [input, setInput] = useState<string>("");
-  //
-  // ⬇️⬇️⬇️ 2. ATUALIZAR TIPO DAS SUGESTÕES ⬇️⬇️⬇️
-  //
-  const [suggestions, setSuggestions] = useState<Armor[]>([]); // Mudar de string[] para Armor[]
+  const [suggestions, setSuggestions] = useState<Armor[]>([]); 
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [showStatsModal, setShowStatsModal] = useState<boolean>(false);
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const resultCardRef = useRef<HTMLDivElement | null>(null);
 
-  // 3. LÓGICA DE JOGO
   const currentZoomLevel = useMemo(() => {
     if (!autoDecreaseActive) {
       return INITIAL_ZOOM_LEVEL;
@@ -98,8 +74,6 @@ export default function SilhouettePage() {
     return attemptZoomLevel;
   }, [autoDecreaseActive, attemptZoomLevel]);
 
-  // (Efeitos de Contagem, Mudança de Dia, Vitória e Salvar Jogo permanecem idênticos)
-  // Efeito: Contagem regressiva
   useEffect(() => {
     const updateCountdown = () => {
       const nextMidnight = getNextMidnightInBrazil();
@@ -110,7 +84,6 @@ export default function SilhouettePage() {
     return () => clearInterval(interval);
   }, []);
 
-  // Efeito: Verifica mudança de dia
   useEffect(() => {
     const checkDayChange = () => {
       const todayDate = new Date().toISOString().split('T')[0];
@@ -122,7 +95,6 @@ export default function SilhouettePage() {
     return () => clearInterval(interval);
   }, [currentGameDate, router]);
 
-  // Efeito: Efeitos de vitória e scroll
   useEffect(() => {
     if (won && !gaveUp && attempts.length > 0) {
       setShowVictoryEffects(true);
@@ -136,7 +108,6 @@ export default function SilhouettePage() {
     }
   }, [won, gaveUp, attempts.length]);
 
-  // Efeito: Salva o resultado no store de estatísticas
   useEffect(() => {
     if (
       (won || gaveUp) &&
@@ -165,8 +136,6 @@ export default function SilhouettePage() {
     getGameByDate,
     selectedArmor,
   ]);
-
-  // 4. HANDLERS DO FORMULÁRIO
   
   const normalizeText = useCallback((text: string) => {
     return text
@@ -175,26 +144,21 @@ export default function SilhouettePage() {
       .toLowerCase();
   }, []);
 
-  //
-  // ⬇️⬇️⬇️ 3. ATUALIZAR HANDLEINPUTCHANGE ⬇️⬇️⬇️
-  //
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setInput(value);
       setError(null);
 
-      // Começa a buscar com 1 letra
       if (value.length >= 1) { 
         const normalizedValue = normalizeText(value);
         const alreadyTried = new Set(attempts.map((a) => normalizeText(a.name)));
 
-        // Filtra a lista completa de ARMADURAS
         const filtered = allArmors
           .filter((armor) => !alreadyTried.has(normalizeText(armor.name)))
           .filter((armor) => normalizeText(armor.name).includes(normalizedValue));
         
-        setSuggestions(filtered.slice(0, 5)); // Salva os objetos Armor[]
+        setSuggestions(filtered.slice(0, 5)); 
         setShowDropdown(filtered.length > 0);
       } else {
         setSuggestions([]);
@@ -204,54 +168,39 @@ export default function SilhouettePage() {
     [allArmors, attempts, normalizeText]
   );
 
-  //
-  // ⬇️⬇️⬇️ 4. ATUALIZAR HANDLESUBMITGUESS ⬇️⬇️⬇️
-  // (A lógica de clique foi movida para dentro do GuessForm)
-  //
   const handleSubmitGuess = (guessName: string) => {
     if (!selectedArmor) return;
 
-    // Normaliza o nome recebido do componente
     const normalizedGuess = normalizeText(guessName);
     const normalizedAnswer = normalizeText(selectedArmor.name);
 
-    // Validação 1: O nome existe?
-    // (O formulário já deve garantir isso, mas é uma boa checagem)
     const isValidName = allArmors.some(name => normalizeText(name.name) === normalizedGuess);
     if (!isValidName) {
       setError(t('form_error_not_found')); 
       return;
     }
 
-    // Validação 2: Já foi tentado?
     const alreadyTried = attempts.some(a => normalizeText(a.name) === normalizedGuess);
     if (alreadyTried) {
       setError(t('form_error_already_tried')); 
-      // Limpa o input mesmo se já tentou
       setInput("");
       setSuggestions([]);
       setShowDropdown(false);
       return;
     }
 
-    // Processar tentativa
     const newAttempt: Attempt = { name: guessName.trim() };
     addAttempt(newAttempt);
 
-    // Acertou?
     if (normalizedGuess === normalizedAnswer) {
       setWon(true);
     }
 
-    // Limpar
     setInput("");
     setSuggestions([]);
     setShowDropdown(false);
     setError(null);
   };
-
-
-  // 5. RENDERIZAÇÃO
 
   if (!isInitialized || !selectedArmor) {
     return <LoadingSpinner />;
@@ -266,7 +215,6 @@ export default function SilhouettePage() {
         />
       )}
 
-      {/* Modais */}
       <StatsModal
         isOpen={showStatsModal}
         onClose={() => setShowStatsModal(false)}
@@ -291,7 +239,6 @@ export default function SilhouettePage() {
         onShowHelp={() => setIsHelpModalOpen(true)}
       />
 
-      {/* Conteúdo do Jogo (Antes de vencer) */}
       {!won && !gaveUp && (
         <>
           <SilhouetteDisplay
@@ -302,10 +249,6 @@ export default function SilhouettePage() {
             onToggleAutoDecrease={toggleAutoDecrease}
           />
 
-          {/* // ⬇️⬇️⬇️ 5. SUBSTITUIR O FORMULÁRIO ⬇️⬇️⬇️
-          //
-          // O <form> antigo foi removido
-          */}
           <SilhouetteGuessForm
             input={input}
             onInputChange={handleInputChange}
@@ -315,8 +258,6 @@ export default function SilhouettePage() {
             error={error}
           />
           
-          {/* A mensagem de erro agora é renderizada DENTRO do SilhouetteGuessForm */}
-
           <SilhouetteAttempts attempts={attempts} allArmors={allArmors} />
           
           <div className="mt-8 w-full max-w-md">
@@ -325,10 +266,8 @@ export default function SilhouettePage() {
         </>
       )}
 
-      {/* Jogo Finalizado (Vitória/Derrota) */}
       {(won || gaveUp) && (
         <>
-          {/* Mostra a silhueta no estado final */}
           <SilhouetteDisplay
             imgSrc={selectedArmor.silhouetteImg}
             altText={t('silhouette_alt_text')} 
@@ -350,7 +289,6 @@ export default function SilhouettePage() {
           
         </>
       )}
-
     </div>
   );
 }

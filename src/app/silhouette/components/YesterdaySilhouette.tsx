@@ -3,16 +3,11 @@
 
 import React, { useMemo, memo } from "react";
 import { useTranslation } from "../../i18n/useTranslation";
-import { useLocaleStore } from "../../stores/useLocaleStore";
-import { getArmorData } from "../../i18n/config"; // 1. Importa a função de dados de ARMADURAS
-import { getCurrentDateInBrazil, getDailyArmor } from "../../utils/dailyGame"; // 2. Importa a função de ARMADURAS
+import { getArmorData } from "../../i18n/config"; 
+import { getCurrentDateInBrazil, getDailyArmor } from "../../utils/dailyGame"; 
 import { Loader2 } from "lucide-react";
-// 3. Importa os tipos de dados necessários para o Modo Silhueta
 import { Armor } from "../types";
 
-/**
- * Retorna a string da data de "ontem" (idêntico aos outros)
- */
 function getYesterdayDateString(): string {
   const todayString = getCurrentDateInBrazil();
   const todayParts = todayString.split('-').map(Number);
@@ -27,34 +22,23 @@ function getYesterdayDateString(): string {
   return `${year}-${month}-${day}`;
 }
 
-/**
- * Um componente que calcula e exibe a ARMADURA do dia anterior.
- */
 const YesterdaySilhouetteComponent = () => {
   const { t, locale } = useTranslation();
 
-  // 1. Carrega a lista completa de armaduras
   const allArmors = useMemo(() => {
-    // @ts-ignore
     const dataModule = getArmorData(locale);
     return (dataModule as any).default as Armor[] || [];
   }, [locale]);
 
-  // 2. Calcula a armadura de ontem
   const yesterdayArmor = useMemo(() => {
     if (allArmors.length === 0) return null;
 
-    // Pega a data formatada de ontem
     const yesterdayString = getYesterdayDateString();
 
-    // Encontra a armadura para aquela data
-    // @ts-ignore
     const { armor } = getDailyArmor(yesterdayString, allArmors);
-    return armor as Armor; // Faz o cast para o tipo correto
-  }, [allArmors]); // Recalcula se o idioma (e os dados) mudarem
+    return armor as Armor; 
+  }, [allArmors]); 
 
-  // Estado de carregamento
-  // NOTA: Você precisará adicionar 'yesterday_silhouette_title' ao pt.json
   if (!yesterdayArmor) {
     return (
       <div className="backdrop-gradient backdrop-blur-custom border border-gray-700/50 rounded-2xl shadow-xl p-4 w-full max-w-md">
@@ -68,17 +52,15 @@ const YesterdaySilhouetteComponent = () => {
     );
   }
 
-  // Renderização da armadura encontrada
   return (
     <div className="backdrop-gradient backdrop-blur-custom border border-gray-700/50 rounded-2xl shadow-xl p-4 w-full max-w-md animate-fadeInUp">
       <h4 className="text-sm font-bold text-center text-yellow-400 mb-4 uppercase tracking-wider">
         {t('yesterday_silhouette_title')}
       </h4>
       
-      {/* A Armadura (Resposta) */}
       <div className="flex items-center gap-4">
         <img
-          src={yesterdayArmor.revealedImg} // Mostra a imagem revelada
+          src={yesterdayArmor.revealedImg} 
           alt={yesterdayArmor.name}
           className="w-16 h-16 rounded-lg object-cover border-2 border-gray-600/50 shadow-lg"
           loading="lazy"

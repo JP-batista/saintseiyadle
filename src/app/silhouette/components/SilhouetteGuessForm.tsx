@@ -2,12 +2,9 @@
 "use client";
 
 import React, { memo, useId, useRef, useState, useEffect } from "react";
-import { Armor } from "../types"; // Importa o tipo Armor
+import { Armor } from "../types"; 
 import { useTranslation } from "../../i18n/useTranslation";
 
-// ====================================================================
-// Componente do Item da Sugestão (com Imagem)
-// ====================================================================
 type SuggestionItemProps = {
   suggestion: Armor;
   isSelected: boolean;
@@ -23,7 +20,6 @@ const SuggestionItem: React.FC<SuggestionItemProps> = memo(({
 }) => {
   const ref = useRef<HTMLLIElement>(null);
 
-  // Efeito para rolar o item selecionado para a vista
   useEffect(() => {
     if (isSelected) {
       ref.current?.scrollIntoView({ block: 'nearest' });
@@ -46,10 +42,10 @@ const SuggestionItem: React.FC<SuggestionItemProps> = memo(({
         ${isSelected ? 'bg-yellow-500/10 border-yellow-500/30' : 'hover:bg-gray-700/50'}
       `}
       onClick={handleClick}
-      onMouseDown={(e) => e.preventDefault()} // Previne que o input perca o foco ao clicar
+      onMouseDown={(e) => e.preventDefault()} 
     >
       <img
-        src={suggestion.revealedImg} // Mostra a imagem revelada na sugestão
+        src={suggestion.revealedImg} 
         alt={suggestion.name}
         className="w-10 h-10 rounded-lg mr-3 shadow-lg flex-shrink-0 object-cover"
         loading="lazy"
@@ -60,7 +56,7 @@ const SuggestionItem: React.FC<SuggestionItemProps> = memo(({
           {suggestion.name}
         </span>
         <span className="text-xs text-gray-400 italic truncate">
-          {suggestion.knight} {/* Mostra o cavaleiro como subtexto */}
+          {suggestion.knight}
         </span>
       </div>
     </li>
@@ -68,16 +64,12 @@ const SuggestionItem: React.FC<SuggestionItemProps> = memo(({
 });
 SuggestionItem.displayName = 'SuggestionItem';
 
-// ====================================================================
-// Componente Principal do Formulário
-// ====================================================================
-
 type GuessFormProps = {
   input: string;
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   suggestions: Armor[];
   showDropdown: boolean;
-  onSubmit: (guessName: string) => void; // Callback com o nome a ser submetido
+  onSubmit: (guessName: string) => void; 
   error: string | null;
 };
 
@@ -92,30 +84,24 @@ const SilhouetteGuessForm: React.FC<GuessFormProps> = ({
   const { t } = useTranslation();
   const listboxId = useId();
   
-  // Estado interno para controlar a seleção por setas
   const [selectedSuggestion, setSelectedSuggestion] = useState<Armor | null>(null);
 
-  // Sincroniza a seleção com a primeira sugestão (para o "Enter")
   useEffect(() => {
     setSelectedSuggestion(suggestions[0] || null);
   }, [suggestions]);
 
-  // Handler para submissão (clique no botão ou Enter)
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Prioriza a sugestão selecionada; senão, usa o input
     const guess = selectedSuggestion?.name || input;
     if (guess.trim()) {
       onSubmit(guess.trim());
     }
   };
 
-  // Handler para cliques nas sugestões
   const handleSuggestionClick = (name: string) => {
-    onSubmit(name); // Submete diretamente ao clicar
+    onSubmit(name); 
   };
 
-  // Handler para navegação por setas e Enter
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (!showDropdown || suggestions.length === 0) return;
 
@@ -132,7 +118,6 @@ const SilhouetteGuessForm: React.FC<GuessFormProps> = ({
       const prevIndex = (currentIndex - 1 + suggestions.length) % suggestions.length;
       setSelectedSuggestion(suggestions[prevIndex]);
     }
-    // (A submissão do "Enter" é tratada pelo 'onSubmit' do formulário)
   };
 
   return (
@@ -155,7 +140,6 @@ const SilhouetteGuessForm: React.FC<GuessFormProps> = ({
           aria-autocomplete="list"
         />
 
-        {/* Mensagem de Erro */}
         {error && !showDropdown && (
           <div className="absolute left-0 right-0 mt-2">
             <div className="p-3 bg-red-800/90 backdrop-blur-md border border-red-500/50 rounded-xl shadow-2xl text-center text-white font-semibold animate-shake-error">
@@ -164,7 +148,6 @@ const SilhouetteGuessForm: React.FC<GuessFormProps> = ({
           </div>
         )}
 
-        {/* Sugestões Dropdown */}
         {showDropdown && suggestions.length > 0 && (
           <ul
             id={listboxId}

@@ -28,7 +28,6 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
         "
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         <div className="p-4 sm:p-6 border-b border-yellow-500/50 flex justify-between items-center sticky top-0 bg-gray-900/90 z-10">
           <h3 className="text-2xl font-bold text-yellow-400">
             {t("help_modal_title")}
@@ -42,20 +41,8 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        {/* Content
-          NOTA: Você precisará adicionar estas novas chaves ao pt.json
-          - silhouette_help_objective_title
-          - silhouette_help_objective_desc
-          - silhouette_help_how_title
-          - silhouette_help_how_desc
-          - silhouette_help_controls_title
-          - silhouette_help_toggle_zoom_desc
-          - silhouette_help_no_hints_title
-          - silhouette_help_no_hints_desc
-        */}
         <div className="p-4 sm:p-6 text-left space-y-4 text-gray-300">
           
-          {/* Regra 1: Objetivo */}
           <div className="flex items-start gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
             <Eye className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
             <div>
@@ -66,7 +53,6 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Regra 2: Como Jogar (Zoom) */}
           <div className="flex items-start gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
             <ZoomIn className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
             <div>
@@ -77,7 +63,6 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
           
-          {/* Regra 3: Controles */}
           <div className="flex items-start gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
             <ShieldAlert className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
             <div>
@@ -88,7 +73,6 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          {/* Regra 4: Sem Dicas */}
           <div className="flex items-start gap-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
             <ShieldAlert className="w-8 h-8 text-yellow-400 flex-shrink-0 mt-1" />
             <div>
@@ -101,7 +85,6 @@ const HelpModalComponent: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
           
         </div>
 
-        {/* Footer */}
         <div className="p-4 sm:p-6 border-t border-gray-700/50 sticky bottom-0 bg-gray-900/90 z-10">
           <button
             onClick={onClose}
