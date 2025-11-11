@@ -172,9 +172,7 @@
   "attack_result_was": "The attack was:",
   "yesterday_attack_title": "Yesterday’s Attack",
   "attack_help_objective_title": "Game Objective",
-  "attack_help_objective_desc": "Guess the daily attack with as few attempts as possible — test your knowledge of Saint Seiya battle sequences.",
   "attack_help_how_title": "How to Play",
-  "attack_help_how_desc": "Watch the GIF that starts 'blurred' and in 'black and white'. Type the attack name you think it is and submit. Each wrong attempt will reduce the blur, revealing more of the attack.",
   "attack_help_controls_title": "Filter Controls",
   "attack_help_controls_desc": "You can use the toggles to adjust difficulty:",
   "attack_help_toggle_blur_desc": "Controls whether the blur decreases automatically with each attempt (ON) or stays at maximum (OFF).",
@@ -199,5 +197,16 @@
   "silhouette_question_title": "Which Armor is this silhouette from?",
   "silhouette_zoom_info": "Each attempt slightly decreases the zoom.",
   "silhouette_zoom_info_on": "On: Each attempt decreases the zoom.",
-  "silhouette_zoom_info_off": "Off: Zoom remains at maximum."
+  "silhouette_zoom_info_off": "Off: Zoom remains at maximum.",
+
+  "attack_form_placeholder_character": "Enter the character's name...",
+  "form_error_already_tried_character": "Character already tried! Try another.",
+  "attack_attempts_title_character": "Guessed Characters",
+  "attack_help_objective_desc": "Guess which character performs the attack shown in the GIF.",
+  "attack_help_how_desc": "Type the name of a character in the guess field. You will receive instant feedback if you were right or wrong.",
+  "attack_help_feedback_title": "Attempt Feedback",
+  "attack_help_feedback_desc": "With each guess, you will immediately see if the character was correct or incorrect:",
+  "attack_feedback_correct": "Correct",
+  "attack_feedback_incorrect": "Incorrect"
 }
+

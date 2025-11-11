@@ -172,9 +172,7 @@
   "attack_result_was": "その必殺技は：",
   "yesterday_attack_title": "昨日の必殺技",
   "attack_help_objective_title": "ゲームの目的",
-  "attack_help_objective_desc": "その日の必殺技をできるだけ少ない試行で当ててください。戦闘シーケンスの知識が試されます。",
   "attack_help_how_title": "遊び方",
-  "attack_help_how_desc": "最初は『ぼかし』と『白黒』になっているGIFを観察してください。思う必殺技名を入力して送信します。間違うごとにぼかしが減少し、より多くが表示されます。",
   "attack_help_controls_title": "フィルターコントロール",
   "attack_help_controls_desc": "難易度調整のためにトグルを使用できます：",
   "attack_help_toggle_blur_desc": "各試行でぼかしが自動的に減少するか（オン）、最大のままにするか（オフ）を制御します。",
@@ -199,5 +197,15 @@
   "silhouette_question_title": "このシルエットはどの聖衣ですか？",
   "silhouette_zoom_info": "各試行でズームが少し下がります。",
   "silhouette_zoom_info_on": "オン：各試行でズームが下がります。",
-  "silhouette_zoom_info_off": "オフ：ズームは最大のままです。"
+  "silhouette_zoom_info_off": "オフ：ズームは最大のままです。",
+
+  "attack_form_placeholder_character": "キャラクター名を入力してください...",
+  "form_error_already_tried_character": "このキャラクターは既に入力済みです！",
+  "attack_attempts_title_character": "推測したキャラクター",
+  "attack_help_objective_desc": "GIFに表示されている攻撃を使用するキャラクターを当ててください。",
+  "attack_help_how_desc": "推測フィールドにキャラクターの名前を入力します。正解か不正解かがすぐにフィードバックされます。",
+  "attack_help_feedback_title": "推測フィードバック",
+  "attack_help_feedback_desc": "推測するたびに、キャラクターが正しかったかどうかがすぐにわかります:",
+  "attack_feedback_correct": "正解",
+  "attack_feedback_incorrect": "不正解"
 }
