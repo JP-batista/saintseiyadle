@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* 🎨 Variáveis de tema */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -13,7 +12,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* 🌙 Tema escuro */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -21,26 +19,22 @@
   }
 }
 
-/* 🪐 Fundo fixo global */
 html, body {
   height: 100%;
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
 
-  /* 🔥 Fundo fixo com imagem */
   background-image: url("/background/background_los.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 
-  /* Cores e contraste */
   background-color: var(--background);
   color: var(--foreground);
 }
 
-/* (Opcional) overlay sutil para contraste melhor */
 body::before {
   content: "";
   position: fixed;
@@ -48,15 +42,10 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0); /* Escurece levemente o fundo */
-  z-index: -1; /* Fica atrás de todo o conteúdo */
+  background: rgba(0, 0, 0, 0); 
+  z-index: -1; 
 }
 
-/* ===================================
-   ANIMAÇÕES DE VITÓRIA
-   =================================== */
-
-/* Animação de confetes caindo */
 @keyframes confetti-fall {
   0% {
     transform: translateY(-100vh) rotate(0deg);
@@ -68,7 +57,6 @@ body::before {
   }
 }
 
-/* Partículas de brilho */
 @keyframes sparkle {
   0%, 100% {
     opacity: 0;
@@ -80,18 +68,12 @@ body::before {
   }
 }
 
-/* Shake suave para atenção */
 @keyframes gentle-shake {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-5px); }
   75% { transform: translateX(5px); }
 }
 
-/* ===================================
-   ANIMAÇÕES DE ENTRADA
-   =================================== */
-
-/* Slide from top */
 @keyframes slideInTop {
   from {
     opacity: 0;
@@ -103,7 +85,6 @@ body::before {
   }
 }
 
-/* Slide from bottom */
 @keyframes slideInBottom {
   from {
     opacity: 0;
@@ -115,7 +96,6 @@ body::before {
   }
 }
 
-/* Fade in scale */
 @keyframes fadeInScale {
   from {
     opacity: 0;
@@ -127,7 +107,6 @@ body::before {
   }
 }
 
-/* Bounce in */
 @keyframes bounceIn {
   0% {
     opacity: 0;
@@ -145,11 +124,6 @@ body::before {
   }
 }
 
-/* ===================================
-   CLASSES DE ANIMAÇÃO
-   =================================== */
-
-/* Container de confetes */
 .confetti-container {
   position: fixed;
   top: 0;
@@ -168,7 +142,6 @@ body::before {
   animation: confetti-fall 3s linear forwards;
 }
 
-/* Partículas de brilho */
 .sparkle-container {
   position: fixed;
   top: 0;
@@ -189,30 +162,25 @@ body::before {
   animation: sparkle 1.5s ease-in-out infinite;
 }
 
-/* Dicas animadas */
 .hint-appear {
   animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Dropdown de sugestões */
 .suggestion-item {
   animation: slideInBottom 0.2s ease-out;
   animation-fill-mode: both;
 }
 
-/* Atraso progressivo para itens do dropdown */
 .suggestion-item:nth-child(1) { animation-delay: 0s; }
 .suggestion-item:nth-child(2) { animation-delay: 0.05s; }
 .suggestion-item:nth-child(3) { animation-delay: 0.1s; }
 .suggestion-item:nth-child(4) { animation-delay: 0.15s; }
 .suggestion-item:nth-child(5) { animation-delay: 0.2s; }
 
-/* Contador pulsante */
 .countdown-pulse {
   animation: gentle-shake 0.5s ease-in-out;
 }
 
-/* Loading skeleton */
 @keyframes skeleton-loading {
   0% {
     background-position: -200% 0;
@@ -233,16 +201,10 @@ body::before {
   animation: skeleton-loading 1.5s infinite;
 }
 
-/* Transições suaves globais */
 .smooth-transition {
   transition: all 0.3s ease;
 }
 
-/* ===================================
-   ANIMAÇÕES DO GAME SELECTION PAGE
-   =================================== */
-
-/* Flutuação das partículas de fundo */
 @keyframes float {
   0%, 100% {
     transform: translateY(0) translateX(0);
@@ -266,7 +228,6 @@ body::before {
   animation: float 10s ease-in-out infinite;
 }
 
-/* Partículas ao redor dos ícones */
 @keyframes particle {
   0% {
     opacity: 0;
@@ -286,7 +247,6 @@ body::before {
   animation: particle 1.5s ease-out infinite;
 }
 
-/* Bounce horizontal (seta) */
 @keyframes bounce-horizontal {
   0%, 100% {
     transform: translateX(0);
@@ -300,7 +260,6 @@ body::before {
   animation: bounce-horizontal 1s ease-in-out infinite;
 }
 
-/* Fade in com slide up suave */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -316,7 +275,6 @@ body::before {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Zoom in com bounce */
 @keyframes zoomInBounce {
   0% {
     opacity: 0;
@@ -338,7 +296,6 @@ body::before {
   animation: zoomInBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* Brilho pulsante no hover */
 @keyframes pulse-glow {
   0%, 100% {
     opacity: 0.3;
@@ -352,16 +309,10 @@ body::before {
   animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* ===================================
-   CLASSES UTILITÁRIAS EXTRAS
-   =================================== */
-
-/* Transição ultra suave */
 .transition-ultra {
   transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Sombra colorida animada */
 .shadow-glow-yellow {
   box-shadow: 0 0 20px rgba(251, 191, 36, 0.5),
               0 0 40px rgba(251, 191, 36, 0.3);
@@ -372,7 +323,6 @@ body::before {
               0 0 40px rgba(59, 130, 246, 0.3);
 }
 
-/* Hover lift com rotação */
 .hover-lift-rotate {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -382,7 +332,6 @@ body::before {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
-/* Rotação suave para loading */
 @keyframes rotate-smooth {
   from {
     transform: rotate(0deg);
@@ -396,7 +345,6 @@ body::before {
   animation: rotate-smooth 2s linear infinite;
 }
 
-/* Float suave para elementos flutuantes */
 @keyframes float-gentle {
   0%, 100% {
     transform: translateY(0px);
@@ -410,17 +358,11 @@ body::before {
   animation: float-gentle 3s ease-in-out infinite;
 }
 
-/* Backdrop blur personalizado */
 .backdrop-blur-custom {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
-/* ===================================
-   GRID DE TENTATIVAS MELHORADO
-   =================================== */
-
-/* Scrollbar customizada */
 .custom-scrollbar::-webkit-scrollbar {
   height: 8px;
 }
@@ -440,7 +382,6 @@ body::before {
   background: linear-gradient(90deg, #f59e0b, #fbbf24);
 }
 
-/* Animação de entrada dos cabeçalhos */
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -457,7 +398,6 @@ body::before {
   opacity: 0;
 }
 
-/* Animação melhorada para linhas de tentativas */
 @keyframes slideInTopEnhanced {
   0% {
     opacity: 0;
@@ -478,7 +418,6 @@ body::before {
   opacity: 0;
 }
 
-/* Animação especial para a tentativa mais recente */
 @keyframes latestAttemptEntry {
   0% {
     opacity: 0;
@@ -501,7 +440,6 @@ body::before {
   animation: latestAttemptEntry 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* Pulse verde para acertos */
 @keyframes pulse-success {
   0%, 100% {
     opacity: 0.4;
@@ -517,7 +455,6 @@ body::before {
   animation: pulse-success 1.5s ease-in-out infinite;
 }
 
-/* Indicador correto melhorado */
 @keyframes correct-indicator-enhanced {
   0% {
     transform: scale(1);
@@ -540,7 +477,6 @@ body::before {
   animation: correct-indicator-enhanced 1s ease-out 1;
 }
 
-/* Shake para feedback de erro */
 @keyframes shake-error {
   0%, 100% { transform: translateX(0); }
   10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
@@ -551,7 +487,6 @@ body::before {
   animation: shake-error 0.5s ease-in-out;
 }
 
-/* Glow pulsante contínuo */
 @keyframes glow-pulse {
   0%, 100% {
     box-shadow: 0 0 5px rgba(251, 191, 36, 0.3),
@@ -568,13 +503,7 @@ body::before {
   animation: glow-pulse 2s ease-in-out infinite;
 }
 
-/* ===================================
-   RESPONSIVIDADE
-   =================================== */
-
-/* Mobile: Imagens menores mas ainda visíveis */
 @media (max-width: 640px) {
-  /* Reduz intensidade de algumas animações em mobile */
   .attempt-row-enhanced {
     animation-duration: 0.4s;
   }
@@ -583,7 +512,6 @@ body::before {
     animation-duration: 0.6s;
   }
   
-  /* Desabilita algumas animações pesadas em mobile */
   .animate-pulse-glow,
   .animate-pulse-success {
     animation: none;
@@ -591,16 +519,13 @@ body::before {
   }
 }
 
-/* Tablet: Tamanhos intermediários */
 @media (min-width: 641px) and (max-width: 1023px) {
   .attempt-row-enhanced {
     animation-duration: 0.5s;
   }
 }
 
-/* Desktop: Todas as animações com qualidade máxima */
 @media (min-width: 1024px) {
-  /* Adiciona efeito de hover mais elaborado */
   .attempt-row-enhanced:hover {
     z-index: 10;
   }
@@ -609,10 +534,6 @@ body::before {
     filter: brightness(1.2) saturate(1.2);
   }
 }
-
-/* ===================================
-   ACESSIBILIDADE
-   =================================== */
 
 @media (prefers-reduced-motion: reduce) {
   .attempt-row-enhanced,
@@ -631,7 +552,6 @@ body::before {
     transition: opacity 0.2s ease;
   }
   
-  /* Mantém apenas fade simples */
   .attempt-row-enhanced,
   .latest-attempt {
     opacity: 1;
@@ -639,14 +559,12 @@ body::before {
   }
 }
 
-/* Dark mode (caso implemente) */
 @media (prefers-color-scheme: dark) {
   .custom-scrollbar::-webkit-scrollbar-track {
     background: rgba(17, 24, 39, 0.8);
   }
 }
 
-/* Print (remove animações) */
 @media print {
   .attempt-row-enhanced,
   .latest-attempt,
@@ -657,16 +575,10 @@ body::before {
   }
 }
 
-/* ===================================
-   CLASSES UTILITÁRIAS EXTRAS
-   =================================== */
-
-/* Transição ultra suave */
 .transition-ultra-smooth {
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Sombra colorida animada */
 .shadow-glow-green {
   box-shadow: 0 0 20px rgba(34, 197, 94, 0.5),
               0 0 40px rgba(34, 197, 94, 0.3);
@@ -682,7 +594,6 @@ body::before {
               0 0 40px rgba(239, 68, 68, 0.3);
 }
 
-/* Backdrop com gradiente */
 .backdrop-gradient {
   background: linear-gradient(
     135deg,
@@ -694,39 +605,27 @@ body::before {
   -webkit-backdrop-filter: blur(12px);
 }
 
-
-
-
-
-
-
-/* ===================================
-   TOOLTIP ESTILO "GLASS"
-   =================================== */
-
 .glass-tooltip {
   position: absolute;
-  bottom: -3rem; /* Aumenta o espaço do ícone */
+  bottom: -3rem; 
   left: 50%;
-  transform: translateX(-50%) translateY(10px); /* Posição inicial (para baixo) */
+  transform: translateX(-50%) translateY(10px); 
   
-  /* Efeito de vidro */
-  background: rgba(17, 24, 39, 0.85); /* bg-gray-900/85 */
+  background: rgba(17, 24, 39, 0.85); 
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(107, 114, 128, 0.5); /* border-gray-500/50 */
+  border: 1px solid rgba(107, 114, 128, 0.5); 
   
   color: white;
-  font-size: 0.875rem; /* text-sm */
-  font-weight: 600; /* semibold */
-  padding: 0.35rem 0.75rem; /* px-3 py-1.5 */
-  border-radius: 0.5rem; /* rounded-lg */
+  font-size: 0.875rem; 
+  font-weight: 600; 
+  padding: 0.35rem 0.75rem; 
+  border-radius: 0.5rem; 
   
   white-space: nowrap;
   z-index: 50;
-  pointer-events: none; /* Importante para não bloquear o hover */
+  pointer-events: none; 
   
-  /* Animação de entrada */
   opacity: 0;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
               transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -734,34 +633,32 @@ body::before {
 
 .group:hover .glass-tooltip {
   opacity: 1;
-  transform: translateX(-50%) translateY(0); /* Posição final */
+  transform: translateX(-50%) translateY(0); 
 }
 
 
 
 .glass-tooltip {
   position: absolute;
-  bottom: -3rem; /* Aumenta o espaço do ícone */
+  bottom: -3rem; 
   left: 50%;
-  transform: translateX(-50%) translateY(10px); /* Posição inicial (para baixo) */
+  transform: translateX(-50%) translateY(10px); 
   
-  /* Efeito de vidro */
-  background: rgba(17, 24, 39, 0.85); /* bg-gray-900/85 */
+  background: rgba(17, 24, 39, 0.85); 
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(107, 114, 128, 0.5); /* border-gray-500/50 */
+  border: 1px solid rgba(107, 114, 128, 0.5); 
   
   color: white;
-  font-size: 0.875rem; /* text-sm */
-  font-weight: 600; /* semibold */
-  padding: 0.35rem 0.75rem; /* px-3 py-1.5 */
-  border-radius: 0.5rem; /* rounded-lg */
+  font-size: 0.875rem; 
+  font-weight: 600; 
+  padding: 0.35rem 0.75rem; 
+  border-radius: 0.5rem; 
   
   white-space: nowrap;
   z-index: 50;
-  pointer-events: none; /* Importante para não bloquear o hover */
+  pointer-events: none; 
   
-  /* Animação de entrada */
   opacity: 0;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
               transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -769,46 +666,37 @@ body::before {
 
 .group:hover .glass-tooltip {
   opacity: 1;
-  transform: translateX(-50%) translateY(0); /* Posição final */
+  transform: translateX(-50%) translateY(0); 
 }
 
-
-/* ===================================
-   NOVOS ESTILOS: TOGGLE SWITCH
-   =================================== */
 
 .toggle-switch {
-  /* O "trilho" do interruptor */
   position: relative;
   display: inline-block;
-  width: 50px; /* Largura do trilho */
-  height: 28px; /* Altura do trilho */
-  background-color: #777; /* Cor do trilho (desligado) - cinza */
-  border-radius: 9999px; /* Totalmente arredondado */
+  width: 50px; 
+  height: 28px; 
+  background-color: #777; 
+  border-radius: 9999px;
   transition: background-color 0.3s ease;
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .toggle-switch-circle {
-  /* O círculo branco que desliza */
   position: absolute;
   top: 2px;
   left: 3px;
-  width: 24px; /* Tamanho do círculo */
-  height: 24px; /* Tamanho do círculo */
+  width: 24px; 
+  height: 24px; 
   background-color: white;
   border-radius: 50%;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Transição suave */
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); 
 }
 
-/* Estado LIGADO */
 .toggle-switch-on {
-  /* Cor laranja quando ligado (usando o laranja da imagem) */
-  background-color: #F97316; /* bg-orange-500 */
+  background-color: #F97316; 
 }
 
 .toggle-switch-on .toggle-switch-circle {
-  /* Move o círculo para a direita */
-  transform: translateX(21px); /* (Largura do trilho - Largura do círculo - 2 * padding lateral) */
+  transform: translateX(21px); 
 }

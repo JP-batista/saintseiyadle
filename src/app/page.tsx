@@ -1,12 +1,11 @@
 // src/app/page.tsx
 "use client";
 
-import React, { useEffect, useState, memo, useMemo } from "react"; // Adicionado useMemo
+import React, { useEffect, useState, memo, useMemo } from "react"; 
 import Logo from "./components/Logo"; 
 import GameCard from "./components/GameCard"; 
-import { useTranslation } from "./i18n/useTranslation"; // I18N: Importa o hook
+import { useTranslation } from "./i18n/useTranslation"; 
 
-// OTIMIZAÇÃO: Dados de partículas movidos para fora (não dependem de props/estado)
 const generateParticles = () => {
     return [...Array(20)].map(() => ({
         left: Math.random() * 100 + "%",
@@ -17,18 +16,16 @@ const generateParticles = () => {
 };
 
 const GameSelectionPage = () => {
-    const { t } = useTranslation(); // I18N: Instancia a tradução
+    const { t } = useTranslation(); 
     const [isLoaded, setIsLoaded] = useState(false);
     const [particles, setParticles] = useState<any[]>([]);
     
-    // OTIMIZAÇÃO: Usa useMemo para criar a lista de jogos APENAS quando o idioma muda
     const localizedGames = useMemo(() => ([
         {
-            // I18N: Traduzido nome e descrição
             name: t('mode_classic_name'),
             description: t('mode_classic_desc'),
             icon: "/dle_feed/classic_icon.png",
-            link: "/classic", // CORREÇÃO: Usar o prefixo completo
+            link: "/classic", 
             gradient: "from-yellow-500/20 to-orange-500/20",
             hoverGlow: "shadow-yellow-500/50",
         },
@@ -36,13 +33,12 @@ const GameSelectionPage = () => {
             name: t('mode_silhouette_name'),
             description: t('mode_silhouette_desc'),
             icon: "/dle_feed/silhouette_icon.png",
-            link: "/silhouette", // Link para a página da silhueta
-            gradient: "from-purple-500/20 to-indigo-500/20", // Exemplo de cor
+            link: "/silhouette", 
+            gradient: "from-purple-500/20 to-indigo-500/20", 
             hoverGlow: "shadow-purple-500/50",
         },
         
         {
-            // I18N: Traduzido nome e descrição
             name: t('mode_attack_name'),
             description: t('mode_attack_desc'),
             icon: "/dle_feed/attack_icon.png",
@@ -50,16 +46,15 @@ const GameSelectionPage = () => {
             gradient: "from-blue-500/20 to-blue-500/20",
             hoverGlow: "shadow-blue-500/50",
         },
-        // --- MODO FALA ADICIONADO ---
         {
             name: t('mode_quote_name'),
             description: t('mode_quote_desc'),
-            icon: "/dle_feed/quote_icon.png", // (Necessário criar este ícone)
-            link: "/quote", // Link para a nova página
+            icon: "/dle_feed/quote_icon.png", 
+            link: "/quote",
             gradient: "from-green-500/20 to-emerald-500/20",
             hoverGlow: "shadow-green-500/50",
         },
-    ]), [t]); // Depende da função 't'
+    ]), [t]);
 
     useEffect(() => {
         setParticles(generateParticles());
@@ -72,8 +67,6 @@ const GameSelectionPage = () => {
 
     return (
         <div className="flex flex-col items-center justify-start text-white px-4 py-8 relative overflow-hidden min-h-[90vh]">
-            
-            {/* Background particles */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 {particles.map((p, i) => (
                     <div
@@ -89,13 +82,11 @@ const GameSelectionPage = () => {
                 ))}
             </div>
 
-            {/* Logo (Importado) */}
             <div className="mb-8 relative z-10">
                 <Logo />
             </div>
 
 
-            {/* Card de título com animação */}
             <div
                 className={`w-full max-w-md bg-gradient-to-br from-gray-800 to-gray-900 text-white rounded-xl shadow-2xl p-6 mb-10 relative overflow-hidden transition-all duration-700 delay-300 ${
                     isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -104,16 +95,13 @@ const GameSelectionPage = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500/10 to-transparent" />
                 
                 <h3 className="text-xl sm:text-2xl font-bold text-center text-yellow-400 relative z-10">
-                    {/* I18N: Traduzido título principal */}
                     {t('game_selection_title')}
                 </h3>
             </div>
 
-            {/* Lista de Jogos - Lista Vertical */}
             <div
                 className="w-full max-w-4xl flex flex-col items-center gap-6 px-2 relative z-10"
             >
-                {/* OTIMIZAÇÃO 2: Usa o GameCard memoizado */}
                 {localizedGames.map((game, index) => (
                     <GameCard
                     key={game.name}
@@ -124,7 +112,6 @@ const GameSelectionPage = () => {
                 ))}
             </div>
 
-            {/* Rodapé com link "Em Breve" (opcional) */}
             <div
                 className={`mt-12 text-center transition-all duration-700 delay-1000 ${
                     isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"

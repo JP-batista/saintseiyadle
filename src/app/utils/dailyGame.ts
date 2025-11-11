@@ -1,25 +1,16 @@
 // src/utils/dailyGame.ts
 
-/**
- * CONFIGURAÇÃO: Defina aqui o horário de reset do jogo
- * Formato: { hour: 0-23, minute: 0-59 }
- */
 const RESET_TIME = {
-  hour: 0, // Hora do reset (0-23)
-  minute: 0, // Minuto do reset (0-59)
+  hour: 0, 
+  minute: 0, 
 };
 
-/**
- * Retorna a data atual no fuso horário de São Paulo
- * Se o horário atual for antes do RESET_TIME, considera ainda o dia anterior
- */
 export function getCurrentDateInBrazil(): string {
   const now = new Date();
   const brazilTime = new Date(
     now.toLocaleString("en-US", { timeZone: "America/Sao_Paulo" })
   );
 
-  // Se ainda não passou do horário de reset, considera o dia anterior
   const currentHour = brazilTime.getHours();
   const currentMinute = brazilTime.getMinutes();
 
@@ -27,7 +18,6 @@ export function getCurrentDateInBrazil(): string {
     currentHour < RESET_TIME.hour ||
     (currentHour === RESET_TIME.hour && currentMinute < RESET_TIME.minute)
   ) {
-    // Subtrai 1 dia
     brazilTime.setDate(brazilTime.getDate() - 1);
   }
 
@@ -38,9 +28,6 @@ export function getCurrentDateInBrazil(): string {
   return `${year}-${month}-${day}`;
 }
 
-/**
- * Calcula o timestamp do próximo horário de reset em São Paulo
- */
 export function getNextMidnightInBrazil(): Date {
   const now = new Date();
   const brazilTime = new Date(
@@ -50,34 +37,23 @@ export function getNextMidnightInBrazil(): Date {
   const nextReset = new Date(brazilTime);
   nextReset.setHours(RESET_TIME.hour, RESET_TIME.minute, 0, 0);
 
-  // Se o horário de reset já passou hoje, vai para amanhã
   if (brazilTime >= nextReset) {
     nextReset.setDate(nextReset.getDate() + 1);
   }
 
-  // Converte de volta para o fuso local do usuário
   const offset = brazilTime.getTime() - now.getTime();
   return new Date(nextReset.getTime() - offset);
 }
 
-/**
- * Gera um hash simples a partir de uma string (compatível com seeded random)
- */
 function simpleHash(str: string): number {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i);
-    // OTIMIZAÇÃO DE PERFORMANCE: O bitwise OR (| 0) é uma forma mais curta
-    // e comum em JS para garantir que a operação retorna um inteiro de 32 bits.
     hash = ((hash << 5) - hash) + char | 0;
   }
   return Math.abs(hash);
 }
 
-/**
- * Implementação de gerador pseudo-aleatório com seed (Mulberry32)
- * Garante que a mesma data sempre gere o mesmo resultado
- */
 function seededRandom(seed: number): () => number {
   return function () {
     let t = (seed += 0x6d2b79f5);
@@ -87,24 +63,14 @@ function seededRandom(seed: number): () => number {
   };
 }
 
-/**
- * (Modo Clássico)
- * Seleciona o personagem do dia de forma determinística (depende SÓ da data)
- * @param date Data no formato YYYY-MM-DD
- * @param characters Lista completa de personagens
- * @returns Objeto com o personagem e seu índice
- */
 export function getDailyCharacter<T>(
   date: string,
   characters: T[]
 ): { character: T; index: number } {
-  // 1. Gera um seed único baseado na data + "SAL" (para diferenciar dos outros modos)
   const seed = simpleHash(date + "CLASSIC_CHARACTER");
 
-  // 2. Cria um gerador de aleatoriedade baseado no seed
   const random = seededRandom(seed);
 
-  // 3. Pega um índice aleatório (mas determinístico) do TOTAL de personagens
   const selectedIndex = Math.floor(random() * characters.length);
 
   return {
@@ -113,24 +79,14 @@ export function getDailyCharacter<T>(
   };
 }
 
-/**
- * (Modo Fala)
- * Seleciona a fala do dia de forma determinística (depende SÓ da data)
- * @param date Data no formato YYYY-MM-DD
- * @param allQuotes Lista completa de *todas* as falas (array "achatado")
- * @returns Objeto com a fala e seu índice
- */
 export function getDailyQuote<T>(
   date: string,
   allQuotes: T[]
 ): { quote: T; index: number } {
-  // 1. Gera um seed único baseado na data + "SAL"
   const seed = simpleHash(date + "QUOTE_OF_THE_DAY");
 
-  // 2. Cria um gerador de aleatoriedade baseado no seed
   const random = seededRandom(seed);
 
-  // 3. Pega um índice aleatório (mas determinístico) do TOTAL de falas
   const selectedIndex = Math.floor(random() * allQuotes.length);
 
   return {
@@ -139,24 +95,14 @@ export function getDailyQuote<T>(
   };
 }
 
-/**
- * (Modo Ataque)
- * Seleciona o ataque do dia de forma determinística (depende SÓ da data)
- * @param date Data no formato YYYY-MM-DD
- * @param allAttacks Lista completa de *todos* os ataques (array "achatado")
- * @returns Objeto com o ataque e seu índice
- */
 export function getDailyAttack<T>(
   date: string,
   allAttacks: T[]
 ): { attack: T; index: number } {
-  // 1. Gera um seed único baseado na data + "SAL"
   const seed = simpleHash(date + "ATTACK_OF_THE_DAY");
 
-  // 2. Cria um gerador de aleatoriedade baseado no seed
   const random = seededRandom(seed);
 
-  // 3. Pega um índice aleatório (mas determinístico) do TOTAL de ataques
   const selectedIndex = Math.floor(random() * allAttacks.length);
 
   return {
@@ -165,24 +111,14 @@ export function getDailyAttack<T>(
   };
 }
 
-/**
- * (NOVO - Modo Silhueta)
- * Seleciona a armadura do dia de forma determinística (depende SÓ da data)
- * @param date Data no formato YYYY-MM-DD
- * @param allArmors Lista completa de *todas* as armaduras (array "achatado")
- * @returns Objeto com a armadura e seu índice
- */
 export function getDailyArmor<T>(
   date: string,
   allArmors: T[]
 ): { armor: T; index: number } {
-  // 1. Gera um seed único baseado na data + "SAL"
   const seed = simpleHash(date + "SILHOUETTE_OF_THE_DAY");
 
-  // 2. Cria um gerador de aleatoriedade baseado no seed
   const random = seededRandom(seed);
 
-  // 3. Pega um índice aleatório (mas determinístico) do TOTAL de armaduras
   const selectedIndex = Math.floor(random() * allArmors.length);
 
   return {
@@ -191,10 +127,6 @@ export function getDailyArmor<T>(
   };
 }
 
-
-/**
- * Formata o tempo restante para o próximo personagem
- */
 export function formatTimeRemaining(targetDate: Date): string {
   const now = new Date();
   const diff = targetDate.getTime() - now.getTime();
