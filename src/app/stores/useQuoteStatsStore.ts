@@ -2,21 +2,17 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-/**
- * Define a estrutura para o histórico de jogos do MODO FALA.
- */
 type QuoteGameHistory = {
-  date: string; // YYYY-MM-DD
+  date: string; 
   attempts: number;
   won: boolean;
   firstTry: boolean;
   
-  // Dados específicos do Modo Fala
-  characterName: string; // Nome do personagem (a resposta)
-  characterImage: string; // Imagem do personagem
-  characteridKey: string; // ID do personagem
-  quoteText: string; // O texto da fala que foi adivinhada
-  quoteId: string; // O ID da fala (ex: 'seiya_001')
+  characterName: string; 
+  characterImage: string; 
+  characteridKey: string; 
+  quoteText: string; 
+  quoteId: string; 
 };
 
 interface QuoteStatsState {
@@ -27,7 +23,6 @@ interface QuoteStatsState {
   currentStreak: number;
   maxStreak: number;
   
-  // Ação de adicionar resultado
   addGameResult: (
     date: string, 
     attempts: number, 
@@ -46,15 +41,12 @@ interface QuoteStatsState {
 export const useQuoteStatsStore = create<QuoteStatsState>()(
   persist(
     (set, get) => ({
-      // --- Estado Inicial ---
       gamesHistory: [],
       totalWins: 0,
       averageAttempts: 0,
       firstTryWins: 0,
       currentStreak: 0,
       maxStreak: 0,
-
-      // --- Ações ---
       
       addGameResult: (
         date, 
@@ -67,7 +59,6 @@ export const useQuoteStatsStore = create<QuoteStatsState>()(
         quoteId
       ) => {
         set((state) => {
-          // Cria o novo registro
           const newGame: QuoteGameHistory = {
             date,
             attempts,
@@ -80,7 +71,6 @@ export const useQuoteStatsStore = create<QuoteStatsState>()(
             quoteId,
           };
           
-          // Adiciona o novo registro e remove qualquer registro antigo do mesmo dia
           const newHistory = [
             newGame,
             ...state.gamesHistory.filter(g => g.date !== date)
@@ -89,15 +79,9 @@ export const useQuoteStatsStore = create<QuoteStatsState>()(
           return { gamesHistory: newHistory };
         });
 
-        // Recalcula todas as estatísticas
         get().calculateStats();
       },
 
-      /**
-       * (Lógica idêntica ao useStatsStore)
-       * Calcula todas as métricas derivadas (streaks, médias)
-       * baseado no gamesHistory.
-       */
       calculateStats: () => {
         set((state) => {
           const history = state.gamesHistory;
@@ -121,7 +105,6 @@ export const useQuoteStatsStore = create<QuoteStatsState>()(
 
           const firstTryWins = history.filter(g => g.firstTry).length;
 
-          // Cálculo de Streaks
           const sortedHistory = [...history].sort((a, b) => a.date.localeCompare(b.date));
           
           let currentStreak = 0;
@@ -148,12 +131,10 @@ export const useQuoteStatsStore = create<QuoteStatsState>()(
               maxStreak = Math.max(maxStreak, tempStreak);
               lastDate = gameDate;
             } else {
-              // Se o jogo do dia não foi uma vitória, quebra a sequência
               tempStreak = 0; 
             }
           }
 
-          // Verifica a streak atual
           const today = new Date();
           today.setHours(0, 0, 0, 0);
           
@@ -179,11 +160,8 @@ export const useQuoteStatsStore = create<QuoteStatsState>()(
       },
     }),
     {
-      // AQUI ESTÁ A MUDANÇA PRINCIPAL:
-      // A chave de persistência é única para este modo
       name: 'quote-game-stats-storage',
       
-      // Recalcula as estatísticas quando o app é carregado
       onRehydrateStorage: () => (state) => {
         if (state) {
           state.calculateStats();

@@ -2,21 +2,16 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-/**
- * Define a estrutura para o histórico de jogos do MODO ATAQUE.
- */
 type AttackGameHistory = {
-  date: string; // YYYY-MM-DD
+  date: string; 
   attempts: number;
   won: boolean;
   firstTry: boolean;
-  
-  // Dados específicos do Modo Ataque
-  attackName: string; // O nome do golpe (a resposta)
-  attackId: string; // O ID do golpe (ex: 'meteoro_pegaso')
-  characterName: string; // Nome do personagem que executa o golpe
-  characterImage: string; // Imagem do personagem
-  characteridKey: string; // ID do personagem
+  attackName: string; 
+  attackId: string; 
+  characterName: string; 
+  characterImage: string; 
+  characteridKey: string; 
 };
 
 interface AttackStatsState {
@@ -27,7 +22,6 @@ interface AttackStatsState {
   currentStreak: number;
   maxStreak: number;
   
-  // Ação de adicionar resultado
   addGameResult: (
     date: string, 
     attempts: number, 
@@ -46,15 +40,12 @@ interface AttackStatsState {
 export const useAttackStatsStore = create<AttackStatsState>()(
   persist(
     (set, get) => ({
-      // --- Estado Inicial ---
       gamesHistory: [],
       totalWins: 0,
       averageAttempts: 0,
       firstTryWins: 0,
       currentStreak: 0,
       maxStreak: 0,
-
-      // --- Ações ---
       
       addGameResult: (
         date, 
@@ -67,7 +58,6 @@ export const useAttackStatsStore = create<AttackStatsState>()(
         characteridKey
       ) => {
         set((state) => {
-          // Cria o novo registro
           const newGame: AttackGameHistory = {
             date,
             attempts,
@@ -80,7 +70,6 @@ export const useAttackStatsStore = create<AttackStatsState>()(
             characteridKey,
           };
           
-          // Adiciona o novo registro e remove qualquer registro antigo do mesmo dia
           const newHistory = [
             newGame,
             ...state.gamesHistory.filter(g => g.date !== date)
@@ -89,14 +78,9 @@ export const useAttackStatsStore = create<AttackStatsState>()(
           return { gamesHistory: newHistory };
         });
 
-        // Recalcula todas as estatísticas
         get().calculateStats();
       },
 
-      /**
-       * Calcula todas as métricas derivadas (streaks, médias)
-       * baseado no gamesHistory.
-       */
       calculateStats: () => {
         set((state) => {
           const history = state.gamesHistory;
@@ -120,7 +104,6 @@ export const useAttackStatsStore = create<AttackStatsState>()(
 
           const firstTryWins = history.filter(g => g.firstTry).length;
 
-          // Cálculo de Streaks
           const sortedHistory = [...history].sort((a, b) => a.date.localeCompare(b.date));
           
           let currentStreak = 0;
@@ -147,18 +130,15 @@ export const useAttackStatsStore = create<AttackStatsState>()(
               maxStreak = Math.max(maxStreak, tempStreak);
               lastDate = gameDate;
             } else {
-              // Se o jogo do dia não foi uma vitória, quebra a sequência
               tempStreak = 0; 
             }
           }
 
-          // Verifica a streak atual
           const today = new Date();
           today.setHours(0, 0, 0, 0);
           
           if (lastDate) {
             const daysSinceLastWin = Math.floor((today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
-            // A streak é mantida se a última vitória foi hoje (0) ou ontem (1)
             currentStreak = daysSinceLastWin <= 1 ? tempStreak : 0;
           } else {
             currentStreak = 0;
@@ -179,10 +159,8 @@ export const useAttackStatsStore = create<AttackStatsState>()(
       },
     }),
     {
-      // A chave de persistência é única para este modo
       name: 'attack-game-stats-storage',
       
-      // Recalcula as estatísticas quando o app é carregado
       onRehydrateStorage: () => (state) => {
         if (state) {
           state.calculateStats();

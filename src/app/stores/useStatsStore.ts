@@ -2,9 +2,8 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-// ... (Tipo GameHistory e Interface StatsState permanecem os mesmos) ...
 type GameHistory = {
-  date: string; // YYYY-MM-DD
+  date: string; 
   attempts: number;
   won: boolean;
   firstTry: boolean;
@@ -35,7 +34,6 @@ interface StatsState {
 export const useStatsStore = create<StatsState>()(
   persist(
     (set, get) => ({
-      // ... (Estado inicial permanece o mesmo) ...
       gamesHistory: [],
       totalWins: 0,
       averageAttempts: 0,
@@ -43,12 +41,8 @@ export const useStatsStore = create<StatsState>()(
       currentStreak: 0,
       maxStreak: 0,
 
-      // ===========================
-      // OTIMIZAÇÃO 2 APLICADA AQUI
-      // ===========================
       addGameResult: (date, attempts, won, characterName, characterImage, characteridKey) => {
         set((state) => {
-          // Cria o novo registro do jogo
           const newGame: GameHistory = {
             date,
             attempts,
@@ -59,20 +53,14 @@ export const useStatsStore = create<StatsState>()(
             characteridKey,
           };
           
-          // Filtra o registro antigo (se houver) e adiciona o novo no início.
-          // Isto é mais limpo e imutável.
           const newHistory = [
             newGame,
             ...state.gamesHistory.filter(g => g.date !== date)
           ];
 
-          // OTIMIZAÇÃO 1: Removido o 'newHistory.sort(...)'
-          // Esta operação era redundante, pois 'calculateStats' já faz seu próprio sort.
-
           return { gamesHistory: newHistory };
         });
 
-        // Recalcula estatísticas após adicionar resultado
         get().calculateStats();
       },
 
@@ -90,7 +78,6 @@ export const useStatsStore = create<StatsState>()(
             };
           }
 
-          // Otimização: Filtra por vitórias apenas UMA vez
           const completedGames = history.filter(g => g.won);
           const totalWins = completedGames.length;
 
@@ -100,7 +87,6 @@ export const useStatsStore = create<StatsState>()(
 
           const firstTryWins = history.filter(g => g.firstTry).length;
 
-          // Calcula streaks (lógica original está correta)
           const sortedHistory = [...history].sort((a, b) => a.date.localeCompare(b.date));
           
           let currentStreak = 0;
@@ -120,19 +106,17 @@ export const useStatsStore = create<StatsState>()(
                 } else if (dayDiff > 1) {
                   tempStreak = 1;
                 }
-                // Se dayDiff === 0 (mesmo dia), não faz nada, continua a streak
               } else {
-                tempStreak = 1; // Primeira vitória
+                tempStreak = 1; 
               }
               
               maxStreak = Math.max(maxStreak, tempStreak);
               lastDate = gameDate;
             } else {
-              tempStreak = 0; // Quebra a sequência
+              tempStreak = 0; 
             }
           }
 
-          // Verifica a streak atual
           const today = new Date();
           today.setHours(0, 0, 0, 0);
           

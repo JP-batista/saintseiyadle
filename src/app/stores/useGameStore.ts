@@ -2,7 +2,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-// ... (Tipos Character e Attempt permanecem os mesmos) ...
 type Character = {
   idKey: string;
   nome: string;
@@ -38,7 +37,6 @@ type Attempt = {
 };
 
 interface GameState {
-  // ... (Estado do jogo diário permanece o mesmo) ...
   selectedCharacter: Character | null;
   attempts: Attempt[];
   won: boolean;
@@ -46,7 +44,6 @@ interface GameState {
   currentGameDate: string | null;
   usedCharacterIndices: number[];
   
-  // ... (Ações permanecem as mesmas) ...
   setSelectedCharacter: (character: Character) => void;
   addAttempt: (attempt: Attempt) => void;
   setWon: (won: boolean) => void;
@@ -60,7 +57,6 @@ interface GameState {
 export const useGameStore = create<GameState>()(
   persist(
     (set) => ({
-      // ... (Estado inicial permanece o mesmo) ...
       selectedCharacter: null,
       attempts: [],
       won: false,
@@ -68,7 +64,6 @@ export const useGameStore = create<GameState>()(
       currentGameDate: null,
       usedCharacterIndices: [],
 
-      // ... (Ações de set simples permanecem as mesmas) ...
       setSelectedCharacter: (character) => 
         set({ selectedCharacter: character }),
 
@@ -84,19 +79,13 @@ export const useGameStore = create<GameState>()(
       setCurrentGameDate: (date) =>
         set({ currentGameDate: date }),
 
-      // ===========================
-      // OTIMIZAÇÃO APLICADA AQUI
-      // ===========================
       addUsedCharacterIndex: (index) =>
         set((state) => {
-          // A verificação 'if (state.usedCharacterIndices.includes(index))'
-          // foi removida, pois 'useDailyGame.ts' já faz isso.
           return { 
             usedCharacterIndices: [...state.usedCharacterIndices, index] 
           };
         }),
 
-      // ... (resetDailyGame e clearState permanecem os mesmos) ...
       resetDailyGame: (character, date) =>
         set((state) => {
           const isSameDay = state.currentGameDate === date;
@@ -120,7 +109,6 @@ export const useGameStore = create<GameState>()(
         }),
     }),
     {
-      // ... (Configuração de persistência permanece a mesma) ...
       name: 'classic-game-daily-storage',
       partialize: (state) => ({
         selectedCharacter: state.selectedCharacter,

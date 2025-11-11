@@ -2,10 +2,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-// --- Tipos de Dados (Definidos localmente por enquanto) ---
-// (Mais tarde, podemos movê-los para src/i18n/types.ts)
-
-// O personagem que o usuário palpita
 type GuessedCharacter = {
   idKey: string;
   nome: string;
@@ -22,7 +18,6 @@ type GuessedCharacter = {
   imgSrc: string;
 };
 
-// A fala individual
 type Quote = {
   idQuote: string;
   texts: string;
@@ -30,16 +25,12 @@ type Quote = {
   dica2: string;
 };
 
-// O objeto da fala do dia (Fala + Personagem correto)
 type SelectedQuote = {
   quote: Quote;
-  character: GuessedCharacter; // O personagem correto
+  character: GuessedCharacter; 
 };
 
-// Uma tentativa é o próprio personagem que o usuário palpitou
 type Attempt = GuessedCharacter;
-
-// --- Interface do Estado (Zustand) ---
 
 interface QuoteGameState {
   selectedQuote: SelectedQuote | null;
@@ -48,7 +39,6 @@ interface QuoteGameState {
   gaveUp: boolean;
   currentGameDate: string | null;
 
-  // Ações
   setSelectedQuote: (quote: SelectedQuote) => void;
   addAttempt: (attempt: Attempt) => void;
   setWon: (won: boolean) => void;
@@ -58,19 +48,14 @@ interface QuoteGameState {
   clearState: () => void;
 }
 
-// --- Criação do Store ---
-
 export const useQuoteGameStore = create<QuoteGameState>()(
   persist(
     (set) => ({
-      // Estado Inicial
       selectedQuote: null,
       attempts: [],
       won: false,
       gaveUp: false,
       currentGameDate: null,
-
-      // --- Ações ---
 
       setSelectedQuote: (quote) => 
         set({ selectedQuote: quote }),
@@ -87,14 +72,9 @@ export const useQuoteGameStore = create<QuoteGameState>()(
       setCurrentGameDate: (date) =>
         set({ currentGameDate: date }),
 
-      /**
-       * Reseta o jogo para um novo dia ou recarrega o estado atual.
-       * Idêntico ao 'useGameStore', mas para as falas.
-       */
       resetDailyGame: (quote, date) =>
         set((state) => {
           const isSameDay = state.currentGameDate === date;
-          // Se for o mesmo dia, mantém o progresso (tentativas, vitória, desistência)
           const keepWonState = isSameDay && state.won;
           const keepGaveUpState = isSameDay && state.gaveUp;
           
@@ -115,10 +95,8 @@ export const useQuoteGameStore = create<QuoteGameState>()(
         }),
     }),
     {
-      // Nome da chave no localStorage (DIFERENTE do Modo Clássico)
       name: 'quote-game-daily-storage',
 
-      // Define quais partes do estado devem ser salvas
       partialize: (state) => ({
         selectedQuote: state.selectedQuote,
         attempts: state.attempts,

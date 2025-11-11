@@ -2,19 +2,14 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-/**
- * Define a estrutura para o histórico de jogos do MODO SILHUETA.
- */
 type SilhouetteGameHistory = {
-  date: string; // YYYY-MM-DD
+  date: string; 
   attempts: number;
   won: boolean;
   firstTry: boolean;
-  
-  // Dados específicos do Modo Silhueta
-  name: string; // O nome da armadura (a resposta)
-  revealedImg: string; // A imagem revelada (para o modal)
-  knight: string; // O cavaleiro (para contexto)
+  name: string; 
+  revealedImg: string; 
+  knight: string; 
 };
 
 interface SilhouetteStatsState {
@@ -25,7 +20,6 @@ interface SilhouetteStatsState {
   currentStreak: number;
   maxStreak: number;
   
-  // Ação de adicionar resultado
   addGameResult: (
     date: string, 
     attempts: number, 
@@ -42,15 +36,12 @@ interface SilhouetteStatsState {
 export const useSilhouetteStatsStore = create<SilhouetteStatsState>()(
   persist(
     (set, get) => ({
-      // --- Estado Inicial ---
       gamesHistory: [],
       totalWins: 0,
       averageAttempts: 0,
       firstTryWins: 0,
       currentStreak: 0,
       maxStreak: 0,
-
-      // --- Ações ---
       
       addGameResult: (
         date, 
@@ -61,7 +52,6 @@ export const useSilhouetteStatsStore = create<SilhouetteStatsState>()(
         knight
       ) => {
         set((state) => {
-          // Cria o novo registro
           const newGame: SilhouetteGameHistory = {
             date,
             attempts,
@@ -72,7 +62,6 @@ export const useSilhouetteStatsStore = create<SilhouetteStatsState>()(
             knight,
           };
           
-          // Adiciona o novo registro e remove qualquer registro antigo do mesmo dia
           const newHistory = [
             newGame,
             ...state.gamesHistory.filter(g => g.date !== date)
@@ -81,15 +70,9 @@ export const useSilhouetteStatsStore = create<SilhouetteStatsState>()(
           return { gamesHistory: newHistory };
         });
 
-        // Recalcula todas as estatísticas
         get().calculateStats();
       },
 
-      /**
-       * (Lógica idêntica aos outros stores de stats)
-       * Calcula todas as métricas derivadas (streaks, médias)
-       * baseado no gamesHistory.
-       */
       calculateStats: () => {
         set((state) => {
           const history = state.gamesHistory;
@@ -113,7 +96,6 @@ export const useSilhouetteStatsStore = create<SilhouetteStatsState>()(
 
           const firstTryWins = history.filter(g => g.firstTry).length;
 
-          // Cálculo de Streaks
           const sortedHistory = [...history].sort((a, b) => a.date.localeCompare(b.date));
           
           let currentStreak = 0;
@@ -140,12 +122,10 @@ export const useSilhouetteStatsStore = create<SilhouetteStatsState>()(
               maxStreak = Math.max(maxStreak, tempStreak);
               lastDate = gameDate;
             } else {
-              // Se o jogo do dia não foi uma vitória, quebra a sequência
               tempStreak = 0; 
             }
           }
 
-          // Verifica a streak atual
           const today = new Date();
           today.setHours(0, 0, 0, 0);
           
@@ -171,10 +151,8 @@ export const useSilhouetteStatsStore = create<SilhouetteStatsState>()(
       },
     }),
     {
-      // A chave de persistência é única para este modo
       name: 'silhouette-game-stats-storage',
       
-      // Recalcula as estatísticas quando o app é carregado
       onRehydrateStorage: () => (state) => {
         if (state) {
           state.calculateStats();
