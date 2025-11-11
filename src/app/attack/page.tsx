@@ -21,17 +21,17 @@ import HelpModal from './components/HelpModal';
 import GameModeButtons from '../components/GameModeButtons';
 import AttackDisplay from './components/AttackDisplay';
 import AttackResultCard from './components/AttackResultCard';
-import AttackGuessForm from './components/AttackGuessForm';
+// MODIFICADO: Importa o novo AttackGuessForm
+import AttackGuessForm from './components/AttackGuessForm'; 
 import AttackAttemptsList from './components/AttackAttemptsList';
 import YesterdayAttack from './components/YesterdayAttack';
-import GuessForm from "../classic/components/GuessForm";
 
 
 export default function AttackGamePage() {
   const { t, locale } = useTranslation();
   const router = useRouter();
 
-  // MODIFICADO: 'allAttacks' (fonte da verdade) e 'allCharacters' (para sugestões)
+  // 'allAttacks' (fonte da verdade)
   const allAttacks = useMemo(() => {
     const dataModule = getAttackData(locale);
     
@@ -40,7 +40,7 @@ export default function AttackGamePage() {
       const allAttacks: SelectedAttack[] = [];
 
       for (const character of charactersWithAttacks) {
-          const characterInfo: CharacterBaseInfo = { // Garante que o tipo CharacterBaseInfo está correto
+          const characterInfo: CharacterBaseInfo = { 
               idKey: character.idKey,
               nome: character.nome,
               patente: character.patente,
@@ -64,7 +64,7 @@ export default function AttackGamePage() {
     return flattenAttackData(dataModule);
   }, [locale]);
 
-  // MODIFICADO: Cria uma lista de personagens únicos para as sugestões
+  // 'allCharacters' (para sugestões)
   const allCharacters = useMemo(() => {
     const charMap = new Map<string, CharacterBaseInfo>();
     allAttacks.forEach((item) => {
@@ -78,7 +78,7 @@ export default function AttackGamePage() {
 
   const {
     selectedAttack,
-    attempts, // Agora é CharacterBaseInfo[]
+    attempts, // É CharacterBaseInfo[]
     won,
     gaveUp,
     currentGameDate,
@@ -90,11 +90,10 @@ export default function AttackGamePage() {
   const { isInitialized } = useDailyAttack();
   const characteristicsRef = useRef<HTMLDivElement | null>(null);
   
-  // MODIFICADO: Estado para sugestões de Personagem
+  // Estado para sugestões de Personagem
   const [selectedSuggestion, setSelectedSuggestion] = useState<CharacterBaseInfo | null>(null);
   const [input, setInput] = useState<string>("");
   const [suggestions, setSuggestions] = useState<CharacterBaseInfo[]>([]);
-  const [activeIndex, setActiveIndex] = useState(0); // Para navegação por teclado
   
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
   const [timeRemaining, setTimeRemaining] = useState<string>("00:00:00");
@@ -104,6 +103,7 @@ export default function AttackGamePage() {
   const [isNewsModalOpen, setIsNewsModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
+  // ... (useEffect para countdown - sem alteração)
   useEffect(() => {
     if (!isInitialized) return;
     const updateCountdown = () => {
@@ -115,6 +115,7 @@ export default function AttackGamePage() {
     return () => clearInterval(interval);
   }, [isInitialized]);
 
+  // ... (useEffect para checkDayChange - sem alteração)
   useEffect(() => {
     if (!isInitialized) return;
     const checkDayChange = () => {
@@ -127,6 +128,7 @@ export default function AttackGamePage() {
     return () => clearInterval(interval);
   }, [isInitialized, currentGameDate, router]);
 
+  // ... (useEffect para showVictoryEffects - sem alteração)
   useEffect(() => {
     if (won && !gaveUp && attempts.length > 0 && isInitialized) {
       setShowVictoryEffects(true);
@@ -140,7 +142,7 @@ export default function AttackGamePage() {
     }
   }, [won, gaveUp, attempts.length, isInitialized]);
 
-  // Lógica de salvar o jogo (permanece a mesma, pois o stats store já salva o personagem)
+  // ... (useEffect para addGameResult - sem alteração)
   useEffect(() => {
     if (
       (won || gaveUp) &&
@@ -172,42 +174,37 @@ export default function AttackGamePage() {
     selectedAttack,
   ]);
   
-  // MODIFICADO: Lógica do handleSubmit para checar o PERSONAGEM
+  // REVERTIDO: Lógica do handleSubmit (depende de 'selectedSuggestion')
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       
-      if (!input.trim() || !selectedSuggestion || !selectedAttack) return;
+      // Verifica 'selectedSuggestion'
+      if (!selectedSuggestion || !selectedAttack) return;
       
-      // MODIFICADO: Compara o ID do personagem sugerido com o ID do personagem correto
       const correct = selectedSuggestion.idKey === selectedAttack.character.idKey;
       
-      // MODIFICADO: Verifica se o PERSONAGEM já foi tentado
       if (attempts.some((attempt) => attempt.idKey === selectedSuggestion.idKey)) {
-        // (Use uma nova chave de tradução para "Personagem já tentado")
         setError(t("form_error_already_tried_character")); 
         setInput("");
         setShowDropdown(false);
         return;
       }
       
-      // MODIFICADO: 'attempt' agora é o objeto CharacterBaseInfo
       const attempt: CharacterBaseInfo = selectedSuggestion;
 
       if (correct) {
         setWon(true);
       }
 
-      addAttempt(attempt); // Adiciona o personagem à lista de tentativas
+      addAttempt(attempt); 
       setInput("");
       setSuggestions([]);
       setShowDropdown(false);
       setError(null);
-
     },
     [
-      input,
-      selectedSuggestion,
+      selectedSuggestion, // Depende de selectedSuggestion
       selectedAttack,
       attempts,
       addAttempt,
@@ -224,26 +221,24 @@ export default function AttackGamePage() {
       .toLowerCase();
   }, []);
 
-  // MODIFICADO: getFilteredSuggestions para retornar PERSONAGENS
+  // Lógica de getFilteredSuggestions (igual)
   const getFilteredSuggestions = useCallback(
     (value: string): CharacterBaseInfo[] => {
       const normalizedValue = normalizeText(value);
-      // MODIFICADO: 'alreadyTried' agora é um Set de ID-chaves de personagens
       const alreadyTried = new Set(attempts.map((a) => a.idKey));
       
-      // MODIFICADO: Filtra a lista 'allCharacters'
       return allCharacters
         .filter(
           (character) =>
-            !alreadyTried.has(character.idKey) && // Verifica se já foi tentado
-            normalizeText(character.nome).includes(normalizedValue) // Verifica o nome
+            !alreadyTried.has(character.idKey) && 
+            normalizeText(character.nome).includes(normalizedValue)
         )
-        .slice(0, 5); // Limita a 5 sugestões
+        .slice(0, 5); 
     },
-    [attempts, normalizeText, allCharacters] // Usa allCharacters
+    [attempts, normalizeText, allCharacters] 
   );
   
-  // MODIFICADO: handleInputChange para lidar com sugestões de Personagem
+  // Lógica de handleInputChange (igual)
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
@@ -255,9 +250,8 @@ export default function AttackGamePage() {
         setSuggestions(filteredSuggestions);
         setShowDropdown(filteredSuggestions.length > 0);
         
-        // MODIFICADO: Define o primeiro personagem como sugestão ativa
+        // Define a *primeira* sugestão como a selecionada (para a lógica antiga)
         setSelectedSuggestion(filteredSuggestions[0] || null);
-        setActiveIndex(0); // Reseta o índice do teclado
       } else {
         setSuggestions([]);
         setShowDropdown(false);
@@ -267,51 +261,53 @@ export default function AttackGamePage() {
     [getFilteredSuggestions]
   );
 
-  // MODIFICADO: handleSuggestionClick para lidar com ID de Personagem
+  // REVERTIDO: 'handleSuggestionClick' agora só atualiza o input
   const handleSuggestionClick = useCallback(
-    (idKey: string) => { // Recebe idKey
-      // MODIFICADO: Procura em 'allCharacters'
+    (idKey: string) => { 
       const character = allCharacters.find((c) => c.idKey === idKey);
 
       if (character) {
-        setInput(character.nome);
+        setInput(character.nome); // Atualiza o input
         setSelectedSuggestion(character); // Define o personagem
         setShowDropdown(false);
         setError(null);
       }
     },
-    [allCharacters] // Usa allCharacters
+    [allCharacters] 
   );
 
-  // MODIFICADO: handleKeyDown para navegação por teclado
+  // REVERTIDO: 'handleKeyDown' (lógica do modo Clássico)
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (!showDropdown || !suggestions.length) return;
-      
-      let newIndex = activeIndex;
+      if (!suggestions.length || !showDropdown) return;
+
+      let newIndex: number;
+      const currentIndex = suggestions.findIndex(
+        (s) => s === selectedSuggestion
+      );
 
       if (e.key === "ArrowDown") {
         e.preventDefault();
-        newIndex = (activeIndex + 1) % suggestions.length;
+        newIndex = (currentIndex + 1) % suggestions.length;
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
-        newIndex = (activeIndex - 1 + suggestions.length) % suggestions.length;
+        newIndex =
+          (currentIndex - 1 + suggestions.length) % suggestions.length;
       } else if (e.key === "Enter") {
-        e.preventDefault();
+         e.preventDefault(); 
+         // A lógica de submissão está no 'AttackGuessForm' (via 'useEffect')
+         // Aqui, apenas garantimos que a sugestão ativa seja selecionada
          if (selectedSuggestion) {
-           // Simula o clique na sugestão ativa para submeter
-           handleSuggestionClick(selectedSuggestion.idKey);
-           // O formulário será submetido pelo 'useEffect' em AttackGuessForm
+            handleSuggestionClick(selectedSuggestion.idKey);
          }
-        return;
+         return;
       } else {
         return;
       }
-
-      setActiveIndex(newIndex);
+      
       setSelectedSuggestion(suggestions[newIndex]);
     },
-    [suggestions, activeIndex, selectedSuggestion, showDropdown, handleSuggestionClick]
+    [suggestions, selectedSuggestion, showDropdown, handleSuggestionClick]
   );
 
 
@@ -365,11 +361,10 @@ export default function AttackGamePage() {
             onSubmit={handleSubmit}
             input={input}
             onInputChange={handleInputChange}
-            onKeyDown={handleKeyDown} // Passa o handler de setas
+            onKeyDown={handleKeyDown} // Passa o handler de setas/Enter
             suggestions={suggestions} 
             showDropdown={showDropdown && !error}
             onSuggestionClick={handleSuggestionClick} // Passa o handler de clique
-            // REVERTIDO: Não passa mais 'activeIndex'
           />
           {error && !showDropdown && (
             <div className="relative w-full max-w-md -mt-4 mb-8">
@@ -379,7 +374,6 @@ export default function AttackGamePage() {
             </div>
           )}
           
-          {/* MODIFICADO: Passa o ID do personagem correto para a lista de tentativas */}
           <AttackAttemptsList 
             attempts={attempts} 
             correctCharacterIdKey={selectedAttack.character.idKey}
@@ -394,7 +388,6 @@ export default function AttackGamePage() {
       ) : (
         <div className="w-full flex flex-col items-center">
           
-          {/* MODIFICADO: Passa o ID do personagem correto para a lista de tentativas */}
           <AttackAttemptsList 
             attempts={attempts} 
             correctCharacterIdKey={selectedAttack.character.idKey}
