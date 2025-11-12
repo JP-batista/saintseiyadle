@@ -1,6 +1,6 @@
 # 🌟 Saint Seiya DLE (Daily Lore Experience)
 
-Um jogo diário de adivinhação de personagens de Saint Seiya (Os Cavaleiros do Zodíaco), inspirado em jogos como Wordle e LoLdle.
+Um jogo diário de adivinhação de personagens de Saint Seiya (Os Cavaleiros do Zodíaco), inspirado em jogos como Wordle.
 
 ## 📖 Sobre o Projeto
 
