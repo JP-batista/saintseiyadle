@@ -58,18 +58,6 @@ const quotes = [
                 dica1: "",
                 dica2: ""
             },
-            {
-                idQuote: "seiya_008",
-                texts: "Saoooooori!!",
-                dica1: "",
-                dica2: ""
-            },
-            {
-                idQuote: "seiya_00",
-                texts: "",
-                dica1: "",
-                dica2: ""
-            },
         ]
     },
     {
@@ -158,14 +146,7 @@ const quotes = [
                 texts: "Vocês esqueceram que tem um corpo substituto. O Cosmo é o fogo do coração.",
                 dica1: "",
                 dica2: ""
-            },
-            {
-                idQuote: "shiryu_00",
-                texts: "",
-                dica1: "",
-                dica2: ""
-            },
-            
+            },        
         ]
     },
     {
@@ -182,14 +163,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/hyoga.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
     },
     {
         idKey: "shun",
@@ -205,14 +179,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/shun.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
     },
     {
         idKey: "ikki",
@@ -228,14 +195,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/ikki.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
     },
 
     //Cavaleiros de Ouro Classicos
@@ -254,14 +214,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/mu.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
       {
         idKey: "aldebaran",
@@ -277,14 +230,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/aldebaran.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
       {
         idKey: "saga",
@@ -300,14 +246,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/saga.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
       {
         idKey: "mascaradamorte",
@@ -323,14 +262,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/mascaradamorte.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
       {
         idKey: "aiolia",
@@ -346,14 +278,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/aiolia.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
       {
         idKey: "shaka",
@@ -369,14 +294,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/shaka.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
       {
         idKey: "dohko",
@@ -392,14 +310,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/mestreanciao.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
       {
         idKey: "milo",
@@ -415,14 +326,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/milo.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
       {
         idKey: "aiolos",
@@ -438,14 +342,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/aiolos.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
       {
         idKey: "shura",
@@ -461,14 +358,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/shura.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
       {
         idKey: "camus",
@@ -484,14 +374,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/camus.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
       {
         idKey: "afrodite",
@@ -507,14 +390,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/afrodite.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
       },
 
     //Deusa Athena 
@@ -533,14 +409,7 @@ const quotes = [
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/athena.jpg",
-        quotes: [
-            {
-                idQuote: "",
-                texts: "", 
-                dica1: "",
-                dica2: ""
-            },
-        ]
+        quotes: []
     },
 ];
 
