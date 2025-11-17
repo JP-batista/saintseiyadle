@@ -11,7 +11,7 @@ const attacks = [
         genero: "Masculino",
         peso: "53 kg",
         signo: "Sagitário",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -50,7 +50,7 @@ const attacks = [
         genero: "Masculino",
         peso: "53 kg",
         signo: "Libra",
-        localDeTreinamento: "Cinco Picos de Rozan, China",
+        localDeTreinamento: "Cinco Picos de Rozan",
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -67,6 +67,11 @@ const attacks = [
                 idAttack: "colera_do_dragao_2", 
                 name: "Colera do Dragão",
                 gifSrc: "/dle/attacks/colera_do_dragao_2.gif",
+            },
+            {
+                idAttack: "colera_do_dragao_3", 
+                name: "Colera do Dragão",
+                gifSrc: "/dle/attacks/colera_do_dragao_3.gif",
             },
         ]
       },
@@ -276,7 +281,7 @@ const attacks = [
         genero: "Feminino",
         peso: "51 kg",
         signo: "Escorpião",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -294,7 +299,7 @@ const attacks = [
         genero: "Masculino",
         peso: "75 kg",
         signo: "Leão",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -318,7 +323,7 @@ const attacks = [
         genero: "Masculino",
         peso: "83 kg",
         signo: "Sagitário",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -336,14 +341,20 @@ const attacks = [
         genero: "Masculino",
         peso: "80 kg",
         signo: "Virgem",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/capella.jpg",
         dica1: "Emprega discos cortantes como arma principal.",
         dica2: "Foi derrotado por Ikki de Fênix.",
-        attacks: []  
+        attacks: [
+          {
+            idAttack: "discos_mortais", 
+            name: "Discos Mortais",
+            gifSrc: "/dle/attacks/discos_mortais.gif",
+          },
+        ]  
       },
       {
         idKey: "dante",
@@ -354,14 +365,20 @@ const attacks = [
         genero: "Masculino",
         peso: "94 kg",
         signo: "Leão",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/dante.jpg",
         dica1: "Utiliza correntes pesadas em combate.",
         dica2: "Enfrentou Seiya e Shun em uma floresta.",
-        attacks: []  
+        attacks: [
+          {
+            idAttack: "maca_infernal", 
+            name: "Maça Infernal",
+            gifSrc: "/dle/attacks/maca_infernal.gif",
+          },
+        ]  
       },
       {
         idKey: "jamian",
@@ -372,7 +389,7 @@ const attacks = [
         genero: "Masculino",
         peso: "73 kg",
         signo: "Capricórnio",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -390,7 +407,7 @@ const attacks = [
         genero: "Masculino",
         peso: "87 kg",
         signo: "Câncer",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -414,7 +431,7 @@ const attacks = [
         genero: "Masculino",
         peso: "130 kg",
         signo: "Aquário",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -438,7 +455,7 @@ const attacks = [
         genero: "Masculino",
         peso: "85 kg",
         signo: "Gêmeos",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -456,7 +473,7 @@ const attacks = [
         genero: "Masculino",
         peso: "85 kg",
         signo: "Capricórnio",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -473,7 +490,7 @@ const attacks = [
         genero: "Masculino",
         peso: "92 kg",
         signo: "Virgem",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -491,14 +508,20 @@ const attacks = [
         genero: "Masculino",
         peso: "160 kg",
         signo: "Touro",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/algheti.jpg",
         dica1: "Conhecido por sua força descomunal.",
         dica2: "Enfrentou Seiya de Pégaso e foi derrotado.",
-        attacks: []  
+        attacks: [
+          {
+            idAttack: "poder_supremo_de_hercules", 
+            name: "Poder Supremo de Hercules",
+            gifSrc: "/dle/attacks/poder_supremo_de_hercules.gif",
+          },
+        ]  
       },
       {
         idKey: "shiva",
@@ -563,7 +586,7 @@ const attacks = [
         genero: "Feminino",
         peso: "52 kg",
         signo: "Áries",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -588,7 +611,13 @@ const attacks = [
         imgSrc: "/dle/characters/aracne.jpg",
         dica1: "Tentou matar Seiya em uma caverna.",
         dica2: "Derrotado por Seiya de Pégaso.",
-        attacks: []  
+        attacks: [
+          {
+            idAttack: "teia_de_tarantula", 
+            name: "Teia de Tarantula",
+            gifSrc: "/dle/attacks/teia_de_tarantula.gif",
+          },
+        ]  
       },
       {
         idKey: "tremy",
@@ -606,7 +635,13 @@ const attacks = [
         imgSrc: "/dle/characters/tremy.jpg",
         dica1: "Atirou uma flecha em Saori Kido.",
         dica2: "Derrotado por Seiya de Pégaso.",
-        attacks: []  
+        attacks: [
+          {
+            idAttack: "flechas_fantasmas", 
+            name: "Flechas Fantasmas",
+            gifSrc: "/dle/attacks/flechas_fantasmas.gif",
+          },
+        ]  
       },
       {
         idKey: "orfeu",
@@ -617,7 +652,7 @@ const attacks = [
         genero: "Masculino",
         peso: "53 kg",
         signo: "Libra",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Prata",
         exercito: "Exército de Athena",
         saga: "Hades",
@@ -663,7 +698,13 @@ const attacks = [
         imgSrc: "/dle/characters/aldebaran.jpg",
         dica1: "Possui uma técnica que lembra uma estrela.",
         dica2: "Enfrentou Seiya na Casa de Touro.",
-        attacks: []  
+        attacks: [
+          {
+            idAttack: "grande_chifre", 
+            name: "Grande Chifre",
+            gifSrc: "/dle/attacks/grande_chifre.gif",
+          },
+        ]  
       },
       {
         idKey: "saga",
@@ -674,14 +715,20 @@ const attacks = [
         genero: "Masculino",
         peso: "87 kg",
         signo: "Gêmeos",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/saga.jpg",
         dica1: "Duas personalidades em um só corpo.",
         dica2: "Usurpou o posto de Grande Mestre.",
-        attacks: []  
+        attacks: [
+          {
+            idAttack: "outra_dimensao", 
+            name: "Outra Dimensão",
+            gifSrc: "/dle/attacks/outra_dimensao.gif",
+          },
+        ]  
       },
       {
         idKey: "mascaradamorte",
@@ -699,7 +746,13 @@ const attacks = [
         imgSrc: "/dle/characters/mascaradamorte.jpg",
         dica1: "Decora sua casa com rostos de vítimas.",
         dica2: "Enfrentou Shiryu na Casa de Câncer.",
-        attacks: []  
+        attacks: [
+          {
+            idAttack: "ondas_do_inferno", 
+            name: "Ondas do Inferno",
+            gifSrc: "/dle/attacks/ondas_do_inferno.gif",
+          },
+        ]  
       },
       {
         idKey: "aiolia",
@@ -710,14 +763,30 @@ const attacks = [
         genero: "Masculino",
         peso: "85 kg",
         signo: "Leão",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
         imgSrc: "/dle/characters/aiolia.jpg",
         dica1: "Irmão mais novo de um Cavaleiro de Ouro.",
         dica2: "Conhecido por sua velocidade e força.",
-        attacks: []  
+        attacks: [
+          {
+            idAttack: "capsula_do_poder_2", 
+            name: "Capsula do Poder",
+            gifSrc: "/dle/attacks/capsula_do_poder_2.gif",
+          },
+          {
+            idAttack: "capsula_do_poder", 
+            name: "Capsula do Poder",
+            gifSrc: "/dle/attacks/capsula_do_poder.gif",
+          },
+          {
+            idAttack: "relampago_de_plasma_1", 
+            name: "Relampago de Plasma",
+            gifSrc: "/dle/attacks/relampago_de_plasma_1.gif",
+          },
+        ]  
       },
       {
         idKey: "shaka",
@@ -735,7 +804,23 @@ const attacks = [
         imgSrc: "/dle/characters/shaka.jpg",
         dica1: "Considerado o homem mais próximo de Deus.",
         dica2: "Luta frequentemente de olhos fechados.",
-        attacks: []  
+        attacks: [
+          {
+            idAttack: "ciclo_das_6_existencias", 
+            name: "Ciclo das 6 Existencias",
+            gifSrc: "/dle/attacks/ciclo_das_6_existencias.gif",
+          },
+          {
+            idAttack: "tesouro_do_ceu", 
+            name: "Tesouro do Céu",
+            gifSrc: "/dle/attacks/tesouro_do_ceu.gif",
+          },
+          {
+            idAttack: "ciclo_das_6_existencias", 
+            name: "iclo das 6 Existencias",
+            gifSrc: "/dle/attacks/ciclo_das_6_existencias.gif",
+          },
+        ]  
       },
       {
         idKey: "dohko",
@@ -746,7 +831,7 @@ const attacks = [
         genero: "Masculino",
         peso: "68 kg",
         signo: "Libra",
-        localDeTreinamento: "Cinco Picos de Rozan, China",
+        localDeTreinamento: "Cinco Picos de Rozan",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -782,7 +867,7 @@ const attacks = [
         genero: "Masculino",
         peso: "85 kg",
         signo: "Sagitário",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -825,7 +910,18 @@ const attacks = [
         imgSrc: "/dle/characters/camus.jpg",
         dica1: "Mestre do frio absoluto",
         dica2: "Treinou um Cavaleiro de Bronze na Sibéria",
-        attacks: []  
+        attacks: [
+          {
+            idAttack: "esquife_de_gelo", 
+            name: "Esquife de Gelo",
+            gifSrc: "/dle/attacks/esquife_de_gelo.gif",
+          },
+          {
+            idAttack: "execucao_aurora_camus_1", 
+            name: "Execução Aurora",
+            gifSrc: "/dle/attacks/execucao_aurora_camus_1.gif",
+          },
+        ]  
       },
       {
         idKey: "afrodite",
@@ -857,7 +953,7 @@ const attacks = [
         genero: "Feminino",
         peso: "55 kg",
         signo: "Sagitário",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Deusa",
         exercito: "Exército de Athena",
         saga: "Santuário",
@@ -1401,7 +1497,7 @@ const attacks = [
         attacks: []  
       },      
 
-    //Marinas de Poseidon Classico
+    //Exército de Poseidon Classico
 
     {
         idKey: "baian",
@@ -1520,7 +1616,7 @@ const attacks = [
         genero: "Masculino",
         peso: "87 kg",
         signo: "Gêmeos",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "General Marina",
         exercito: "Exército de Poseidon",
         saga: "Poseidon",
@@ -1569,7 +1665,7 @@ const attacks = [
         attacks: []  
     },
 
-    //Espectros de Hades Classico
+    //Exército de Hades Classico
 
     {
         idKey: "radamanthys",
@@ -1980,7 +2076,7 @@ const attacks = [
         exercito: "Exército de Hades",
         saga: "Hades",
         imgSrc: "/dle/characters/pandora.jpg",
-        dica1: "Serve como líder dos Espectros de Hades.",
+        dica1: "Serve como líder dos Exército de Hades.",
         dica2: "É guardiã do selo de Hades no Submundo.",
         attacks: []  
     },
@@ -2068,7 +2164,7 @@ const attacks = [
         genero: "Masculino",
         peso: "130 kg",
         signo: "Touro",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
@@ -2086,7 +2182,7 @@ const attacks = [
         genero: "Masculino",
         peso: "85 kg",
         signo: "Gêmeos",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
@@ -2104,7 +2200,7 @@ const attacks = [
         genero: "Masculino",
         peso: "85 kg",
         signo: "Gêmeos",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
@@ -2140,7 +2236,7 @@ const attacks = [
         genero: "Masculino",
         peso: "68 kg",
         signo: "Leão",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
@@ -2168,7 +2264,7 @@ const attacks = [
         attacks: []  
     },
     {
-        idKey: "dohko",
+        idKey: "dohkolc",
         nome: "Dohko de Libra (Lost Canvas)",
         titulo: "Cavaleiro de Libra",
         idade: "18",
@@ -2176,7 +2272,7 @@ const attacks = [
         genero: "Masculino",
         peso: "68 kg",
         signo: "Libra",
-        localDeTreinamento: "Cinco Picos de Rozan, China",
+        localDeTreinamento: "Cinco Picos de Rozan",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
@@ -2212,7 +2308,7 @@ const attacks = [
         genero: "Masculino",
         peso: "85 kg",
         signo: "Sagitário",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
@@ -2287,7 +2383,7 @@ const attacks = [
         genero: "Masculino",
         peso: "55 kg",
         signo: "Sagitário",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
@@ -2305,7 +2401,7 @@ const attacks = [
         genero: "Masculino",
         peso: "60 kg",
         signo: "Touro",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Lost Canvas",
@@ -2380,7 +2476,7 @@ const attacks = [
         genero: "Masculino",
         peso: "130 kg",
         signo: "Touro",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
@@ -2398,7 +2494,7 @@ const attacks = [
         genero: "Masculino",
         peso: "85 kg",
         signo: "Gêmeos",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
@@ -2416,7 +2512,7 @@ const attacks = [
         genero: "Masculino",
         peso: "85 kg",
         signo: "Gêmeos",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
@@ -2434,7 +2530,7 @@ const attacks = [
         genero: "Masculino",
         peso: "82 kg",
         signo: "Câncer",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
@@ -2488,7 +2584,7 @@ const attacks = [
         genero: "Masculino",
         peso: "68 kg",
         signo: "Libra",
-        localDeTreinamento: "Cinco Picos de Rozan, China",
+        localDeTreinamento: "Cinco Picos de Rozan",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
@@ -2524,7 +2620,7 @@ const attacks = [
         genero: "Masculino",
         peso: "78 kg",
         signo: "Aquário",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Next Dimension",
@@ -2563,7 +2659,7 @@ const attacks = [
         genero: "Masculino",
         peso: "56 kg",
         signo: "Sagitário",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
@@ -2581,7 +2677,7 @@ const attacks = [
         genero: "Masculino",
         peso: "62 kg",
         signo: "Leão",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
@@ -2617,7 +2713,7 @@ const attacks = [
         genero: "Masculino",
         peso: "43 kg",
         signo: "Libra",
-        localDeTreinamento: "Cinco Picos de Rozan, China",
+        localDeTreinamento: "Cinco Picos de Rozan",
         patente: "Cavaleiro de Bronze",
         exercito: "Exército de Athena",
         saga: "Omega",
@@ -2693,7 +2789,7 @@ const attacks = [
         genero: "Masculino",
         peso: "53 kg",
         signo: "Libra",
-        localDeTreinamento: "Cinco Picos de Rozan, China",
+        localDeTreinamento: "Cinco Picos de Rozan",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
@@ -2819,7 +2915,7 @@ const attacks = [
         genero: "Masculino",
         peso: "82 kg",
         signo: "Libra",
-        localDeTreinamento: "Cinco Picos de Rozan, China",
+        localDeTreinamento: "Cinco Picos de Rozan",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
@@ -2855,7 +2951,7 @@ const attacks = [
         genero: "Masculino",
         peso: "65 kg",
         signo: "Sagitário",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
@@ -2873,7 +2969,7 @@ const attacks = [
         genero: "Masculino",
         peso: "80 kg",
         signo: "Capricórnio",
-        localDeTreinamento: "Santuário, Grécia",
+        localDeTreinamento: "Santuário",
         patente: "Cavaleiro de Ouro",
         exercito: "Exército de Athena",
         saga: "Omega",
