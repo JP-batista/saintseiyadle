@@ -82,6 +82,85 @@ export default function GamePage() {
     return attempts.length >= 10 ? selectedCharacter?.dica2 : null;
   }, [attempts.length, selectedCharacter]);
 
+  // ============================================================
+  // FUNÇÕES AUXILIARES DE COMPARAÇÃO ROBUSTA (Ajustada para extração numérica)
+  // ============================================================
+
+  /**
+   * Tenta extrair um valor numérico de qualquer string, removendo texto, mas mantendo números.
+   * Ex: "Mais de 1000" -> 1000; "1,80 m" -> 1.80
+   */
+  const parseNumericValue = useCallback((val: string): number => {
+    if (!val) return NaN;
+    const v = val.toLowerCase().trim();
+    
+    // Expressão regular que remove tudo, exceto números, ponto e vírgula
+    const cleaned = v.replace(/[^\d,.]/g, '').replace(',', '.');
+    
+    // Verifica se sobrou algo para ser convertido
+    if (cleaned.length === 0) return NaN;
+    
+    return parseFloat(cleaned);
+  }, []);
+
+  /**
+   * Verifica se é um valor "Desconhecido" ou similar.
+   */
+  const isUnknown = useCallback((val: string) => {
+    const v = val.toLowerCase().trim();
+    return v === 'desconhecido' || v === 'desconhecida' || v === '?' || v === 'n/a' || v === '';
+  }, []);
+
+  /**
+   * Verifica se é "Imortal" ou infinito (aplicável principalmente à idade).
+   */
+  const isImmortal = useCallback((val: string) => {
+    const v = val.toLowerCase().trim();
+    return v === 'imortal' || v === 'infinity';
+  }, []);
+
+  /**
+   * Função genérica para comparar atributos. Prioriza comparação numérica se a string não for uma correspondência exata.
+   */
+  const compareAttribute = useCallback((guessVal: string, targetVal: string) => {
+    const g = guessVal.toLowerCase().trim();
+    const t = targetVal.toLowerCase().trim();
+
+    // 1. Caso de correspondência exata de string (cobre "Mais de 1000" == "Mais de 1000")
+    if (g === t) return "green";
+
+    // 2. Lógica para "Imortal"
+    if (isImmortal(t) && !isImmortal(g)) return "up";
+    if (isImmortal(g) && !isImmortal(t)) return "down";
+    
+    // 3. Lógica para "Desconhecido" (se um é e o outro não, e não são iguais, é Vermelho)
+    // Se o alvo for "desconhecido" e o chute for "100", deve ser "red".
+    if (isUnknown(g) || isUnknown(t)) return "red";
+
+    // 4. Comparação Numérica (Esta é a parte que trata "Mais de 1000" numericamente)
+    const nGuess = parseNumericValue(g);
+    const nTarget = parseNumericValue(t);
+
+    // Se a conversão falhou para qualquer um (e não caiu nos casos acima), é Vermelho
+    if (isNaN(nGuess) || isNaN(nTarget)) return "red";
+
+    // Comparação padrão de números
+    if (nGuess === nTarget) return "green";
+    
+    // Se a comparação numérica for diferente, usa as setas
+    return nGuess < nTarget ? "up" : "down";
+  }, [isUnknown, isImmortal, parseNumericValue]);
+
+  // Wrappers de comparação usando a função genérica
+  const compareAge = useCallback((value: string, target: string) => compareAttribute(value, target), [compareAttribute]);
+  const compareHeight = useCallback((value: string, target: string) => compareAttribute(value, target), [compareAttribute]);
+  const compareWeight = useCallback((value: string, target: string) => compareAttribute(value, target), [compareAttribute]);
+
+  // ============================================================
+  // FIM DAS FUNÇÕES AUXILIARES DE COMPARAÇÃO
+  // ============================================================
+
+
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -178,59 +257,9 @@ export default function GamePage() {
     selectedCharacter,
   ]);
 
-  const parseHeight = useCallback((height: string): number => {
-    if (height.toLowerCase() === "desconhecido") return NaN;
-    return parseFloat(height.replace(",", ".").replace(" m", "").trim());
-  }, []);
-
-  const compareAge = useCallback((value: string, target: string): string => {
-    const valueLower = value.toLowerCase();
-    const targetLower = target.toLowerCase();
-    if (valueLower === "desconhecida" && targetLower === "desconhecida")
-      return "green";
-    if (valueLower === "desconhecida" || targetLower === "desconhecida")
-      return "red";
-    if (valueLower === "imortal" && targetLower === "imortal") return "green";
-    if (valueLower === "imortal") return "down";
-    if (targetLower === "imortal") return "up";
-    const numericValue = parseFloat(value);
-    const numericTarget = parseFloat(target);
-    if (isNaN(numericValue) || isNaN(numericTarget)) return "red";
-    if (numericValue === numericTarget) return "green";
-    return numericValue < numericTarget ? "up" : "down";
-  }, []);
-
-  const compareWeight = useCallback((value: string, target: string): string => {
-    const valueLower = value.toLowerCase();
-    const targetLower = target.toLowerCase();
-    if (valueLower === "desconhecido" && targetLower === "desconhecida")
-      return "green";
-    if (valueLower === "desconhecido" || targetLower === "desconhecido")
-      return "ignore";
-    const numericValue = parseFloat(value);
-    const numericTarget = parseFloat(target);
-    if (isNaN(numericValue) || isNaN(numericTarget)) return "ignore";
-    if (numericValue === numericTarget) return "green";
-    return numericValue < numericTarget ? "up" : "down";
-  }, []);
-
-  const compareHeight = useCallback(
-    (value: string, target: string): string => {
-      const valueLower = value.toLowerCase();
-      const targetLower = target.toLowerCase();
-      if (valueLower === "desconhecida" && targetLower === "desconhecida")
-        return "green";
-      if (valueLower === "desconhecida" || targetLower === "desconhecida")
-        return "red";
-      const numericValue = parseHeight(value);
-      const numericTarget = parseHeight(target);
-      if (isNaN(numericValue) || isNaN(numericTarget)) return "red";
-      if (numericValue === numericTarget) return "green";
-      return numericValue < numericTarget ? "up" : "down";
-    },
-    [parseHeight]
-  );
-
+  /**
+   * Função principal para submeter o palpite.
+   */
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -262,9 +291,12 @@ export default function GamePage() {
       const comparison: AttemptComparison = {
         nome: guess.nome,
         idKey: guess.idKey,
+        // Usando as novas funções de comparação robustas e otimizadas
         idade: compareAge(guess.idade, selectedCharacter.idade),
         altura: compareHeight(guess.altura, selectedCharacter.altura),
         peso: compareWeight(guess.peso, selectedCharacter.peso),
+        
+        // Atributos categóricos
         genero: guess.genero === selectedCharacter.genero ? "green" : "red",
         signo: guess.signo === selectedCharacter.signo ? "green" : "red",
         localDeTreinamento:
@@ -304,6 +336,9 @@ export default function GamePage() {
     ]
   );
 
+  /**
+   * Normaliza texto para facilitar comparação e busca.
+   */
   const normalizeText = useCallback((text: string) => {
     return text
       .normalize("NFD")
@@ -312,6 +347,9 @@ export default function GamePage() {
       .toLowerCase();
   }, []);
 
+  /**
+   * Filtra as sugestões de caracteres baseado no input.
+   */
   const getFilteredSuggestions = useCallback(
     (value: string) => {
       const normalizedValue = normalizeText(value);
@@ -346,6 +384,9 @@ export default function GamePage() {
     [attempts, normalizeText, characters]
   );
 
+  /**
+   * Atualiza o estado do input e as sugestões.
+   */
   const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
@@ -366,6 +407,9 @@ export default function GamePage() {
     [getFilteredSuggestions]
   );
 
+  /**
+   * Lida com o clique em uma sugestão da lista.
+   */
   const handleSuggestionClick = useCallback(
     (idKey: string) => {
       const suggestion = characters.find((c) => c.idKey === idKey);
@@ -380,6 +424,9 @@ export default function GamePage() {
     [characters]
   );
 
+  /**
+   * Lida com navegação por teclado nas sugestões (ArrowUp/ArrowDown).
+   */
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (!suggestions.length) return;
